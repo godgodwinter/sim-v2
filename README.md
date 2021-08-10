@@ -31,12 +31,12 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Administrasi-Keuangan PreAlpha 0.21.08.01</h3>
+  <h3 align="center">SIM PreAlpha 2.0.21.08.10</h3>
 
   <p align="center">
-   Sistem Administrasi Keuangan Sekolah
+   Sistem Informasi Manajemen Sekolah
     <br />
-    <a href="https://github.com/godgodwinter/laravel-administrasikeuangan"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/godgodwinter/sim-v2"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://sekolah.baemon.web.id/">View Demo</a>
@@ -74,9 +74,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot-dashboardlm2]](https://github.com/godgodwinter/laravel-administrasikeuangan)
-[![Product Name Screen Shot][product-screenshot-dashboardlm3]](https://github.com/godgodwinter/laravel-administrasikeuangan)
-[![Product Name Screen Shot][product-classdiagram1]](https://github.com/godgodwinter/laravel-administrasikeuangan)
+[![Product Name Screen Shot][product-screenshot-dashboardlm2]](https://github.com/godgodwinter/sim-v2)
+[![Product Name Screen Shot][product-screenshot-dashboardlm3]](https://github.com/godgodwinter/sim-v2)
+[![Product Name Screen Shot][product-classdiagram1]](https://github.com/godgodwinter/sim-v2)
 
 Sistem administrasi keuangan sekolah
 
@@ -118,7 +118,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
 1. Clone the repo
    ```sh
-   git clone https://github.com/godgodwinter/laravel-administrasikeuangan.git
+   git clone https://github.com/godgodwinter/sim-v2.git
    ```
 2. Install menggunakan composer
    ```sh
@@ -174,7 +174,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Kukuh Setya Nugraha - [@kakadlz](https://twitter.com/kakadlz) 
 Kukuh Setya Nugraha - [@kukuh.sn](https://www.instagram.com/kukuh.sn/) 
 
-Project Link: [https://github.com/godgodwinter/laravel-administrasikeuangan](https://github.com/godgodwinter/laravel-administrasikeuangan)
+Project Link: [https://github.com/godgodwinter/sim-v2](https://github.com/godgodwinter/sim-v2)
 
 
 
@@ -183,16 +183,16 @@ Project Link: [https://github.com/godgodwinter/laravel-administrasikeuangan](htt
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
-[contributors-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
-[forks-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/network/members
-[stars-shield]: https://img.shields.io/github/stars/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
-[stars-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/stargazers
-[issues-shield]: https://img.shields.io/github/issues/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
-[issues-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/issues
-[license-shield]: https://img.shields.io/github/license/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
-[license-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/godgodwinter/sim-v2.svg?style=for-the-badge
+[contributors-url]: https://github.com/godgodwinter/sim-v2/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/godgodwinter/sim-v2.svg?style=for-the-badge
+[forks-url]: https://github.com/godgodwinter/sim-v2/network/members
+[stars-shield]: https://img.shields.io/github/stars/godgodwinter/sim-v2.svg?style=for-the-badge
+[stars-url]: https://github.com/godgodwinter/sim-v2/stargazers
+[issues-shield]: https://img.shields.io/github/issues/godgodwinter/sim-v2.svg?style=for-the-badge
+[issues-url]: https://github.com/godgodwinter/sim-v2/issues
+[license-shield]: https://img.shields.io/github/license/godgodwinter/sim-v2.svg?style=for-the-badge
+[license-url]: https://github.com/godgodwinter/sim-v2/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.instagram.com/kukuh.sn/
 [product-screenshot-dashboardlm2]: images/dashboardlm2.png
