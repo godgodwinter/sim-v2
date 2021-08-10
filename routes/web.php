@@ -51,6 +51,7 @@ Route::get('admin/siswa', 'App\Http\Controllers\siswaController@index')->name('s
 Route::get('admin/carisiswa', 'App\Http\Controllers\siswaController@cari')->name('siswa.cari');
 Route::get('admin/datasiswa/export', 'App\Http\Controllers\siswaController@export')->name('siswa.export');
 Route::post('admin/datasiswa/import', 'App\Http\Controllers\siswaController@import')->name('siswa.import');
+Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\siswaController@cleartemp')->name('siswa.cleartemp');
 
 //pegawai-MENU
 Route::resource('admin/pegawai','App\Http\Controllers\pegawaiController')->except(['index']);

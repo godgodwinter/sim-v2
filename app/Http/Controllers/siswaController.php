@@ -12,6 +12,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -298,10 +299,10 @@ class siswaController extends Controller
 		$nama_file = rand().$file->getClientOriginalName();
  
 		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_siswa',$nama_file);
+		$file->move('file_temp',$nama_file);
  
 		// import data
-		Excel::import(new ImportSiswa, public_path('/file_siswa/'.$nama_file));
+		Excel::import(new ImportSiswa, public_path('/file_temp/'.$nama_file));
  
 		// notifikasi dengan session
 		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
@@ -310,4 +311,10 @@ class siswaController extends Controller
 		// return redirect('/siswa');
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 	}
+    public function cleartemp() 
+	{   
+                unlink(public_path('file_temp'));
+                return redirect()->back()->with('status','Data berhasil di Hapus!')->with('tipe','success')->with('icon','fas fa-trash');
+         
+    }
 }

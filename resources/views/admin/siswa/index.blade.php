@@ -156,19 +156,23 @@
             </form>
             <div class="form-group col-md-4 col-4 mt-1 text-right">
               <a href="/admin/{{  $pages }}/#add"  class="btn btn-icon btn-primary btn-sm"><span
-                class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah @yield('title')</span></a href="$add">
+                class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah </span></a href="$add">
              
               
               <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                Import @yield('title')
+                Import 
               </button>
+
 
 
      
               <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
-                    class="pcoded-micon"> <i class="fas fa-download"></i> Export @yield('title')</span></a href="$add">
+                    class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
 
 
+              <button type="button" class="btn btn-icon btn-danger btn-sm" data-toggle="modal" data-target="#cleartemp"><i class="fas fa-trash"></i>
+                      Clear Temp
+                    </button>
 
 
 
@@ -345,5 +349,28 @@
               </div>
           
           
+              <!-- Import Excel -->
+              <div class="modal fade" id="cleartemp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('siswa.cleartemp') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Temporari</h5>
+                      </div>
+                      <div class="modal-body">
+           
+                        {{ csrf_field() }}
+           
+                        <label></label>
+           
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Hapus!</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
 
 @endsection
