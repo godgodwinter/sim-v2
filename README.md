@@ -31,15 +31,15 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Judul Versi PreAlpha 1.21.03.05</h3>
+  <h3 align="center">Administrasi-Keuangan PreAlpha 0.21.08.01</h3>
 
   <p align="center">
-    Keterangan Sistem yang dibuat
+   Sistem Administrasi Keuangan Sekolah
     <br />
-    <a href="https://github.com/godgodwinter/README-TEMPLATE-laravel"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/godgodwinter/laravel-administrasikeuangan"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://inetwork.baemon.web.id">View Demo https://inetwork.baemon.web.id</a>
+    <a href="https://sekolah.baemon.web.id/">View Demo</a>
     ·
     <a href="https://twitter.com/kakadlz">Report Bug</a>
     ·
@@ -74,13 +74,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot-dashboardluar]](https://github.com/godgodwinter/README-TEMPLATE-laravel)
+[![Product Name Screen Shot][product-screenshot-dashboardlm2]](https://github.com/godgodwinter/laravel-administrasikeuangan)
+[![Product Name Screen Shot][product-screenshot-dashboardlm3]](https://github.com/godgodwinter/laravel-administrasikeuangan)
+[![Product Name Screen Shot][product-classdiagram1]](https://github.com/godgodwinter/laravel-administrasikeuangan)
 
-Sistem .
+Sistem administrasi keuangan sekolah
 
 ### Built With
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+<!-- * [Bootstrap](https://getbootstrap.com) -->
+<!-- * [JQuery](https://jquery.com) -->
 Tools and Framework
 * [Laravel 8](https://laravel.com)
 * [PHP 7.4+](https://php.net)
@@ -114,7 +118,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
 1. Clone the repo
    ```sh
-   git clone https://github.com/godgodwinter/README-TEMPLATE-laravel.git
+   git clone https://github.com/godgodwinter/laravel-administrasikeuangan.git
    ```
 2. Install menggunakan composer
    ```sh
@@ -133,6 +137,7 @@ This is an example of how to list things you need to use the software and how to
 4. jalankan server Laravel
    ```sh
    php artisan serve
+   ```
 5. lakukan migrasi database
    ```sh
    php artisan migrate
@@ -145,6 +150,8 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    php artisan db:seed --class=oneseeder  //untuk meload data user admin@gmail.com pass 12345678
    ```
+   
+
    
 
 Buka browser dan tulis alamat berikut
@@ -167,7 +174,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Kukuh Setya Nugraha - [@kakadlz](https://twitter.com/kakadlz) 
 Kukuh Setya Nugraha - [@kukuh.sn](https://www.instagram.com/kukuh.sn/) 
 
-Project Link: [https://github.com/godgodwinter/inetwork](https://github.com/godgodwinter/inetwork)
+Project Link: [https://github.com/godgodwinter/laravel-administrasikeuangan](https://github.com/godgodwinter/laravel-administrasikeuangan)
 
 
 
@@ -176,18 +183,18 @@ Project Link: [https://github.com/godgodwinter/inetwork](https://github.com/godg
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/godgodwinter/inetwork.svg?style=for-the-badge
-[contributors-url]: https://github.com/godgodwinter/inetwork/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/godgodwinter/inetwork.svg?style=for-the-badge
-[forks-url]: https://github.com/godgodwinter/inetwork/network/members
-[stars-shield]: https://img.shields.io/github/stars/godgodwinter/inetwork.svg?style=for-the-badge
-[stars-url]: https://github.com/godgodwinter/inetwork/stargazers
-[issues-shield]: https://img.shields.io/github/issues/godgodwinter/inetwork.svg?style=for-the-badge
-[issues-url]: https://github.com/godgodwinter/inetwork/issues
-[license-shield]: https://img.shields.io/github/license/godgodwinter/inetwork.svg?style=for-the-badge
-[license-url]: https://github.com/godgodwinter/inetwork/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
+[contributors-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
+[forks-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/network/members
+[stars-shield]: https://img.shields.io/github/stars/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
+[stars-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/stargazers
+[issues-shield]: https://img.shields.io/github/issues/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
+[issues-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/issues
+[license-shield]: https://img.shields.io/github/license/godgodwinter/laravel-administrasikeuangan.svg?style=for-the-badge
+[license-url]: https://github.com/godgodwinter/laravel-administrasikeuangan/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.instagram.com/kukuh.sn/
-[product-screenshot-dashboardluar]: images/dashboardluar.png
-[product-screenshot-dashboardlm]: images/dashboardlm.png
-[product-screenshot-tagihan]: images/tagihan.png
+[product-screenshot-dashboardlm2]: images/dashboardlm2.png
+[product-screenshot-dashboardlm3]: images/dashboardlm3.png
+[product-screenshot-classdiagram1]: images/class_diagram1.png

@@ -1,0 +1,2 @@
+{{-- batal --}}
+<x-layout-table />
