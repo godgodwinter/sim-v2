@@ -82,11 +82,13 @@ class tagihansiswaController extends Controller
         $kelas=kelas::all();
         $datas=DB::table('tagihansiswa')->orderBy('siswa_nis','asc')->where('siswa_nis',$nis)
         ->paginate($this->paginationjml());
+        $caridatas=DB::table('tagihansiswa')->orderBy('siswa_nis','asc')->where('siswa_nis',$nis)
+        ->count();
         // // $tagihansiswa=tagihansiswa::all();
         // $tagihansiswa = DB::table('tagihansiswa')->where('prefix','tagihansiswa')->get();
         $jmldata = DB::table('tagihansiswa')->count();
 
-        return view('siswa.tagihansiswa.index',compact('pages','jmldata','datas','tapel','kelas','request'));
+        return view('siswa.tagihansiswa.index',compact('pages','jmldata','datas','caridatas','tapel','kelas','request'));
     }
     
 

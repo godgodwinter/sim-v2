@@ -30,7 +30,7 @@
             
 
             <div class="card card-primary">
-              <div class="card-header text-center"><h4>SISTEM ADMINISTRASI KEUANGAN SEKOLAH</h4>
+              <div class="card-header text-center"><h4>SISTEM INFOMASI MANAJEMEN SEKOLAH</h4>
               </div>
 
               <div class="card-body">
