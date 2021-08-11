@@ -49,6 +49,7 @@
   <th>Nama</th>
   <th>Kelas</th>
   <th>Email</th>
+  <th>Photo</th>
   <th width="100px" class="text-center">Aksi</th>
 @endsection
 
@@ -67,9 +68,19 @@
         @foreach ($ambilemail as $ae)
         @php
           $email=$ae->email;
+          $profile_photo_path=$ae->profile_photo_path;
         @endphp
         @endforeach
     <td> {{ $email }} </td>
+    <td> 
+      @if($profile_photo_path!='')
+              {{-- <img alt="image" src="{{ $ae->profile_photo_url }}" class="rounded-circle mr-1"> --}}
+              <img alt="image" src="{{ asset("storage/") }}/{{ $profile_photo_path }}" class="img-thumbnail" width="50px">
+      @else
+            <img alt="image" src="https://ui-avatars.com/api/?name={{ $data->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="50px">
+
+      @endif
+    </td>
     <td class="text-center">
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
         <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
@@ -279,6 +290,19 @@
                     </select>
                   </div>
 
+                  <div class="form-group col-md-6 col-6">
+                    <label>Jenis Kelamin <code>*)</code></label>
+                    <select class="form-control form-control-lg" required name="kelas_nama">
+                      @if (old('jk'))
+                      <option>{{old('jk')}}</option>                        
+                      @endif
+                       
+                    
+                          <option>Laki-laki</option>
+                          <option>Perempuan</option>
+                    </select>
+                  </div>
+
                   <div class="form-group col-md-12 col-12">
                     <label for="email">Email <code>*)</code></label>
                     <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" onblur="duplicateEmail(this)"  required>
@@ -352,7 +376,7 @@
               <!-- Import Excel -->
               <div class="modal fade" id="cleartemp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <form method="post" action="{{ route('siswa.cleartemp') }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('cleartemp') }}" enctype="multipart/form-data">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Hapus Temporari</h5>

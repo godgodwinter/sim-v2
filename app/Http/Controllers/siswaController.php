@@ -104,6 +104,7 @@ class siswaController extends Controller
             'alamat'=>'required',
             'tapel_nama'=>'required',
             'kelas_nama'=>'required',
+            'jk'=>'required',
             'nis' => 'required|unique:siswa',
             'email' => 'required|email|unique:users',
             'password' => 'min:8|required_with:password2|same:password2',
@@ -127,6 +128,7 @@ class siswaController extends Controller
                'alamat'     =>   $request->alamat,
                'tapel_nama'     =>   $request->tapel_nama,
                'kelas_nama'     =>   $request->kelas_nama,
+               'jk'     =>   $request->jk,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
@@ -202,6 +204,7 @@ class siswaController extends Controller
             'tgllahir'=>'required',
             'agama'=>'required',
             'alamat'=>'required',
+            'jk'=>'required',
             'tapel_nama'=>'required',
             'kelas_nama'=>'required',
             'nis' => 'required|unique:siswa,nis,'.$siswa->id,
@@ -238,6 +241,7 @@ class siswaController extends Controller
                'tgllahir'     =>   $request->tgllahir,
                'agama'     =>   $request->agama,
                'alamat'     =>   $request->alamat,
+               'jk'     =>   $request->jk,
                'tapel_nama'     =>   $request->tapel_nama,
                'kelas_nama'     =>   $request->kelas_nama,
                'updated_at'=>date("Y-m-d H:i:s")
@@ -278,47 +282,5 @@ class siswaController extends Controller
         DB::table('users')->where('nomerinduk', $siswa->nis)->delete();
         return redirect(URL::to('/').'/admin/siswa')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
   
-    }
-
-	public function export()
-	{
-        $tgl=date("YmdHis");
-		return Excel::download(new ExportSiswa, 'sim-siswa-'.$tgl.'.xlsx');
-	}
-
-	public function import(Request $request) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_temp',$nama_file);
- 
-		// import data
-		Excel::import(new ImportSiswa, public_path('/file_temp/'.$nama_file));
- 
-		// notifikasi dengan session
-		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		// return redirect('/siswa');
-        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
-	}
-    public function cleartemp() 
-	{ 
-            $file = new Filesystem;
-            $file->cleanDirectory(public_path('file_temp'));
-
-        // unlink(public_path('file_temp'));
-        return redirect()->back()->with('status','Data berhasil di Hapus!')->with('tipe','success')->with('icon','fas fa-trash');
-         
     }
 }

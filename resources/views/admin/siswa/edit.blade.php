@@ -116,15 +116,69 @@
 
     <div class="row mt-sm-4">
       <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
-          <form action="/admin/{{  $pages }}/{{ $siswa->id}}" method="post">
-              @method('put')
-              @csrf
-            <div class="card-header">
-                <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> EDIT {{ Str::upper($pages) }}</span>
-            </div>
+        <div class="card"> 
+          
+              <div class="row">
             <div class="card-body">
+              
+                {{-- <span class="btn btn-icon btn-light ml-4"><i class="fas fa-feather"></i> EDIT {{ Str::upper($pages) }}</span> --}}
+
+            
+                <form method="post" action="/admin/datasiswa/upload/{{ $siswa->id }}" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  
+
+                  <div class="form-group col-md-3 col-3 ml-4">      
+                    <div class="col-lg-8 d-flex align-items-stretch mb-4">
+
+                @if($du->profile_photo_path!='')
+                {{-- <img alt="image" src="{{ asset("storage/") }}/{{ $du->profile_photo_path }}" class="rounded-circle profile-widget-picture" width="100px"> --}}
+          
+                <img alt="image" src="{{ asset("storage/") }}/{{ $du->profile_photo_path }}"class="img-thumbnail">
+
+                @else
+                {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $siswa->nama }}&color=7F9CF5&background=EBF4FF" class="rounded-circle profile-widget-picture" width="200px"> --}}
+                <img alt="image" src="https://ui-avatars.com/api/?name={{ $siswa->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="200px">
+
+                @endif
+
+                 </div>
+                {{-- <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture"> --}}
+                    <label for="file">Pilih Photo <code>*)</code></label>
+                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                    @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+
+                  <div class="card-footer text-right">
+                  
+                    <button class="btn btn-success"><i class="fas fa-upload"></i> Simpan</button>
+                  </form>
+
+                    <form action="/admin/datasiswa/upload/{{ $siswa->id }}" method="post" class="d-inline">
+                      @method('delete')
+                      @csrf
+                      <input type="hidden" name="namaphoto" value="{{ $du->profile_photo_path }}" required>
+                      <button class="btn btn-icon btn-danger btn-md"
+                          onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><span
+                              class="pcoded-micon"> <i class="fas fa-trash"></i> Hapus</span></button>
+                  </form>
+                  </div>
+                  </div>
+
+
+                </div>
+                
+            </div>
+
+
+
+            <div class="card-body">
+
+          <form action="/admin/{{  $pages }}/{{ $siswa->id}}" method="post">
+            @method('put')
+            @csrf   
                 <div class="row">
+                  
                   <div class="form-group col-md-6 col-6">
                     <label for="nis">NIS <code>*)</code></label>
                     <input type="number" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{ $siswa->nis }}" required>
@@ -200,8 +254,19 @@
                       @endforeach
                     </select>
                   </div>
+                  <div class="form-group col-md-6 col-6">
+                    <label>Jenis Kelamin <code>*)</code></label>
+                    <select class="form-control form-control-lg" required name="jk">
+                          @if ($siswa->jk)
+                          <option>{{ $siswa->jk }}</option>                        
+                          @endif
+                    
+                          <option>Laki-laki</option>
+                          <option>Perempuan</option>
+                    </select>
+                  </div>
                   
-                  <div class="form-group col-md-12 col-12">
+                  <div class="form-group col-md-6 col-6">
                     <label for="email">Email <code>*)</code></label>
                     <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $du->email }}" onblur="duplicateEmail(this)"  required>
                     @error('email')<div class="invalid-feedback"> {{$message}}</div>
