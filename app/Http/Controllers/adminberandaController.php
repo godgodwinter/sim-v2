@@ -58,6 +58,9 @@ class adminberandaController extends Controller
             $aplikasijudul=$this->aplikasijudul();
             $aplikasijudulsingkat=$this->aplikasijudulsingkat();
             $nominaltagihandefault=$this->nominaltagihandefault();
+            $passdefaultsiswa=$this->passdefaultsiswa();
+            $passdefaultortu=$this->passdefaultortu();
+            $passdefaultpegawai=$this->passdefaultpegawai();
             $tapelaktif=$this->tapelaktif();
             $tapel=tapel::all();
 
@@ -80,6 +83,9 @@ class adminberandaController extends Controller
         ,'nominaltagihandefault'
         ,'aplikasijudul'
         ,'aplikasijudulsingkat'
+        ,'passdefaultsiswa'
+        ,'passdefaultortu'
+        ,'passdefaultpegawai'
     ));
         // return view('admin.beranda');
 
@@ -101,6 +107,9 @@ class adminberandaController extends Controller
             'aplikasijudul'=>'required',
             'aplikasijudulsingkat'=>'required',
             'nominaltagihandefault'=>'required',
+            'passdefaultsiswa'=>'required',
+            'passdefaultortu'=>'required',
+            'passdefaultpegawai'=>'required',
 
         ],
         [
@@ -118,6 +127,9 @@ class adminberandaController extends Controller
                 'aplikasijudul'=>$request->aplikasijudul,
                 'nominaltagihandefault'=>$request->nominaltagihandefault,
                 'aplikasijudulsingkat'=>$request->aplikasijudulsingkat,
+                'passdefaultsiswa'=>$request->passdefaultsiswa,
+                'passdefaultortu'=>$request->passdefaultortu,
+                'passdefaultpegawai'=>$request->passdefaultpegawai,
             ]);
             return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
 

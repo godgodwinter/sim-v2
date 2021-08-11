@@ -311,6 +311,24 @@ $ambilkepsek = DB::table('users')
                     @error('paginationjml')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
+                  <div class="form-group col-md-5 col-5 mt-3 ml-5">
+                    <label for="passdefaultsiswa">Pass Siswa Default <code>*)</code></label>
+                    <input type="text" name="passdefaultsiswa" id="passdefaultsiswa" class="form-control @error('passdefaultsiswa') is-invalid @enderror" value="{{$passdefaultsiswa}}" required>
+                    @error('passdefaultsiswa')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-5 col-5 mt-3 ml-5">
+                    <label for="passdefaultortu">Pass Orang Tua Siswa Default <code>*)</code></label>
+                    <input type="text" name="passdefaultortu" id="passdefaultortu" class="form-control @error('passdefaultortu') is-invalid @enderror" value="{{$passdefaultortu}}" required>
+                    @error('passdefaultortu')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-5 col-5 mt-3 ml-5">
+                    <label for="passdefaultpegawai">Pass Pegawai Default <code>*)</code></label>
+                    <input type="text" name="passdefaultpegawai" id="passdefaultpegawai" class="form-control @error('passdefaultpegawai') is-invalid @enderror" value="{{$passdefaultpegawai}}" required>
+                    @error('passdefaultpegawai')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
 
             <div class="form-group col-md-5 col-5  mt-3 ml-5">
               <label>Tahun Pelajaran Aktif<code>*)</code></label>
@@ -336,7 +354,7 @@ $ambilkepsek = DB::table('users')
             $nominaltagihandefault=1;
             @endphp                    
         @endif
-        <div class="form-group col-md-6 col-6">
+        <div class="form-group col-md-5 col-5  mt-3 ml-5">
           <label for="nominaltagihandefault">Nominal <code>*)</code> </label>
           <input type="text" name="labelrupiah" min="0" id="labelrupiah" class="form-control-plaintext" readonly="" value="@currency($nominaltagihandefault)" >
           <input type="number" name="nominaltagihandefault" min="1" id="rupiah" class="form-control @error('nominaltagihandefault') is-invalid @enderror" value="{{ $nominaltagihandefault }}" required >

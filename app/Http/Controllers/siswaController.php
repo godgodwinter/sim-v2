@@ -291,4 +291,17 @@ class siswaController extends Controller
         return redirect(URL::to('/').'/admin/siswa')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
   
     }
+
+    public function resetpass(siswa $siswa)
+    {
+        // dd($siswa);
+
+        User::where('nomerinduk',$siswa->nis)
+        ->update([
+            'password' => Hash::make($this->passdefaultsiswa()),
+        'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+  
+        return redirect()->back()->with('status','Reset berhasil! Password baru : '.$this->passdefaultsiswa().'')->with('tipe','success')->with('icon','fas fa-edit');
+    }
 }

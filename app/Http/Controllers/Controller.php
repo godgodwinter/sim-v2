@@ -104,5 +104,27 @@ class Controller extends BaseController
         return $data;
      
     }
+
+    public function passdefaultsiswa(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->passdefaultsiswa;
+        return $data;
+     
+    }
+    public function passdefaultortu(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->passdefaultortu;
+        return $data;
+     
+    }
+    public function passdefaultpegawai(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->passdefaultpegawai;
+        return $data;
+     
+    }
     //gunakan  return $this->errorResponse('Validation Error',$validator->errors());
 }

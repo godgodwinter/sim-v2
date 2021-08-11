@@ -49,6 +49,7 @@ Route::get('admin/kelas', 'App\Http\Controllers\kelasController@index')->name('k
 Route::resource('admin/siswa','App\Http\Controllers\siswaController')->except(['index']);
 Route::get('admin/siswa', 'App\Http\Controllers\siswaController@index')->name('siswa');
 Route::get('admin/carisiswa', 'App\Http\Controllers\siswaController@cari')->name('siswa.cari');
+Route::post('admin/siswa/{siswa}/reset', 'App\Http\Controllers\siswaController@resetpass')->name('siswa.resetpass');
 Route::get('admin/datasiswa/export', 'App\Http\Controllers\prosesController@exportsiswa')->name('siswa.export');
 Route::post('admin/datasiswa/import', 'App\Http\Controllers\prosesController@importsiswa')->name('siswa.import');
 Route::post('admin/datasiswa/upload/{siswa}', 'App\Http\Controllers\prosesController@uploadsiswa')->name('siswa.upload');
