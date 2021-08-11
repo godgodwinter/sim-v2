@@ -183,6 +183,7 @@ class oneseeder extends Seeder
             'sekolahtelp' => '0341-123456',
             'aplikasijudul' => 'Sistem Keuangan',
             'aplikasijudulsingkat' => 'SK',
+            'nominaltagihandefault' => '1000000',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

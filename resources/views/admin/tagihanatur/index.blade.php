@@ -128,14 +128,21 @@
          
         </form>
         <div class="form-group col-md-4 col-4 mt-1 text-right">
-          {{-- <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="far fa-file-pdf"></i> Cetak PDF</span></button>
+          
+          <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting."><span
+            class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah Semua </span></a href="$add">
+         
+          
+          <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+            Import 
+          </button>
 
-          <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="fas fa-upload"></i> Import</span></button>
 
-          <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></button> --}}
+
+ 
+          <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+                class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
+
 
 
 
@@ -197,13 +204,13 @@
                       @endphp
                   @else
                       @php
-                      $nominaltagihan=0;
+                      $nominaltagihan=1;
                       @endphp                    
                   @endif
                   <div class="form-group col-md-6 col-6">
                     <label for="nominaltagihan">Nominal <code>*)</code> </label>
-                    <input type="text" name="labelrupiah" min="0" id="labelrupiah" class="form-control-plaintext" readonly="" value="Rp 0,00" >
-                    <input type="number" name="nominaltagihan" min="0" id="rupiah" class="form-control @error('nominaltagihan') is-invalid @enderror" value="{{ $nominaltagihan }}" required>
+                    <input type="text" name="labelrupiah" min="0" id="labelrupiah" class="form-control-plaintext" readonly="" value="Rp 1,00" >
+                    <input type="number" name="nominaltagihan" min="1" id="rupiah" class="form-control @error('nominaltagihan') is-invalid @enderror" value="{{ $nominaltagihan }}" required >
                     @error('nominaltagihan')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>

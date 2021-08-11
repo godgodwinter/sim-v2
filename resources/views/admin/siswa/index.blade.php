@@ -292,7 +292,7 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Jenis Kelamin <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="kelas_nama">
+                    <select class="form-control form-control-lg" required name="jk">
                       @if (old('jk'))
                       <option>{{old('jk')}}</option>                        
                       @endif

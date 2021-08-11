@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\kelas;
 use App\Models\tagihanatur;
+use App\Models\tagihansiswa;
 use App\Models\tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +87,7 @@ class tagihanaturController extends Controller
         $request->validate([
             'tapel_nama'=>'required',
             'kelas_nama'=>'required',
-            'nominaltagihan'=>'required|numeric'
+            'nominaltagihan'=>'required|numeric|min:1'
 
         ],
         [
@@ -107,7 +108,14 @@ class tagihanaturController extends Controller
         if($cek1>0){
             tagihanatur::where('kelas_nama',$request->kelas_nama)->where('tapel_nama',$request->tapel_nama)
                 ->update([
-                    'nominaltagihan'=>$request->nominaltagihan
+                    'nominaltagihan'=>$request->nominaltagihan,
+                            'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+            tagihansiswa::where('kelas_nama',$request->kelas_nama)->where('tapel_nama',$request->tapel_nama)
+                ->update([
+                    'nominaltagihan'=>$request->nominaltagihan,
+                    'updated_at'=>date("Y-m-d H:i:s")
                 ]);
 
         }else{
@@ -175,4 +183,56 @@ class tagihanaturController extends Controller
         return redirect(URL::to('/').'/admin/tagihanatur')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     
     }
+
+    public function addall()
+    {
+        $nominaltagihan='1000000';
+        // 2. Ambil data tahun saat ini
+        $ambiltahunaktif=DB::table('settings')->where('id',1)->get();
+        foreach ($ambiltahunaktif as $at){
+            $tapelaktif=$at->tapelaktif;
+        }
+        // dd($ambiltahunaktif);
+        // 1. Ambil data kelas 
+        $ambilkelas=DB::table('kelas')->get();
+        foreach ($ambilkelas as $ak){
+            $kelas_nama=$ak->nama;
+
+
+        $cek1 = DB::table('tagihanatur')
+        ->where('kelas_nama',$kelas_nama)
+        ->where('tapel_nama',$tapelaktif)
+        ->count();
+        // dd($cek1);
+
+        //jika sudah ada maka edit
+        if($cek1>0){
+            // tagihanatur::where('kelas_nama',$kelas_nama)->where('tapel_nama',$tapelaktif)
+            //     ->update([
+            //         'nominaltagihan'=>$nominaltagihan,
+            //         'updated_at'=>date("Y-m-d H:i:s")
+            //     ]);
+
+        }else{
+            //insert
+            DB::table('tagihanatur')->insert(
+                array(
+                    'tapel_nama'     =>   $tapelaktif,
+                    'kelas_nama'     =>   $kelas_nama,
+                    'nominaltagihan'     =>   $nominaltagihan,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
+        }
+
+        }
+        
+        // 3.periksa apakah data tapel dan kelas sudah ada di settings?
+        // 3 a.jika belum insert
+        // 3 b.jika sudah update
+        
+        // return redirect()->back()->with('status','Berhasil!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect(URL::to('/').'/admin/datatagihan/sync')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-feather');
+    }
+
 }

@@ -89,7 +89,6 @@ Route::get('kepsek/caritagihansiswa', 'App\Http\Controllers\tagihansiswaControll
 Route::get('siswa/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@siswaindex')->name('siswa.tagihansiswa');
 
 
-Route::post('admin/tagihansiswa/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
 Route::post('admin/tagihansiswa/bayartagihan/{tagihansiswa}', 'App\Http\Controllers\tagihansiswaController@bayartagihan')->name('tagihansiswa.bayartagihan');
 Route::delete('admin/tagihansiswa/bayartagihan/{tagihansiswadetail}/hapus', 'App\Http\Controllers\tagihansiswaController@bayartagihandestroy')->name('tagihansiswa.bayartagihandestroy');
 
@@ -99,6 +98,12 @@ Route::delete('admin/tagihansiswa/bayartagihan/{tagihansiswadetail}/hapus', 'App
 Route::get('admin/laporan', 'App\Http\Controllers\laporanController@index')->name('laporan');
 Route::get('admin/laporan/cetak', 'App\Http\Controllers\laporanController@cetak')->name('laporan.cetak');
 
+
+// tagihan-Menu
+Route::get('admin/datatagihan/addall', 'App\Http\Controllers\tagihanaturController@addall')->name('admin.tagihan.addall');
+// Route::get('admin/datatagihan/addallbayar', 'App\Http\Controllers\tagihanaturController@addallbayar')->name('admin.tagihan.addallbayar');
+Route::post('admin/tagihansiswa/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
+Route::get('admin/datatagihan/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
 
 Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');
 // Route::post('/checkemail',['uses'=>'PagesController@checkEmail']);

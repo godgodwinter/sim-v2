@@ -144,7 +144,7 @@ class siswaController extends Controller
                'updated_at'=>date("Y-m-d H:i:s")
         ));
         
-        return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect(URL::to('/').'/admin/datatagihan/addall')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-feather');
     
     }
 
@@ -265,7 +265,7 @@ class siswaController extends Controller
                     ]);
 
         }
-
+            //jika ganti tapel dan kelas ganti pembayaran (belum)
         return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
