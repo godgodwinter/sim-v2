@@ -9,6 +9,7 @@ use App\Models\siswa;
 use App\Models\tapel;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -312,9 +313,12 @@ class siswaController extends Controller
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 	}
     public function cleartemp() 
-	{   
-                unlink(public_path('file_temp'));
-                return redirect()->back()->with('status','Data berhasil di Hapus!')->with('tipe','success')->with('icon','fas fa-trash');
+	{ 
+            $file = new Filesystem;
+            $file->cleanDirectory(public_path('file_temp'));
+
+        // unlink(public_path('file_temp'));
+        return redirect()->back()->with('status','Data berhasil di Hapus!')->with('tipe','success')->with('icon','fas fa-trash');
          
     }
 }
