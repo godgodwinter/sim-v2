@@ -29,6 +29,7 @@ class siswaController extends Controller
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
+
         #WAJIB
         $pages='siswa';
         $jmldata='0';
@@ -303,5 +304,40 @@ class siswaController extends Controller
         ]);
   
         return redirect()->back()->with('status','Reset berhasil! Password baru : '.$this->passdefaultsiswa().'')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+
+    public function deletechecked(Request $request)
+    {
+        
+        $ids=$request->ids;
+
+        // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
+        // foreach($datasiswa as $ds){
+        //     $nis=$ds->nis;
+        // }
+
+        // dd($request);
+
+        User::whereIn('nomerinduk',$ids)->delete();
+
+        siswa::whereIn('nis',$ids)->delete();
+        
+        // load ulang
+     
+        #WAJIB
+        $pages='siswa';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('siswa')
+        ->paginate($this->paginationjml());
+    
+        $tapel=tapel::all();
+        $kelas=kelas::all();
+        $jmldata = DB::table('siswa')->count();
+
+        return view('admin.siswa.index',compact('pages','jmldata','datas','tapel','kelas','request'));
+
     }
 }

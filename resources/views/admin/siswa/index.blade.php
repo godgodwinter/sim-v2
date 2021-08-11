@@ -45,7 +45,10 @@
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="5%" class="text-center">#</th>
+<th class="text-center" width="5%">
+    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll">All</label>
+</th>
+<th class="text-center" width="5%">No</th>
   <th>Nama</th>
   <th>Kelas</th>
   <th>Email</th>
@@ -54,9 +57,49 @@
 @endsection
 
 @section('bodytable')
+
+<script>
+  console.log('asdad');
+  $().jquery;
+  $.fn.jquery;
+  $(function(e){
+      $("#chkCheckAll").click(function(){
+          $(".checkBoxClass").prop('checked',$(this).prop('checked'));
+      })
+
+      $("#deleteAllSelectedRecord").click(function(e){
+          e.preventDefault();
+          var allids=[];
+              $("input:checkbox[name=ids]:checked").each(function(){
+                  allids.push($(this).val());
+              });
+
+      $.ajax({
+          url:"{{ route('siswa.multidel') }}",
+          type:"DELETE",
+          data:{
+              _token:$("input[name=_token]").val(),
+              ids:allids
+          },
+          success:function(response){
+              $.each(allids,function($key,val){
+                      $("#sid"+val).remove();
+              })
+          }
+      });
+
+      })
+
+  });
+</script>
+
 @foreach ($datas as $data)
-  <tr>
-    <td>{{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+
+<tr id="sid{{ $data->nis }}">
+  <td class="text-center">
+      <input type="checkbox" name="ids" class="checkBoxClass" value="{{ $data->nis }}">
+  </td>
+    <td  class="text-center" width="5%">{{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     <td>{{ $data->nis }} - {{ $data->nama }}</td>
     <td>{{ $data->tapel_nama }} - {{ $data->kelas_nama }}</td>
 
@@ -107,6 +150,7 @@
       <li class="breadcrumb-item"><i class="far fa-file"></i> Halaman ke-{{ $datas->currentPage() }}</li>
       <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Total Data</li>
       <li class="breadcrumb-item active" aria-current="page"><i class="far fa-copy"></i> {{ $datas->perPage() }} Data Perhalaman</li>
+
   </ol>
   </nav>
 @endsection
@@ -203,7 +247,9 @@
 
     <div class="row mt-sm-0"> 
       <div class="col-12 col-md-12 col-lg-12">
+
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
+          
        </div> 
 
       <div class="col-12 col-md-12 col-lg-12" id="add">
