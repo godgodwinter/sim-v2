@@ -186,7 +186,7 @@ class tagihanaturController extends Controller
 
     public function addall()
     {
-        $nominaltagihan='1000000';
+        $nominaltagihan=$this->nominaltagihandefault();
         // 2. Ambil data tahun saat ini
         $ambiltahunaktif=DB::table('settings')->where('id',1)->get();
         foreach ($ambiltahunaktif as $at){

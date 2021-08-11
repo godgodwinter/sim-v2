@@ -97,5 +97,12 @@ class Controller extends BaseController
         return $data;
      
     }
+    public function nominaltagihandefault(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->nominaltagihandefault;
+        return $data;
+     
+    }
     //gunakan  return $this->errorResponse('Validation Error',$validator->errors());
 }

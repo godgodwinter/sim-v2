@@ -57,6 +57,7 @@ class adminberandaController extends Controller
             $sekolahtelp=$this->sekolahtelp();
             $aplikasijudul=$this->aplikasijudul();
             $aplikasijudulsingkat=$this->aplikasijudulsingkat();
+            $nominaltagihandefault=$this->nominaltagihandefault();
             $tapelaktif=$this->tapelaktif();
             $tapel=tapel::all();
 
@@ -76,6 +77,7 @@ class adminberandaController extends Controller
         ,'sekolahnama'
         ,'sekolahalamat'
         ,'sekolahtelp'
+        ,'nominaltagihandefault'
         ,'aplikasijudul'
         ,'aplikasijudulsingkat'
     ));
@@ -98,6 +100,7 @@ class adminberandaController extends Controller
             'sekolahtelp'=>'required',
             'aplikasijudul'=>'required',
             'aplikasijudulsingkat'=>'required',
+            'nominaltagihandefault'=>'required',
 
         ],
         [
@@ -113,6 +116,7 @@ class adminberandaController extends Controller
                 'sekolahalamat'=>$request->sekolahalamat,
                 'sekolahtelp'=>$request->sekolahtelp,
                 'aplikasijudul'=>$request->aplikasijudul,
+                'nominaltagihandefault'=>$request->nominaltagihandefault,
                 'aplikasijudulsingkat'=>$request->aplikasijudulsingkat,
             ]);
             return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
