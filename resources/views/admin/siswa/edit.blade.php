@@ -286,6 +286,21 @@
                     @error('password2')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
+
+                  <div class="form-group col-md-6 col-6">
+                    <label for="moodleuser">User Ujian <code>*)</code></label>
+                    <input type="text" name="moodleuser" id="moodleuser" class="form-control @error('moodleuser') is-invalid @enderror" value="{{$siswa->moodleuser}}" required>
+                    @error('moodleuser')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+
+                  <div class="form-group col-md-6 col-6">
+                    <label for="moodlepass">Password Ujian <code>*)</code></label>
+                    <input type="text" name="moodlepass" id="moodlepass" class="form-control @error('moodlepass') is-invalid @enderror" value="{{$siswa->moodlepass}}" required>
+                    @error('moodlepass')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+                 
                  
                 </div>
              
@@ -296,121 +311,6 @@
           </form>
         </div>
 
-
-        <div class="card">
-            <form action="/admin/{{ $pages }}" method="post">
-                @csrf
-            <div class="card-header">
-                <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> TAMBAH {{ Str::upper($pages) }}</span>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                  <div class="form-group col-md-6 col-6">
-                    <label for="nis">NIS <code>*)</code></label>
-                    <input type="number" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{old('nis')}}" required>
-                    @error('nis')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-                 
-                  <div class="form-group col-md-6 col-6">
-                    <label for="nama">Nama <code>*)</code></label>
-                    <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}" required>
-                    @error('nama')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-                 
-                  <div class="form-group col-md-6 col-6">
-                    <label for="tempatlahir">Tempat Lahir <code>*)</code></label>
-                    <input type="text" name="tempatlahir" id="tempatlahir" class="form-control @error('tempatlahir') is-invalid @enderror" value="{{old('tempatlahir')}}" required>
-                    @error('tempatlahir')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-                  <div class="form-group col-md-6 col-6">
-                    <label>Tanggal Lahir</label>
-                    <input type="date" class="form-control" name="tgllahir" @error('tgllahir') is-invalid @enderror" value="{{old('tgllahir')}}" >
-                    @error('tgllahir')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-                  <div class="form-group col-md-6 col-6">
-                    <label>Agama <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="agama"> 
-                      @if (old('agama'))
-                      <option>{{old('agama')}}</option>                        
-                      @endif
-                      <option>Islam</option>
-                      <option>Kristen</option>
-                      <option>Katholik</option>
-                      <option>Hindu</option>
-                      <option>Budha</option>
-                      <option>Konghucu</option>
-                      <option>Lain-lain</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group col-md-6 col-6">
-                    <label for="alamat">Alamat <code>*)</code></label>
-                    <input type="text" name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{old('alamat')}}" required>
-                    @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-
-                  <div class="form-group col-md-6 col-6">
-                    <label>Tahun Pelajaran <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="tapel_nama">  
-                          @if (old('tapel_nama'))
-                          <option>{{old('tapel_nama')}}</option>                        
-                          @endif
-                      @foreach ($tapel as $t)
-                          <option>{{ $t->nama }}</option>
-                      @endforeach
-                    </select>
-                  </div>
-
-                  <div class="form-group col-md-6 col-6">
-                    <label>Kelas <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="kelas_nama">
-                          @if (old('kelas_nama'))
-                          <option>{{old('kelas_nama')}}</option>                        
-                          @endif
-                      @foreach ($kelas as $k)
-                          <option>{{ $k->nama }}</option>
-                      @endforeach
-                    </select>
-                  </div>
-
-                  <div class="form-group col-md-12 col-12">
-                    <label for="email">Email <code>*)</code></label>
-                    <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" onblur="duplicateEmail(this)"  required>
-                    @error('email')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-                  <div class="form-group col-md-6 col-6">
-                    <label for="password">Password <code>*)</code></label>
-                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" required>
-                    @error('password')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-                  <div class="form-group col-md-6 col-6">
-                    <label for="password2">Konfirmasi Password <code>*)</code></label>
-                    <input type="password" name="password2" id="password2" class="form-control @error('password2') is-invalid @enderror" value="{{old('password2')}}" required>
-                    @error('password2')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-                 
-                </div>
-             
-            </div>
-            <div class="card-footer text-right">
-              <button class="btn btn-primary">Simpan</button>
-            </div>
-          </form>
-        </div>{{old('password2')}}
-        
 
       </div>
     </div>

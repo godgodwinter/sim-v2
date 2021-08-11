@@ -40,6 +40,8 @@ class ImportSiswa implements ToModel, WithHeadingRow
                 'jk' => $data['jk'], 
                 'created_at' => $data['created_at'], 
                 'updated_at' => $data['updated_at'], 
+                'moodleuser' => $data['moodleuser'], 
+                'moodlepass' => $data['moodlepass'], 
         ));
         }else{
 
@@ -55,6 +57,8 @@ class ImportSiswa implements ToModel, WithHeadingRow
             'jk' => $data['jk'], 
             'created_at' => $data['created_at'], 
             'updated_at' => $data['updated_at'], 
+            'moodleuser' => $data['moodleuser'], 
+            'moodlepass' => $data['moodlepass'], 
         ]);
 
         }

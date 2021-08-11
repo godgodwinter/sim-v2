@@ -21,5 +21,7 @@ class siswa extends Model
         'kelas_nama',
         'tapel_nama',
         'jk',
+        'moodleuser',
+        'moodlepass',
     ];
 }

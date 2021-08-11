@@ -42,7 +42,9 @@ class ExportSiswa implements FromCollection, WithHeadings, ShouldAutoSize
             'created_at',
             'updated_at',
             'email',
-            'pass'
+            'moodleuser',
+            'moodlepass',
+            'pass',
         ];
     }
     public function collection()

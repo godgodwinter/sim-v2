@@ -98,6 +98,8 @@ class siswaController extends Controller
     {
         $request->validate([
             'nama'=>'required',
+            'moodleuser'=>'required',
+            'moodlepass'=>'required',
             'tempatlahir'=>'required',
             'tgllahir'=>'required',
             'agama'=>'required',
@@ -129,6 +131,8 @@ class siswaController extends Controller
                'tapel_nama'     =>   $request->tapel_nama,
                'kelas_nama'     =>   $request->kelas_nama,
                'jk'     =>   $request->jk,
+               'moodleuser'     =>   $request->moodleuser,
+               'moodlepass'     =>   $request->moodlepass,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
@@ -209,6 +213,8 @@ class siswaController extends Controller
             'kelas_nama'=>'required',
             'nis' => 'required|unique:siswa,nis,'.$siswa->id,
             'email' => 'unique:users,email,'.$emailku,
+            'moodleuser'=>'required',
+            'moodlepass'=>'required',
         ],
         [
             'nis.unique'=>'NIS sudah digunakan',
@@ -242,6 +248,8 @@ class siswaController extends Controller
                'agama'     =>   $request->agama,
                'alamat'     =>   $request->alamat,
                'jk'     =>   $request->jk,
+               'moodleuser'     =>   $request->moodleuser,
+               'moodlepass'     =>   $request->moodlepass,
                'tapel_nama'     =>   $request->tapel_nama,
                'kelas_nama'     =>   $request->kelas_nama,
                'updated_at'=>date("Y-m-d H:i:s")

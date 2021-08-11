@@ -19,5 +19,9 @@ class settings extends Model
         'sekolahtelp',
         'aplikasijudul',
         'aplikasijudulsingkat',
+        'nominaltagihandefault',
+        'passdefaultsiswa',
+        'passdefaultpegawai',
+        'passdefaultortu',
     ];
 }

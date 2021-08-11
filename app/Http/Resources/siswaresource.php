@@ -34,6 +34,8 @@ class siswaresource extends JsonResource
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
             'email'=>$this->email,
+            'moodleuser'=>$this->moodleuser,
+            'moodlepass'=>$this->moodlepass,
             // 'email'=>$this->email,
             // 'publish'=>Carbon::parse($this->created_at)->diffForHumans()
         ];

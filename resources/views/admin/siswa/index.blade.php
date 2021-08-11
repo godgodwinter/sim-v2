@@ -50,7 +50,7 @@
   <th>Kelas</th>
   <th>Email</th>
   <th>Photo</th>
-  <th width="100px" class="text-center">Aksi</th>
+  <th width="150px" class="text-center">Aksi</th>
 @endsection
 
 @section('bodytable')
@@ -82,6 +82,7 @@
       @endif
     </td>
     <td class="text-center">
+        <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
         <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
     </td>
@@ -205,7 +206,7 @@
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
        </div> 
 
-      <div class="col-12 col-md-12 col-lg-7" id="add">
+      <div class="col-12 col-md-12 col-lg-12" id="add">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
                 @csrf
@@ -321,6 +322,20 @@
                     <label for="password2">Konfirmasi Password <code>*)</code></label>
                     <input type="password" name="password2" id="password2" class="form-control @error('password2') is-invalid @enderror"  required>
                     @error('password2')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+
+                  <div class="form-group col-md-6 col-6">
+                    <label for="moodleuser">User Ujian <code>*)</code></label>
+                    <input type="text" name="moodleuser" id="moodleuser" class="form-control @error('moodleuser') is-invalid @enderror" value="{{old('moodleuser')}}" required>
+                    @error('moodleuser')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+
+                  <div class="form-group col-md-6 col-6">
+                    <label for="moodlepass">Password Ujian <code>*)</code></label>
+                    <input type="text" name="moodlepass" id="moodlepass" class="form-control @error('moodlepass') is-invalid @enderror" value="{{old('moodlepass')}}" required>
+                    @error('moodlepass')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
                  

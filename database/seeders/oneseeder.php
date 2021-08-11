@@ -62,6 +62,9 @@ class oneseeder extends Seeder
             'tgllahir' => '2003-05-20',
             'alamat' => 'Desa Sumbersari Kecamatan Losari Kabupaten Trenggalek',
             'nis' => '1',
+            'jk' => 'Laki-laki',
+            'moodleuser' => 'p41j0',
+            'moodlepass' => 'b4qweRty',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -184,6 +187,9 @@ class oneseeder extends Seeder
             'aplikasijudul' => 'Sistem Keuangan',
             'aplikasijudulsingkat' => 'SK',
             'nominaltagihandefault' => '1000000',
+            'passdefaultsiswa' => 'siswa123',
+            'passdefaultpegawai' => '12345678',
+            'passdefaultortu' => 'ortu123',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
