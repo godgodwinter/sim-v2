@@ -45,7 +45,9 @@
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="5%" class="text-center">#</th>
+<th class="text-center" width="5%">
+    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label>
+</th>
   <th>Nama</th>
   <th>Jabatan</th>
   <th>Email</th>
@@ -53,9 +55,45 @@
 @endsection
 
 @section('bodytable')
+
+<script>
+  // console.log('asdad');
+  $().jquery;
+  $.fn.jquery;
+  $(function(e){
+      $("#chkCheckAll").click(function(){
+          $(".checkBoxClass").prop('checked',$(this).prop('checked'));
+      })
+
+      $("#deleteAllSelectedRecord").click(function(e){
+          e.preventDefault();
+          var allids=[];
+              $("input:checkbox[name=ids]:checked").each(function(){
+                  allids.push($(this).val());
+              });
+
+      $.ajax({
+          url:"{{ route('pegawai.multidel') }}",
+          type:"DELETE",
+          data:{
+              _token:$("input[name=_token]").val(),
+              ids:allids
+          },
+          success:function(response){
+              $.each(allids,function($key,val){
+                      $("#sid"+val).remove();
+              })
+          }
+      });
+
+      })
+
+  });
+</script>
 @foreach ($datas as $data)
-  <tr>
-    <td>{{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+<tr id="sid{{ $data->nig }}">
+  <td class="text-center">
+      <input type="checkbox" name="ids" class="checkBoxClass" value="{{ $data->nig }}"> {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     
     <td>{{ $data->nama }}</td>
     <td>{{ $data->kategori_nama }}</td>
@@ -77,6 +115,12 @@
     </td>
   </tr>
 @endforeach
+
+<tr>
+  <td class="text-left" colspan="2">
+    <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
+    onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
+</tr>
 @endsection
 
 @section('foottable')  

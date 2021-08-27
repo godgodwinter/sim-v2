@@ -58,7 +58,7 @@
 @section('bodytable')
 
 <script>
-  console.log('asdad');
+  // console.log('asdad');
   $().jquery;
   $.fn.jquery;
   $(function(e){

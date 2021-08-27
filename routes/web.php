@@ -67,6 +67,7 @@ Route::resource('admin/pegawai','App\Http\Controllers\pegawaiController')->excep
 Route::get('admin/pegawai', 'App\Http\Controllers\pegawaiController@index')->name('pegawai');
 Route::get('admin/caripegawai', 'App\Http\Controllers\pegawaiController@cari')->name('pegawai.cari');
 Route::post('admin/pegawai/{pegawai}/reset', 'App\Http\Controllers\pegawaiController@resetpass')->name('pegawai.resetpass');
+Route::delete('admin/datapegawai/multidel', 'App\Http\Controllers\pegawaiController@deletechecked')->name('pegawai.multidel');
 
 //pemasukan-MENU
 Route::resource('admin/pemasukan','App\Http\Controllers\pemasukanController')->except(['index']);

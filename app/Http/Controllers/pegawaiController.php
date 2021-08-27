@@ -279,4 +279,51 @@ class pegawaiController extends Controller
   
         return redirect()->back()->with('status','Reset berhasil! Password baru : '.$this->passdefaultpegawai().'')->with('tipe','success')->with('icon','fas fa-edit');
     }
+
+    public function deletechecked(Request $request)
+    {
+        
+        $cari=$request->cari;
+        $kategori_nama=$request->kategori_nama;
+        $ids=$request->ids;
+
+        // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
+        // foreach($datasiswa as $ds){
+        //     $nis=$ds->nis;
+        // }
+
+        // dd($request);
+
+        // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
+        // tagihansiswa::whereIn('siswa_nis',$ids)->where('tapel_nama',$this->tapelaktif())->delete();
+
+        User::whereIn('nomerinduk',$ids)->delete();
+
+        pegawai::whereIn('nig',$ids)->delete();
+
+        
+        // load ulang
+     
+        #WAJIB
+        $pages='pegawai';
+        $jmldata='0';
+        $datas='0';
+
+
+    $datas=DB::table('pegawai')
+    // ->where('nis','like',"%".$cari."%")
+    ->where('nama','like',"%".$cari."%")
+    ->where('kategori_nama','like',"%".$kategori_nama."%")
+    ->orWhere('nig','like',"%".$cari."%")
+    ->where('kategori_nama','like',"%".$kategori_nama."%")
+    ->paginate($this->paginationjml());
+
+        // $kategori=kategori::all();
+        $kategori = DB::table('kategori')->where('prefix','pegawai')->get();
+        $jmldata = DB::table('pegawai')->count();
+
+
+        return view('admin.pegawai.index',compact('pages','jmldata','datas','kategori','request'));
+
+    }
 }
