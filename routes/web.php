@@ -73,11 +73,13 @@ Route::delete('admin/datapegawai/multidel', 'App\Http\Controllers\pegawaiControl
 Route::resource('admin/pemasukan','App\Http\Controllers\pemasukanController')->except(['index']);
 Route::get('admin/pemasukan', 'App\Http\Controllers\pemasukanController@index')->name('pemasukan');
 Route::get('admin/caripemasukan', 'App\Http\Controllers\pemasukanController@cari')->name('pemasukan.cari');
+Route::delete('admin/datapemasukan/multidel', 'App\Http\Controllers\pemasukanController@deletechecked')->name('pemasukan.multidel');
 
 //pengeluaran-MENU
 Route::resource('admin/pengeluaran','App\Http\Controllers\pengeluaranController')->except(['index']);
 Route::get('admin/pengeluaran', 'App\Http\Controllers\pengeluaranController@index')->name('pengeluaran');
 Route::get('admin/caripengeluaran', 'App\Http\Controllers\pengeluaranController@cari')->name('pengeluaran.cari');
+Route::delete('admin/datapengeluaran/multidel', 'App\Http\Controllers\pengeluaranController@deletechecked')->name('pengeluaran.multidel');
 
 
 //tagihanatur-MENU

@@ -183,4 +183,37 @@ if($yearmonth!==null){
         return redirect(URL::to('/').'/admin/pengeluaran')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     
     }
+
+    public function deletechecked(Request $request)
+    {
+        
+        $ids=$request->ids;
+
+        // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
+        // foreach($datasiswa as $ds){
+        //     $nis=$ds->nis;
+        // }
+
+        // dd($request);
+
+        // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
+        pengeluaran::whereIn('id',$ids)->delete();
+
+        
+        // load ulang
+     
+        #WAJIB
+        $pages='pengeluaran';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('pengeluaran')->paginate($this->paginationjml());
+        // $kategori=kategori::all();
+        $kategori = DB::table('kategori')->where('prefix','pengeluaran')->get();
+        $jmldata = DB::table('pengeluaran')->count();
+
+        return view('admin.pengeluaran.index',compact('pages','jmldata','datas','kategori','request'));
+
+    }
 }
