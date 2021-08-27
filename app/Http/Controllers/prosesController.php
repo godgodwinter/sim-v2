@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\Exportpegawai;
 use App\Exports\ExportSiswa;
+use App\Exports\Exporttagihanatur;
+use App\Exports\Exporttagihansiswa;
 use App\Imports\Importpegawai;
 use App\Imports\ImportSiswa;
 use App\Models\siswa;
@@ -27,6 +29,24 @@ class prosesController extends Controller
 	{
         $tgl=date("YmdHis");
 		return Excel::download(new Exportpegawai, 'sim-pegawai-'.$tgl.'.xlsx');
+	}
+
+	public function exporttagihanatur()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exporttagihanatur, 'sim-tagihanatur-'.$tgl.'.xlsx');
+	}
+
+	public function exporttagihansiswa()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exporttagihansiswa, 'sim-tagihansiswa-'.$tgl.'.xlsx');
+	}
+
+	public function exporttagihansiswadetail()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exporttagihansiswa, 'sim-tagihansiswa-'.$tgl.'.xlsx');
 	}
 
 	public function importpegawai(Request $request) 

@@ -219,6 +219,26 @@
                 onclick="return  confirm('Anda yakin melakukan sinkronisasi data ? Y/N')" class="btn btn-icon icon-left btn-primary btn-sm mt-1" data-toggle="tooltip" data-placement="top" title="Akan mengambil data siswa dan tagihan atur yang belum dimasukkan kedalam tagihan siswa!"><i class="fas fa-retweet"></i> Sinkronisasi Data</button>
         </form>
 
+          
+        <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+          Import 
+        </button>
+
+
+
+
+        <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+              class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
+
+
+        <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+          Import Detail Tagihan
+        </button>
+
+
+        <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+              class="pcoded-micon"> <i class="fas fa-download"></i> Export Detail Tagihan</span></a href="$add">
+
               </div>
            
          

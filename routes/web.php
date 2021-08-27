@@ -121,6 +121,14 @@ Route::post('admin/datasiswa/import', 'App\Http\Controllers\prosesController@imp
 Route::get('admin/datapegawai/export', 'App\Http\Controllers\prosesController@exportpegawai')->name('pegawai.export');
 Route::post('admin/datapegawai/import', 'App\Http\Controllers\prosesController@importpegawai')->name('pegawai.import');
 
+
+Route::get('admin/datatagihanatur/export', 'App\Http\Controllers\prosesController@exporttagihanatur')->name('tagihanatur.export');
+Route::post('admin/datatagihanatur/import', 'App\Http\Controllers\prosesController@importtagihanatur')->name('tagihanatur.import');
+Route::get('admin/datatagihansiswa/export', 'App\Http\Controllers\prosesController@exporttagihansiswa')->name('tagihansiswa.export');
+Route::post('admin/datatagihansiswa/import', 'App\Http\Controllers\prosesController@importtagihansiswa')->name('tagihansiswa.import');
+Route::get('admin/datatagihansiswadetail/export', 'App\Http\Controllers\prosesController@exporttagihansiswadetail')->name('tagihansiswadetail.export');
+Route::post('admin/datatagihansiswadetail/import', 'App\Http\Controllers\prosesController@importtagihansiswadetail')->name('tagihansiswadetail.import');
+
 Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@cleartemp')->name('cleartemp');
 
 
