@@ -57,7 +57,7 @@ class oneseeder extends Seeder
         DB::table('siswa')->insert([
             'nama' => 'Paijo',
             'tapel_nama' => '2021/2022',
-            'kelas_nama' => 'XIII A',
+            'kelas_nama' => 'XI OTO 1',
             'tempatlahir' => 'Malang',
             'tgllahir' => '2003-05-20',
             'alamat' => 'Desa Sumbersari Kecamatan Losari Kabupaten Trenggalek',
@@ -130,7 +130,7 @@ class oneseeder extends Seeder
 
          //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XII A',
+            'nama' => 'X OTO 1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -138,21 +138,35 @@ class oneseeder extends Seeder
 
          //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XII B',
+            'nama' => 'X TKJ 1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XIII A',
+            'nama' => 'XI OTO 1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XIII B',
+            'nama' => 'XI TKJ 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+              //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'XII OTO 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+              //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'XII TKJ 1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -184,8 +198,8 @@ class oneseeder extends Seeder
             'sekolahnama' => 'SMP ABCD 01 Malang',
             'sekolahalamat' => 'Jl. Abcd Desa Qwerty Kecamatan Zxcvb',
             'sekolahtelp' => '0341-123456',
-            'aplikasijudul' => 'Sistem Keuangan',
-            'aplikasijudulsingkat' => 'SK',
+            'aplikasijudul' => 'SIM SMK KROMENGAN',
+            'aplikasijudulsingkat' => 'SIM',
             'nominaltagihandefault' => '1000000',
             'passdefaultsiswa' => 'siswa123',
             'passdefaultpegawai' => '12345678',

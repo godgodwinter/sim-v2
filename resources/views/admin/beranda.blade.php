@@ -245,6 +245,16 @@ $ambilkepsek = DB::table('users')
                 <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
                   <a  href="{{ route('laporan') }}" type="button" class="btn btn-success"> <i class="fab fa-resolving"></i> Laporan </a>
                 </div>
+
+              <div class="profile-widget-items">
+                <h3 class="ml-5 mt-4">Menu Lain-lain</h3>
+              </div>
+                <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
+                  
+              <button type="button" class="btn btn-icon btn-info btn-md" data-toggle="modal" data-target="#cleartemp"><i class="fas fa-trash"></i>
+                Hapus File Sampah
+              </button>
+                </div>
               </div>
             
         </div>
@@ -446,4 +456,32 @@ $ambilkepsek = DB::table('users')
 
 
   </div>
+  
+@endsection
+
+@section('container-modals')
+
+              <!-- Import Excel -->
+              <div class="modal fade" id="cleartemp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('cleartemp') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Temporari</h5>
+                      </div>
+                      <div class="modal-body">
+           
+                        {{ csrf_field() }}
+           
+                        <label></label>
+           
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Hapus!</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
 @endsection
