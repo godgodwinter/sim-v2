@@ -8,8 +8,8 @@
         </div>
             <div class="profile-widget-item">
                 <div class="profile-widget-item-label">
-        <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
-        onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a> 
+        {{-- <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
+        onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a>  --}}
       </div>
             {{-- <h4>Simple Table</h4> --}}
         </div>

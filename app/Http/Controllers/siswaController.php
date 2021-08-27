@@ -6,6 +6,7 @@ use App\Exports\ExportSiswa;
 use App\Imports\ImportSiswa;
 use App\Models\kelas;
 use App\Models\siswa;
+use App\Models\tagihansiswa;
 use App\Models\tapel;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
@@ -286,9 +287,14 @@ class siswaController extends Controller
      */
     public function destroy(siswa $siswa)
     {
-        siswa::destroy($siswa->id);
-       
+
+        DB::table('tagihansiswa')->where('siswa_nis', $siswa->nis)->where('tapel_nama',$this->tapelaktif())->delete();
+        // tagihansiswa::whereIn('siswa_nis',$siswa->id)->where('tapel_nama',$this->tapelaktif())->delete();
+
         DB::table('users')->where('nomerinduk', $siswa->nis)->delete();
+        siswa::destroy($siswa->id);
+
+       
         return redirect(URL::to('/').'/admin/siswa')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
   
     }
@@ -318,9 +324,13 @@ class siswaController extends Controller
 
         // dd($request);
 
+        // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
+        tagihansiswa::whereIn('siswa_nis',$ids)->where('tapel_nama',$this->tapelaktif())->delete();
+
         User::whereIn('nomerinduk',$ids)->delete();
 
         siswa::whereIn('nis',$ids)->delete();
+
         
         // load ulang
      

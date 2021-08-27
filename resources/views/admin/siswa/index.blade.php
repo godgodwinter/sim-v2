@@ -46,9 +46,8 @@
 {{-- DATATABLE --}}
 @section('headtable')
 <th class="text-center" width="5%">
-    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll">All</label>
+    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label>
 </th>
-<th class="text-center" width="5%">No</th>
   <th>Nama</th>
   <th>Kelas</th>
   <th>Email</th>
@@ -97,9 +96,7 @@
 
 <tr id="sid{{ $data->nis }}">
   <td class="text-center">
-      <input type="checkbox" name="ids" class="checkBoxClass" value="{{ $data->nis }}">
-  </td>
-    <td  class="text-center" width="5%">{{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+      <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->nis }}"> {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     <td>{{ $data->nis }} - {{ $data->nama }}</td>
     <td>{{ $data->tapel_nama }} - {{ $data->kelas_nama }}</td>
 
@@ -131,6 +128,12 @@
     </td>
   </tr>
 @endforeach
+
+<tr>
+  <td class="text-center" colspan="2">
+    <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
+    onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
+</tr>
 @endsection
 
 @section('foottable') 
