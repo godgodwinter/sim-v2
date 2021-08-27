@@ -130,7 +130,7 @@
 @endforeach
 
 <tr>
-  <td class="text-center" colspan="2">
+  <td class="text-left" colspan="2">
     <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
     onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
 </tr>

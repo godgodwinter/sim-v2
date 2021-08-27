@@ -38,11 +38,13 @@ Route::get('admin/kategori', 'App\Http\Controllers\kategoriController@index')->n
 Route::resource('admin/tapel','App\Http\Controllers\tapelController')->except(['index','store']);
 Route::get('admin/tapel', 'App\Http\Controllers\tapelController@index')->name('tapel');
 Route::post('admin/tapel', 'App\Http\Controllers\tapelController@store')->name('tapel.add');
+Route::delete('admin/datatapel/multidel', 'App\Http\Controllers\tapelController@deletechecked')->name('tapel.multidel');
 
 
 //KELAS-MENU
 Route::resource('admin/kelas','App\Http\Controllers\kelasController')->except(['index']);
 Route::get('admin/kelas', 'App\Http\Controllers\kelasController@index')->name('kelas');
+Route::delete('admin/datakelas/multidel', 'App\Http\Controllers\kelasController@deletechecked')->name('kelas.multidel');
 
 
 //siswa-MENU

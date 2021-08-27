@@ -141,4 +141,37 @@ class kelasController extends Controller
         return redirect(URL::to('/').'/admin/kelas')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     
     }
+
+    public function deletechecked(Request $request)
+    {
+        
+        $ids=$request->ids;
+
+        // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
+        // foreach($datasiswa as $ds){
+        //     $nis=$ds->nis;
+        // }
+
+        // dd($request);
+
+        // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
+        kelas::whereIn('id',$ids)->delete();
+
+        
+        // load ulang
+     
+        #WAJIB
+        $pages='kelas';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('kelas')
+        ->paginate($this->paginationjml());
+
+        $jmldata = DB::table('kelas')->count();
+
+        return view('admin.kelas.index',compact('pages','jmldata','datas'));
+
+    }
 }
