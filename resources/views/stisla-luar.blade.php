@@ -46,6 +46,15 @@
                         {{ $message }}
                     </div>    
                 @enderror
+
+  @if($errors->any())
+  @foreach ($errors->all() as $error)
+    <div class="text-danger">
+    {{ $error }}
+    </div>    
+  @endforeach
+@endif
+                
                   </div>
 
                   <div class="form-group">

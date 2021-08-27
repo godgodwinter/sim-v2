@@ -62,8 +62,8 @@ if($yearmonth!==null){
     $datas=DB::table('pengeluaran')
     ->where('nama','like',"%".$cari."%")
     ->where('kategori_nama','like',"%".$kategori_nama."%")
-    ->whereMonth('created_at', '=', $month)
-    ->whereYear('created_at', '=', $year)
+    ->whereMonth('tglbayar', '=', $month)
+    ->whereYear('tglbayar', '=', $year)
     ->paginate($this->paginationjml());
 }else{
 
