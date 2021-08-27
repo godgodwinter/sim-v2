@@ -16,11 +16,19 @@ class Importpegawai implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    public function passdefaultpegawai(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->passdefaultpegawai;
+        return $data;
+     
+    }
     public function model(array $data)
     {
         $datapegawai=DB::table('pegawai')->where('nig',$data['nig'])->count();
         $datapegawaiuser=DB::table('users')->where('nomerinduk',$data['nig'])->count();
-        $pass='12345678';
+        $pass=$this->passdefaultpegawai();
         if(!empty($data['pass'])){
             $pass=$data['pass'];
         }

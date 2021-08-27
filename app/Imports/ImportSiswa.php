@@ -16,11 +16,18 @@ class ImportSiswa implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public function passdefaultsiswa(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->passdefaultsiswa;
+        return $data;
+     
+    }
     public function model(array $data)
     {
         $datasiswa=DB::table('siswa')->where('nis',$data['nis'])->count();
         $datasiswauser=DB::table('users')->where('nomerinduk',$data['nis'])->count();
-        $pass='siswa123';
+        $pass=$this->passdefaultsiswa();
         if(!empty($data['pass'])){
             $pass=$data['pass'];
         }
