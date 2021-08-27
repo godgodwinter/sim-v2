@@ -17,5 +17,6 @@ class pengeluaran extends Model
         'kategori_id',
         'kategori_nama',
         'catatan',
+        'tglbayar',
     ];
 }

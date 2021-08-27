@@ -17,5 +17,6 @@ class pemasukan extends Model
         'kategori_id',
         'kategori_nama',
         'catatan',
+        'tglbayar',
     ];
 }

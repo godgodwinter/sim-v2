@@ -47,6 +47,8 @@
   <th width="10%" class="text-center">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
   <th>Nama</th>
+  <th>Tanggal</th>
+  <th>Kategori</th>
   <th>Nominal</th>
   <th width="100px" class="text-center">Aksi</th>
 @endsection
@@ -91,6 +93,13 @@
 <tr id="sid{{ $data->id }}">
     <td class="text-center">  <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}"> {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     <td>{{ $data->nama }}</td>
+    @php
+      $pecah = explode('T', $data->tglbayar);
+       $datetime = DateTime::createFromFormat('Y-m-d', $pecah[0]);
+      //  dd($datetime);
+    @endphp
+    <td>{{ $datetime->format('d M Y') }}</td>
+    <td>{{ $data->kategori_nama }}</td>
     <td>@currency($data->nominal)</td>
     <td class="text-center">
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
@@ -279,9 +288,26 @@
                     </select>
                   </div>
 
+                  @if(!empty(old('tglbayar')))
+                    @php
+                      $tglbayar=old('tglbayar');
+                    @endphp
+                  @else
+                    @php                      
+                      $tglbayar=date("Y-m-d")."T".date("H:i"); //2020-04-02T22:55
+                    @endphp
+                  @endif
+                  <div class="form-group col-md-6 col-6">
+                    <label for="tglbayar">Tanggal <code>*)</code></label>
+                    <input type="datetime-local" name="tglbayar" id="tglbayar" class="form-control @error('tglbayar') is-invalid @enderror" value="{{ $tglbayar }}">
+                    @error('tglbayar')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+
+
                   <div class="form-group col-md-6 col-6">
                     <label for="catatan">Catatan <code>*)</code></label>
-                    <input type="text" name="catatan" id="catatan" class="form-control @error('catatan') is-invalid @enderror" value="{{old('catatan')}}" required>
+                    <input type="text" name="catatan" id="catatan" class="form-control @error('catatan') is-invalid @enderror" value="{{old('catatan')}}">
                     @error('catatan')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>

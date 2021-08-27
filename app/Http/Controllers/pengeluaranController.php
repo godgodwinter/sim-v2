@@ -23,9 +23,17 @@ class pengeluaranController extends Controller
         $pages='pengeluaran';
         $jmldata='0';
         $datas='0';
+        $month=date('m');
+        $year=date('Y');
 
 
-        $datas=DB::table('pengeluaran')->paginate($this->paginationjml());
+        
+
+        $datas=DB::table('pengeluaran')
+        ->whereMonth('tglbayar', '=', $month)
+        ->whereYear('tglbayar', '=', $year)
+        ->orderBy('tglbayar','desc')
+        ->paginate($this->paginationjml());
         // $kategori=kategori::all();
         $kategori = DB::table('kategori')->where('prefix','pengeluaran')->get();
         $jmldata = DB::table('pengeluaran')->count();
@@ -97,6 +105,7 @@ if($yearmonth!==null){
             // 'catatan'=>'required',
             'kategori_nama'=>'required',
             'nominal'=>'required|numeric',
+            'tglbayar'=>'required',
 
         ],
         [
@@ -120,9 +129,17 @@ if($yearmonth!==null){
         $pages='pengeluaran';
         $jmldata='0';
         $datas='0';
+        $month=date('m');
+        $year=date('Y');
 
 
-        $datas=DB::table('pengeluaran')->paginate($this->paginationjml());
+        
+
+        $datas=DB::table('pengeluaran')
+        ->whereMonth('tglbayar', '=', $month)
+        ->whereYear('tglbayar', '=', $year)
+        ->orderBy('tglbayar','desc')
+        ->paginate($this->paginationjml());
         $jmldata = DB::table('pengeluaran')->count();
         $kategori = DB::table('kategori')->where('prefix','pengeluaran')->get();
         return view('admin.pengeluaran.edit',compact('pengeluaran','pages','jmldata','datas','kategori','request'));
@@ -153,6 +170,7 @@ if($yearmonth!==null){
             'nominal'=>'required|numeric',
             // 'catatan'=>'required',
             'kategori_nama'=>'required',
+            'tglbayar'=>'required',
 
         ],
         [
@@ -167,6 +185,7 @@ if($yearmonth!==null){
                 'catatan'=>$request->catatan,
                 'nominal'=>$request->nominal,
                 'kategori_nama'=>$request->kategori_nama,
+                'tglbayar'=>$request->tglbayar,
             ]);
             return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
@@ -208,7 +227,17 @@ if($yearmonth!==null){
         $datas='0';
 
 
-        $datas=DB::table('pengeluaran')->paginate($this->paginationjml());
+        $month=date('m');
+        $year=date('Y');
+
+
+        
+
+        $datas=DB::table('pengeluaran')
+        ->whereMonth('tglbayar', '=', $month)
+        ->whereYear('tglbayar', '=', $year)
+        ->orderBy('tglbayar','desc')
+        ->paginate($this->paginationjml());
         // $kategori=kategori::all();
         $kategori = DB::table('kategori')->where('prefix','pengeluaran')->get();
         $jmldata = DB::table('pengeluaran')->count();

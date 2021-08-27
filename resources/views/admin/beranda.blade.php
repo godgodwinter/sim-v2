@@ -365,7 +365,7 @@ $ambilkepsek = DB::table('users')
             @endphp                    
         @endif
         <div class="form-group col-md-5 col-5  mt-3 ml-5">
-          <label for="nominaltagihandefault">Nominal <code>*)</code> </label>
+          <label for="nominaltagihandefault">Nominal Default Tagihan Atur <code>*)</code> </label>
           <input type="text" name="labelrupiah" min="0" id="labelrupiah" class="form-control-plaintext" readonly="" value="@currency($nominaltagihandefault)" >
           <input type="number" name="nominaltagihandefault" min="1" id="rupiah" class="form-control @error('nominaltagihandefault') is-invalid @enderror" value="{{ $nominaltagihandefault }}" required >
           @error('nominaltagihandefault')<div class="invalid-feedback"> {{$message}}</div>
