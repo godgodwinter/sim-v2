@@ -54,13 +54,9 @@ Route::get('admin/carisiswa', 'App\Http\Controllers\siswaController@cari')->name
 Route::post('admin/siswa/{siswa}/reset', 'App\Http\Controllers\siswaController@resetpass')->name('siswa.resetpass');
 Route::delete('admin/datasiswa/multidel', 'App\Http\Controllers\siswaController@deletechecked')->name('siswa.multidel');
 
-
-Route::get('admin/datasiswa/export', 'App\Http\Controllers\prosesController@exportsiswa')->name('siswa.export');
-Route::post('admin/datasiswa/import', 'App\Http\Controllers\prosesController@importsiswa')->name('siswa.import');
 Route::post('admin/datasiswa/upload/{siswa}', 'App\Http\Controllers\prosesController@uploadsiswa')->name('siswa.upload');
 Route::delete('admin/datasiswa/upload/{siswa}', 'App\Http\Controllers\prosesController@uploadsiswadelete')->name('siswa.uploaddelete');
 
-Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@cleartemp')->name('cleartemp');
 
 //pegawai-MENU
 Route::resource('admin/pegawai','App\Http\Controllers\pegawaiController')->except(['index']);
@@ -117,6 +113,16 @@ Route::get('admin/datatagihan/addall', 'App\Http\Controllers\tagihanaturControll
 // Route::get('admin/datatagihan/addallbayar', 'App\Http\Controllers\tagihanaturController@addallbayar')->name('admin.tagihan.addallbayar');
 Route::post('admin/tagihansiswa/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
 Route::get('admin/datatagihan/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
+
+
+// ExportdanImport
+Route::get('admin/datasiswa/export', 'App\Http\Controllers\prosesController@exportsiswa')->name('siswa.export');
+Route::post('admin/datasiswa/import', 'App\Http\Controllers\prosesController@importsiswa')->name('siswa.import');
+Route::get('admin/datapegawai/export', 'App\Http\Controllers\prosesController@exportpegawai')->name('pegawai.export');
+Route::post('admin/datapegawai/import', 'App\Http\Controllers\prosesController@importpegawai')->name('pegawai.import');
+
+Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@cleartemp')->name('cleartemp');
+
 
 Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');
 // Route::post('/checkemail',['uses'=>'PagesController@checkEmail']);

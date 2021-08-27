@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Exportpegawai;
 use App\Exports\ExportSiswa;
+use App\Imports\Importpegawai;
 use App\Imports\ImportSiswa;
 use App\Models\siswa;
 use App\Models\User;
@@ -21,7 +23,13 @@ class prosesController extends Controller
 		return Excel::download(new ExportSiswa, 'sim-siswa-'.$tgl.'.xlsx');
 	}
 
-	public function importsiswa(Request $request) 
+	public function exportpegawai()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exportpegawai, 'sim-pegawai-'.$tgl.'.xlsx');
+	}
+
+	public function importpegawai(Request $request) 
 	{
 		// validasi
 		$this->validate($request, [
@@ -38,7 +46,7 @@ class prosesController extends Controller
 		$file->move('file_temp',$nama_file);
  
 		// import data
-		Excel::import(new ImportSiswa, public_path('/file_temp/'.$nama_file));
+		Excel::import(new Importpegawai, public_path('/file_temp/'.$nama_file));
  
 		// notifikasi dengan session
 		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
