@@ -86,6 +86,7 @@ Route::delete('admin/datapengeluaran/multidel', 'App\Http\Controllers\pengeluara
 Route::resource('admin/tagihanatur','App\Http\Controllers\tagihanaturController')->except(['index']);
 Route::get('admin/tagihanatur', 'App\Http\Controllers\tagihanaturController@index')->name('tagihanatur');
 Route::get('admin/caritagihanatur', 'App\Http\Controllers\tagihanaturController@cari')->name('tagihanatur.cari');
+Route::delete('admin/datatagihanatur/multidel', 'App\Http\Controllers\tagihanaturController@deletechecked')->name('tagihanatur.multidel');
 
 
 //tagihansiswa-MENU
@@ -97,6 +98,8 @@ Route::get('kepsek/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@k
 Route::get('kepsek/caritagihansiswa', 'App\Http\Controllers\tagihansiswaController@kepsekcari')->name('kepsek.tagihansiswa.cari');
 //siswa-menu
 Route::get('siswa/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@siswaindex')->name('siswa.tagihansiswa');
+
+Route::delete('admin/datatagihansiswa/multidel', 'App\Http\Controllers\tagihansiswaController@deletechecked')->name('tagihansiswa.multidel');
 
 
 Route::post('admin/tagihansiswa/bayartagihan/{tagihansiswa}', 'App\Http\Controllers\tagihansiswaController@bayartagihan')->name('tagihansiswa.bayartagihan');

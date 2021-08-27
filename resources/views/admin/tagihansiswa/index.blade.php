@@ -45,7 +45,8 @@
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="5%" class="text-center">#</th>
+<th width="5%" class="text-center">
+  <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
   <th width="5%" >Bayar</th>
   <th>Nama</th>
   <th>Tahun</th>
@@ -57,6 +58,40 @@
 @endsection
 
 @section('bodytable')
+<script>
+  // console.log('asdad');
+  $().jquery;
+  $.fn.jquery;
+  $(function(e){
+      $("#chkCheckAll").click(function(){
+          $(".checkBoxClass").prop('checked',$(this).prop('checked'));
+      })
+
+      $("#deleteAllSelectedRecord").click(function(e){
+          e.preventDefault();
+          var allids=[];
+              $("input:checkbox[name=ids]:checked").each(function(){
+                  allids.push($(this).val());
+              });
+
+      $.ajax({
+          url:"{{ route('tagihansiswa.multidel') }}",
+          type:"DELETE",
+          data:{
+              _token:$("input[name=_token]").val(),
+              ids:allids
+          },
+          success:function(response){
+              $.each(allids,function($key,val){
+                      $("#sid"+val).remove();
+              })
+          }
+      });
+
+      })
+
+  });
+</script>
 @foreach ($datas as $data)@php
     $sumdetailbayar = DB::table('tagihansiswadetail')
       ->where('tagihansiswa_id', '=', $data->id)
@@ -70,8 +105,8 @@
         $icon='fas fa-check';
       }
     @endphp
-    <tr>
-      <td  class="text-center">{{ ($loop->index)+1 }}</td>
+<tr id="sid{{ $data->id }}">
+    <td class="text-center">  <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}"> {{ ($loop->index)+1 }}</td>
       <td class="text-center">
         <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#modalbayar{{ $data->id }}" ><i class="far fa-money-bill-alt"></i></button>
       </td>
@@ -99,6 +134,12 @@
       </td> --}}
     </tr>
 @endforeach
+
+<tr>
+  <td class="text-left" colspan="2">
+    <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
+    onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
+</tr>
 @endsection
 
 @section('foottable')  

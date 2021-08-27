@@ -235,4 +235,40 @@ class tagihanaturController extends Controller
         return redirect(URL::to('/').'/admin/datatagihan/sync')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 
+    public function deletechecked(Request $request)
+    {
+        
+        $ids=$request->ids;
+
+        // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
+        // foreach($datasiswa as $ds){
+        //     $nis=$ds->nis;
+        // }
+
+        // dd($request);
+
+        // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
+        tagihanatur::whereIn('id',$ids)->delete();
+
+        
+        // load ulang
+     
+        #WAJIB
+        $pages='tagihanatur';
+        $jmldata='0';
+        $datas='0';
+
+
+        $tapel=tapel::all();
+        $kelas=kelas::all();
+        $datas=DB::table('tagihanatur')->orderBy('tapel_nama','asc')
+        ->paginate($this->paginationjml());
+        // // $tagihanatur=tagihanatur::all();
+        // $tagihanatur = DB::table('tagihanatur')->where('prefix','tagihanatur')->get();
+        $jmldata = DB::table('tagihanatur')->count();
+
+        return view('admin.tagihanatur.index',compact('pages','jmldata','datas','tapel','kelas','request'));
+
+    }
+
 }

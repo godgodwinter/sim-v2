@@ -345,4 +345,42 @@ class tagihansiswaController extends Controller
     {
         //
     }
+
+    public function deletechecked(Request $request)
+    {
+        
+        $ids=$request->ids;
+
+        // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
+        // foreach($datasiswa as $ds){
+        //     $nis=$ds->nis;
+        // }
+
+        // dd($request);
+
+        // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
+        tagihansiswa::whereIn('id',$ids)->delete();
+        tagihansiswadetail::whereIn('tagihansiswa_id',$ids)->delete();
+
+        
+        // load ulang
+     
+        #WAJIB
+        $pages='tagihansiswa';
+        $jmldata='0';
+        $datas='0';
+
+
+        $tapel=tapel::all();
+        $kelas=kelas::all();
+        $datas=DB::table('tagihansiswa')->orderBy('siswa_nis','asc')
+        ->paginate($this->paginationjml());
+        // // $tagihansiswa=tagihansiswa::all();
+        // $tagihansiswa = DB::table('tagihansiswa')->where('prefix','tagihansiswa')->get();
+        $jmldata = DB::table('tagihansiswa')->count();
+
+        return view('admin.tagihansiswa.index',compact('pages','jmldata','datas','tapel','kelas','request'));
+
+    }
+
 }
