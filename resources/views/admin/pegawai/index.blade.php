@@ -49,7 +49,7 @@
   <th>Nama</th>
   <th>Jabatan</th>
   <th>Email</th>
-  <th width="100px" class="text-center">Aksi</th>
+  <th width="150px" class="text-center">Aksi</th>
 @endsection
 
 @section('bodytable')
@@ -71,6 +71,7 @@
         @endforeach
     <td> {{ $email }} </td>
     <td class="text-center">
+      <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
         <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
     </td>

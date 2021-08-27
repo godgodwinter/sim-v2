@@ -66,6 +66,7 @@ Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@
 Route::resource('admin/pegawai','App\Http\Controllers\pegawaiController')->except(['index']);
 Route::get('admin/pegawai', 'App\Http\Controllers\pegawaiController@index')->name('pegawai');
 Route::get('admin/caripegawai', 'App\Http\Controllers\pegawaiController@cari')->name('pegawai.cari');
+Route::post('admin/pegawai/{pegawai}/reset', 'App\Http\Controllers\pegawaiController@resetpass')->name('pegawai.resetpass');
 
 //pemasukan-MENU
 Route::resource('admin/pemasukan','App\Http\Controllers\pemasukanController')->except(['index']);

@@ -266,4 +266,17 @@ class pegawaiController extends Controller
         return redirect(URL::to('/').'/admin/pegawai')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
   
     }
+
+    public function resetpass(pegawai $pegawai)
+    {
+        // dd($siswa);
+
+        User::where('nomerinduk',$pegawai->nig)
+        ->update([
+            'password' => Hash::make($this->passdefaultpegawai()),
+        'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+  
+        return redirect()->back()->with('status','Reset berhasil! Password baru : '.$this->passdefaultpegawai().'')->with('tipe','success')->with('icon','fas fa-edit');
+    }
 }
