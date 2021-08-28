@@ -6,8 +6,12 @@ use App\Exports\Exportpegawai;
 use App\Exports\ExportSiswa;
 use App\Exports\Exporttagihanatur;
 use App\Exports\Exporttagihansiswa;
+use App\Exports\Exporttagihansiswadetail;
 use App\Imports\Importpegawai;
 use App\Imports\ImportSiswa;
+use App\Imports\Importtagihanatur;
+use App\Imports\Importtagihansiswa;
+use App\Imports\Importtagihansiswadetail;
 use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Filesystem\Filesystem;
@@ -15,6 +19,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class prosesController extends Controller
 {
@@ -46,8 +51,9 @@ class prosesController extends Controller
 	public function exporttagihansiswadetail()
 	{
         $tgl=date("YmdHis");
-		return Excel::download(new Exporttagihansiswa, 'sim-tagihansiswa-'.$tgl.'.xlsx');
+		return Excel::download(new Exporttagihansiswadetail, 'sim-tagihansiswadetail-'.$tgl.'.xlsx');
 	}
+
 
 	public function importpegawai(Request $request) 
 	{
@@ -73,6 +79,90 @@ class prosesController extends Controller
  
 		// alihkan halaman kembali
 		// return redirect('/siswa');
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+	}
+
+	public function importtagihanatur(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_temp',$nama_file);
+ 
+		// import data
+		Excel::import(new Importtagihanatur, public_path('/file_temp/'.$nama_file));
+ 
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		// return redirect('/siswa');
+		
+        return redirect(URL::to('/').'/admin/datatagihan/addall')->with('status','Data berhasil diimport!')->with('tipe','success')->with('icon','fas fa-feather');
+	}
+
+	public function importtagihansiswa(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_temp',$nama_file);
+ 
+		// import data
+		Excel::import(new Importtagihansiswa, public_path('/file_temp/'.$nama_file));
+ 
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		// return redirect('/siswa');
+		
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+	}
+
+	public function importtagihansiswadetail(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_temp',$nama_file);
+ 
+		// import data
+		Excel::import(new Importtagihansiswadetail, public_path('/file_temp/'.$nama_file));
+ 
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		// return redirect('/siswa');
+		
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 	}
 
