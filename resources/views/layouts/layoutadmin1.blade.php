@@ -107,13 +107,19 @@ crossorigin="anonymous"></script>
 if((Auth::user()->tipeuser)=='admin'){
     @endphp
 
+                <li @if ($pages==='settings')
+                  class="active"
+                  @endif >
+                  <a href="{{ route('settings') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Pengaturan</span></a>
+                 </li>
+               
               <li class="menu-header">Mastering</li>
 
-              <li @if ($pages==='kategori')
+              {{--  <li @if ($pages==='kategori')
                 class="active"
                 @endif >
                 <a href="{{ route('kategori') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Kategori</span></a>
-              </li>
+              </li> --}}
 
               <li @if ($pages==='tapel')
                 class="active"
