@@ -208,7 +208,7 @@ $ambilkepsek = DB::table('users')
           @if($tipeuser==='admin')
           <div class="card profile-widget mt-5">
             <div class="profile-widget-header">
-              <img alt="image" src="../assets/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
+              <img alt="image" src="https://ui-avatars.com/api/?name=Menu Mastering&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
               <div class="profile-widget-items">
                 <h3 class="ml-5 mt-4">Menu Mastering</h3>
               </div>
@@ -235,6 +235,35 @@ $ambilkepsek = DB::table('users')
          
         
           </div>
+
+
+
+          <div class="card profile-widget mt-5">
+            <div class="profile-widget-header">
+              <img alt="image" src="https://ui-avatars.com/api/?name=Download dan Guide&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
+              <div class="profile-widget-items">
+                <h3 class="ml-5 mt-4">Download dan Guide</h3>
+              </div>
+               
+                
+                <div class="card-body">
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a  href="{{ route('kategori') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Download Format Import</a>
+                  </div>
+
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a  href="{{ route('tapel') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Pentunjuk Penggunaan</a>
+                    {{-- <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>    --}}
+                  </div>
+                  </div>
+                
+            </div>
+    
+         
+        
+          </div>
+
+
           @endif
     
 
@@ -245,7 +274,7 @@ $ambilkepsek = DB::table('users')
          
       <div class="card profile-widget mt-5">
         <div class="profile-widget-header">
-          <img alt="image" src="../assets/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
+          <img alt="image" src="https://ui-avatars.com/api/?name=Menu Penting&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
           <div class="profile-widget-items">
             <h3 class="ml-5 mt-4">Menu Penting</h3>
             
@@ -253,6 +282,9 @@ $ambilkepsek = DB::table('users')
 
           <div class="card-body">
           <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
+
+          <a href="{{ route('settings') }}"  class="btn btn-icon btn-light btn-md" data-toggle="tooltip" data-placement="top" title="Untuk mengatur data default, data sekolah dan data lainya!"><span
+            class="pcoded-micon"> <i class="fas fa-cog"></i> Pengaturan </span></a href="$add">
                   
             <button type="button" class="btn btn-icon btn-info btn-md" data-toggle="modal"  data-placement="top" title="File sampah sisa export dan import! Agar tidak membebani server."  data-target="#cleartemp"><i class="fas fa-trash"></i>
               Hapus File Sampah
@@ -269,7 +301,7 @@ $ambilkepsek = DB::table('users')
        
     <div class="card profile-widget mt-5">
       <div class="profile-widget-header">
-        <img alt="image" src="../assets/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
+        <img alt="image" src="https://ui-avatars.com/api/?name=Menu Transaksi&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
         <div class="profile-widget-items">
           <h3 class="ml-5 mt-4">Menu Transaksi</h3>
         </div>
@@ -301,7 +333,7 @@ $ambilkepsek = DB::table('users')
 
   <div class="card profile-widget mt-5">
     <div class="profile-widget-header">
-      <img alt="image" src="../assets/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
+      <img alt="image" src="https://ui-avatars.com/api/?name=Menu Reporting&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
       <div class="profile-widget-items">
         <h3 class="ml-5 mt-4">Menu Reporting</h3>
       </div>
