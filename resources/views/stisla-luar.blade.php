@@ -38,10 +38,10 @@
                     @csrf
                 {{-- <form method="POST" action="#" class="needs-validation" novalidate=""> --}}
                   <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                    <label for="identity">Email / NIS / NIG / Username</label>
+                    <input id="identity" type="text" class="form-control" name="identity" tabindex="1" required autofocus>
                   
-                    @error('email')
+                    @error('identity')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>    
