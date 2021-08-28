@@ -36,7 +36,7 @@ class Exporttagihansiswa implements FromCollection, WithHeadings, ShouldAutoSize
             'kelas_nama',
             'tapel_nama',
             'nominaltagihan',
-            'tagihanatur_kd',
+            // 'tagihanatur_kd',
             'created_at',
             'updated_at',
         ];

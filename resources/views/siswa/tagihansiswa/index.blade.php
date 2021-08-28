@@ -62,7 +62,9 @@ $tipeuser=(Auth::user()->tipeuser);
 @section('bodytable')
 @foreach ($datas as $data)@php
     $sumdetailbayar = DB::table('tagihansiswadetail')
-      ->where('tagihansiswa_id', '=', $data->id)
+      ->where('siswa_nis', '=', $data->siswa_nis)
+      ->where('tapel_nama', '=', $data->tapel_nama)
+      ->where('kelas_nama', '=', $data->kelas_nama)
       ->sum('nominal');
       $kurang=$data->nominaltagihan-$sumdetailbayar;
       $persen=number_format(($sumdetailbayar/$data->nominaltagihan*100),2);
@@ -151,7 +153,9 @@ $ambilsiswausers = DB::table('users')
 @php
 $warna='default';
 $sumdetailbayar = DB::table('tagihansiswadetail')
-  ->where('tagihansiswa_id', '=', $data->id)
+  ->where('tapel_nama', '=', $data->tapel_nama)
+  ->where('kelas_nama', '=', $data->kelas_nama)
+  ->where('si', '=', $data->tapel_nama)
   ->sum('nominal');
   $kurang=$data->nominaltagihan-$sumdetailbayar;
   $persen=number_format(($sumdetailbayar/$data->nominaltagihan*100),2);
@@ -200,7 +204,9 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                 <tbody>
                   @php
                   $detailbayar = DB::table('tagihansiswadetail')
-                    ->where('tagihansiswa_id', '=', $data->id)
+                    ->where('siswa_nis', '=', $data->siswa_nis)
+                    ->where('tapel_nama', '=', $data->tapel_nama)
+                    ->where('kelas_nama', '=', $data->kelas_nama)
                     ->get();
                   @endphp
                   @foreach ($detailbayar as $db)

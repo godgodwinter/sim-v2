@@ -21,7 +21,7 @@ class tagihansiswaresource extends JsonResource
             'kelas_nama'=>$this->kelas_nama,
             'tapel_nama'=>$this->tapel_nama,
             'nominaltagihan'=>$this->nominaltagihan,
-            'tagihanatur_kd'=>$this->tagihanatur_kd,
+            // 'tagihanatur_kd'=>$this->tagihanatur_kd,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
             // 'email'=>$this->email,

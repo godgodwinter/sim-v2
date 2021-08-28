@@ -12,7 +12,10 @@ class tagihansiswadetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tagihansiswa_id',
+        'siswa_nis',
+        'siswa_nama',
+        'tapel_nama',
+        'kelas_nama',
         'nominal',
     ];
 }

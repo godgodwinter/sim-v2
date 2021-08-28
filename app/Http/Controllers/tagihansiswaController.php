@@ -175,7 +175,7 @@ class tagihansiswaController extends Controller
             $tapel_nama=$ta->tapel_nama;
             $kelas_nama=$ta->kelas_nama;
             $nominaltagihan=$ta->nominaltagihan;
-            $tagihanatur_kd=$ta->id;
+            // $tagihanatur_kd=$ta->id;
             // dd($tapel_nama,$kelas_nama,$nominaltagihan);
 
             // 2. ambil datasiswa where tapel dan kelas
@@ -214,7 +214,7 @@ class tagihansiswaController extends Controller
                                     'siswa_nama'     =>   $siswa_nama,
                                     'tapel_nama'     =>   $tapel_nama,
                                     'kelas_nama'     =>   $kelas_nama,
-                                    'tagihanatur_kd'     =>   $tagihanatur_kd,
+                                    // 'tagihanatur_kd'     =>   $tagihanatur_kd,
                                     'nominaltagihan'     =>   $nominaltagihan,
                                     'created_at'=>date("Y-m-d H:i:s"),
                                     'updated_at'=>date("Y-m-d H:i:s")
@@ -248,7 +248,9 @@ class tagihansiswaController extends Controller
 
         //jika lebih dari total nominal maka gagal
             $sumdetailbayar = DB::table('tagihansiswadetail')
-            ->where('tagihansiswa_id', '=', $tagihansiswa->id)
+            ->where('siswa_nis', '=', $tagihansiswa->siswa_nis)
+            ->where('tapel_nama', '=', $tagihansiswa->tapel_nama)
+            ->where('kelas_nama', '=', $tagihansiswa->kelas_nama)
             ->sum('nominal');
 
             $kurang=$tagihansiswa->nominaltagihan-$sumdetailbayar;
@@ -262,7 +264,10 @@ class tagihansiswaController extends Controller
         // dd($request);
         DB::table('tagihansiswadetail')->insert(
             array(
-                'tagihansiswa_id'     =>   $tagihansiswa->id,
+                'siswa_nis'     =>   $tagihansiswa->siswa_nis,
+                'siswa_nama'     =>   $tagihansiswa->siswa_nama,
+                'tapel_nama'     =>   $tagihansiswa->tapel_nama,
+                'kelas_nama'     =>   $tagihansiswa->kelas_nama,
                 'nominal'     =>   $request->nominal,
                 'created_at'=>date("Y-m-d H:i:s"),
                 'updated_at'=>date("Y-m-d H:i:s")
@@ -360,7 +365,7 @@ class tagihansiswaController extends Controller
 
         // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
         tagihansiswa::whereIn('id',$ids)->delete();
-        tagihansiswadetail::whereIn('tagihansiswa_id',$ids)->delete();
+        // tagihansiswadetail::whereIn('tagihansiswa_id',$ids)->delete();
 
         
         // load ulang
