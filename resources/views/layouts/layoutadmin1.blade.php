@@ -110,7 +110,7 @@ if((Auth::user()->tipeuser)=='admin'){
                 <li @if ($pages==='settings')
                   class="active"
                   @endif >
-                  <a href="{{ route('settings') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Pengaturan</span></a>
+                  <a href="{{ route('settings') }}" class="nav-link"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
                  </li>
                
               <li class="menu-header">Mastering</li>
@@ -245,8 +245,22 @@ if((Auth::user()->tipeuser)=='admin'){
         <div class="footer-left">
           Copyright &copy; 2022
         </div>
+        @php
+        // exec('git rev-parse --verify HEAD 2> /dev/null', $output);
+        // $hash = $output[0];
+        // dd($hash)
+
+        $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+
+        $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+        $commitDate->setTimezone(new \DateTimeZone('UTC'));
+
+        // dd($commitDate);
+        // dd($commitDate->format('Y-m-d H:i:s'));
+        $versi=$commitDate->format('Ymd.H.i.s');
+    @endphp
         <div class="footer-right">
-          2.3.0
+          v2. {{ $versi }}
         </div>
       </footer>
     </div>
