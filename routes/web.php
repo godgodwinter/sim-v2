@@ -85,6 +85,9 @@ Route::get('admin/tagihanatur', 'App\Http\Controllers\tagihanaturController@inde
 Route::get('admin/caritagihanatur', 'App\Http\Controllers\tagihanaturController@cari')->name('tagihanatur.cari');
 Route::delete('admin/datatagihanatur/multidel', 'App\Http\Controllers\tagihanaturController@deletechecked')->name('tagihanatur.multidel');
 
+Route::post('admin/datatagihanatur/upload/{tagihanatur}', 'App\Http\Controllers\prosesController@uploadtagihanatur')->name('tagihanatur.upload');
+Route::delete('admin/datatagihanatur/upload/{tagihanatur}', 'App\Http\Controllers\prosesController@uploadtagihanaturdelete')->name('tagihanatur.uploaddelete');
+
 
 //tagihansiswa-MENU
 Route::resource('admin/tagihansiswa','App\Http\Controllers\tagihansiswaController')->except(['index']);

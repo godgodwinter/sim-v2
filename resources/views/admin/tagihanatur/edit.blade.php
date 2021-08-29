@@ -44,37 +44,12 @@
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="5%" class="text-center">#</th>
-  <th>Tahun</th>
-  <th>Kelas</th>
-  <th>Nominal Tagihan</th>
-  <th width="100px" class="text-center">Aksi</th>
 @endsection
 
 @section('bodytable')
-@foreach ($datas as $data)
-  <tr>
-    <td>{{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-    <td>{{ $data->tapel_nama }}</td>
-    <td>{{ $data->kelas_nama }}</td>
-    <td>@currency($data->nominaltagihan)</td>
-    <td class="text-center">
-        <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
-        <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
-    </td>
-  </tr>
-@endforeach
 @endsection
 
 @section('foottable') 
-  {{ $datas->links() }}
-  <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-      <li class="breadcrumb-item"><i class="far fa-file"></i> Halaman ke-{{ $datas->currentPage() }}</li>
-      <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Total Data</li>
-      <li class="breadcrumb-item active" aria-current="page"><i class="far fa-copy"></i> {{ $datas->perPage() }} Data Perhalaman</li>
-  </ol>
-  </nav>
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -128,14 +103,6 @@
          
         </form>
         <div class="form-group col-md-4 col-4 mt-1 text-right">
-          {{-- <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="far fa-file-pdf"></i> Cetak PDF</span></button>
-
-          <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="fas fa-upload"></i> Import</span></button>
-
-          <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></button> --}}
 
 
 
@@ -149,9 +116,7 @@
   <div class="section-body">
 
     <div class="row mt-sm-4">
-      <div class="col-12 col-md-12 col-lg-5">
-        <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-       </div> 
+
       <div class="col-12 col-md-12 col-lg-7">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
@@ -255,6 +220,78 @@
         
 
       </div>
+
+
+    <div class="col-12 col-md-12 col-lg-5">
+      <div class="card">
+        <form method="post" action="/admin/datatagihanatur/upload/{{ $tagihanatur->id }}" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          
+          <div class="card-header">
+              <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> Scan Documen Pendukung</span>
+          </div>
+          <div class="card-body">
+              <div class="row">
+
+
+                <div class="form-group col-md-12 col-3 ml-4">      
+                  <div class="col-lg-8 d-flex align-items-stretch mb-4">
+
+              @if($tagihanatur->gambar!=null)
+              {{-- <img alt="image" src="{{ asset("storage/") }}/{{ $du->profile_photo_path }}" class="rounded-circle profile-widget-picture" width="100px"> --}}
+        
+              <img alt="image" src="{{ asset("storage/gambar/scan") }}/{{ $tagihanatur->gambar }}"class="img-thumbnail">
+
+              @else
+              {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $siswa->nama }}&color=7F9CF5&background=EBF4FF" class="rounded-circle profile-widget-picture" width="200px"> --}}
+              <img alt="image" src="https://ui-avatars.com/api/?name={{ $tagihanatur->kelas_nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="200px">
+
+              @endif
+
+               </div>
+              {{-- <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture"> --}}
+                  <label for="file">Pilih Photo <code>*)</code></label>
+                  <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                  @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+
+                <div class="card-footer text-right">
+                
+                  <button class="btn btn-success"><i class="fas fa-upload"></i> Simpan</button>
+                </form>
+
+                  <form action="/admin/datatagihanatur/upload/{{ $tagihanatur->id }}" method="post" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    <input type="hidden" name="namaphoto" value="gambar/scan/{{ $tagihanatur->id }}.jpg" required>
+                    <button class="btn btn-icon btn-danger btn-md"
+                        onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><span
+                            class="pcoded-micon"> <i class="fas fa-trash"></i> Hapus</span></button>
+                </form>
+                </div>
+                </div>
+
+
+
+           
+          </div>
+          </div>
+          {{-- <div class="card-footer text-right">
+            <button class="btn btn-primary">Simpan</button>
+          </div> --}}
+
+          <div class="card-body">
+              <div class="section-title mt-0">Catatan : </div>
+              <blockquote>
+                Jika gambar rusak coba untuk re upload gambar!
+              </blockquote>
+            </div>
+        </form>
+      </div>
+
+
+      
+
     </div>
   </div>
 @endsection

@@ -50,6 +50,7 @@
   <th>Tahun</th>
   <th>Kelas</th>
   <th>Nominal Tagihan</th>
+  <th>Scan</th>
   <th width="100px" class="text-center">Aksi</th>
 @endsection
 
@@ -95,6 +96,23 @@
     <td>{{ $data->tapel_nama }}</td>
     <td>{{ $data->kelas_nama }}</td>
     <td>@currency($data->nominaltagihan)</td>
+    <td>
+      @if(($data->gambar===null)||$data->gambar==='')
+        @php
+        $gambaricon="fas fa-eye-slash";  
+        $gambarlink='#';      
+        $gambarket='Gambar Scan belum di upload!';      
+        @endphp
+      @else
+        @php
+          $gambaricon="far fa-image";
+        $gambarlink=asset("storage/gambar/scan")."/".$data->gambar;
+        $gambarket='Gambar Scan tahun '.$data->tapel_nama."-".$data->kelas_nama;      
+        @endphp
+        
+      @endif
+      <a href="{{ $gambarlink }}" class="btn btn-icon btn-light btn-sm"  data-toggle="tooltip" data-placement="top" title=" {{ $gambarket }} "><i class="{{ $gambaricon}}"></i></a>
+    </td>
     <td class="text-center">
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
         <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />

@@ -15,5 +15,6 @@ class tagihanatur extends Model
         'kelas_nama',
         'tapel_nama',
         'nominaltagihan',
+        'gambar',
     ];
 }

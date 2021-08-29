@@ -13,6 +13,7 @@ use App\Imports\Importtagihanatur;
 use App\Imports\Importtagihansiswa;
 use App\Imports\Importtagihansiswadetail;
 use App\Models\siswa;
+use App\Models\tagihanatur;
 use App\Models\User;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -222,7 +223,66 @@ class prosesController extends Controller
 			'profile_photo_path' => "",
 		'updated_at'=>date("Y-m-d H:i:s")
 		]);
-        return redirect()->back()->with('status','Photo berhasil Dihapus!')->with('tipe','dange')->with('icon','fas fa-trash');
+        return redirect()->back()->with('status','Photo berhasil Dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
+	}
+
+
+	public function uploadtagihanatur(Request $request,tagihanatur $tagihanatur){
+        // dd($request);
+		$this->validate($request, [
+			'file' => 'required',
+		]);
+		$namafilebaru=$tagihanatur->id;
+ 
+		// menyimpan data file yang diupload ke variabel $file
+		$file = $request->file('file');
+ 
+      	        // nama file
+		echo 'File Name: '.$file->getClientOriginalName();
+		echo '<br>';
+ 
+      	        // ekstensi file
+		echo 'File Extension: '.$file->getClientOriginalExtension();
+		// dd()
+		echo '<br>';
+ 
+      	        // real path
+		echo 'File Real Path: '.$file->getRealPath();
+		echo '<br>';
+ 
+      	        // ukuran file
+		echo 'File Size: '.$file->getSize();
+		echo '<br>';
+ 
+      	        // tipe mime
+		echo 'File Mime Type: '.$file->getMimeType();
+ 
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'storage/gambar/scan';
+ 
+                // upload file
+		$file->move($tujuan_upload,$namafilebaru.".jpg");
+
+
+		tagihanatur::where('id',$tagihanatur->id)
+		->update([
+			'gambar' => $namafilebaru.".jpg",
+		'updated_at'=>date("Y-m-d H:i:s")
+		]);
+
+        return redirect()->back()->with('status','Photo berhasil Diupload!')->with('tipe','success')->with('icon','fas fa-edit');
+
+	}
+	public function uploadtagihanaturdelete(Request $request,tagihanatur $tagihanatur){
+		
+        // dd($request);
+        Storage::disk('public')->delete($request->namaphoto);
+		tagihanatur::where('id',$tagihanatur->id)
+		->update([
+			'gambar' => "",
+			'updated_at'=>date("Y-m-d H:i:s")
+		]);
+        return redirect()->back()->with('status','Photo berhasil Dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
 	}
 
     public function cleartemp() 
