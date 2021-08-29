@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Exportkelas;
 use App\Exports\Exportpegawai;
+use App\Exports\Exportpemasukan;
+use App\Exports\Exportpengeluaran;
 use App\Exports\ExportSiswa;
 use App\Exports\Exporttagihanatur;
 use App\Exports\Exporttagihansiswa;
 use App\Exports\Exporttagihansiswadetail;
+use App\Exports\Exporttapel;
+use App\Imports\Importkelas;
 use App\Imports\Importpegawai;
 use App\Imports\ImportSiswa;
 use App\Imports\Importtagihanatur;
 use App\Imports\Importtagihansiswa;
 use App\Imports\Importtagihansiswadetail;
+use App\Imports\Importtapel;
 use App\Models\siswa;
 use App\Models\tagihanatur;
 use App\Models\User;
@@ -25,6 +31,26 @@ use Illuminate\Support\Facades\URL;
 class prosesController extends Controller
 {
 
+	public function exporttapel()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exporttapel, 'sim-tapel-'.$tgl.'.xlsx');
+	}
+	public function exportkelas()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exportkelas, 'sim-kelas-'.$tgl.'.xlsx');
+	}
+	public function exportpemasukan()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exportpemasukan, 'sim-pemasukan-'.$tgl.'.xlsx');
+	}
+	public function exportpengeluaran()
+	{
+        $tgl=date("YmdHis");
+		return Excel::download(new Exportpengeluaran, 'sim-pengeluaran-'.$tgl.'.xlsx');
+	}
 	public function exportsiswa()
 	{
         $tgl=date("YmdHis");
@@ -55,6 +81,60 @@ class prosesController extends Controller
 		return Excel::download(new Exporttagihansiswadetail, 'sim-tagihansiswadetail-'.$tgl.'.xlsx');
 	}
 
+
+	public function importtapel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_temp',$nama_file);
+ 
+		// import data
+		Excel::import(new Importtapel, public_path('/file_temp/'.$nama_file));
+ 
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		// return redirect('/siswa');
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+	}
+
+	public function importkelas(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_temp',$nama_file);
+ 
+		// import data
+		Excel::import(new Importkelas, public_path('/file_temp/'.$nama_file));
+ 
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		// return redirect('/siswa');
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+	}
 
 	public function importpegawai(Request $request) 
 	{

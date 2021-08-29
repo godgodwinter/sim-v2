@@ -120,16 +120,19 @@ Route::get('admin/datatagihan/sync', 'App\Http\Controllers\tagihansiswaControlle
 
 
 // ExportdanImport
+Route::get('admin/datatapel/export', 'App\Http\Controllers\prosesController@exporttapel')->name('tapel.export');
+Route::post('admin/datatapel/import', 'App\Http\Controllers\prosesController@importtapel')->name('tapel.import');
+Route::get('admin/datakelas/export', 'App\Http\Controllers\prosesController@exportkelas')->name('kelas.export');
+Route::post('admin/datakelas/import', 'App\Http\Controllers\prosesController@importkelas')->name('kelas.import');
+Route::get('admin/datapemasukan/export', 'App\Http\Controllers\prosesController@exportpemasukan')->name('pemasukan.export');
+Route::post('admin/datapemasukan/import', 'App\Http\Controllers\prosesController@importpemasukan')->name('pemasukan.import');
+Route::get('admin/datapengeluaran/export', 'App\Http\Controllers\prosesController@exportpengeluaran')->name('pengeluaran.export');
+Route::post('admin/datapengeluaran/import', 'App\Http\Controllers\prosesController@importpengeluaran')->name('pengeluaran.import');
+
 Route::get('admin/datasiswa/export', 'App\Http\Controllers\prosesController@exportsiswa')->name('siswa.export');
 Route::post('admin/datasiswa/import', 'App\Http\Controllers\prosesController@importsiswa')->name('siswa.import');
 Route::get('admin/datapegawai/export', 'App\Http\Controllers\prosesController@exportpegawai')->name('pegawai.export');
 Route::post('admin/datapegawai/import', 'App\Http\Controllers\prosesController@importpegawai')->name('pegawai.import');
-
-
-// OherMenu /pagescontroller
-Route::get('admin/formatimport', 'App\Http\Controllers\pagesController@formatimport')->name('formatimport');
-Route::get('admin/guide', 'App\Http\Controllers\pagesController@guide')->name('guide');
-
 
 Route::get('admin/datatagihanatur/export', 'App\Http\Controllers\prosesController@exporttagihanatur')->name('tagihanatur.export');
 Route::post('admin/datatagihanatur/import', 'App\Http\Controllers\prosesController@importtagihanatur')->name('tagihanatur.import');
@@ -137,6 +140,16 @@ Route::get('admin/datatagihansiswa/export', 'App\Http\Controllers\prosesControll
 Route::post('admin/datatagihansiswa/import', 'App\Http\Controllers\prosesController@importtagihansiswa')->name('tagihansiswa.import');
 Route::get('admin/datatagihansiswadetail/export', 'App\Http\Controllers\prosesController@exporttagihansiswadetail')->name('tagihansiswadetail.export');
 Route::post('admin/datatagihansiswadetail/import', 'App\Http\Controllers\prosesController@importtagihansiswadetail')->name('tagihansiswadetail.import');
+
+Route::get('admin/eoy', 'App\Http\Controllers\pagesController@eoy')->name('eoy');
+Route::get('admin/soy', 'App\Http\Controllers\pagesController@soy')->name('soy');
+
+
+// OherMenu /pagescontroller
+Route::get('admin/formatimport', 'App\Http\Controllers\pagesController@formatimport')->name('formatimport');
+Route::get('admin/guide', 'App\Http\Controllers\pagesController@guide')->name('guide');
+
+
 
 Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@cleartemp')->name('cleartemp');
 

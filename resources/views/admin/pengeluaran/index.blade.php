@@ -192,7 +192,11 @@
             class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></button> --}}
 
 
-
+            <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+              Import 
+            </button>
+            <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+                  class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a>
           </div>
       </div>
     </div>
@@ -324,4 +328,36 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('container-modals')
+
+              <!-- Import Excel -->
+              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('pengeluaran.import') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                      </div>
+                      <div class="modal-body">
+           
+                        {{ csrf_field() }}
+           
+                        <label>Pilih file excel(.xlsx)</label>
+                        <div class="form-group">
+                          <input type="file" name="file" required="required">
+                        </div>
+           
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          
+
 @endsection

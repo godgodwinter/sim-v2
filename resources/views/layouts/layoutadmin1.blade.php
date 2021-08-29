@@ -177,6 +177,21 @@ if((Auth::user()->tipeuser)=='admin'){
                 <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan</span></a>
               </li>
              
+              <li class="menu-header">Menu Tahunan</li>
+              
+
+              <li @if ($pages==='eoy')
+                class="active"
+                @endif >
+                <a href="{{ route('eoy') }}" class="nav-link"><i class="fab fa-resolving"></i><span>EoY</span></a>
+              </li>
+
+              <li @if ($pages==='soy')
+                class="active"
+                @endif >
+                <a href="{{ route('soy') }}" class="nav-link"><i class="fab fa-resolving"></i><span>SoY</span></a>
+              </li>
+
             </ul>
 
             @php
