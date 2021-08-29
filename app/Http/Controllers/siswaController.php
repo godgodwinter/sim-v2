@@ -254,6 +254,7 @@ class siswaController extends Controller
 
         tagihansiswa::where('siswa_nis',$siswa->nis)
         ->update([
+            'tapel_nama'     =>   $request->tapel_nama,
             'kelas_nama'     =>   $request->kelas_nama,
             'nominaltagihan'     =>   $nominaltagihan,
            'updated_at'=>date("Y-m-d H:i:s")
@@ -261,6 +262,7 @@ class siswaController extends Controller
 
         tagihansiswadetail::where('siswa_nis',$siswa->nis)
         ->update([
+            'tapel_nama'     =>   $request->tapel_nama,
             'kelas_nama'     =>   $request->kelas_nama,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
