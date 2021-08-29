@@ -157,6 +157,8 @@ Route::get('admin/guide', 'App\Http\Controllers\pagesController@guide')->name('g
 Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@cleartemp')->name('cleartemp');
 
 
+Route::get('/register', 'App\Http\Controllers\adminberandaController@notfound')->name('cleartemp');
+
 Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');
 // Route::post('/checkemail',['uses'=>'PagesController@checkEmail']);
 // Route::post('/checkemail', 'App\Http\Controllers\PagesController@checkEmail')->name('checkEmail');
