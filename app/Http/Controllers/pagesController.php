@@ -43,7 +43,7 @@ class pagesController extends Controller
     public function eoy_do(Request $request)
     {
         //buat arsipkode
-        $arsipkode=date('Ymd');
+        $arsipkode=date('Y-m-d');
         // dd($arsipkode);
 
         // start-DATATAPEL
