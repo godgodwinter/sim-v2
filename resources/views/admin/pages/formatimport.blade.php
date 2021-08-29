@@ -94,10 +94,10 @@ $tipeuser=(Auth::user()->tipeuser);
                   {{-- <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('kategori') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Kategori</a>
                   </div> --}}
-                  {{-- <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
-                    <a  href="{{ route('tapel') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</a>
-                    <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>   
-                  </div> --}}
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a href="{{ url('assets/formatimport/sim-tapel.xlsx') }}"  target="_blank" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</a>
+                    <a  href="{{ url('assets/formatimport/sim-kelas.xlsx') }}"  target="_blank" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>   
+                  </div>
                     <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ url('assets/formatimport/sim-siswa.xlsx') }}"  target="_blank" type="button" class="btn btn-info"><i class="fas fa-user-graduate"></i> Siswa</a>
                     <a  href="{{ url('assets/formatimport/sim-pegawai.xlsx') }}"  target="_blank"  type="button" class="btn btn-info"><i class="fas fa-building"></i> Pegawai</a>
@@ -127,10 +127,10 @@ $tipeuser=(Auth::user()->tipeuser);
           
           <div class="card-body">
          
-            {{-- <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-              <a  href="{{ route('pemasukan') }}" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Pemasukan</a>
-              <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light"><i class="fas fa-file-invoice-dollar"></i> Pengeluaran</a>
-            </div> --}}
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+              <a  href="{{ url('assets/formatimport/sim-pemasukan.xlsx') }}"  target="_blank" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Pemasukan</a>
+              <a  href="{{ url('assets/formatimport/sim-pengeluaran.xlsx') }}"  target="_blank" type="button" class="btn btn-light"><i class="fas fa-file-invoice-dollar"></i> Pengeluaran</a>
+            </div>
             {{-- <div class="clearfix"></div> --}}
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
               

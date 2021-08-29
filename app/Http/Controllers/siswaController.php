@@ -7,6 +7,7 @@ use App\Imports\ImportSiswa;
 use App\Models\kelas;
 use App\Models\siswa;
 use App\Models\tagihansiswa;
+use App\Models\tagihansiswadetail;
 use App\Models\tapel;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
@@ -239,6 +240,31 @@ class siswaController extends Controller
         ]);
 
         }
+        
+        $nominaltagihan=$this->nominaltagihandefault();
+        $datatagihanatur = DB::table('tagihanatur')
+            ->where('tapel_nama',$request->tapel_nama)
+            ->where('kelas_nama',$request->kelas_nama)
+        ->get();
+        foreach($datatagihanatur as $dttagihanatur){
+            $nominaltagihan=$dttagihanatur->nominaltagihan;
+        }
+
+        
+
+        tagihansiswa::where('siswa_nis',$siswa->nis)
+        ->update([
+            'kelas_nama'     =>   $request->kelas_nama,
+            'nominaltagihan'     =>   $nominaltagihan,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+        tagihansiswadetail::where('siswa_nis',$siswa->nis)
+        ->update([
+            'kelas_nama'     =>   $request->kelas_nama,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+        
          //aksi update
 
         siswa::where('id',$siswa->id)
