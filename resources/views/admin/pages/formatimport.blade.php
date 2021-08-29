@@ -1,6 +1,6 @@
 @extends('layouts.layoutadmin1')
 
-@section('title','Beranda')
+@section('title','Download Format Import')
 @section('halaman','Index')
 
 @section('csshere')
@@ -121,7 +121,7 @@ $tipeuser=(Auth::user()->tipeuser);
       <div class="profile-widget-header">
         <img alt="image" src="https://ui-avatars.com/api/?name=Menu Transaksi&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
         <div class="profile-widget-items">
-          <h3 class="ml-5 mt-4">Format Import Menu Transaksi</h3>
+          <h3 class="ml-5 mt-4">Format Import eMenu Transaksi</h3>
         </div>
          
           

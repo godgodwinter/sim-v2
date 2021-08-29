@@ -128,6 +128,7 @@ Route::post('admin/datapegawai/import', 'App\Http\Controllers\prosesController@i
 
 // OherMenu /pagescontroller
 Route::get('admin/formatimport', 'App\Http\Controllers\pagesController@formatimport')->name('formatimport');
+Route::get('admin/guide', 'App\Http\Controllers\pagesController@guide')->name('guide');
 
 
 Route::get('admin/datatagihanatur/export', 'App\Http\Controllers\prosesController@exporttagihanatur')->name('tagihanatur.export');

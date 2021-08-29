@@ -252,7 +252,7 @@ $ambilkepsek = DB::table('users')
                   </div>
 
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
-                    <a  href="{{ route('tapel') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Pentunjuk Penggunaan</a>
+                    <a  href="{{ route('guide') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Pentunjuk Penggunaan</a>
                     {{-- <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>    --}}
                   </div>
                   </div>
@@ -291,7 +291,7 @@ $ambilkepsek = DB::table('users')
             </button>
 
           <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-md" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting. Kemudian Syncron ke menu tagihan siswa!"><span
-            class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah Semua </span></a href="$add">
+            class="pcoded-micon"> <i class="far fa-plus-square"></i> Fungsi Tambah Semua </span></a >
          
               </div>
               </div>
