@@ -126,6 +126,10 @@ Route::get('admin/datapegawai/export', 'App\Http\Controllers\prosesController@ex
 Route::post('admin/datapegawai/import', 'App\Http\Controllers\prosesController@importpegawai')->name('pegawai.import');
 
 
+// OherMenu /pagescontroller
+Route::get('admin/formatimport', 'App\Http\Controllers\pagesController@formatimport')->name('formatimport');
+
+
 Route::get('admin/datatagihanatur/export', 'App\Http\Controllers\prosesController@exporttagihanatur')->name('tagihanatur.export');
 Route::post('admin/datatagihanatur/import', 'App\Http\Controllers\prosesController@importtagihanatur')->name('tagihanatur.import');
 Route::get('admin/datatagihansiswa/export', 'App\Http\Controllers\prosesController@exporttagihansiswa')->name('tagihansiswa.export');

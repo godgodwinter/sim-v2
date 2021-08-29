@@ -248,7 +248,7 @@ $ambilkepsek = DB::table('users')
                 
                 <div class="card-body">
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
-                    <a  href="{{ route('kategori') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Download Format Import</a>
+                    <a  href="{{ route('formatimport') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Download Format Import</a>
                   </div>
 
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
