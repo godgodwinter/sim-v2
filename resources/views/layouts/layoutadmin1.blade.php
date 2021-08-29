@@ -183,13 +183,22 @@ if((Auth::user()->tipeuser)=='admin'){
               <li @if ($pages==='eoy')
                 class="active"
                 @endif >
-                <a href="{{ route('eoy') }}" class="nav-link"><i class="fab fa-resolving"></i><span>EoY</span></a>
+                <a href="{{ route('eoy') }}" class="nav-link"><i class="far fa-calendar-check"></i><span>EoY</span></a>
               </li>
 
               <li @if ($pages==='soy')
                 class="active"
                 @endif >
-                <a href="{{ route('soy') }}" class="nav-link"><i class="fab fa-resolving"></i><span>SoY</span></a>
+                <a href="{{ route('soy') }}" class="nav-link"><i class="far fa-calendar-plus"></i><span>SoY</span></a>
+              </li>
+
+              <li class="menu-header">Menu Arsip</li>
+              
+
+              <li @if ($pages==='arsip')
+                class="active"
+                @endif >
+                <a href="{{ route('arsip') }}" class="nav-link"><i class="fas fa-history"></i><span>Arsip</span></a>
               </li>
 
             </ul>

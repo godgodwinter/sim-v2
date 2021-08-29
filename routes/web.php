@@ -142,7 +142,10 @@ Route::get('admin/datatagihansiswadetail/export', 'App\Http\Controllers\prosesCo
 Route::post('admin/datatagihansiswadetail/import', 'App\Http\Controllers\prosesController@importtagihansiswadetail')->name('tagihansiswadetail.import');
 
 Route::get('admin/eoy', 'App\Http\Controllers\pagesController@eoy')->name('eoy');
+Route::post('admin/eoy/do', 'App\Http\Controllers\pagesController@eoy_do')->name('eoy.do');
+
 Route::get('admin/soy', 'App\Http\Controllers\pagesController@soy')->name('soy');
+Route::get('admin/arsip', 'App\Http\Controllers\pagesController@arsip')->name('arsip');
 
 
 // OherMenu /pagescontroller
