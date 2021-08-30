@@ -31,7 +31,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">SIM PreAlpha 2.0.21.08.10</h3>
+  <h3 align="center">SIM PreAlpha 2.0.21.08.30</h3>
 
   <p align="center">
    Sistem Informasi Manajemen Sekolah
@@ -76,7 +76,7 @@
 
 [![Product Name Screen Shot][product-screenshot-dashboardlm2]](https://github.com/godgodwinter/sim-v2)
 [![Product Name Screen Shot][product-screenshot-dashboardlm3]](https://github.com/godgodwinter/sim-v2)
-[![Product Name Screen Shot][product-classdiagram1]](https://github.com/godgodwinter/sim-v2)
+<!-- [![Product Name Screen Shot][product-classdiagram1]](https://github.com/godgodwinter/sim-v2) -->
 
 Sistem administrasi keuangan sekolah
 
