@@ -323,7 +323,7 @@ $ambilkepsek = DB::table('users')
                 @csrf
                 <button class="btn btn-danger btn-lg"
                     onclick="return  confirm('Anda yakin melakukan Reset tagihan siswa? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus data siswa!"><span
-                        class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Reset data Siswa saja!</span></button>
+                        class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Reset data Siswa ! Tagihan dan pembayaran juga akan di hapus!</span></button>
               </form>
 
             </div>
