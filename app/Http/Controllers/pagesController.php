@@ -369,11 +369,6 @@ class pagesController extends Controller
             $arsipkode=$this->cegah2($tapelaktif);
             // dd($arsipkode);
 
-        // 2. ambil data where tapelaktif
-
-        //START-SOY-DATAKELAS
-        $dataarsipkelas=DB::table('arsip_kelas')->where('arsipkode',$arsipkode)
-        ->get();
 
         //jika tidak ada data tapelaktif maka soy tidak dapat dilakukan
         $jmldataarsipkelas=DB::table('arsip_kelas')->where('arsipkode',$arsipkode)
@@ -382,6 +377,13 @@ class pagesController extends Controller
             return redirect()->back()->with('status','Proses SoY gagal! Data SoY pada tahun '.$this->tapelaktif().' tidak ditemukan. Lakukan EoY terlebih dahulu!')->with('tipe','danger')->with('icon','fas fa-trash');
 
         }
+
+        // 2. ambil data where tapelaktif
+
+        //START-SOY-DATAKELAS
+        $dataarsipkelas=DB::table('arsip_kelas')->where('arsipkode',$arsipkode)
+        ->get();
+
 
         foreach($dataarsipkelas as $kelas){
             $nama=$kelas->nama;
@@ -540,7 +542,7 @@ class pagesController extends Controller
         foreach($dataarsipsiswa as $siswa){
             $tapel_nama_baru=$this->naik_t($siswa->tapel_nama);
             // 3. tambahkan 1 pada siswa dan siswa jika xii maka alumni jika x dan xi maaka +1, nominaltagihan dari settings>nomminaltagihandefaul
-            $kelas_nama_baru=$this->naik_k_tanpa_alumni($siswa->kelas_nama);
+            $kelas_nama_baru=$this->naik_k($siswa->kelas_nama);
             // dd($nama,$nama_baru);    
             
 
@@ -550,39 +552,46 @@ class pagesController extends Controller
         ->where('kelas_nama',$kelas_nama_baru)
         ->count();
     
-        if ($datas<1) {
-            //insert data ke arsip_
-            DB::table('siswa')->insert(
-                array(
-                    'nis'     =>   $siswa->nis,
+        $strex=explode(" ",$kelas_nama_baru);
+        if($strex[0]!=='Alumni'){
+
+            if ($datas<1) {
+                //insert data ke arsip_
+                DB::table('siswa')->insert(
+                    array(
+                        'nis'     =>   $siswa->nis,
+                        'nama'     =>   $siswa->nama,
+                        'tempatlahir'     =>   $siswa->tempatlahir,
+                        'tgllahir'     =>   $siswa->tgllahir,
+                        'agama'     =>   $siswa->agama,
+                        'alamat'     =>   $siswa->alamat,
+                        'tapel_nama'     =>   $tapel_nama_baru,
+                        'kelas_nama'     =>   $kelas_nama_baru,
+                        'jk'     =>   $siswa->jk,
+                        'moodleuser'     =>   $siswa->moodleuser,
+                        'moodlepass'     =>   $siswa->moodlepass,
+                        'created_at'=>$siswa->created_at,
+                        'updated_at'=>$siswa->updated_at
+                    ));
+            }else{
+                siswa::where('nis',$siswa->nis)
+                ->where('tapel_nama',$tapel_nama_baru)
+                ->where('kelas_nama',$kelas_nama_baru)
+                    ->update([
                     'nama'     =>   $siswa->nama,
                     'tempatlahir'     =>   $siswa->tempatlahir,
                     'tgllahir'     =>   $siswa->tgllahir,
                     'agama'     =>   $siswa->agama,
                     'alamat'     =>   $siswa->alamat,
-                    'tapel_nama'     =>   $tapel_nama_baru,
-                    'kelas_nama'     =>   $kelas_nama_baru,
                     'jk'     =>   $siswa->jk,
                     'moodleuser'     =>   $siswa->moodleuser,
                     'moodlepass'     =>   $siswa->moodlepass,
-                    'created_at'=>$siswa->created_at,
                     'updated_at'=>$siswa->updated_at
-                ));
+                    ]);
+
+            }
+
         }else{
-            siswa::where('nis',$siswa->nis)
-            ->where('tapel_nama',$tapel_nama_baru)
-            ->where('kelas_nama',$kelas_nama_baru)
-                ->update([
-                   'nama'     =>   $siswa->nama,
-                   'tempatlahir'     =>   $siswa->tempatlahir,
-                   'tgllahir'     =>   $siswa->tgllahir,
-                   'agama'     =>   $siswa->agama,
-                   'alamat'     =>   $siswa->alamat,
-                   'jk'     =>   $siswa->jk,
-                   'moodleuser'     =>   $siswa->moodleuser,
-                   'moodlepass'     =>   $siswa->moodlepass,
-                   'updated_at'=>$siswa->updated_at
-                ]);
 
         }
             
