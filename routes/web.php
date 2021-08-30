@@ -156,13 +156,14 @@ Route::post('admin/soy/do', 'App\Http\Controllers\pagesController@soy_do')->name
 Route::get('admin/arsip', 'App\Http\Controllers\pagesController@arsip')->name('arsip');
 
 //resetmenu
-Route::post('admin/reset/hard', 'App\Http\Controllers\adminresetController@reset_hard')->name('reset.hard');
-Route::post('admin/reset/setting', 'App\Http\Controllers\adminresetController@reset_setting')->name('reset.settings');
-Route::post('admin/reset/tagihansiswa', 'App\Http\Controllers\adminresetController@reset_tagihansiswa')->name('reset.tagihansiswa');
+Route::post('admin/reset/hard', 'App\Http\Controllers\adminresetController@hard')->name('reset.hard');
+Route::post('admin/reset/setting', 'App\Http\Controllers\adminresetController@settings')->name('reset.settings');
+Route::post('admin/reset/siswa', 'App\Http\Controllers\adminresetController@siswa')->name('reset.siswa');
+Route::post('admin/reset/tagihansiswa', 'App\Http\Controllers\adminresetController@tagihansiswa')->name('reset.tagihansiswa');
 
 //seeder
-Route::post('admin/seeder/siswa', 'App\Http\Controllers\seederController@seeder_siswa')->name('seeder.siswa');
-Route::post('admin/seeder/kelas', 'App\Http\Controllers\seederController@seeder_kelas')->name('seeder.kelas');
+Route::post('admin/seeder/siswa', 'App\Http\Controllers\adminseederController@siswa')->name('seeder.siswa');
+Route::post('admin/seeder/kelas', 'App\Http\Controllers\adminseederController@kelas')->name('seeder.kelas');
 
 
 

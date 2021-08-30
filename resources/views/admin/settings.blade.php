@@ -288,7 +288,7 @@ $ambilkepsek = DB::table('users')
           </div>
 
           <div class="form-group col-md-12 col-12 mt-5 ml-5">
-            <h5>Fungsi Reset</h5>
+            <h5>Fungsi Reset / Menghapus data</h5>
            </div>
 
 
@@ -296,15 +296,36 @@ $ambilkepsek = DB::table('users')
           <div class="card-body ml-3">
          
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-              <form action="{{ route('eoy.do') }}" method="post" class="d-inline">
+
+              <form action="{{ route('reset.hard') }}" method="post" class="d-inline">
                 @csrf
                 <button class="btn btn-danger btn-lg"
-                    onclick="return  confirm('Anda yakin melakukan EoY? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
-                        class="pcoded-micon"> <i class="far fa-calendar-check"></i> Hard reset aplikasi!</span></button>
-            </form>
-              <a  href="{{ route('reset.hard') }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Untuk membersihkan semua data! Jadi aplikasi baru ndengan data kosong."><i class="fas fa-hand-holding-usd"></i> Hard Reset Aplikasi</a>
-              <a  href="{{ route('reset.settings') }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Untuk mengembalikan pengaturan website ke pengaturan default! Data Informasi aplikasi dan sekolah juga direset."><i class="fas fa-file-invoice-dollar"></i> Reset Pengaturan Default</a>
-              <a  href="{{ route('reset.tagihansiswa') }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Untuk mengembalikan pengaturan website ke pengaturan default! Data Informasi aplikasi dan sekolah juga direset."><i class="fas fa-file-invoice-dollar"></i> Reset tagihan siswa saja</a>
+                    onclick="return  confirm('Anda yakin melakukan Hard Reset aplikasi? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk membersihkan semua data! Jadi aplikasi baru dengan data kosong!"><span
+                        class="pcoded-micon"> <i class="fas fa-power-off"></i> Hard reset aplikasi!</span></button>
+              </form>
+
+              <form action="{{ route('reset.settings') }}" method="post" class="d-inline ml-2">
+                @csrf
+                <button class="btn btn-danger btn-lg"
+                    onclick="return  confirm('Anda yakin melakukan Reset pengaturan? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk mengembalikan pengaturan website ke pengaturan default! Data Informasi aplikasi dan sekolah juga direset.">
+                    <i class="fas fa-tools"></i> Reset Pengaturan!</button>
+              </form>
+
+              <form action="{{ route('reset.tagihansiswa') }}" method="post" class="d-inline ml-2">
+                @csrf
+                <button class="btn btn-danger btn-lg"
+                    onclick="return  confirm('Anda yakin melakukan Reset tagihan siswa? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus data tagihan siswa!"><span
+                        class="pcoded-micon"> <i class="fas fa-users-cog"></i> Reset data tagihan siswa saja!</span></button>
+              </form>
+
+
+              <form action="{{ route('reset.siswa') }}" method="post" class="d-inline ml-2">
+                @csrf
+                <button class="btn btn-danger btn-lg"
+                    onclick="return  confirm('Anda yakin melakukan Reset tagihan siswa? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus data siswa!"><span
+                        class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Reset data Siswa saja!</span></button>
+              </form>
+
             </div>
             {{-- <div class="clearfix"></div>
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
@@ -316,6 +337,33 @@ $ambilkepsek = DB::table('users')
             
 
             </div>
+
+
+          <div class="form-group col-md-12 col-12 mt-5 ml-5">
+            <h5>Fungsi Seeder / Tambahkan data acak untuk testing</h5>
+           </div>
+
+           <div class="card-body ml-3">
+           <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+
+            <form action="{{ route('seeder.kelas') }}" method="post" class="d-inline">
+              @csrf
+              <button class="btn btn-info btn-lg"
+                  onclick="return  confirm('Anda yakin menambahkan data kelas palsu? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk menambahkan data kelas palsu!"><span
+                      class="pcoded-micon"> <i class="fas fa-school"></i> Data Kelas</span></button>
+            </form>
+
+
+            <form action="{{ route('seeder.siswa') }}" method="post" class="d-inline ml-2">
+              @csrf
+              <button class="btn btn-info btn-lg"
+                  onclick="return  confirm('Anda yakin menambahkan data siswa palsu? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk menambahkan data siswa palsu!"><span
+                      class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Data Siswa</span></button>
+            </form>
+
+           </div></div>
+
+           
           </div></div>
              
               
