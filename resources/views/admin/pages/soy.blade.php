@@ -1,6 +1,6 @@
 @extends('layouts.layoutadmin1')
 
-@section('title','End of Year')
+@section('title','Start of Year')
 @section('halaman','Index')
 
 @section('csshere')
@@ -72,7 +72,7 @@
 
 
 <div class="section-body">
-    <h2 class="section-title"> End of Year dilakukan pada akhir tahun pelajaran. Untuk mengurangi kesalahan input data pada tahun pelajaran sebelum-sebelumnya</h2>
+    <h2 class="section-title"> Start of Year dilakukan pada awal tahun pelajaran. Untuk membantu memulai proses input data pada awal tahun pelajaran. Data-data yang digunakan dari data tahun pelajaran sebelumnya.</h2>
     {{-- <p class="section-lead">
      
     </p> --}}
@@ -86,27 +86,29 @@
                     <img alt="image" src="https://ui-avatars.com/api/?name=PK&color=FFEDDA&background=3DB2FF"
                         class="rounded-circle profile-widget-picture">
                     <div class="profile-widget-items">
-                        <h3 class="ml-5 mt-4"> Penjalasan Alur EoY!</h3>
+                        <h3 class="ml-5 mt-4"> Penjalasan Alur SoY!</h3>
                     </div>
 
 
                     <div class="card-body">
-                        <p> 1. Data yang sudah di masukkan pada tahun pelajaran aktif akan di insert ke tabel arsip </p>
+                        <p> 1. Mengambil data tahun pelajaran aktif di pengaturan kemudian ditambahkan 1 tahun pelajaran, misal : Tahun aktif 2020/2021 menjadi 2021/2022. </p>
                       
 
-                        <p> 2. Kemudian semua data yang berhubungan dengan siswa dan pembayaran akan di hapus</p>
+                        <p> 2. Mengambil data arsip dengan kondisi tahun pelajaran adalah tahun aktif sebelum di tambahkan 1. Jadi pada contoh di atas adalah 2020/2021</p>
 
-                        <p> 3. setting_statusapp diubah menjadi disable "tidak bisa melakukan transaksi pembayaran" </p>
+                        <p> 3. Data siswa dan tagihan atur kolom kelas X dan XI akan di tambah 1, kelas XII akan di ubah menjadi alumni. Nominal tagihan  di ambil dari dari nominal tagihan defaul pada menu pengaturan." </p>
+                        
+                        <p> 4. Fungsi tambah semua akan di jalankan jadi siswa dengan kelas baru akan masuk ke menu tagihan siswa." </p>
 
                         <div class="section-title mt-0">Catatan : </div>
                         <blockquote>
-                          1. Untuk jaga-jaga ada bug/kesalahan sistem backup dengan melakukan export pada data yang di anggap penting!
+                          1. Pastikan telah ada data pada tahun sebelumnya dan telah dilakukan EoY atau End of Year. Jika belum lakukan EoY terlebih dahulu1
                     
                         <br>
-                          2. arsipkode dari Tahun bulan dan hari pada saat EoY dilakukan! jadi jika 1 hari tersebut dilakukan EoY maka kode arsip akan sama
+                          2. Jika data pada tahun sebelumnya belum ada. Atau ingin memulai aplikasi dari awal. Tambahkan saja data di menu biasa. Tidak perlu menggunakan SoY.
                        
                           <br>
-                          3. jika data sama maka tidak diinput //if data tidak ditemukan maka insert else update or do nothing
+                          3. Jika ingin meghapus data atau hanya ingin memulai aplikasi dari awal bisa menggunakan menu Hard Reset pada menu pengaturan.
                         </blockquote>
 
 
@@ -127,7 +129,7 @@
                       src="https://ui-avatars.com/api/?name=EoY&color=FFEDDA&background=3DB2FF"
                       class="rounded-circle profile-widget-picture">
                   <div class="profile-widget-items">
-                      <h3 class="ml-5 mt-4">Lakukan End of Year!</h3>
+                      <h3 class="ml-5 mt-4">Lakukan Start of Year!</h3>
                   </div>
 
 
@@ -139,7 +141,7 @@
                                 @csrf
                                 <button class="btn btn-danger btn-lg"
                                     onclick="return  confirm('Anda yakin melakukan EoY? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
-                                        class="pcoded-micon"> <i class="far fa-calendar-check"></i> EoY!</span></button>
+                                        class="pcoded-micon"> <i class="far fa-calendar-check"></i> Start of Year!</span></button>
                             </form>
                           {{-- <a href="{{ route('tagihanatur') }}" type="button"
                               class="btn btn-danger btn-lg"><i class="far fa-calendar-check"></i> EoY!</a> --}}

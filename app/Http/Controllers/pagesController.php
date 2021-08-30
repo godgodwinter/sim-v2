@@ -293,7 +293,7 @@ class pagesController extends Controller
     public function soy()
     {
         $pages='soy';
-        return view('admin.pages.guide',compact('pages'
+        return view('admin.pages.soy',compact('pages'
     ));
     }
 
