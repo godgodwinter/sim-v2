@@ -286,6 +286,37 @@ $ambilkepsek = DB::table('users')
           
             </form>
           </div>
+
+          <div class="form-group col-md-12 col-12 mt-5 ml-5">
+            <h5>Fungsi Reset</h5>
+           </div>
+
+
+          
+          <div class="card-body ml-3">
+         
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+              <form action="{{ route('eoy.do') }}" method="post" class="d-inline">
+                @csrf
+                <button class="btn btn-danger btn-lg"
+                    onclick="return  confirm('Anda yakin melakukan EoY? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
+                        class="pcoded-micon"> <i class="far fa-calendar-check"></i> Hard reset aplikasi!</span></button>
+            </form>
+              <a  href="{{ route('reset.hard') }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Untuk membersihkan semua data! Jadi aplikasi baru ndengan data kosong."><i class="fas fa-hand-holding-usd"></i> Hard Reset Aplikasi</a>
+              <a  href="{{ route('reset.settings') }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Untuk mengembalikan pengaturan website ke pengaturan default! Data Informasi aplikasi dan sekolah juga direset."><i class="fas fa-file-invoice-dollar"></i> Reset Pengaturan Default</a>
+              <a  href="{{ route('reset.tagihansiswa') }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Untuk mengembalikan pengaturan website ke pengaturan default! Data Informasi aplikasi dan sekolah juga direset."><i class="fas fa-file-invoice-dollar"></i> Reset tagihan siswa saja</a>
+            </div>
+            {{-- <div class="clearfix"></div>
+            <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
+              
+              <a  href="{{ route('tagihanatur') }}" type="button" class="btn btn-danger"><i class="fas fa-fire"></i> Tagihan Atur </a>
+              <a  href="{{ route('tagihansiswa') }}" type="button" class="btn btn-danger"><i class="fas fa-graduation-cap"></i> Tagihan Siswa </a>
+            </div> --}}
+
+            
+
+            </div>
+          </div></div>
              
               
               

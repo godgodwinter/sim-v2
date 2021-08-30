@@ -39,7 +39,7 @@
     <a href="https://github.com/godgodwinter/sim-v2"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://sekolah.baemon.web.id/">View Demo</a>
+    <a href="https://sim.baemon.web.id/">View Demo</a>
     ·
     <a href="https://twitter.com/kakadlz">Report Bug</a>
     ·

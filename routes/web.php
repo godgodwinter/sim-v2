@@ -141,6 +141,12 @@ Route::post('admin/datatagihansiswa/import', 'App\Http\Controllers\prosesControl
 Route::get('admin/datatagihansiswadetail/export', 'App\Http\Controllers\prosesController@exporttagihansiswadetail')->name('tagihansiswadetail.export');
 Route::post('admin/datatagihansiswadetail/import', 'App\Http\Controllers\prosesController@importtagihansiswadetail')->name('tagihansiswadetail.import');
 
+
+
+// OherMenu /pagescontroller
+Route::get('admin/formatimport', 'App\Http\Controllers\pagesController@formatimport')->name('formatimport');
+Route::get('admin/guide', 'App\Http\Controllers\pagesController@guide')->name('guide');
+
 Route::get('admin/eoy', 'App\Http\Controllers\pagesController@eoy')->name('eoy');
 Route::post('admin/eoy/do', 'App\Http\Controllers\pagesController@eoy_do')->name('eoy.do');
 
@@ -149,10 +155,14 @@ Route::post('admin/soy/do', 'App\Http\Controllers\pagesController@soy_do')->name
 
 Route::get('admin/arsip', 'App\Http\Controllers\pagesController@arsip')->name('arsip');
 
+//resetmenu
+Route::post('admin/reset/hard', 'App\Http\Controllers\adminresetController@reset_hard')->name('reset.hard');
+Route::post('admin/reset/setting', 'App\Http\Controllers\adminresetController@reset_setting')->name('reset.settings');
+Route::post('admin/reset/tagihansiswa', 'App\Http\Controllers\adminresetController@reset_tagihansiswa')->name('reset.tagihansiswa');
 
-// OherMenu /pagescontroller
-Route::get('admin/formatimport', 'App\Http\Controllers\pagesController@formatimport')->name('formatimport');
-Route::get('admin/guide', 'App\Http\Controllers\pagesController@guide')->name('guide');
+//seeder
+Route::post('admin/seeder/siswa', 'App\Http\Controllers\seederController@seeder_siswa')->name('seeder.siswa');
+Route::post('admin/seeder/kelas', 'App\Http\Controllers\seederController@seeder_kelas')->name('seeder.kelas');
 
 
 
