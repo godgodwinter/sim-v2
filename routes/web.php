@@ -145,6 +145,8 @@ Route::get('admin/eoy', 'App\Http\Controllers\pagesController@eoy')->name('eoy')
 Route::post('admin/eoy/do', 'App\Http\Controllers\pagesController@eoy_do')->name('eoy.do');
 
 Route::get('admin/soy', 'App\Http\Controllers\pagesController@soy')->name('soy');
+Route::post('admin/soy/do', 'App\Http\Controllers\pagesController@soy_do')->name('soy.do');
+
 Route::get('admin/arsip', 'App\Http\Controllers\pagesController@arsip')->name('arsip');
 
 

@@ -243,7 +243,7 @@ class prosesController extends Controller
  
 		// alihkan halaman kembali
 		// return redirect('/siswa');
-        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+        return redirect(URL::to('/').'/admin/datatagihan/addall')->with('status','Data berhasil diimport!')->with('tipe','success')->with('icon','fas fa-feather');
 	}
 
 	public function importtagihanatur(Request $request) 

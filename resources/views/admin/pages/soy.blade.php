@@ -109,6 +109,10 @@
                        
                           <br>
                           3. Jika ingin meghapus data atau hanya ingin memulai aplikasi dari awal bisa menggunakan menu Hard Reset pada menu pengaturan.
+                          <br>
+                          4. jika data sama maka tidak diinput //if data tidak ditemukan maka insert else update or do nothing
+                          <br>
+                          5. jika tidak pernak di lakukan EoY pada tahun pelajaran aktif SoY tidak bisa dijalankan
                         </blockquote>
 
 
@@ -137,10 +141,10 @@
                      
                       {{-- <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example"> --}}
                         <div class="text-right">
-                            <form action="{{ route('eoy.do') }}" method="post" class="d-inline">
+                            <form action="{{ route('soy.do') }}" method="post" class="d-inline">
                                 @csrf
                                 <button class="btn btn-danger btn-lg"
-                                    onclick="return  confirm('Anda yakin melakukan EoY? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
+                                    onclick="return  confirm('Anda yakin melakukan SoY? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
                                         class="pcoded-micon"> <i class="far fa-calendar-check"></i> Start of Year!</span></button>
                             </form>
                           {{-- <a href="{{ route('tagihanatur') }}" type="button"

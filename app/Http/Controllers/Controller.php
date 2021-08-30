@@ -126,5 +126,209 @@ class Controller extends BaseController
         return $data;
      
     }
+
+    //untuk kenaikan kelas
+    public function naik_k($str)
+        {
+                //  $stre=str_replace('X','Xzz',$str);
+                //  $str=substr($stre,1);
+                
+            $strex=explode(" ",$str);
+            if($strex[0]==="X"){
+                $strex[0]="XI";
+            }else if($strex[0]==="XI"){
+                $strex[0]="XII";
+            }else if($strex[0]==="XII"){
+                $strex[0]="Alumni";
+            }
+
+
+            $str=implode(" ",$strex);
+            
+            return $str;
+        }
+
+    //untuk kenaikan kelas
+    public function naik_k_tanpa_alumni($str)
+    {
+        $strex=explode(" ",$str);
+        if($strex[0]==="X"){
+            $strex[0]="XI";
+        }else if($strex[0]==="XI"){
+            $strex[0]="XII";
+        }
+
+
+        $str=implode(" ",$strex);
+        
+        return $str;
+    }
+    //naik tapel
+    public function naik_t($str)
+        {
+            $strex=explode("/",$str);
+            $strex[0]=$strex[0]+1;
+            $strex[1]=$strex[1]+1;
+
+            $str=implode("/",$strex);
+            
+            return $str;
+        }
+
+    // fungsi dari sisfokol
+    //untuk mencegah si jahil #1
+    public function cegah($str)
+        {
+            $str = trim(htmlentities(htmlspecialchars($str)));
+        $search = array ("'\''",
+                            "'%'",
+                            "'@'",
+                            "'_'",
+                            "'1=1'",
+                            "'/'",
+                            "'!'",
+                            "'<'",
+                            "'>'",
+                            "'\('",
+                            "'\)'",
+                            "';'",
+                            "'-'",
+                            "'_'");
+
+        $replace = array ("xpsijix",
+                            "xpersenx",
+                            "xtkeongx",
+                            "xgwahx",
+                            "x1smdgan1x",
+                            "xgmringx",
+                            "xpentungx",
+                            "xkkirix",
+                            "xkkananx",
+                            "xkkurix",
+                            "xkkurnanx",
+                            "xkommax",
+                            "xstrix",
+                            "xstripbwhx");
+
+        $str = preg_replace($search,$replace,$str);
+        return $str;
+        }
+
+
+
+        //untuk mencegah si jahil #2
+        public function cegah2($str)
+        {
+            $str = trim($str);
+        $search = array ("'\''",
+                            "'%'",
+                            "'@'",
+                            "'_'",
+                            "'1=1'",
+                            "'/'",
+                            "'!'",
+                            "'<'",
+                            "'>'",
+                            "'\('",
+                            "'\)'",
+                            "';'",
+                            "'-'",
+                            "'_'");
+
+        $replace = array ("xpsijix",
+                            "xpersenx",
+                            "xtkeongx",
+                            "xgwahx",
+                            "x1smdgan1x",
+                            "xgmringx",
+                            "xpentungx",
+                            "xkkirix",
+                            "xkkananx",
+                            "xkkurix",
+                            "xkkurnanx",
+                            "xkommax",
+                            "xstrix",
+                            "xstripbwhx");
+
+        $str = preg_replace($search,$replace,$str);
+        return $str;
+        }
+
+        //balikino. . o . . .. o. . .. . balikin
+        public function balikin($str)
+        {
+        $search = array ("'xpsijix'",
+                            "'xpersenx'",
+                            "'xtkeongx'",
+                            "'xgwahx'",
+                            "'x1smdgan1x'",
+                            "'xgmringx'",
+                            "'xpentungx'",
+                            "'xkkirix'",
+                            "'xkkananx'",
+                            "'xkkurix'",
+                            "'xkkurnanx'",
+                            "'xkommax'",
+                            "'xstrix'",
+                            "'xstripbwhx'");
+
+        $replace = array ("'",
+                            "%",
+                            "@",
+                            "_",
+                            "1=1",
+                            "/",
+                            "!",
+                            "<",
+                            ">",
+                            "(",
+                            ")",
+                            ";",
+                            "-",
+                            "_");
+
+        $str = preg_replace($search,$replace,$str);
+
+        return $str;
+        }
+
+
+
+        //balikin2
+        public function balikin2($str)
+        {
+        $search = array ("'xpsijix'",
+                            "'xpersenx'",
+                            "'xtkeongx'",
+                            "'xgwahx'",
+                            "'x1smdgan1x'",
+                            "'xgmringx'",
+                            "'xpentungx'",
+                            "'xkkirix'",
+                            "'xkkananx'",
+                            "'xkkurix'",
+                            "'xkkurnanx'",
+                            "'xkommax'",
+                            "'xstrix'",
+                            "'xstripbwhx'");
+
+        $replace = array ("'",
+                            "%",
+                            "@",
+                            "_",
+                            "1=1",
+                            "/",
+                            "!",
+                            "<",
+                            ">",
+                            "(",
+                            ")",
+                            ";",
+                            "-",
+                            "_");
+
+        $str = preg_replace($search,$replace,$str);
+        return $str;
+        }
     //gunakan  return $this->errorResponse('Validation Error',$validator->errors());
 }

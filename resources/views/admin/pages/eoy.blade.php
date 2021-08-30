@@ -103,10 +103,12 @@
                           1. Untuk jaga-jaga ada bug/kesalahan sistem backup dengan melakukan export pada data yang di anggap penting!
                     
                         <br>
-                          2. arsipkode dari Tahun bulan dan hari pada saat EoY dilakukan! jadi jika 1 hari tersebut dilakukan EoY maka kode arsip akan sama
+                          2. arsipkode dari Tahun aktif pada saat EoY dilakukan! 
                        
                           <br>
                           3. jika data sama maka tidak diinput //if data tidak ditemukan maka insert else update or do nothing
+                          <br>
+                          4. jika tidak ada pembayaran sama sekali maka EoY tidak dapat dilakukan
                         </blockquote>
 
 
