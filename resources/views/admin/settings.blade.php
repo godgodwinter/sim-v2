@@ -314,7 +314,7 @@ $ambilkepsek = DB::table('users')
               <form action="{{ route('reset.tagihansiswa') }}" method="post" class="d-inline ml-2">
                 @csrf
                 <button class="btn btn-danger btn-lg"
-                    onclick="return  confirm('Anda yakin melakukan Reset tagihan siswa? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus data tagihan siswa!"><span
+                    onclick="return  confirm('Anda yakin melakukan Reset tagihan siswa? Y/N')"  data-toggle="tooltip" data-placement="top" title="Kosongkan data tagihan siswa!"><span
                         class="pcoded-micon"> <i class="fas fa-users-cog"></i> Reset data tagihan siswa saja!</span></button>
               </form>
 
@@ -350,7 +350,7 @@ $ambilkepsek = DB::table('users')
               @csrf
               <button class="btn btn-info btn-lg"
                   onclick="return  confirm('Anda yakin menambahkan data kelas palsu? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk menambahkan data kelas palsu!"><span
-                      class="pcoded-micon"> <i class="fas fa-school"></i> Data Kelas</span></button>
+                      class="pcoded-micon"> <i class="fas fa-school"></i> Seeder Data Kelas</span></button>
             </form>
 
 
@@ -358,7 +358,7 @@ $ambilkepsek = DB::table('users')
               @csrf
               <button class="btn btn-info btn-lg"
                   onclick="return  confirm('Anda yakin menambahkan data siswa palsu? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk menambahkan data siswa palsu!"><span
-                      class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Data Siswa</span></button>
+                      class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Seeder Data Siswa</span></button>
             </form>
 
            </div></div>
