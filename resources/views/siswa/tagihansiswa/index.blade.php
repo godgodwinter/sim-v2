@@ -44,6 +44,10 @@
 
 @php
 $tipeuser=(Auth::user()->tipeuser);
+
+$nama=Auth::user()->name;
+$email=Auth::user()->email;
+$profile_photo_path=Auth::user()->profile_photo_path;
 @endphp
 
 {{-- DATATABLE --}}
@@ -145,9 +149,8 @@ $ambilsiswausers = DB::table('users')
   <div class="section-body">
     <h2 class="section-title">Hi, {{ Auth::user()->name }}!</h2>
     <p class="section-lead">
-      Berikut adalah informasi tentang pembayaran tagihan anda. Hubungi admin jika data anda belum muncul. Kemungkinan Belum di Sinkronisasi!
-    </p>
-@if($caridatas>1)
+      Berikut adalah informasi tentang pembayaran tagihan anda. Hubungi admin jika data anda belum muncul.
+@if($caridatas>0)
   
 @foreach ($datas as $data)
 @php
@@ -155,7 +158,7 @@ $warna='default';
 $sumdetailbayar = DB::table('tagihansiswadetail')
   ->where('tapel_nama', '=', $data->tapel_nama)
   ->where('kelas_nama', '=', $data->kelas_nama)
-  ->where('si', '=', $data->tapel_nama)
+  // ->where('si', '=', $data->tapel_nama)
   ->sum('nominal');
   $kurang=$data->nominaltagihan-$sumdetailbayar;
   $persen=number_format(($sumdetailbayar/$data->nominaltagihan*100),2);
@@ -172,7 +175,13 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
       <div class="col-12 col-md-12 col-lg-5">
         <div class="card profile-widget">
           <div class="profile-widget-header">
-            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture">
+            @if($profile_photo_path!='')
+            <img alt="image" src="{{ asset("storage/") }}/{{ $profile_photo_path }}" class="rounded-circle profile-widget-picture" width="50px">
+            {{-- <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture"> --}}
+            @else
+            <img alt="image" src="https://ui-avatars.com/api/?name={{ $nama }}&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture" width="50px">
+
+      @endif
             <div class="profile-widget-items">
               <div class="profile-widget-item">
                 <div class="profile-widget-item-label">Tagihan</div>
