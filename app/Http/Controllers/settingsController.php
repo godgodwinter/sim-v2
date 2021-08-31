@@ -67,6 +67,7 @@ class settingsController extends Controller
             $sekolahlogo=$this->sekolahlogo();
             $sekolahttd=$this->sekolahttd();
             $sekolahttd2=$this->sekolahttd2();
+            $minimalpembayaranujian=$this->minimalpembayaranujian();
             $tapelaktif=$this->tapelaktif();
             $tapel=tapel::all();
 
@@ -95,6 +96,7 @@ class settingsController extends Controller
         ,'sekolahlogo'
         ,'sekolahttd'
         ,'sekolahttd2'
+        ,'minimalpembayaranujian'
     ));
     }
 }

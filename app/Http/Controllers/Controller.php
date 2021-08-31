@@ -148,6 +148,13 @@ class Controller extends BaseController
         return $data;
      
     }
+    public function minimalpembayaranujian(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->minimalpembayaranujian;
+        return $data;
+     
+    }
 
     //untuk kenaikan kelas
     public function naik_k($str)

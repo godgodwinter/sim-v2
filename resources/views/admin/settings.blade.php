@@ -168,6 +168,13 @@ $ambilkepsek = DB::table('users')
                     @enderror
                   </div>
 
+                  <div class="form-group col-md-5 col-5 mt-3 ml-5">
+                    <label for="minimalpembayaranujian">Minimal Persentase Pembayaran Untuk melihat User dan Password Ujian <code>*)</code></label>
+                    <input type="number" name="minimalpembayaranujian" id="minimalpembayaranujian" class="form-control @error('minimalpembayaranujian') is-invalid @enderror" value="{{$minimalpembayaranujian}}" required min="1" max="100">
+                    @error('minimalpembayaranujian')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+
                     <div class="form-group col-md-12 col-12 mt-5 ml-5">
                       <h5>Tentang Sekolah</h5>
                      </div>

@@ -207,6 +207,7 @@ class oneseeder extends Seeder
             'sekolahlogo' => '',
             'sekolahttd' => 'Nama Kepala Sekolah M.Pd',
             'sekolahttd2' => 'Nama Kepala Sekolah M.Pd', //masih konsep
+            'minimalpembayaranujian' => 70, //untuk melihat pass dan user moodle
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

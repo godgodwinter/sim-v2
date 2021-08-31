@@ -26,5 +26,6 @@ class settings extends Model
         'sekolahlogo',
         'sekolahttd',
         'sekolahttd2',
+        'minimalpembayaranujian',
     ];
 }

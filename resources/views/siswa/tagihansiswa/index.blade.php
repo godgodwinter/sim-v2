@@ -242,7 +242,7 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
               <div class="col-12 col-md-12 col-lg-12">
                 <blockquote>
 
-            @if($persen==100)
+            @if($persen>=$minimalpembayaranujian)
                 <code>USERNAME UJIAN : {{ $siswa->moodleuser }}</code>
                 <br>
                 <code>PASSWORD UJIAN : {{ $siswa->moodlepass }} </code>

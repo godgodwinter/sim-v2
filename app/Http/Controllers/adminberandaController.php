@@ -136,6 +136,7 @@ class adminberandaController extends Controller
                 'passdefaultpegawai'=>$request->passdefaultpegawai,
                 'sekolahttd'=>$request->sekolahttd,
                 'sekolahttd2'=>$request->sekolahttd2,
+                'minimalpembayaranujian'=>$request->minimalpembayaranujian,
             ]);
             return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
 

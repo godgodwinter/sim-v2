@@ -79,6 +79,7 @@ class tagihansiswaController extends Controller
 
         $nis=(Auth::user()->nomerinduk);
 
+        $minimalpembayaranujian=$this->minimalpembayaranujian();
         $tapel=tapel::all();
         $kelas=kelas::all();
         $datas=DB::table('tagihansiswa')->orderBy('siswa_nis','asc')->where('siswa_nis',$nis)
@@ -89,7 +90,7 @@ class tagihansiswaController extends Controller
         // $tagihansiswa = DB::table('tagihansiswa')->where('prefix','tagihansiswa')->get();
         $jmldata = DB::table('tagihansiswa')->count();
 
-        return view('siswa.tagihansiswa.index',compact('pages','jmldata','datas','caridatas','tapel','kelas','request'));
+        return view('siswa.tagihansiswa.index',compact('pages','jmldata','datas','caridatas','tapel','kelas','request','minimalpembayaranujian'));
     }
     public function siswacetaktagihanku()
     {
