@@ -323,6 +323,17 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                       @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
                     </div>
+                    <div class="form-group col-md-6 col-6">
+                      <label>Jenis Kelamin <code>*)</code></label>
+                      <select class="form-control form-control-lg" required name="jk">
+                            @if ($siswa->jk)
+                            <option>{{ $siswa->jk }}</option>                        
+                            @endif
+                      
+                            <option>Laki-laki</option>
+                            <option>Perempuan</option>
+                      </select>
+                    </div>
   
   
                     <div class="form-group col-md-6 col-6">

@@ -216,8 +216,6 @@ class siswaController extends Controller
             'kelas_nama'=>'required',
             'nis' => 'required|unique:siswa,nis,'.$siswa->id,
             'email' => 'unique:users,email,'.$emailku,
-            'moodleuser'=>'required',
-            'moodlepass'=>'required',
         ],
         [
             'nis.unique'=>'NIS sudah digunakan',
@@ -268,22 +266,39 @@ class siswaController extends Controller
         ]);
         
          //aksi update
+if($this->checkauth('admin')==='success'){
 
-        siswa::where('id',$siswa->id)
-            ->update([
-               'nis'     =>   $request->nis,
-               'nama'     =>   $request->nama,
-               'tempatlahir'     =>   $request->tempatlahir,
-               'tgllahir'     =>   $request->tgllahir,
-               'agama'     =>   $request->agama,
-               'alamat'     =>   $request->alamat,
-               'jk'     =>   $request->jk,
-               'moodleuser'     =>   $request->moodleuser,
-               'moodlepass'     =>   $request->moodlepass,
-               'tapel_nama'     =>   $request->tapel_nama,
-               'kelas_nama'     =>   $request->kelas_nama,
-               'updated_at'=>date("Y-m-d H:i:s")
-            ]);
+    siswa::where('id',$siswa->id)
+    ->update([
+       'nis'     =>   $request->nis,
+       'nama'     =>   $request->nama,
+       'tempatlahir'     =>   $request->tempatlahir,
+       'tgllahir'     =>   $request->tgllahir,
+       'agama'     =>   $request->agama,
+       'alamat'     =>   $request->alamat,
+       'jk'     =>   $request->jk,
+       'moodleuser'     =>   $request->moodleuser,
+       'moodlepass'     =>   $request->moodlepass,
+       'tapel_nama'     =>   $request->tapel_nama,
+       'kelas_nama'     =>   $request->kelas_nama,
+       'updated_at'=>date("Y-m-d H:i:s")
+    ]);
+}elseif($this->checkauth('siswa')==='success'){
+
+    siswa::where('id',$siswa->id)
+    ->update([
+       'nis'     =>   $request->nis,
+       'nama'     =>   $request->nama,
+       'tempatlahir'     =>   $request->tempatlahir,
+       'tgllahir'     =>   $request->tgllahir,
+       'agama'     =>   $request->agama,
+       'alamat'     =>   $request->alamat,
+       'jk'     =>   $request->jk,
+       'tapel_nama'     =>   $request->tapel_nama,
+       'kelas_nama'     =>   $request->kelas_nama,
+       'updated_at'=>date("Y-m-d H:i:s")
+    ]);
+}
 
 
         User::where('nomerinduk',$siswa->nis)
@@ -304,7 +319,7 @@ class siswaController extends Controller
 
         }
             //jika ganti tapel dan kelas ganti pembayaran (belum)
-            return redirect(URL::to('/').'/admin/siswa')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+            return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     /**

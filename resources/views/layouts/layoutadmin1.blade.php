@@ -84,17 +84,22 @@ crossorigin="anonymous"></script>
           <div class="sidebar-brand">
             <a href="{{ route('dashboard') }}">{{ $settings->aplikasijudul }}</a>
           </div>
+
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">{{ $settings->aplikasijudulsingkat }}</a>
           </div>
           <ul class="sidebar-menu">
+
               <li class="menu-header">Dashboard</li>
+        @if(((Auth::user()->tipeuser)=='admin')||((Auth::user()->tipeuser)=='kepsek'))
             
               <li @if ($pages==='beranda')
               class="active"
               @endif >
                 <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
               </li>
+          @endif
+
 
 
               <li @if ($pages==='profil')
