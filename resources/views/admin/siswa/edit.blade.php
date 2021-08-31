@@ -1,6 +1,6 @@
 @extends('layouts.layoutadmin1')
 
-@section('title','Siswa')
+@section('title','Edit Siswa')
 @section('halaman','siswa')
 
 @section('csshere')
@@ -50,67 +50,7 @@
 
   <div class="section-body">
 
-    <div class="row ">
-      <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <form action="{{ route($pages.'.cari') }}" method="GET">
-              <div class="row">
-                  <div class="form-group col-md-2 col-2 mt-1 text-right">
-                    <input type="text" name="cari" id="cari" class="form-control form-control-sm @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
-                    @error('cari')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-                  <div class="form-group col-md-2 col-2 mt-1 text-right">
-                
-                    <select class="form-control form-control-sm" name="tapel_nama"> 
-                      @if($request->tapel_nama)
-                        <option>{{$request->tapel_nama}}</option>
-                      @else
-                       <option value="" disabled selected>Pilih Tahun Pelajaran</option>
-                      @endif
-                   
-                  @foreach ($tapel as $t)
-                      <option>{{ $t->nama }}</option>
-                  @endforeach
-                </select>
-                  </div>
-                  <div class="form-group  col-md-2 col-2 text-right">
-             
-                  <select class="form-control form-control-sm" name="kelas_nama"> 
-                    @if($request->kelas_nama)
-                      <option>{{$request->kelas_nama}}</option>
-                    @else
-                     <option value="" disabled selected>Pilih Kelas</option>
-                    @endif
-                 
-                @foreach ($kelas as $t)
-                    <option>{{ $t->nama }}</option>
-                @endforeach
-              </select>
-                  </div>
-              <div class="form-group   text-right">
-         
-              <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
-              class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
-
-                  </div>
-               
-             
-            </form>
-            <div class="form-group col-md-4 col-4 mt-1 text-right">
-              <a href="/admin/{{  $pages }}/#add" type="submit" value="CARI" class="btn btn-icon btn-primary btn-sm"><span
-                class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah @yield('title')</span></a href="$add">
-
-
-
-
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     </div>
           
 
@@ -162,6 +102,7 @@
                           onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><span
                               class="pcoded-micon"> <i class="fas fa-trash"></i> Hapus</span></button>
                   </form>
+                  <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
                   </div>
                   </div>
 
@@ -202,7 +143,7 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Tanggal Lahir</label>
-                    <input type="date" class="form-control" name="tgllahir" @error('tgllahir') is-invalid @enderror" value="{{ $siswa->tgllahir }}" >
+                    <input type="date" class="form-control" name="tgllahir" @error('tgllahir') is-invalid @enderror" value="{{ $siswa->tgllahir }}" required>
                     @error('tgllahir')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
@@ -306,6 +247,7 @@
              
             </div>
             <div class="card-footer text-right">
+              <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
               <button class="btn btn-primary">Simpan</button>
             </div>
           </form>

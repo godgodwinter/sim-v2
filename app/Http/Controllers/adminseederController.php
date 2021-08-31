@@ -36,7 +36,7 @@ class adminseederController extends Controller
                 'tapel_nama' => $this->tapelaktif(),
                 'kelas_nama' => $faker->randomElement(['X OTO 1', 'X TKJ 1','XI OTO 1', 'XI TKJ 1','XII OTO 1','XII TKJ 1']),
                 'tempatlahir' => $faker->randomElement(['Sumbersari', 'Jakarta','Surabaya','Blitar']),
-                'tgllahir' => $faker->numberBetween(1990,2020).'-'.$faker->numberBetween(1,12).'-'.$faker->numberBetween(1,29),
+                'tgllahir' => $faker->numberBetween(1990,2020).'-0'.$faker->numberBetween(1,9).'-'.$faker->numberBetween(10,29),
                 'alamat' => 'Desa '.$faker->randomElement(['Sumbersari', 'Sumbermakmur','Mulyorejo','Morodadi']).' Kecamatan Losari Kabupaten Malang',
                 'nis' => $nis,
                 'jk' => $faker->randomElement(['Laki-laki', 'Perempuan']),

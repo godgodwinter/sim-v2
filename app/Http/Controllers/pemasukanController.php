@@ -190,7 +190,7 @@ if($yearmonth!==null){
                 'kategori_nama'=>$request->kategori_nama,
                 'tglbayar'=>$request->tglbayar,
             ]);
-            return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+            return redirect(URL::to('/').'/admin/pemasukan')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     /**

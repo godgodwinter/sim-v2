@@ -50,58 +50,10 @@
   <div class="section-body">
 
 
-    <div class="row ">
-      <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <form action="{{ route('pegawai.cari') }}" method="GET">
-              <div class="row">
-                  <div class="form-group col-md-2 col-2 mt-1 text-right">
-                    <input type="text" name="cari" id="cari" class="form-control form-control-sm @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
-                    @error('cari')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
-                  </div>
-
-                  <div class="form-group col-md-2 col-2 mt-1 text-right">
-                
-                    <select class="form-control form-control-sm" name="kategori_nama">    
-                      @if($request->kategori_nama)
-                        <option>{{$request->kategori_nama}}</option>
-                      @else
-                       <option value="" disabled selected>Pilih Jabatan</option>
-                      @endif
-                   
-                  @foreach ($kategori as $t)
-                      <option>{{ $t->nama }}</option>
-                  @endforeach
-                </select>
-                  </div>
-              <div class="form-group   text-right">
-         
-              <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
-              class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
-
-                  </div>
-               
-             
-            </form>
-            <div class="form-group col-md-4 col-4 mt-1 text-right">
-              <a href="/admin/{{  $pages }}/#add" type="submit" value="CARI" class="btn btn-icon btn-primary btn-sm"><span
-                class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah @yield('title')</span></a href="$add">
-
-
-
-
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
             
 
     <div class="row mt-sm-4">
-      <div class="col-12 col-md-12 col-lg-7">
+      <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
           <form action="/admin/{{  $pages }}/{{ $pegawai->id}}" method="post">
               @method('put')
@@ -136,7 +88,7 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label for="telp">No HP <code>*)</code></label>
-                    <input type="text" name="telp" id="telp" class="form-control @error('telp') is-invalid @enderror" value="{{$pegawai->telp}}" required>
+                    <input type="text" name="telp" id="telp" class="form-control @error('telp') is-invalid @enderror" value="{{$pegawai->telp}}" >
                     @error('telp')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
@@ -182,6 +134,7 @@
              
             </div>
             <div class="card-footer text-right">
+              <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
               <button class="btn btn-primary">Simpan</button>
             </div>
           </form>

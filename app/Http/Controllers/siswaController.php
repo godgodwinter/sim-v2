@@ -304,7 +304,7 @@ class siswaController extends Controller
 
         }
             //jika ganti tapel dan kelas ganti pembayaran (belum)
-        return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+            return redirect(URL::to('/').'/admin/siswa')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     /**

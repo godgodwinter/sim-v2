@@ -126,7 +126,7 @@ class kelasController extends Controller
             ->update([
                 'nama'=>$request->nama
             ]);
-            return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+            return redirect(URL::to('/').'/admin/kelas')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     /**

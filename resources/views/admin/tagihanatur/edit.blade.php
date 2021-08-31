@@ -56,63 +56,6 @@
 
 @section('container')
 
-<div class="row ">
-  <div class="col-12 col-md-12 col-lg-12">
-    <div class="card">
-      <div class="card-body">
-        <form action="{{ route('tagihanatur.cari') }}" method="GET">
-          <div class="row">
-              <div class="form-group col-md-2 col-2 mt-1 text-right">
-               
-              </div>
-
-              <div class="form-group col-md-2 col-2 text-right">
-            
-                <select class="form-control form-control-sm" name="tapel_nama" >   
-                @if($request->tapel_nama)
-                  <option>{{$request->tapel_nama}}</option>
-                @else
-                 <option value="" disabled selected>Pilih Tahun Pelajaran</option>
-                @endif
-              @foreach ($tapel as $t)
-                  <option>{{ $t->nama }}</option>
-              @endforeach
-            </select>
-              </div>
-              <div class="form-group  col-md-2 col-2 text-right">
-         
-              <select class="form-control form-control-sm" name="kelas_nama">    
-                @if($request->kelas_nama)
-                  <option>{{$request->kelas_nama}}</option>
-                @else
-                 <option value="" disabled selected>Pilih Kelas</option>
-                @endif
-             
-            @foreach ($kelas as $t)
-                <option>{{ $t->nama }}</option>
-            @endforeach
-          </select>
-              </div>
-          <div class="form-group   text-right">
-     
-          <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
-          class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
-
-              </div>
-           
-         
-        </form>
-        <div class="form-group col-md-4 col-4 mt-1 text-right">
-
-
-
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
   <div class="section-body">
 
     <div class="row mt-sm-4">
@@ -204,6 +147,7 @@
              
             </div>
             <div class="card-footer text-right">
+              <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
               <button class="btn btn-primary">Simpan</button>
             </div>
 
@@ -268,6 +212,7 @@
                         onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><span
                             class="pcoded-micon"> <i class="fas fa-trash"></i> Hapus</span></button>
                 </form>
+                <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
                 </div>
                 </div>
 

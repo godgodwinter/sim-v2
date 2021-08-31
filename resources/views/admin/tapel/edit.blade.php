@@ -83,9 +83,9 @@
 
   <div class="section-body">
     <div class="row mt-sm-4">
-      <div class="col-12 col-md-12 col-lg-5">
+      {{-- <div class="col-12 col-md-12 col-lg-5">
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-      </div>
+      </div> --}}
       
 
       <div class="col-12 col-md-12 col-lg-7">
@@ -122,12 +122,16 @@
               </div>
           </div>
           <div class="card-footer text-right">
+            <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
+
             <button class="btn btn-primary">Simpan</button>
-          </div>
         </form>
+
+             </div>
+
       </div>
 
-      <x-table-tapel-add pages="{{ $pages }}" />
+      {{-- <x-table-tapel-add pages="{{ $pages }}" /> --}}
 
     </div>
 
