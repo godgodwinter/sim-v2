@@ -181,7 +181,7 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                   @foreach ($datadetails as $dd)
                     <tr>
                       <td align="center">-</td>
-                      <td> Pembayaran ke- {{ ($loop->index)+1 }}</td>
+                      <td> Pembayaran ke- {{ ($loop->index)+1 }} - {{ date('d M Y',strtotime($dd->created_at)) }}</td>
                       <td>@currency($dd->nominal)</td>
                     </tr>
                     
