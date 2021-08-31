@@ -99,8 +99,9 @@ Route::get('admin/caritagihansiswa', 'App\Http\Controllers\tagihansiswaControlle
 Route::get('kepsek/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@kepsekindex')->name('kepsek.tagihansiswa');
 Route::get('kepsek/caritagihansiswa', 'App\Http\Controllers\tagihansiswaController@kepsekcari')->name('kepsek.tagihansiswa.cari');
 
-//siswa-menu
+//usersiswa-menu
 Route::get('siswa/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@siswaindex')->name('siswa.tagihansiswa');
+Route::get('siswa/tagihanku/cetak', 'App\Http\Controllers\tagihansiswaController@siswacetaktagihanku')->name('siswa.cetak.tagihanku');
 
 Route::delete('admin/datatagihansiswa/multidel', 'App\Http\Controllers\tagihansiswaController@deletechecked')->name('tagihansiswa.multidel');
 

@@ -158,7 +158,7 @@ $warna='default';
 $sumdetailbayar = DB::table('tagihansiswadetail')
   ->where('tapel_nama', '=', $data->tapel_nama)
   ->where('kelas_nama', '=', $data->kelas_nama)
-  // ->where('si', '=', $data->tapel_nama)
+  ->where('siswa_nis', '=', $data->siswa_nis)
   ->sum('nominal');
   $kurang=$data->nominaltagihan-$sumdetailbayar;
   $persen=number_format(($sumdetailbayar/$data->nominaltagihan*100),2);
@@ -182,7 +182,13 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
             <img alt="image" src="https://ui-avatars.com/api/?name={{ $nama }}&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture" width="50px">
 
       @endif
-            <div class="profile-widget-items">
+            <div class="row text-right">
+
+              <div class="col-12 col-md-12 col-lg-12">
+                <a href="{{ route('siswa.cetak.tagihanku') }}" class="btn btn-icon icon-left btn-info btn-sm"><i class="fas fa-print"></i>Cetak PDF</a>
+            </div>
+            </div>
+              <div class="profile-widget-items">
               <div class="profile-widget-item">
                 <div class="profile-widget-item-label">Tagihan</div>
                 <div class="profile-widget-item-value">@currency($data->nominaltagihan)</div>

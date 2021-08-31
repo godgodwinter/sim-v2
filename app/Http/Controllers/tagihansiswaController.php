@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use PDF;
 
 class tagihansiswaController extends Controller
 {
@@ -89,6 +90,27 @@ class tagihansiswaController extends Controller
         $jmldata = DB::table('tagihansiswa')->count();
 
         return view('siswa.tagihansiswa.index',compact('pages','jmldata','datas','caridatas','tapel','kelas','request'));
+    }
+    public function siswacetaktagihanku()
+    {
+        $tgl=date("YmdHis");
+        // dd($tgl);
+        $nis=(Auth::user()->nomerinduk);
+        $datasiswa=DB::table('siswa')->where('nis',$nis)
+        ->first();
+            $tapel_nama=$datasiswa->tapel_nama;
+            $kelas_nama=$datasiswa->kelas_nama;
+        $datas=DB::table('tagihansiswa')->orderBy('siswa_nis','asc')->where('siswa_nis',$nis)
+        ->get();
+        $datadetails=DB::table('tagihansiswadetail')->orderBy('created_at','asc')
+            ->where('siswa_nis',$nis)
+            ->where('kelas_nama',$kelas_nama)
+            ->where('tapel_nama',$tapel_nama)
+            ->get();
+        // dd($datadetails);
+
+        $pdf = PDF::loadview('siswa.tagihansiswa.cetak_tagihanku',compact('nis','datas','datasiswa','datadetails'))->setPaper('a4', 'potrait');
+        return $pdf->download('tagihan-'.$nis.$tgl.'-pdf');
     }
     
 
