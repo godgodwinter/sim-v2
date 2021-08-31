@@ -64,6 +64,9 @@ class settingsController extends Controller
             $passdefaultsiswa=$this->passdefaultsiswa();
             $passdefaultortu=$this->passdefaultortu();
             $passdefaultpegawai=$this->passdefaultpegawai();
+            $sekolahlogo=$this->sekolahlogo();
+            $sekolahttd=$this->sekolahttd();
+            $sekolahttd2=$this->sekolahttd2();
             $tapelaktif=$this->tapelaktif();
             $tapel=tapel::all();
 
@@ -89,6 +92,9 @@ class settingsController extends Controller
         ,'passdefaultsiswa'
         ,'passdefaultortu'
         ,'passdefaultpegawai'
+        ,'sekolahlogo'
+        ,'sekolahttd'
+        ,'sekolahttd2'
     ));
     }
 }

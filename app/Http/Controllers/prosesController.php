@@ -20,6 +20,7 @@ use App\Imports\Importtagihanatur;
 use App\Imports\Importtagihansiswa;
 use App\Imports\Importtagihansiswadetail;
 use App\Imports\Importtapel;
+use App\Models\settings;
 use App\Models\siswa;
 use App\Models\tagihanatur;
 use App\Models\User;
@@ -377,6 +378,53 @@ class prosesController extends Controller
 
 	}
 
+	public function uploadlogo(Request $request,settings $settings){
+        // dd($request);
+		$this->validate($request, [
+			'file' => 'required',
+		]);
+		$namafilebaru='sekolahlogo';
+ 
+		// menyimpan data file yang diupload ke variabel $file
+		$file = $request->file('file');
+ 
+      	        // nama file
+		echo 'File Name: '.$file->getClientOriginalName();
+		echo '<br>';
+ 
+      	        // ekstensi file
+		echo 'File Extension: '.$file->getClientOriginalExtension();
+		// dd()
+		echo '<br>';
+ 
+      	        // real path
+		echo 'File Real Path: '.$file->getRealPath();
+		echo '<br>';
+ 
+      	        // ukuran file
+		echo 'File Size: '.$file->getSize();
+		echo '<br>';
+ 
+      	        // tipe mime
+		echo 'File Mime Type: '.$file->getMimeType();
+ 
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'storage/gambar/logo';
+ 
+                // upload file
+		$file->move($tujuan_upload,"gambar/logo/".$namafilebaru.".jpg");
+
+
+		settings::where('id','1')
+		->update([
+			'sekolahlogo' => "gambar/logo/".$namafilebaru.".jpg",
+		'updated_at'=>date("Y-m-d H:i:s")
+		]);
+
+        return redirect()->back()->with('status','Photo berhasil Diupload!')->with('tipe','success')->with('icon','fas fa-edit');
+
+	}
+
 	public function uploadsiswadelete(Request $request,siswa $siswa){
 		
         // dd($request);
@@ -384,6 +432,18 @@ class prosesController extends Controller
 		User::where('nomerinduk',$siswa->nis)
 		->update([
 			'profile_photo_path' => "",
+		'updated_at'=>date("Y-m-d H:i:s")
+		]);
+        return redirect()->back()->with('status','Photo berhasil Dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
+	}
+
+	public function uploadlogodelete(Request $request,settings $settings){
+		
+        // dd($request);
+        Storage::disk('public')->delete($request->namaphoto);
+		settings::where('id','1')
+		->update([
+			'sekolahlogo' => "",
 		'updated_at'=>date("Y-m-d H:i:s")
 		]);
         return redirect()->back()->with('status','Photo berhasil Dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');

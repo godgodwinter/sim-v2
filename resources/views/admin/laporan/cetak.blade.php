@@ -7,6 +7,7 @@
       ->where('id', '=', '1')
       ->get();
       foreach ($ambilsettings as $settings) {
+        $sekolahttd=$settings->sekolahttd;
       }
 @endphp
 
@@ -73,7 +74,10 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 {{ $settings->sekolahnama }}
 @endsection
 
-@section('logo','logotutwuri.png')
+@section('logo')
+{{ $settings->sekolahlogo }}
+@endsection
+
 
 {{-- DATATABLE --}}
 
@@ -269,7 +273,14 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
         </style>
         <table width="100%" border="0">
             <tr>
-            <td width="13%" align="right"><img src="assets/upload/@yield('logo')" width="110" height="110"></td>
+              @if(($settings->sekolahlogo!='')&&($settings->sekolahlogo!=null))
+                <td width="13%" align="right"><img src="storage/{{ $settings->sekolahlogo }}" width="110" height="110"></td>
+
+              @else
+                <td td width="13%" align="right"><img src="assets/upload/logotutwuri.png" width="110" height="110"></td>
+
+              @endif
+
             <td width="80%" align="center"><p><b><font size="28px">@yield('namasekolah')</font><br>
             </b>
             <br>@yield('alamat')
@@ -330,7 +341,7 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
                 <br><br>
                 {{-- <img src="data:image/png;base64, {!! $qrcode !!}"> --}}
                 {{-- <hr style="width:80%; border-top:2px dotted; border-style: none none dotted;  "> --}}
-                <b>@yield('kepsek')</b>
+                <b>{{ $sekolahttd }}</b>
             </th>
             <th width="3%"></th>
     

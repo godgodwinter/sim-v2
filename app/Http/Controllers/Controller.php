@@ -126,6 +126,28 @@ class Controller extends BaseController
         return $data;
      
     }
+    public function sekolahlogo(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->sekolahlogo;
+        
+        return $data;
+     
+    }
+    public function sekolahttd(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->sekolahttd;
+        return $data;
+     
+    }
+    public function sekolahttd2(){
+	
+        $settings = DB::table('settings')->first();
+        $data=$settings->sekolahttd2;
+        return $data;
+     
+    }
 
     //untuk kenaikan kelas
     public function naik_k($str)

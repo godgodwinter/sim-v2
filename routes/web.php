@@ -29,6 +29,8 @@ Route::get('/home', 'App\Http\Controllers\adminberandaController@index');
 Route::get('/dashboard', 'App\Http\Controllers\adminberandaController@index')->name('dashboard');
 Route::get('/admin/settings', 'App\Http\Controllers\settingsController@index')->name('settings');
 Route::post('admin/settings/{settings}', 'App\Http\Controllers\adminberandaController@settingsstore')->name('settings.store');
+Route::post('admin/settings/upload/1', 'App\Http\Controllers\prosesController@uploadlogo')->name('settings.uploadlogo');
+Route::delete('admin/settings/upload/1', 'App\Http\Controllers\prosesController@uploadlogodelete')->name('siswa.uploadlogodelete');
 
 
 //kategori-MENU

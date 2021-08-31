@@ -23,5 +23,8 @@ class settings extends Model
         'passdefaultsiswa',
         'passdefaultpegawai',
         'passdefaultortu',
+        'sekolahlogo',
+        'sekolahttd',
+        'sekolahttd2',
     ];
 }

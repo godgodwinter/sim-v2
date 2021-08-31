@@ -189,6 +189,19 @@ $ambilkepsek = DB::table('users')
                       @error('sekolahtelp')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
                     </div>
+                    <div class="form-group col-md-5 col-5 mt-3 ml-5">
+                      <label for="sekolahttd">Nama Kepala Sekolah  <code>*)</code></label>
+                      <input type="text" name="sekolahttd" id="sekolahttd" class="form-control @error('sekolahttd') is-invalid @enderror" value="{{$sekolahttd}}" required>
+                      @error('sekolahttd')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+                    </div>
+                    <div class="form-group col-md-5 col-5 mt-3 ml-5">
+                      <label for="sekolahttd2">Nama Tanda tangan 2 <code>*) Masih belum digunakan</code></label>
+                      <input type="text" name="sekolahttd2" id="sekolahttd2" class="form-control @error('sekolahttd2') is-invalid @enderror" value="{{$sekolahttd2}}" required>
+                      @error('sekolahttd2')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+                    </div>
+
 
 
                     <div class="form-group col-md-12 col-12 mt-5 ml-5">
@@ -286,6 +299,62 @@ $ambilkepsek = DB::table('users')
           
             </form>
           </div>
+
+          <div class="form-group col-md-12 col-12 mt-5 ml-5">
+            <h5>Logo Sekolah di  PDF</h5>
+           </div>
+
+           <div class="row">
+            <div class="card-body">
+              
+                {{-- <span class="btn btn-icon btn-light ml-4"><i class="fas fa-feather"></i> EDIT {{ Str::upper($pages) }}</span> --}}
+
+            
+                <form method="post" action="/admin/settings/upload/1" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  
+
+                  <div class="form-group col-md-3 col-3 ml-4">      
+                    <div class="col-lg-8 d-flex align-items-stretch mb-4">
+                      @php
+                          $logostatus='Belum Di upload!';
+                      @endphp
+                @if(($sekolahlogo!='')&&($sekolahlogo!=null))
+                @php
+                  $logostatus='Berhasil Di upload!';
+                @endphp
+                {{-- <img alt="image" src="{{ asset("storage/") }}/{{ $du->profile_photo_path }}" class="rounded-circle profile-widget-picture" width="100px"> --}}
+          
+                <img alt="image" src="{{ asset("storage/") }}/{{ $sekolahlogo }}"class="img-thumbnail">
+
+                @else
+                {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $siswa->nama }}&color=7F9CF5&background=EBF4FF" class="rounded-circle profile-widget-picture" width="200px"> --}}
+                <img alt="image" src="{{ url('/assets/upload/logotutwuri.png') }}" class="img-thumbnail" width="200px">
+
+                @endif
+
+                 </div>
+                {{-- <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture"> --}}
+                    <label for="file">Pilih Photo <code>*)</code> Status : <code>{{ $logostatus }}</code></label>
+                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                    @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+
+                  <div class="card-footer text-right">
+                  
+                    <button class="btn btn-success"><i class="fas fa-upload"></i> Simpan</button>
+                  </form>
+
+                    <form action="/admin/settings/upload/1" method="post" class="d-inline">
+                      @method('delete')
+                      @csrf
+                      <input type="hidden" name="namaphoto" value="{{ $sekolahlogo }}" required>
+                      <button class="btn btn-icon btn-danger btn-md"
+                          onclick="return  confirm('Anda yakin menghapus logo ini? Y/N')"><span
+                              class="pcoded-micon"> <i class="fas fa-trash"></i> Reset Default</span></button>
+                  </form>
+                  </div>
+                  </div>
 
           <div class="form-group col-md-12 col-12 mt-5 ml-5">
             <h5>Fungsi Reset / Menghapus data</h5>

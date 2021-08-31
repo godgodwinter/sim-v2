@@ -204,6 +204,9 @@ class oneseeder extends Seeder
             'passdefaultsiswa' => 'siswa123',
             'passdefaultpegawai' => '12345678',
             'passdefaultortu' => 'ortu123',
+            'sekolahlogo' => '',
+            'sekolahttd' => 'Nama Kepala Sekolah M.Pd',
+            'sekolahttd2' => 'Nama Kepala Sekolah M.Pd', //masih konsep
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
