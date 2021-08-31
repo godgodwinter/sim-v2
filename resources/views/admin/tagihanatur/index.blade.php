@@ -143,8 +143,8 @@
 
 <div class="row ">
   <div class="col-12 col-md-12 col-lg-12">
-    <div class="card">
-      <div class="card-body">
+    {{-- <div class="card">
+      <div class="card-body"> --}}
         <form action="{{ route('tagihanatur.cari') }}" method="GET">
           <div class="row">
               <div class="form-group col-md-2 col-2 mt-1 text-right">
@@ -189,8 +189,11 @@
         </form>
         <div class="form-group col-md-4 col-4 mt-1 text-right">
           
+          <a href="/admin/{{  $pages }}#add" type="submit"class="btn btn-icon btn-primary btn-sm"><span
+            class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah Tagihan Atur </span></a >
+
           <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting."><span
-            class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah Semua </span></a href="$add">
+            class="pcoded-micon"> <i class="far fa-plus-square"></i> Fungsi Tambah Semua </span></a >
          
           
           <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
@@ -201,28 +204,18 @@
 
  
           <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
-                class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
+                class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a >
+
+ 
 
 
 
 
           </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
-         
-  <div class="section-body">
-    <p class="section-lead">
-     Menu untuk mengatur Nominal Tagihan siswa.
-    </p>
-
-    <div class="row mt-sm-4">
-      <div class="col-12 col-md-12 col-lg-7">
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
        </div> 
-      <div class="col-12 col-md-12 col-lg-5">
+      <div class="col-12 col-md-12 col-lg-5" id="add">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
                 @csrf

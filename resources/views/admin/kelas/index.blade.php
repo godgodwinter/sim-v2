@@ -1,6 +1,9 @@
 @extends('layouts.layoutadmin1')
 
 @section('title','Kelas')
+@section('linkpages')
+data{{ $pages }}
+@endsection
 @section('halaman','kelas')
 
 @section('csshere')
@@ -119,24 +122,12 @@
 {{-- DATATABLE-END --}}
 @section('container')
 
-<div class="row ">
-  <div class="col-12 col-md-12 col-lg-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="form-group col-md-12 col-12 mt-1 text-right">
-          <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-            Import 
-          </button>
-          <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
-                class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a>
-          </div>
-      </div>
-    </div>
+
   <div class="section-body">
     <div class="row mt-sm-4">
 
       <div class="col-12 col-md-12 col-lg-8">
-        <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
+        <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
       </div>    
       <div class="col-12 col-md-12 col-lg-4">
         <div class="card">

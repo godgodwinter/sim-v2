@@ -1,11 +1,18 @@
 <div class="card profile-widget">
     <div class="profile-widget-header">
         <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
-        <div class="row">
-            <div class=" mt-2 ml-3 text-left">
-                <h5 >Tabel @yield('title')</h5>
-            </div>
-          
+        <div class="profile-widget-items">
+        <div class="profile-widget-item">
+            <div class="profile-widget-item-label">Tabel </div>
+            <div class="profile-widget-item-value">@yield('title')</div>
+        </div>
+            <div class="profile-widget-item">
+                <div class="profile-widget-item-label">
+        {{-- <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
+        onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a>  --}}
+      </div>
+            {{-- <h4>Simple Table</h4> --}}
+        </div>
         </div>
     </div>
 {{-- @yield('datatable') --}}

@@ -45,7 +45,7 @@
 
 {{-- DATATABLE --}}
 @section('headtable')
-<th class="text-center" width="5%">
+<th class="text-center" width="100px">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label>
 </th>
   <th>Nama</th>
@@ -167,12 +167,12 @@
 
     <div class="row ">
       <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
-          <div class="card-body">
+        {{-- <div class="card"> --}}
+          {{-- <div class="card-body"> --}}
             <form action="{{ route($pages.'.cari') }}" method="GET">
               <div class="row">
-                  <div class="form-group col-md-2 col-2 mt-1 text-right">
-                    <input type="text" name="cari" id="cari" class="form-control form-control-sm @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
+                  <div class="form-group col-md-2 col-2 text-right">
+                    <input type="text" name="cari" id="cari" class="form-control form-control-md @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
                     @error('cari')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
@@ -206,7 +206,7 @@
                   </div>
               <div class="form-group   text-right">
          
-              <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
+              <button type="submit" value="CARI" class="btn btn-icon btn-info btn-md mt-1" ><span
               class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
                   </div>
@@ -238,21 +238,10 @@
 
               </div>
           </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-
-
-    
-              
-
-    <div class="row mt-sm-0"> 
-      <div class="col-12 col-md-12 col-lg-12">
-
+        
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
           
+       </div> 
        </div> 
 
       <div class="col-12 col-md-12 col-lg-12" id="add">

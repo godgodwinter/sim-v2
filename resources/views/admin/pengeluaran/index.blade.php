@@ -143,12 +143,12 @@
 
 <div class="row ">
   <div class="col-12 col-md-12 col-lg-12">
-    <div class="card">
-      <div class="card-body">
+    {{-- <div class="card">
+      <div class="card-body"> --}}
         <form action="{{ route('pengeluaran.cari') }}" method="GET">
           <div class="row">
               <div class="form-group col-md-2 col-2 mt-1 text-right">
-                <input type="text" name="cari" id="cari" class="form-control form-control-sm @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
+                <input type="text" name="cari" id="cari" class="form-control form-control-md @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
                 @error('cari')<div class="invalid-feedback"> {{$message}}</div>
                 @enderror
               </div>
@@ -156,7 +156,7 @@
               <div class="form-group col-md-2 col-2 mt-1 text-right">
             
                   {{-- <input type="month" class="form-control form-control-sm" name="yearmonth"  value="{{$request->yearmonth}}"> --}}
-                  <input placeholder="Pilih Bulan" type="text" onfocus="(this.type='month')" id="date" class="form-control form-control-sm" name="yearmonth"  value="{{$request->yearmonth}}">
+                  <input placeholder="Pilih Bulan" type="text" onfocus="(this.type='month')" id="date" class="form-control form-control-md" name="yearmonth"  value="{{$request->yearmonth}}">
               </div>
               <div class="form-group  col-md-2 col-2 text-right">
          
@@ -174,7 +174,7 @@
               </div>
           <div class="form-group   text-right">
      
-          <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
+          <button type="submit" value="CARI" class="btn btn-icon btn-info btn-md mt-1" ><span
           class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
               </div>
@@ -182,16 +182,6 @@
          
         </form>
         <div class="form-group col-md-4 col-4 mt-1 text-right">
-          {{-- <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="far fa-file-pdf"></i> Cetak PDF</span></button>
-
-          <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="fas fa-upload"></i> Import</span></button>
-
-          <button type="submit" value="CARI" class="btn btn-icon btn-success btn-sm"><span
-            class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></button> --}}
-
-
             <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
               Import 
             </button>
@@ -199,18 +189,10 @@
                   class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a>
           </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
-        
-  <div class="section-body">
 
-    <div class="row mt-sm-4">
-      <div class="col-12 col-md-12 col-lg-8">
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
        </div> 
-      <div class="col-12 col-md-12 col-lg-4">
+      <div class="col-12 col-md-12 col-lg-8">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
                 @csrf

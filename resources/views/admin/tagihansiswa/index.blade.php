@@ -167,22 +167,51 @@
 
 {{-- DATATABLE-END --}}
 
+@section('tomboltambahan')
+
+<form action="/admin/{{ $pages }}/sync" method="post" class="d-inline">
+  @csrf
+  <button 
+      onclick="return  confirm('Anda yakin melakukan sinkronisasi data ? Y/N')" class="btn btn-icon icon-left btn-primary btn-sm mt-1" data-toggle="tooltip" data-placement="top" title="Akan mengambil data siswa dan tagihan atur yang belum dimasukkan kedalam tagihan siswa!"><i class="fas fa-retweet"></i> Sinkronisasi Data</button>
+</form>
+
+
+<button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+Import 
+</button>
+
+
+
+
+<a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+    class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
+
+
+<button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExceltagihansiswadetail"><i class="fas fa-upload"></i>
+Import Detail Tagihan
+</button>
+
+
+<a href="/admin/datatagihansiswadetail/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+    class="pcoded-micon"> <i class="fas fa-download"></i> Export Detail Tagihan</span></a href="$add">
+
+@endsection
 @section('container')
 
 
 <div class="row ">
   <div class="col-12 col-md-12 col-lg-12">
-    <div class="card">
-      <div class="card-body">
+    {{-- <div class="card">
+      <div class="card-body"> --}}
         <form action="{{ route('tagihansiswa.cari') }}" method="GET">
           <div class="row">
-              <div class="form-group col-md-2 col-2 mt-1 text-right">
-                <input type="text" name="cari" id="cari" class="form-control form-control-sm @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
+              <div class="form-group  col-xl-2 col-md-3 col-2 mt-1 text-right">
+                <input type="text" name="cari" id="cari" class="form-control form-control-md @error('cari') is-invalid @enderror" value="{{$request->cari}}"  placeholder="Cari...">
                 @error('cari')<div class="invalid-feedback"> {{$message}}</div>
                 @enderror
               </div>
 
-              <div class="form-group col-md-2 col-2 text-right">
+              <div class="form-group col-xl-2 col-md-3 col-2 text-right">
             
                 <select class="form-control form-control-sm" name="tapel_nama" >   
                 @if($request->tapel_nama)
@@ -195,7 +224,7 @@
               @endforeach
             </select>
               </div>
-              <div class="form-group  col-md-2 col-2 text-right">
+              <div class="form-group col-xl-2  col-md-3 col-2 text-right">
          
               <select class="form-control form-control-sm" name="kelas_nama">    
                 @if($request->kelas_nama)
@@ -211,60 +240,18 @@
               </div>
           <div class="form-group   text-right">
      
-          <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
+          <button type="submit" value="CARI" class="btn btn-icon btn-info btn-md mt-1" ><span
           class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
         </form>
-          <form action="/admin/{{ $pages }}/sync" method="post" class="d-inline">
-            @csrf
-            <button 
-                onclick="return  confirm('Anda yakin melakukan sinkronisasi data ? Y/N')" class="btn btn-icon icon-left btn-primary btn-sm mt-1" data-toggle="tooltip" data-placement="top" title="Akan mengambil data siswa dan tagihan atur yang belum dimasukkan kedalam tagihan siswa!"><i class="fas fa-retweet"></i> Sinkronisasi Data</button>
-        </form>
-
-          
-        <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-          Import 
-        </button>
-
-
-
-
-        <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
-              class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
-
-
-        <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExceltagihansiswadetail"><i class="fas fa-upload"></i>
-          Import Detail Tagihan
-        </button>
-
-
-        <a href="/admin/datatagihansiswadetail/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
-              class="pcoded-micon"> <i class="fas fa-download"></i> Export Detail Tagihan</span></a href="$add">
-
+        
               </div>
            
          
-        <div class="form-group col-md-4 col-4 mt-1 text-right">
-          {{-- <a href="/admin/{{  $pages }}/#add" type="submit" value="CARI" class="btn btn-icon btn-primary btn-sm"><span
-            class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah @yield('title')</span></a href="$add"> --}}
-
-
-
-
-          </div>
+        
       </div>
-    </div>
-  </div>
-</div>
-</div>
-   
-  <div class="section-body">
-   
-
-    <div class="row ">
-     
       <div class="col-12 col-md-12 col-lg-12">
-        <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
+        <x-layout-table3 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
        </div> 
 
     </div>
