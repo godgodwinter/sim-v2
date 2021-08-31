@@ -40,8 +40,8 @@ class adminseederController extends Controller
                 'alamat' => 'Desa '.$faker->randomElement(['Sumbersari', 'Sumbermakmur','Mulyorejo','Morodadi']).' Kecamatan Losari Kabupaten Malang',
                 'nis' => $nis,
                 'jk' => $faker->randomElement(['Laki-laki', 'Perempuan']),
-                'moodleuser' => 'p'.$faker->numberBetween(111,111).'a'.$faker->numberBetween(111,111),
-                'moodlepass' => 'p'.$faker->numberBetween(111,111).'a'.$faker->numberBetween(111,111),
+                'moodleuser' => 'p'.$faker->unique()->numberBetween(111,999).'a'.$faker->unique()->numberBetween(111,999),
+                'moodlepass' => 'qW'.$faker->unique()->numberBetween(111,999).'K'.$faker->unique()->numberBetween(111,999),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);

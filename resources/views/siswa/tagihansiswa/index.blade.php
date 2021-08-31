@@ -237,6 +237,24 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                 </tbody>
               </table>
             </div>
+              
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <blockquote>
+
+            @if($persen==100)
+                <code>USERNAME UJIAN : {{ $siswa->moodleuser }}</code>
+                <br>
+                <code>PASSWORD UJIAN : {{ $siswa->moodlepass }} </code>
+            @else
+              <code>Pembayaran tagihan belum mencukupi untuk melihat password ujian. Hubungi admin!</code>
+
+            @endif
+
+              </blockquote>
+              </div>
+            </div>
+
             
           </div>
         </div>
