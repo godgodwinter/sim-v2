@@ -15,17 +15,19 @@
 
 {{-- DATALAPORAN --}}
 @php
-$sumpemasukan = DB::table('pemasukan')->whereNotIn('kategori_nama', ['Dana Bos'])
+$sumpemasukan = DB::table('pemasukan')
   ->sum('nominal');
+// $sumpemasukan = DB::table('pemasukan')->whereNotIn('kategori_nama', ['Dana Bos'])
+//   ->sum('nominal');
 
-$countpemasukan = DB::table('pemasukan')->whereNotIn('kategori_nama', ['Dana Bos'])
+$countpemasukan = DB::table('pemasukan')
   ->count();
 
-$sumpemasukanbos = DB::table('pemasukan')->where('kategori_nama','Dana Bos')
-  ->sum('nominal');
+// $sumpemasukanbos = DB::table('pemasukan')->where('kategori_nama','Dana Bos')
+//   ->sum('nominal');
 
-$countpemasukanbos = DB::table('pemasukan')->where('kategori_nama','Dana Bos')
-  ->count();
+// $countpemasukanbos = DB::table('pemasukan')->where('kategori_nama','Dana Bos')
+//   ->count();
 
 $countpengeluaran = DB::table('pengeluaran')
   ->count();
@@ -40,7 +42,8 @@ $sumtagihansiswa = DB::table('tagihansiswadetail')
 $counttagihansiswa = DB::table('tagihansiswadetail')
   ->count();
 
-$totalpemasukan=$sumpemasukan+$sumtagihansiswa+$sumpemasukanbos;
+// $totalpemasukan=$sumpemasukan+$sumtagihansiswa+$sumpemasukanbos;
+$totalpemasukan=$sumpemasukan+$sumtagihansiswa;
 $sisasaldo=$totalpemasukan-$sumpengeluaran;
 
 
@@ -83,28 +86,9 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 
 
 @section('bodytable')
-<tr>
-    <td align="center">1</td>
-    <td align="left"><b>Dana BOS</b></td>
-    <td align="center"><b>{{ $countpemasukanbos }} Transaksi</b></td>
-    <td align="center"><b>@currency($sumpemasukanbos)</b></td>
-    
-  </tr>
-  @foreach ($databos as $db)
-    
-  <tr>
-      <td align="center"></td>
-      <td align="left">{{ $db->nama }}</td>
-      <td align="center">{{ $db->kategori_nama }}</td>
-      <td align="center">@currency($db->nominal)</td>
-      
-    </tr>
-    
-    @endforeach
-    
 
 <tr>
-  <td align="center">2</td>
+  <td align="center">1</td>
   <td align="left"><b>Pemasukan</b></td>
   <td align="center"><b>{{ $countpemasukan }} Transaksi</b></td>
   <td align="center"><b>@currency($sumpemasukan)</b></td>
@@ -125,7 +109,7 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 
 
   <tr>
-    <td align="center">3</td>
+    <td align="center">2</td>
     <td align="left"><b>Pembayaran</b></td>
     <td align="center"><b>{{ $counttagihansiswa }} Transaksi</b></td>
     <td align="center"><b>@currency($sumtagihansiswa)</b></td>
@@ -189,16 +173,9 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 @section('bodytable3')
 
 
-<tr>
-  <td align="center">1</td>
-  <td align="left"><b>Dana BOS</b></td>
-  <td align="center"><b>{{ $countpemasukanbos }} Transaksi</b></td>
-  <td align="center"><b>@currency($sumpemasukanbos)</b></td>
-  
-</tr>
 
 <tr>
-  <td align="center">2</td>
+  <td align="center">1</td>
   <td align="left"><b>Pemasukan</b></td>
   <td align="center"><b>{{ $countpemasukan }} Transaksi</b></td>
   <td align="center"><b>@currency($sumpemasukan)</b></td>
@@ -206,7 +183,7 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 </tr>
 
 <tr>
-  <td align="center">3</td>
+  <td align="center">2</td>
   <td align="left"><b>Pembayaran</b></td>
   <td align="center"><b>{{ $counttagihansiswa }} Transaksi</b></td>
   <td align="center"><b>@currency($sumtagihansiswa)</b></td>
@@ -214,7 +191,7 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 </tr>
 
 <tr>
-  <td align="center">4</td>
+  <td align="center">3</td>
   <td align="left"><b>Pengeluaran</b></td>
   <td align="center"><b>{{ $countpengeluaran }} Transaksi</b></td>
   <td align="center"><b>@currency($sumpengeluaran)</b></td>
@@ -334,7 +311,7 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
                echo  date('Y');
             @endphp
     
-                <br>Yang Membuat Pernyataan,<br>
+                <br>Mengetahui,<br>
                 <br><br>
                 <br><br>
                 <br><br>
