@@ -6,6 +6,7 @@ use App\Models\settings;
 use App\Models\tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class adminberandaController extends Controller
 {
@@ -15,7 +16,7 @@ class adminberandaController extends Controller
         if(($this->checkauth('siswa')==='404')&&($this->checkauth('admin')==='404')&&($this->checkauth('kepsek')==='404')){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
-        
+
         if($this->checkauth('siswa')==='success'){
             return redirect(route('siswa.tagihansiswa'));
         }

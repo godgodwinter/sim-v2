@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagawaiTable extends Migration
+class CreatePelajaranTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreatePagawaiTable extends Migration
      */
     public function up()
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('pelajaran', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable();
-            $table->string('nig')->nullable();
-            $table->string('kategori_id')->nullable(); //kepsek/admin
-            $table->string('kategori_nama')->nullable(); //kepsek/admin
-            $table->string('alamat')->nullable();
-            $table->string('telp')->nullable();
+            $table->string('tapel_nama')->nullable();
+            $table->string('kelas_nama')->nullable();
+            $table->string('kategori_nama')->nullable(); //mulok/pelajaran
+            $table->string('kkm')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreatePagawaiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagawai');
+        Schema::dropIfExists('pelajaran');
     }
 }
