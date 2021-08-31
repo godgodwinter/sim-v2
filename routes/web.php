@@ -174,6 +174,10 @@ Route::post('admin/seeder/kelas', 'App\Http\Controllers\adminseederController@ke
 Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@cleartemp')->name('cleartemp');
 
 
+// SIAKAD
+Route::get('siakad/admin/beranda', 'App\Http\Controllers\siakadadminpagescontroller@beranda')->name('siakad.admin.beranda');
+
+
 Route::get('/register', 'App\Http\Controllers\adminberandaController@notfound')->name('cleartemp');
 
 Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');

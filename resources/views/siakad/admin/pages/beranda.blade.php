@@ -1,6 +1,6 @@
-@extends('layouts.layoutadmin1')
+@extends('layouts.layoutadmin-siakad')
 
-@section('title','Beranda')
+@section('title','Beranda Sistem Akademik Sekolah')
 @section('halaman','Index')
 
 @section('csshere')
@@ -124,88 +124,11 @@ $ambilkepsek = DB::table('users')
   <div class="section-body">
     <h2 class="section-title">Hi, {{ Auth::user()->name }} dari {{ $sekolahnama }} ! Anda Login sebagai {{ $hakakses }}</h2>
     <p class="section-lead">
-     Berikut beberapa Informasi tetang data dan menu di Sistem Ini.
+     Berikut beberapa menu di sistem akademik sekolah.
     </p>
 
     <div class="row mt-sm-4">
       <div class="col-12 col-md-12 col-lg-6">
-        <div class="card profile-widget">
-          <div class="profile-widget-header">
-            <img alt="image" src="../assets/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
-            <div class="profile-widget-items">
-              <div class="profile-widget-item">
-                <div class="profile-widget-item-label">Kelas</div>
-                <div class="profile-widget-item-value"> {{ $kelas }} Kelas</div>
-              </div>
-              <div class="profile-widget-item">
-                <div class="profile-widget-item-label">Siswa</div>
-                <div class="profile-widget-item-value">{{ $siswa }} Siswa</div>
-              </div>
-              <div class="profile-widget-item">
-                <div class="profile-widget-item-label">Lunas</div>
-                <div class="profile-widget-item-value">{{ $lunas }} </div>
-              </div>
-              <div class="profile-widget-item">
-                <div class="profile-widget-item-label">Belum Lunas</div>
-                <div class="profile-widget-item-value"> {{ $belumlunas }} </div>
-              </div>
-            </div>
-          </div>
-
-          {{-- <div class="card-footer text-center">
-            <div class="font-weight-bold mb-2">Lihat Selengkapnya</div>
-            <a href="#" class="btn btn-info mr-1">
-              <i class="fas fa-angle-double-right"></i>
-            </a>
-            
-          </div> --}}
-       
-      
-        </div>
-
-
-        <div class="card profile-widget mt-5">
-            <div class="profile-widget-header">
-              <img alt="image" src="../assets/img/products/product-4-50.png" class="rounded-circle profile-widget-picture">
-              <div class="profile-widget-items">
-             
-                {{-- <div class="profile-widget-item">
-                  <div class="profile-widget-item-label">Dana BOS</div>
-                  <div class="profile-widget-item-value">@currency($sumpemasukanbos)</div>
-                </div> --}}
-                <div class="profile-widget-item">
-                  <div class="profile-widget-item-label">Pemasukan</div>
-                  <div class="profile-widget-item-value">@currency($sumpemasukan)</div>
-                </div>
-                <div class="profile-widget-item">
-                  <div class="profile-widget-item-label">Pembayaran Siswa</div>
-                  <div class="profile-widget-item-value">@currency($sumtagihansiswa)</div>
-                </div>
-              </div>
-
-              <div class="profile-widget-items mt-4">
-             
-                <div class="profile-widget-item">
-                  <div class="profile-widget-item-label">Pengeluaran</div>
-                  <div class="profile-widget-item-value">@currency($sumpengeluaran)</div>
-                </div>
-                <div class="profile-widget-item">
-                  <div class="profile-widget-item-label">Saldo</div>
-                  <div class="profile-widget-item-value">@currency($sisasaldo)</div>
-                </div>
-              </div>
-            </div>
-            {{-- <div class="card-footer text-center">
-                <div class="font-weight-bold mb-2">Lihat Selengkapnya</div>
-                <a href="#" class="btn btn-info mr-1">
-                  <i class="fas fa-angle-double-right"></i>
-                </a>
-                
-              </div> --}}
-        
-          </div>
-
-
 
 
           @if($tipeuser==='admin')
@@ -223,11 +146,21 @@ $ambilkepsek = DB::table('users')
                   </div>
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('tapel') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</a>
-                    <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>   
+                    <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary ml-1"><i class="fas fa-school"></i> Kelas</a>   
                   </div>
+                  <div class="clearfix"></div>
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+
+                  <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Pelajaran</a>     
+                  <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary ml-1"><i class="fas fa-school"></i> Jenis Nilai</a> 
+                  <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary ml-1"><i class="fas fa-school"></i> Kepribadian</a>   
+                  <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary ml-1"><i class="fas fa-school"></i> Ekstrakulikuler</a>   
+                </div>
+                  <div class="clearfix"></div>
                     <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('siswa') }}" type="button" class="btn btn-info"><i class="fas fa-user-graduate"></i> Siswa</a>
-                    <a  href="{{ route('pegawai') }}" type="button" class="btn btn-info"><i class="fas fa-building"></i> Pegawai</a>
+                    <a  href="{{ route('pegawai') }}" type="button" class="btn btn-info ml-1"><i class="fas fa-building"></i> Guru</a>
+                    <a  href="{{ route('pegawai') }}" type="button" class="btn btn-info ml-1"><i class="fas fa-building"></i> Pegawai</a>
                   </div>
                 
     
@@ -240,31 +173,6 @@ $ambilkepsek = DB::table('users')
           </div>
 
 
-
-          <div class="card profile-widget mt-5">
-            <div class="profile-widget-header">
-              <img alt="image" src="https://ui-avatars.com/api/?name=Download dan Guide&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
-              <div class="profile-widget-items">
-                <h3 class="ml-5 mt-4">Download dan Guide</h3>
-              </div>
-               
-                
-                <div class="card-body">
-                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
-                    <a  href="{{ route('formatimport') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Download Format Import</a>
-                  </div>
-
-                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
-                    <a  href="{{ route('guide') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Pentunjuk Penggunaan</a>
-                    {{-- <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>    --}}
-                  </div>
-                  </div>
-                
-            </div>
-    
-         
-        
-          </div>
 
           <div class="card profile-widget mt-5">
             <div class="profile-widget-header">
@@ -276,7 +184,7 @@ $ambilkepsek = DB::table('users')
                 
                 <div class="card-body">
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
-                    <a  href="{{ route('siakad.admin.beranda') }}" type="button" class="btn btn-light"><i class="fab fa-korvue"></i> Sistem Akademik</a>  <code class="ml-3 mt-3"> *)Proses Pengembangan</code>
+                    <a  href="{{ route('dashboard') }}" type="button" class="btn btn-light"><i class="fab fa-korvue"></i> Sistem Keuangan dan Pembayaran</a>
                   </div>
 
                   </div>
@@ -310,12 +218,10 @@ $ambilkepsek = DB::table('users')
           <a href="{{ route('settings') }}"  class="btn btn-icon btn-light btn-md" data-toggle="tooltip" data-placement="top" title="Untuk mengatur data default, data sekolah dan data lainya!"><span
             class="pcoded-micon"> <i class="fas fa-cog"></i> Pengaturan </span></a href="$add">
                   
-            <button type="button" class="btn btn-icon btn-info btn-md" data-toggle="modal"  data-placement="top" title="File sampah sisa export dan import! Agar tidak membebani server."  data-target="#cleartemp"><i class="fas fa-trash"></i>
+            <button type="button" class="btn btn-icon btn-info btn-md ml-1" data-toggle="modal"  data-placement="top" title="File sampah sisa export dan import! Agar tidak membebani server."  data-target="#cleartemp"><i class="fas fa-trash"></i>
               Hapus File Sampah
             </button>
 
-          <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-md" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting. Kemudian Syncron ke menu tagihan siswa!"><span
-            class="pcoded-micon"> <i class="far fa-plus-square"></i> Fungsi Tambah Semua </span></a >
          
               </div>
               </div>
@@ -332,16 +238,22 @@ $ambilkepsek = DB::table('users')
          
           
           <div class="card-body">
-         
+            <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+              <a  href="{{ route('pemasukan') }}" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Wali Kelas</a>
+              <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light ml-1"><i class="fas fa-file-invoice-dollar"></i> Data Ajar</a>
+
+          </div>
+          <div class="clearfix"></div>
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-              <a  href="{{ route('pemasukan') }}" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Pemasukan</a>
-              <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light"><i class="fas fa-file-invoice-dollar"></i> Pengeluaran</a>
+              <a  href="{{ route('pemasukan') }}" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Nilai Pelajaran</a>
+              <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light ml-1"><i class="fas fa-file-invoice-dollar"></i> Nilai Kepribadian</a>
+              <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light ml-1"><i class="fas fa-file-invoice-dollar"></i> Nilai Ekstrakulikuler</a>
             </div>
             <div class="clearfix"></div>
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
               
-              <a  href="{{ route('tagihanatur') }}" type="button" class="btn btn-danger"><i class="fas fa-fire"></i> Tagihan Atur </a>
-              <a  href="{{ route('tagihansiswa') }}" type="button" class="btn btn-danger"><i class="fas fa-graduation-cap"></i> Tagihan Siswa </a>
+              <a  href="{{ route('tagihanatur') }}" type="button" class="btn btn-danger"><i class="fas fa-fire"></i> Absen </a>
+              <a  href="{{ route('tagihansiswa') }}" type="button" class="btn btn-danger ml-1"><i class="fas fa-graduation-cap"></i> Jadwal </a>
             </div>
 
             
@@ -366,7 +278,9 @@ $ambilkepsek = DB::table('users')
         <div class="card-body">
          
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
-              <a  href="{{ route('laporan') }}" type="button" class="btn btn-success"> <i class="fab fa-resolving"></i> Laporan </a>
+              <a  href="{{ route('laporan') }}" type="button" class="btn btn-success"> <i class="fab fa-resolving"></i> Raport Siswa </a>
+              <a  href="{{ route('laporan') }}" type="button" class="btn btn-success ml-1"> <i class="fab fa-resolving"></i> Laporan Nilai Siswa </a>
+              <a  href="{{ route('laporan') }}" type="button" class="btn btn-success ml-1"> <i class="fab fa-resolving"></i> Laporan Absensi </a>
             </div>
 
           </div>

@@ -90,7 +90,7 @@ crossorigin="anonymous"></script>
           </div>
           <ul class="sidebar-menu">
 
-              <li class="menu-header">Dashboard</li>
+              <li class="menu-header">SIAKAD</li>
         @if(((Auth::user()->tipeuser)=='admin')||((Auth::user()->tipeuser)=='kepsek'))
             
               <li @if ($pages==='beranda')
@@ -136,10 +136,33 @@ if((Auth::user()->tipeuser)=='admin'){
                 @endif >
                 <a href="{{ route('kelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
               </li>
+
+              <li @if ($pages==='pegawai')
+                class="active"
+                @endif >
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pelajaran</span></a>
+              </li>
+
+              <li @if ($pages==='pegawai')
+                class="active"
+                @endif >
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
+              </li>
+
+              <li @if ($pages==='pegawai')
+                class="active"
+                @endif >
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
+              </li>
               <li @if ($pages==='siswa')
                 class="active"
                 @endif >
                 <a href="{{ route('siswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
+              </li>
+              <li @if ($pages==='pegawai')
+                class="active"
+                @endif >
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
               </li>
               <li @if ($pages==='pegawai')
                 class="active"
@@ -151,36 +174,48 @@ if((Auth::user()->tipeuser)=='admin'){
               {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
              
               <li class="menu-header">Transaksi</li>
-
-              <li @if ($pages==='pemasukan')
+              <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pemasukan') }}" class="nav-link"><i class="fas fa-hand-holding-usd"></i><span>Pemasukan</span></a>
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Wali Kelas</span></a>
               </li>
-
-              <li @if ($pages==='pengeluaran')
+              <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pengeluaran') }}" class="nav-link"><i class="fas fa-file-invoice-dollar"></i><span>Pengeluaran</span></a>
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Data Ajar</span></a>
               </li>
-
-              <li @if ($pages==='tagihanatur')
+              <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('tagihanatur') }}" class="nav-link"><i class="fas fa-fire"></i><span>Tagihan Atur</span></a>
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Pelajaran</span></a>
               </li>
-
-              <li @if ($pages==='tagihansiswa')
+              <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Siswa</span></a>
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Kepribadian</span></a>
               </li>
+              <li @if ($pages==='pegawai')
+                class="active"
+                @endif >
+                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Ekstrakulikuler</span></a>
+              </li>
+
 
               <li class="menu-header">Reporting</li>
               <li @if ($pages==='laporan')
                 class="active"
                 @endif >
-                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan</span></a>
+                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Raport Siswa</span></a>
+              </li>
+              <li @if ($pages==='laporan')
+                class="active"
+                @endif >
+                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan Nilai Siswa</span></a>
+              </li>
+              <li @if ($pages==='laporan')
+                class="active"
+                @endif >
+                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan Absensi</span></a>
               </li>
              
               <li class="menu-header">Menu Tahunan</li>
