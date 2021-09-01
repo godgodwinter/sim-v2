@@ -14,7 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>@yield('title') - {{ $settings->aplikasijudul }} </title>
+  <title>@yield('title') - [SIAKAD] {{ $settings->aplikasijudul }} </title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -82,11 +82,11 @@ crossorigin="anonymous"></script>
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">{{ $settings->aplikasijudul }}</a>
+            <a href="{{ route('siakad.admin.beranda') }}">SIAKAD SEKOLAH</a>
           </div>
 
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('dashboard') }}">{{ $settings->aplikasijudulsingkat }}</a>
+            <a href="{{ route('siakad.admin.beranda') }}">SIAKAD</a>
           </div>
           <ul class="sidebar-menu">
 
@@ -96,7 +96,7 @@ crossorigin="anonymous"></script>
               <li @if ($pages==='beranda')
               class="active"
               @endif >
-                <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+                <a href="{{ route('siakad.admin.beranda') }}" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
               </li>
           @endif
 
@@ -112,11 +112,6 @@ crossorigin="anonymous"></script>
 if((Auth::user()->tipeuser)=='admin'){
     @endphp
 
-                <li @if ($pages==='settings')
-                  class="active"
-                  @endif >
-                  <a href="{{ route('settings') }}" class="nav-link"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
-                 </li>
                
               <li class="menu-header">Mastering</li>
 
@@ -126,78 +121,78 @@ if((Auth::user()->tipeuser)=='admin'){
                 <a href="{{ route('kategori') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Kategori</span></a>
               </li> --}}
 
-              <li @if ($pages==='tapel')
+              <li @if ($pages==='siakadtapel')
                 class="active"
                 @endif >
-                <a href="{{ route('tapel') }}" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Tahun Pelajaran</span></a>
+                <a href="{{ route('siakadtapel') }}" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Tahun Pelajaran</span></a>
               </li>
               <li @if ($pages==='kelas')
                 class="active"
                 @endif >
-                <a href="{{ route('kelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
+                <a href="{{ route('siakad.kelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
               </li>
 
               <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pelajaran</span></a>
+                <a href="{{ route('siakad.pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pelajaran</span></a>
               </li>
 
               <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
+                <a href="{{ route('siakad.pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
               </li>
 
               <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
+                <a href="{{ route('siakad.pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
               </li>
               <li @if ($pages==='siswa')
                 class="active"
                 @endif >
-                <a href="{{ route('siswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
+                <a href="{{ route('siakad.siswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
+              </li>
+              <li @if ($pages==='siakadguru')
+                class="active"
+                @endif >
+                <a href="{{ route('siakadguru') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
               </li>
               <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
-              </li>
-              <li @if ($pages==='pegawai')
-                class="active"
-                @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pegawai</span></a>
+                <a href="{{ route('siakad.pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pegawai</span></a>
               </li>
               
          
               {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
              
               <li class="menu-header">Transaksi</li>
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakad.pegawai')
                 class="active"
                 @endif >
                 <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Wali Kelas</span></a>
               </li>
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakad.pegawai')
                 class="active"
                 @endif >
                 <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Data Ajar</span></a>
               </li>
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakad.pegawai')
                 class="active"
                 @endif >
                 <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Pelajaran</span></a>
               </li>
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakad.pegawai')
                 class="active"
                 @endif >
                 <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Kepribadian</span></a>
               </li>
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakad.pegawai')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Ekstrakulikuler</span></a>
+                <a href="{{ route('siakad.pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Ekstrakulikuler</span></a>
               </li>
 
 
@@ -205,17 +200,17 @@ if((Auth::user()->tipeuser)=='admin'){
               <li @if ($pages==='laporan')
                 class="active"
                 @endif >
-                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Raport Siswa</span></a>
+                <a href="{{ route('siakad.laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Raport Siswa</span></a>
               </li>
               <li @if ($pages==='laporan')
                 class="active"
                 @endif >
-                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan Nilai Siswa</span></a>
+                <a href="{{ route('siakad.laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan Nilai Siswa</span></a>
               </li>
               <li @if ($pages==='laporan')
                 class="active"
                 @endif >
-                <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan Absensi</span></a>
+                <a href="{{ route('siakad.laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan Absensi</span></a>
               </li>
              
               <li class="menu-header">Menu Tahunan</li>
@@ -224,13 +219,13 @@ if((Auth::user()->tipeuser)=='admin'){
               <li @if ($pages==='eoy')
                 class="active"
                 @endif >
-                <a href="{{ route('eoy') }}" class="nav-link"><i class="far fa-calendar-check"></i><span>EoY</span></a>
+                <a href="{{ route('siakad.eoy') }}" class="nav-link"><i class="far fa-calendar-check"></i><span>EoY</span></a>
               </li>
 
               <li @if ($pages==='soy')
                 class="active"
                 @endif >
-                <a href="{{ route('soy') }}" class="nav-link"><i class="far fa-calendar-plus"></i><span>SoY</span></a>
+                <a href="{{ route('siakad.soy') }}" class="nav-link"><i class="far fa-calendar-plus"></i><span>SoY</span></a>
               </li>
 
               <li class="menu-header">Menu Arsip</li>
@@ -239,7 +234,7 @@ if((Auth::user()->tipeuser)=='admin'){
               <li @if ($pages==='arsip')
                 class="active"
                 @endif >
-                <a href="{{ route('arsip') }}" class="nav-link"><i class="fas fa-history"></i><span>Arsip</span></a>
+                <a href="{{ route('siakad.arsip') }}" class="nav-link"><i class="fas fa-history"></i><span>Arsip</span></a>
               </li>
 
             </ul>

@@ -176,6 +176,28 @@ Route::post('admin/datasiswa/cleartemp', 'App\Http\Controllers\prosesController@
 
 // SIAKAD
 Route::get('siakad/admin/beranda', 'App\Http\Controllers\siakadadminpagescontroller@beranda')->name('siakad.admin.beranda');
+// SIAKAD-MENU-SIAKADTAPEL
+Route::get('admin/siakadtapel', 'App\Http\Controllers\tapelController@siakad_index')->name('siakadtapel');
+Route::post('admin/siakadtapel', 'App\Http\Controllers\tapelController@store')->name('siakadtapel.store');
+Route::get('admin/siakadtapel/{tapel}', 'App\Http\Controllers\tapelController@siakad_show')->name('siakad.tapel.edit');
+Route::put('admin/siakadtapel/{tapel}', 'App\Http\Controllers\tapelController@siakad_update')->name('siakadtapel.update');
+Route::delete('admin/siakadtapel/{tapel}', 'App\Http\Controllers\tapelController@destroy')->name('siakadtapel.delete');
+
+// SIAKAD-MENU-SIAKADguru
+Route::get('admin/siakadguru', 'App\Http\Controllers\siakadgurucontroller@siakad_index')->name('siakadguru');
+Route::post('admin/siakadguru', 'App\Http\Controllers\siakadgurucontroller@store')->name('siakadguru.store');
+Route::get('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller@siakad_show')->name('siakad.guru.edit');
+Route::put('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller@siakad_update')->name('siakadguru.update');
+Route::delete('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller@destroy')->name('siakadguru.delete');
+
+Route::get('admin/siakadkelas', 'App\Http\Controllers\kelasController@siakad_index')->name('siakad.kelas');
+
+Route::get('admin/siakadpegawai', 'App\Http\Controllers\pegawaiController@siakad_index')->name('siakad.pegawai');
+Route::get('admin/siakadsiswa', 'App\Http\Controllers\siswaController@siakad_index')->name('siakad.siswa');
+Route::get('admin/siakadlaporan', 'App\Http\Controllers\laporanController@siakad_index')->name('siakad.laporan');
+Route::get('admin/siakadeoy', 'App\Http\Controllers\proseController@siakad_eoy')->name('siakad.eoy');
+Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy')->name('siakad.soy');
+Route::get('admin/siakadarsip', 'App\Http\Controllers\prosesController@siakad_arsip')->name('siakad.arsip');
 
 
 Route::get('/register', 'App\Http\Controllers\adminberandaController@notfound')->name('cleartemp');

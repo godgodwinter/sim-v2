@@ -88,7 +88,7 @@ class pegawaiController extends Controller
             'alamat'=>'required',
             'telp'=>'required',
             'kategori_nama'=>'required',
-            'nig' => 'required|unique:pegawai',
+            'nig' => 'required|unique:guru,nomerinduk|unique:pegawai,nig|unique:siswa,nis',
             'email' => 'required|email|unique:users',
             'password' => 'min:8|required_with:password2|same:password2',
             'password2' => 'min:8',
@@ -188,12 +188,25 @@ class pegawaiController extends Controller
         }
         // dd($emailku);
 
+
+        if($request->nig!==$pegawai->nig){
+
+            $request->validate([
+                'nig' => "required|unique:users,nomerinduk,".$request->nig,
+            ],
+            [
+                'nig.unique'=>'Nomer Induk sudah digunakan',
+                // 'password.same'=>'Password dan Konfirmasi Password berbeda',
+    
+            ]);
+        }
+
         $request->validate([
             'nama'=>'required',
             'alamat'=>'required',
             'telp'=>'required',
             'kategori_nama'=>'required',
-            'nig' => 'required|unique:pegawai,nig,'.$pegawai->id,
+            // 'nig' => 'required|unique:guru,nomerinduk,'.$pegawai->nig.'|unique:pegawai,nig,'.$pegawai->nig.'|unique:siswa,nis,'.$pegawai->nig,
             'email' => 'unique:users,email,'.$emailku,
         ],
         [

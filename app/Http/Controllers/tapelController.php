@@ -35,6 +35,26 @@ class tapelController extends Controller
         // return view('admin.beranda');
     }
 
+    public function siakad_index()
+    {   
+      
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='siakadtapel';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('tapel')
+        ->paginate($this->paginationjml());
+        $jmldata = DB::table('tapel')->count();
+
+        return view('siakad.admin.tapel.index',compact('pages','jmldata','datas'));
+        // return view('admin.beranda');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -72,6 +92,23 @@ class tapelController extends Controller
      * @param  \App\Models\tapel  $tapel
      * @return \Illuminate\Http\Response
      */
+
+    public function siakad_show(tapel $tapel)
+    {
+        // dd($tapel->nama);
+        // $datas = DB::table('kriteria')->where('id',$id)->get();
+
+        #WAJIB
+        $pages='siakadtapel';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('tapel')
+        ->paginate($this->paginationjml());
+        $jmldata = DB::table('tapel')->count();
+        return view('siakad.admin.tapel.edit',compact('tapel','pages','jmldata','datas'));
+    }
     public function show(tapel $tapel)
     {
         // dd($tapel->nama);
@@ -107,8 +144,8 @@ class tapelController extends Controller
      * @param  \App\Models\tapel  $tapel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tapel $tapel)
-    {
+    public function proses_update($request,$tapel){
+
         // dd($tapel);
         
         $request->validate([
@@ -125,7 +162,20 @@ class tapelController extends Controller
             ->update([
                 'nama'=>$request->nama
             ]);
+    }
+
+    public function update(Request $request, tapel $tapel)
+    {
+        $this->proses_update($request,$tapel);
+        
             return redirect(URL::to('/').'/admin/tapel')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+
+    public function siakad_update(Request $request, tapel $tapel)
+    {
+        $this->proses_update($request,$tapel);
+        
+            return redirect(URL::to('/').'/admin/siakadtapel')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     /**
@@ -137,7 +187,7 @@ class tapelController extends Controller
     public function destroy($id)
     { 
         tapel::destroy($id);
-        return redirect(URL::to('/').'/admin/tapel')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
+        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     }
     public function deletechecked(Request $request)
     {

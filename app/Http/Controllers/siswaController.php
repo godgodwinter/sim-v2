@@ -110,7 +110,7 @@ class siswaController extends Controller
             'tapel_nama'=>'required',
             'kelas_nama'=>'required',
             'jk'=>'required',
-            'nis' => 'required|unique:siswa',
+            'nis' => 'required|unique:guru,nomerinduk|unique:pegawai,nig|unique:siswa,nis',
             'email' => 'required|email|unique:users',
             'password' => 'min:8|required_with:password2|same:password2',
             'password2' => 'min:8',
@@ -205,6 +205,18 @@ class siswaController extends Controller
         }
         // dd($emailku);
 
+
+        if($request->nis!==$siswa->nis){
+
+            $request->validate([
+                'nis' => "required|unique:users,nomerinduk,".$request->nis,
+            ],
+            [
+                'nis.unique'=>'Nomer Induk sudah digunakan',
+                // 'password.same'=>'Password dan Konfirmasi Password berbeda',
+    
+            ]);
+        }
         $request->validate([
             'nama'=>'required',
             'tempatlahir'=>'required',
@@ -214,11 +226,11 @@ class siswaController extends Controller
             'jk'=>'required',
             'tapel_nama'=>'required',
             'kelas_nama'=>'required',
-            'nis' => 'required|unique:siswa,nis,'.$siswa->id,
+            // 'nis' => 'required|unique:guru,nomerinduk,'.$siswa->nis.'|unique:pegawai,nig,'.$siswa->nis.'|unique:siswa,nis,'.$siswa->nis,
             'email' => 'unique:users,email,'.$emailku,
         ],
         [
-            'nis.unique'=>'NIS sudah digunakan',
+            'emai.unique'=>'email sudah digunakan',
             // 'password.same'=>'Password dan Konfirmasi Password berbeda',
 
         ]);
