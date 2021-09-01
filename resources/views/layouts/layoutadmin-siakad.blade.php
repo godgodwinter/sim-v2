@@ -126,16 +126,21 @@ if((Auth::user()->tipeuser)=='admin'){
                 @endif >
                 <a href="{{ route('siakadtapel') }}" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Tahun Pelajaran</span></a>
               </li>
-              <li @if ($pages==='kelas')
+              <li @if ($pages==='siakadkelas')
                 class="active"
                 @endif >
                 <a href="{{ route('siakadkelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
               </li>
 
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakadjenisnilai')
                 class="active"
                 @endif >
-                <a href="{{ route('siakadpegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pelajaran</span></a>
+                <a href="{{ route('siakadjenisnilai') }}" class="nav-link"><i class="fas fa-building"></i><span>Jenis Nilai</span></a>
+              </li>
+              <li @if ($pages==='siakadpelajaran')
+                class="active"
+                @endif >
+                <a href="{{ route('siakadpelajaran') }}" class="nav-link"><i class="fas fa-building"></i><span>Mata Pelajaran</span></a>
               </li>
 
               <li @if ($pages==='pegawai')

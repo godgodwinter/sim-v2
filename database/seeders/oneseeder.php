@@ -227,5 +227,47 @@ class oneseeder extends Seeder
          ]);
 
 
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'Tugas 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'Tugas 2',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'Tugas 3',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'Tugas 4',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'Tugas 5',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'UTS',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('jenisnilai')->insert([
+            'nama' => 'UAS',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
     }
 }

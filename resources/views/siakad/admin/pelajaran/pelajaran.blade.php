@@ -1,9 +1,9 @@
 
-@section('title','Kelas')
+@section('title','Mata Pelajaran')
 @section('linkpages')
 data{{ $pages }}
 @endsection
-@section('halaman','kelas')
+@section('halaman','siakadjenisnilai')
 
 @section('csshere')
 @endsection
@@ -48,8 +48,7 @@ data{{ $pages }}
 @section('headtable')
   <th width="10%" class="text-center">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
-  <th> Nama kelas </th>
-  <th> Walikelas kelas </th>
+  <th> Nama </th>
   <th width="200px" class="text-center">Aksi</th>
 @endsection
 
@@ -93,10 +92,8 @@ data{{ $pages }}
 <tr id="sid{{ $data->id }}">
     <td class="text-center">  <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">  {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     <td>{{ $data->nama }}</td>
-    <td>{{ $data->guru_nomerinduk }} - {{ $data->guru_nama }}</td>
 
     <td class="text-center">
-      <a class="btn btn-icon btn-secondary btn-sm "  data-toggle="tooltip" data-placement="top" title="Lihat selengkapnya!"> <i class="fas fa-angle-double-right"></i> </a>
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
         <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
     </td>
@@ -147,21 +144,6 @@ data{{ $pages }}
                     @enderror
                   </div>
 
-                  <div class="form-group col-md-12 col-12 mt-0">
-                    <label for="nama">Pilih Walikelas</label>
-                
-                    <select class="form-control form-control-sm" name="guru_nomerinduk">   
-                      @if($request->guru_nama)
-                        <option value="{{ $request->guru_nomerinduk }}">{{$request->guru_nama}}</option>
-                      @else
-                       <option value="" disabled selected>Pilih Walikelas</option>
-                      @endif
-                   
-                  @foreach ($gurus as $guru)
-                      <option value="{{ $guru->nomerinduk }}">{{ $guru->nama }}</option>
-                  @endforeach
-                </select>
-                  </div>
                  
                 </div>
              

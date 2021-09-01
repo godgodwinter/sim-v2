@@ -198,6 +198,21 @@ Route::get('admin/siakadkelas/{kelas}', 'App\Http\Controllers\kelasController@si
 Route::put('admin/siakadkelas/{kelas}', 'App\Http\Controllers\kelasController@siakad_update')->name('siakadkelas.update');
 Route::delete('admin/siakadkelas/{kelas}', 'App\Http\Controllers\kelasController@destroy')->name('siakadkelas.delete');
 
+// SIAKAD-MENU-SIAKADjenisnilai
+Route::get('admin/siakadjenisnilai', 'App\Http\Controllers\siakadjenisnilaicontroller@siakad_index')->name('siakadjenisnilai');
+Route::post('admin/siakadjenisnilai', 'App\Http\Controllers\siakadjenisnilaicontroller@store')->name('siakadjenisnilai.store');
+Route::get('admin/siakadjenisnilai/{jenisnilai}', 'App\Http\Controllers\siakadjenisnilaicontroller@siakad_show')->name('siakad.jenisnilai.edit');
+Route::put('admin/siakadjenisnilai/{jenisnilai}', 'App\Http\Controllers\siakadjenisnilaicontroller@siakad_update')->name('siakadjenisnilai.update');
+Route::delete('admin/siakadjenisnilai/{jenisnilai}', 'App\Http\Controllers\siakadjenisnilaicontroller@destroy')->name('siakadjenisnilai.delete');
+
+
+// SIAKAD-MENU-SIAKADpelajaran
+Route::get('admin/siakadpelajaran', 'App\Http\Controllers\siakadadminpelajarancontroller@siakad_index')->name('siakadpelajaran');
+Route::post('admin/siakadpelajaran', 'App\Http\Controllers\siakadadminpelajarancontroller@store')->name('siakadpelajaran.store');
+Route::get('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakadadminpelajarancontroller@siakad_show')->name('siakad.pelajaran.edit');
+Route::put('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakadadminpelajarancontroller@siakad_update')->name('siakadpelajaran.update');
+Route::delete('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakadadminpelajarancontroller@destroy')->name('siakadpelajaran.delete');
+
 Route::get('admin/siakadpegawai', 'App\Http\Controllers\pegawaiController@siakad_index')->name('siakadpegawai');
 Route::get('admin/siakadsiswa', 'App\Http\Controllers\siswaController@siakad_index')->name('siakadsiswa');
 Route::get('admin/siakadlaporan', 'App\Http\Controllers\laporanController@siakad_index')->name('siakadlaporan');
