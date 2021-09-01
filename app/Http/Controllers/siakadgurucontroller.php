@@ -209,4 +209,26 @@ class siakadgurucontroller extends Controller
         return redirect(URL::to('/').'/admin/siakadguru')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
+    public function destroy(guru $guru)
+    {
+        DB::table('users')->where('nomerinduk', $guru->nomerinduk)->delete();
+        guru::destroy($guru->id);
+       
+        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
+  
+    }
+
+    public function resetpass(guru $guru)
+    {
+        // dd($siswa);
+
+        User::where('nomerinduk',$guru->nomerinduk)
+        ->update([
+            'password' => Hash::make($this->passdefaultpegawai()),
+        'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+  
+        return redirect()->back()->with('status','Reset berhasil! Password baru : '.$this->passdefaultpegawai().'')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+
 }
