@@ -48,8 +48,9 @@ data{{ $pages }}
 @section('headtable')
   <th width="5%" class="text-center">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
+    <th>Mapel</th>
       @foreach ($datakelas as $dk)
-        <th> {{ $dk->nama }} </th>
+        <th class="text-center"> {{ $dk->nama }} </th>
       @endforeach
   <th width="200px" class="text-center">Aksi</th>
 @endsection
@@ -93,12 +94,34 @@ data{{ $pages }}
 @foreach ($datapelajaran as $dp)
 <tr>
   <td> </td>
-  <td>{{ $dp->nama }}</td>
+  <td>Mapel {{ $dp->tipepelajaran }} - {{ $dp->nama }}</td>
   @foreach ($datakelas as $dk)
   @php
     $nama=$dk->nama;
   @endphp
-    <td>{{ Fungsi::periksajurusan($dk->nama) }})}}</td>
+    <td class="text-center">
+      @php
+        $tombol='';
+      @endphp
+      @if($dp->tipepelajaran!='Jurusan')
+          @php
+            $tombol=$dp->tipepelajaran;
+          @endphp
+      @else
+          @if($dp->jurusan==Fungsi::periksajurusankode($dk->nama))
+          @php
+            $tombol=Fungsi::periksajurusankode($dk->nama);
+          @endphp
+          @else
+            -
+          @endif
+      @endif
+      @if($tombol!=='')
+        <button class="btn btn-icon btn-info">Guru {{ $tombol }} - {{ $dp->nama }}</button>
+      @endif
+
+
+    </td>
   @endforeach
 </tr>
 @endforeach

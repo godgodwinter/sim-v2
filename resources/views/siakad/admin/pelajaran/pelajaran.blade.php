@@ -175,7 +175,7 @@ data{{ $pages }}
                   </div>
 
                   <div class="form-group col-md-12 col-12">
-                    <label>JURUSAN <code>*)</code></label>
+                    <label>jurusan <code>//jika tipe bukan jurusan maka otomatis akan berisi umum</code></label>
                     <select class="form-control form-control-lg" required name="jurusan">  
                           @if (old('jurusan'))
                           <option>{{old('jurusan')}}</option>                        

@@ -82,8 +82,12 @@ class siakadadminpelajarancontroller extends Controller
 
         $datas=DB::table('pelajaran')
         ->paginate($this->paginationjml());
+
+        $tipepelajaran=DB::table('kategori')->where('prefix','tipepelajaran')->get();
+        $jurusan=DB::table('kategori')->where('prefix','jurusan')->get();
+
         $jmldata = DB::table('pelajaran')->count();
-        return view('siakad.admin.pelajaran.edit',compact('pelajaran','pages','jmldata','datas'));
+        return view('siakad.admin.pelajaran.edit',compact('pelajaran','pages','jmldata','datas','tipepelajaran','jurusan'));
     }
 
     public function proses_update($request,$kelas)

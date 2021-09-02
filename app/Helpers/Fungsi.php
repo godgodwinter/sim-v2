@@ -10,9 +10,9 @@ class Fungsi {
     // }
     public static function periksajurusan($datas) {
             $strex=explode(" ",$datas);
-            dd($strex);
+            // dd($strex);
             if($strex[1]=='OTO'){
-                $hasil='Otomotof';
+                $hasil='Otomotif';
             }elseif($strex[1]=='TKJ'){
                 $hasil='Teknik Komputer dan Jaringan';
             }else{
@@ -21,4 +21,18 @@ class Fungsi {
         
         return (isset($hasil) ? $hasil : '');
     }
+
+    public static function periksajurusankode($datas) {
+        $strex=explode(" ",$datas);
+        // dd($strex);
+        if($strex[1]=='OTO'){
+            $hasil=$strex[1];
+        }elseif($strex[1]=='TKJ'){
+            $hasil=$strex[1];
+        }else{
+            $hasil='Umum';
+        }
+    
+    return (isset($hasil) ? $hasil : '');
+}
 }
