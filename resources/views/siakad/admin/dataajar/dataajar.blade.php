@@ -102,14 +102,20 @@ data{{ $pages }}
     <td class="text-center">
       @php
         $tombol='';
+        $guru='Belum diisi';
+        $warna='warning';
       @endphp
       @if($dp->tipepelajaran!='Jurusan')
           @php
             $tombol=$dp->tipepelajaran;
           @endphp
       @else
+      {{-- {{ dd('tes') }} --}}
+          {{-- {{ dd(Fungsi::periksajurusankode($dk->nama)) }} --}}
           @if($dp->jurusan==Fungsi::periksajurusankode($dk->nama))
+          {{-- {{ dd(Fungsi::periksajurusankode($dk->nama)) }} --}}
           @php
+          
             $tombol=Fungsi::periksajurusankode($dk->nama);
           @endphp
           @else
@@ -117,7 +123,28 @@ data{{ $pages }}
           @endif
       @endif
       @if($tombol!=='')
-        <button class="btn btn-icon btn-info">Guru {{ $tombol }} - {{ $dp->nama }}</button>
+      @php
+    $cekdatagurupengampu = DB::table('dataajar')
+      ->where('kelas_nama', '=', $dk->nama)
+      ->where('pelajaran_nama', '=', $dp->nama)
+      ->count();
+    $dataajar=DB::table('dataajar')
+      ->where('kelas_nama', '=', $dk->nama)
+      ->where('pelajaran_nama', '=', $dp->nama)
+      ->first();
+      @endphp 
+      @if($cekdatagurupengampu>0)
+      @php
+        $guru=$dataajar->guru_nomerinduk." - ".$dataajar->guru_nama;
+        $warna='light';
+      @endphp
+            {{-- {{ $dataajar->guru_nomerinduk }} - 
+            {{ $dataajar->guru_nama }} --}}
+        @else
+        -
+      @endif
+      <br>
+        <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}">{{ $guru }}</button>
       @endif
 
 
@@ -180,6 +207,83 @@ data{{ $pages }}
                   </form>
                 </div>
               </div>
+
+              @foreach ($datapelajaran as $dp)
+                @foreach ($datakelas as $dk)
+
+                    @php
+                    $tombol='';
+                  @endphp
+                  @if($dp->tipepelajaran!='Jurusan')
+                      @php
+                        $tombol=$dp->tipepelajaran;
+                      @endphp
+                  @else
+                      @if($dp->jurusan==Fungsi::periksajurusankode($dk->nama))
+                      @php
+                        $tombol=Fungsi::periksajurusankode($dk->nama);
+                      @endphp
+                      @else
+                        -
+                      @endif
+                  @endif
+                  @if($tombol!=='')
+                  <div class="modal fade" id="pilihguru{{ $dp->id }}_{{ $dk->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <form method="post" action="/admin/{{ $pages }}" enctype="multipart/form-data">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Pilih Guru Pengampu</h5>
+                          </div>
+                          <div class="modal-body">
+               
+                            {{ csrf_field() }}
+               
+                            <label>Pilih</label>
+                            <div class="form-group">
+                              <input type="hidden" name="pelajaran_nama" value="{{ $dp->nama }}">
+                              <input type="hidden" name="pelajaran_tipepelajaran" value="{{ $dp->tipepelajaran }}">
+                              <input type="hidden" name="pelajaran_jurusan" value="{{ $dp->jurusan }}">
+                              {{-- <input type="hidden" name="pelajaran_kelas_nama" value="{{ $dp->kelas_nama }}"> --}}
+                              <input type="hidden" name="kelas_nama" value="{{ $dk->nama }}">
+                              <select class="form-control form-control-lg" required name="guru_nomerinduk">  
+                                @php
+                                $cekdatagurupengampu = DB::table('dataajar')
+                                  ->where('kelas_nama', '=', $dk->nama)
+                                  ->where('pelajaran_nama', '=', $dp->nama)
+                                  ->count();
+                                $dataajar=DB::table('dataajar')
+                                  ->where('kelas_nama', '=', $dk->nama)
+                                  ->where('pelajaran_nama', '=', $dp->nama)
+                                  ->first();
+                                  @endphp 
+                                  @if($cekdatagurupengampu>0)
+                                  <option value="{{ $dataajar->guru_nomerinduk }}">{{ $dataajar->guru_nomerinduk }} - {{ $dataajar->guru_nama }}</option>
+                                   
+                                    @else
+                                    
+                                  @endif
+                                @foreach ($dataguru as $t)
+                                    <option value="{{ $t->nomerinduk }}">{{ $t->nomerinduk }} - {{ $t->nama }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+               
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  @endif
+                  
+                @endforeach
+                
+              @endforeach
           
 
 @endsection

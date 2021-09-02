@@ -20,7 +20,7 @@ class CreateDataajarTable extends Migration
             $table->string('pelajaran_jurusan')->nullable();
             $table->string('pelajaran_kelas_nama')->nullable(); //optional  jika tipepelajaran khusus
             $table->string('kelas_nama')->nullable(); //bukan dari table pelajaran
-            $table->string('guru_nis')->nullable(); //
+            $table->string('guru_nomerinduk')->nullable(); //
             $table->string('guru_nama')->nullable(); //
             $table->timestamps();
         });

@@ -48,7 +48,7 @@
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label>
 </th>
   <th>Nama</th>
-  <th>Jabatan</th>
+  {{-- <th>Jabatan</th> --}}
   <th>Email</th>
   <th width="150px" class="text-center">Aksi</th>
 @endsection
@@ -95,7 +95,7 @@
       <input type="checkbox" name="ids" class="checkBoxClass" value="{{ $data->nomerinduk }}"> {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     
     <td>{{ $data->nomerinduk }} - {{ $data->nama }}</td>
-    <td>{{ $data->kategori_nama }}</td>
+    {{-- <td>{{ $data->kategori_nama }}</td> --}}
         @php
         $ambilemail = DB::table('users')
           ->where('nomerinduk', '=', $data->nomerinduk)

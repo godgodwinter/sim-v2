@@ -98,6 +98,12 @@
                     @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
+                  <div class="form-group col-md-12 col-12">
+                    <label for="kode">Kode</label>
+                    <input type="text" name="kode" id="kode" class="form-control @error('kode') is-invalid @enderror" placeholder="X IPA 1" value="{{ $jenisnilai->kode }}" required>
+                    @error('kode')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
 
                  
                 </div>

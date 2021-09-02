@@ -14,5 +14,6 @@ class jenisnilai extends Model
     protected $fillable = [
         'nama',
         'tapel_nama',
+        'kode',
     ];
 }

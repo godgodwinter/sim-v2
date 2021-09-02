@@ -181,7 +181,7 @@ data{{ $pages }}
                           <option>{{old('jurusan')}}</option>                        
                           @endif
                       @foreach ($jurusan as $t)
-                          <option> {{ $t->kode }}  - {{ $t->nama }}</option>
+                          <option value="{{ $t->kode }}"> {{ $t->kode }}  - {{ $t->nama }}</option>
                       @endforeach
                     </select>
                   </div>

@@ -35,7 +35,8 @@ class siakadjenisnilaicontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required|unique:jenisnilai,nama'
+            'nama'=>'required|unique:jenisnilai,nama',
+            'kode'=>'required|unique:jenisnilai,kode'
 
         ],
         [
@@ -49,6 +50,7 @@ class siakadjenisnilaicontroller extends Controller
        DB::table('jenisnilai')->insert(
         array(
                'nama'     =>   $request->nama,
+               'kode'     =>   $request->kode,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
@@ -86,6 +88,17 @@ class siakadjenisnilaicontroller extends Controller
             ]);
         }
 
+        if($request->kode!==$kelas->kode){
+            $request->validate([
+                'kode'=>'unique:jenisnilai,kode'
+            ],
+            [
+                // 'nama.unique'=>'Nama harus diisi'
+
+
+            ]);
+        }
+
         $request->validate([
             'nama'=>'required'
         ],
@@ -101,6 +114,7 @@ class siakadjenisnilaicontroller extends Controller
         jenisnilai::where('id',$kelas->id)
             ->update([
                 'nama'=>$request->nama,
+                'kode'=>$request->kode,
             ]);
     }
 

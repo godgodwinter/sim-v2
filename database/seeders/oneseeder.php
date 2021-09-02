@@ -230,42 +230,49 @@ class oneseeder extends Seeder
 
          DB::table('jenisnilai')->insert([
             'nama' => 'Tugas 1',
+            'kode' => 'T1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('jenisnilai')->insert([
             'nama' => 'Tugas 2',
+            'kode' => 'T2',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('jenisnilai')->insert([
             'nama' => 'Tugas 3',
+            'kode' => 'T3',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('jenisnilai')->insert([
             'nama' => 'Tugas 4',
+            'kode' => 'T4',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('jenisnilai')->insert([
             'nama' => 'Tugas 5',
+            'kode' => 'T5',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('jenisnilai')->insert([
             'nama' => 'UTS',
+            'kode' => 'UTS',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('jenisnilai')->insert([
             'nama' => 'UAS',
+            'kode' => 'UAS',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

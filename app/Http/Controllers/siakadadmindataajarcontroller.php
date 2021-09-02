@@ -27,6 +27,8 @@ class siakadadmindataajarcontroller extends Controller
         ->get();
         $datapelajaran=DB::table('pelajaran')->orderBy('tipepelajaran','asc')
         ->get();
+        $dataguru=DB::table('guru')->orderBy('nama','asc')
+        ->get();
 
         $tipepelajaran=DB::table('kategori')->where('prefix','prefix')->get();
         $jurusan=DB::table('kategori')->where('prefix','jurusan')->orderBy('prefix','asc')->get();
@@ -36,7 +38,7 @@ class siakadadmindataajarcontroller extends Controller
 
         $jmldata = DB::table('pelajaran')->count();
 
-        return view('siakad.admin.dataajar.index',compact('pages','jmldata','datakelas','request','tipepelajaran','jurusan','datapelajaran'));
+        return view('siakad.admin.dataajar.index',compact('pages','jmldata','datakelas','request','tipepelajaran','jurusan','datapelajaran','dataguru'));
         // return view('admin.beranda');
     }
 
@@ -48,8 +50,8 @@ class siakadadmindataajarcontroller extends Controller
             'pelajaran_jurusan'=>'required',
             // 'pelajaran_kelas_nama'=>'required',
             'kelas_nama'=>'required',
-            'guru_nis'=>'required',
-            'guru_nama'=>'required',
+            'guru_nomerinduk'=>'required',
+            // 'guru_nama'=>'required',
             // 'kkm' => 'required|min:1|max:100',
 
         ],
@@ -57,6 +59,28 @@ class siakadadmindataajarcontroller extends Controller
             'nama.required'=>'Nama Harus diisi',
 
         ]);
+
+
+    $dataguru=DB::table('guru')
+    ->where('nomerinduk', '=', $request->guru_nomerinduk)
+    ->first();
+    // dd($dataajar);
+    $guru_nama=$dataguru->nama;
+
+    $cekdatajar=DB::table('dataajar')
+    ->where('pelajaran_nama', '=', $request->pelajaran_nama)
+    ->where('kelas_nama', '=', $request->kelas_nama)
+    ->count();
+    if($cekdatajar>0){
+
+        dataajar::where('pelajaran_nama',$request->pelajaran_nama)
+        ->where('kelas_nama', '=', $request->kelas_nama)
+            ->update([
+                'guru_nomerinduk'=>$request->guru_nomerinduk,
+                'guru_nama'     =>   $guru_nama,
+                'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+    }else{
         
        DB::table('dataajar')->insert(
         array(
@@ -64,24 +88,24 @@ class siakadadmindataajarcontroller extends Controller
                'pelajaran_tipepelajaran'     =>   $request->pelajaran_tipepelajaran,
                'pelajaran_jurusan'     =>   $request->pelajaran_jurusan,
                'kelas_nama'     =>   $request->kelas_nama,
-               'guru_nis'     =>   $request->guru_nis,
-               'guru_nama'     =>   $request->guru_nama,
+               'guru_nomerinduk'     =>   $request->guru_nomerinduk,
+               'guru_nama'     =>   $guru_nama,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
+    }
 
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
-    
     }
 
     public function proses_update($request,$dataajar)
     {
 
         $request->validate([
-            'guru_nis'=>'required'
+            'guru_nomerinduk'=>'required'
         ],
         [
-            'guru_nis.required'=>'Guru harus diisi'
+            'guru_nomerinduk.required'=>'Guru harus diisi'
 
 
         ]);
@@ -90,7 +114,7 @@ class siakadadmindataajarcontroller extends Controller
 
         dataajar::where('id',$dataajar->id)
             ->update([
-                'guru_nis'=>$request->guru_nis,
+                'guru_nomerinduk'=>$request->guru_nomerinduk,
                 'guru_nama'     =>   $request->guru_nama,
             ]);
     }

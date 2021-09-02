@@ -129,7 +129,7 @@ if((Auth::user()->tipeuser)=='admin'){
               <li @if ($pages==='siakadkelas')
                 class="active"
                 @endif >
-                <a href="{{ route('siakadkelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
+                <a href="{{ route('siakadkelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas dan Wali kelas</span></a>
               </li>
 
               <li @if ($pages==='siakadjenisnilai')
@@ -174,11 +174,11 @@ if((Auth::user()->tipeuser)=='admin'){
               {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
              
               <li class="menu-header">Transaksi</li>
-              <li @if ($pages==='siakadpegawai')
+              {{--   <li @if ($pages==='siakadpegawai')
                 class="active"
                 @endif >
                 <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Wali Kelas</span></a>
-              </li>
+              </li>--}}
               <li @if ($pages==='siakaddataajar')
                 class="active"
                 @endif >

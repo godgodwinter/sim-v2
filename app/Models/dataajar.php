@@ -17,7 +17,7 @@ class dataajar extends Model
         'jurusan',
         'pelajaran_kelas_nama',
         'kelas_nama',
-        'guru_nis',
+        'guru_nomerinduk',
         'guru_nama',
     ];
 }
