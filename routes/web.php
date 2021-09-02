@@ -213,6 +213,13 @@ Route::get('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakadadmi
 Route::put('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakadadminpelajarancontroller@siakad_update')->name('siakadpelajaran.update');
 Route::delete('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakadadminpelajarancontroller@destroy')->name('siakadpelajaran.delete');
 
+// SIAKAD-MENU-SIAKADdataajar
+Route::get('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index')->name('siakaddataajar');
+Route::post('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@store')->name('siakaddataajar.store');
+Route::get('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_show')->name('siakad.dataajar.edit');
+Route::put('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_update')->name('siakaddataajar.update');
+Route::delete('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@destroy')->name('siakaddataajar.delete');
+
 Route::get('admin/siakadpegawai', 'App\Http\Controllers\pegawaiController@siakad_index')->name('siakadpegawai');
 Route::get('admin/siakadsiswa', 'App\Http\Controllers\siswaController@siakad_index')->name('siakadsiswa');
 Route::get('admin/siakadlaporan', 'App\Http\Controllers\laporanController@siakad_index')->name('siakadlaporan');

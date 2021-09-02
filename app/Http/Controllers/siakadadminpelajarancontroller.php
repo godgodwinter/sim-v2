@@ -20,22 +20,27 @@ class siakadadminpelajarancontroller extends Controller
         $datas='0';
 
 
-        $datas=DB::table('pelajaran')
+        $datas=DB::table('pelajaran')->orderBy('tipepelajaran','asc')
         ->paginate($this->paginationjml());
+
+        $tipepelajaran=DB::table('kategori')->where('prefix','tipepelajaran')->get();
+        $jurusan=DB::table('kategori')->where('prefix','jurusan')->get();
 
         // $gurus=DB::table('pelajaran')
         // ->get();
 
         $jmldata = DB::table('pelajaran')->count();
 
-        return view('siakad.admin.pelajaran.index',compact('pages','jmldata','datas','request'));
+        return view('siakad.admin.pelajaran.index',compact('pages','jmldata','datas','request','tipepelajaran','jurusan'));
         // return view('admin.beranda');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required|unique:pelajaran,nama'
+            'nama'=>'required|unique:pelajaran,nama',
+            'kkm' => 'required|min:1|max:100',
+            'tipepelajaran' => 'required',
 
         ],
         [
@@ -46,9 +51,17 @@ class siakadadminpelajarancontroller extends Controller
         // dd($request->guru_nomerinduk);
         // dd($ambilnama->nama);
         //inser guru
+        if($request->tipepelajaran!='Jurusan'){
+            $jurusan='semua';
+        }else{
+            $jurusan=$request->jurusan;
+        }
        DB::table('pelajaran')->insert(
         array(
                'nama'     =>   $request->nama,
+               'tipepelajaran'     =>   $request->tipepelajaran,
+               'jurusan'     =>   $jurusan,
+               'kkm'     =>   $request->kkm,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
@@ -75,9 +88,10 @@ class siakadadminpelajarancontroller extends Controller
 
     public function proses_update($request,$kelas)
     {
-        if($request->nama!==$kelas->nama){
+        if($request->nama!=$kelas->nama){
             $request->validate([
-                'nama'=>'unique:pelajaran,nama'
+                'nama'=>'unique:pelajaran,nama',
+                'kkm' => 'required|min:1|max:100',
             ],
             [
                 // 'nama.unique'=>'Nama harus diisi'
@@ -97,10 +111,18 @@ class siakadadminpelajarancontroller extends Controller
 
 
          //aksi update
+        if($request->tipepelajaran!='Jurusan'){
+            $jurusan='semua';
+        }else{
+            $jurusan=$request->jurusan;
+        }
 
         pelajaran::where('id',$kelas->id)
             ->update([
                 'nama'=>$request->nama,
+                'tipepelajaran'     =>   $request->tipepelajaran,
+                'jurusan'     =>   $jurusan,
+                'kkm'     =>   $request->kkm,
             ]);
     }
 

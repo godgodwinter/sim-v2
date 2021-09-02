@@ -17,7 +17,7 @@ class CreatePelajaranTable extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('tapel_nama')->nullable();
-            $table->string('kelas_nama')->nullable();
+            $table->string('kelas_nama')->nullable(); // jg digunakan
             $table->string('tipepelajaran')->nullable(); //tipe_mapel yaitu//mulok/umum/jurusan ,, dari kategori_nama where tipepelajaran
             $table->string('jurusan')->nullable(); //jurusan ,jika mapel tipe jurusan , jika bukan maka null,, dari kategori_nama where jurusan
             $table->string('kkm')->nullable();

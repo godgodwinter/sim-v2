@@ -179,10 +179,10 @@ if((Auth::user()->tipeuser)=='admin'){
                 @endif >
                 <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Wali Kelas</span></a>
               </li>
-              <li @if ($pages==='siakadpegawai')
+              <li @if ($pages==='siakaddataajar')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Data Ajar</span></a>
+                <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Data Ajar</span></a>
               </li>
               <li @if ($pages==='siakadpegawai')
                 class="active"

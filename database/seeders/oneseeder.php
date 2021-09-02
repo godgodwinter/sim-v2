@@ -80,19 +80,19 @@ class oneseeder extends Seeder
             'updated_at' => Carbon::now()
          ]);
 
-         DB::table('kategori')->insert([
-             'nama' => 'pelajaran',
-             'prefix' => 'pelajaran',
-             'created_at' => Carbon::now(),
-             'updated_at' => Carbon::now()
-          ]);
+         // DB::table('kategori')->insert([
+         //     'nama' => 'pelajaran',
+         //     'prefix' => 'pelajaran',
+         //     'created_at' => Carbon::now(),
+         //     'updated_at' => Carbon::now()
+         //  ]);
 
-          DB::table('kategori')->insert([
-              'nama' => 'mulok',
-              'prefix' => 'pelajaran',
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now()
-           ]);
+         //  DB::table('kategori')->insert([
+         //      'nama' => 'mulok',
+         //      'prefix' => 'pelajaran',
+         //      'created_at' => Carbon::now(),
+         //      'updated_at' => Carbon::now()
+         //   ]);
 
         DB::table('kategori')->insert([
             'nama' => 'Administrator/Bendahara',
@@ -266,6 +266,48 @@ class oneseeder extends Seeder
 
          DB::table('jenisnilai')->insert([
             'nama' => 'UAS',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         //kategori jurusan
+        DB::table('kategori')->insert([
+         'nama' => 'Otomotif',
+         'kode' => 'OTO',
+         'prefix' => 'jurusan',
+         'created_at' => Carbon::now(),
+         'updated_at' => Carbon::now()
+      ]);
+
+      DB::table('kategori')->insert([
+         'nama' => 'Teknik Jaringan dan Komputer',
+         'kode' => 'TKJ',
+         'prefix' => 'jurusan',
+         'created_at' => Carbon::now(),
+         'updated_at' => Carbon::now()
+      ]);
+
+         //kategori tipepelajaran
+         DB::table('kategori')->insert([
+            'nama' => 'Umum',
+            'kode' => 'umum',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('kategori')->insert([
+            'nama' => 'Jurusan',
+            'kode' => 'jurusan',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('kategori')->insert([
+            'nama' => 'Mulok',
+            'kode' => 'mulok',
+            'prefix' => 'tipepelajaran',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

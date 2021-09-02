@@ -29,6 +29,22 @@ class AppServiceProvider extends ServiceProvider
 
          Paginator::useBootstrap();
 
+        // Blade::directive('periksajurusan', function ($expression) {
+                   
+        //     // $strex=[];
+        //     $strex=explode(" ",$expression);
+        //     dd($strex);
+        //     if($strex[1]=='OTO'){
+        //         $hasil='Otomotof';
+        //     }elseif($strex[1]=='TKJ'){
+        //         $hasil='Teknik Komputer dan Jaringan';
+        //     }else{
+        //         $hasil='Umum';
+        //     }
+
+        //     return $hasil;
+        // });
+
         //Rupiah converter
         Blade::directive('currency', function ($expression) {
             return "Rp. <?php echo number_format($expression, 0, ',', '.'); ?>";

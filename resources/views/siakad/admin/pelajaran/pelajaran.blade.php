@@ -49,6 +49,9 @@ data{{ $pages }}
   <th width="10%" class="text-center">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
   <th> Nama </th>
+  <th> KKM </th>
+  <th> Tipe </th>
+  <th> Jurusan </th>
   <th width="200px" class="text-center">Aksi</th>
 @endsection
 
@@ -92,6 +95,9 @@ data{{ $pages }}
 <tr id="sid{{ $data->id }}">
     <td class="text-center">  <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">  {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     <td>{{ $data->nama }}</td>
+    <td>{{ $data->kkm }}</td>
+    <td>{{ $data->tipepelajaran }}</td>
+    <td>{{ $data->jurusan }}</td>
 
     <td class="text-center">
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
@@ -139,11 +145,46 @@ data{{ $pages }}
                 <div class="row">
                   <div class="form-group col-md-12 col-12">
                     <label for="nama">Nama</label>
-                    <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="X IPA 1" value="{{old('nama')}}" required>
+                    <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror"  value="{{old('nama')}}" required>
                     @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
+                  @if(old('kkm')===null)
+                  @php
+                    $kkm=1;
+                  @endphp
+                    
+                  @endif
+                  <div class="form-group col-md-12 col-12">
+                    <label for="kkm">KKM</label>
+                    <input type="number" name="kkm" min="1" max="100" id="kkm" class="form-control @error('kkm') is-invalid @enderror"value="{{ $kkm }}" required>
+                    @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
 
+                  <div class="form-group col-md-12 col-12">
+                    <label>Tipe <code>*)</code></label>
+                    <select class="form-control form-control-lg" required name="tipepelajaran">  
+                          @if (old('tipepelajaran'))
+                          <option>{{old('tipepelajaran')}}</option>                        
+                          @endif
+                      @foreach ($tipepelajaran as $t)
+                          <option>{{ $t->nama }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-12 col-12">
+                    <label>JURUSAN <code>*)</code></label>
+                    <select class="form-control form-control-lg" required name="jurusan">  
+                          @if (old('jurusan'))
+                          <option>{{old('jurusan')}}</option>                        
+                          @endif
+                      @foreach ($jurusan as $t)
+                          <option> {{ $t->kode }}  - {{ $t->nama }}</option>
+                      @endforeach
+                    </select>
+                  </div>
                  
                 </div>
              
