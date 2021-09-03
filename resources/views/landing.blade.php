@@ -127,7 +127,7 @@
             </a>
 
             <!-- Navigation links -->
-            <ul class="items-center hidden space-x-6 md:flex" x-data="navbarLinksState">
+            <ul class="items-center hidden space-x-6 md:flex" x-data="navbarLinksState"> 
               <template x-for="link in navigationLinks">
                 <li>
                   <a
@@ -137,7 +137,7 @@
                     class="inline-block px-4 py-2 text-gray-500 transition-colors rounded-md  hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 focus-visible:outline-none focus-visible:ring focus-visible:ring-purple-500"
                   >
                     <div class="overflow-hidden">
-                      <span x-text="link.label"></span>
+                      <span x-text="link.label">  </span>
                       <div
                         aria-hidden="true"
                         x-ref="underlineLink"
@@ -187,7 +187,7 @@
             <div class="py-4">
               <template x-for="link in navigationLinks">
                 <li>
-                  <a :href="link.link" x-text="link.label" class="block px-4 py-2 text-gray-600 dark:text-gray-400"></a>
+                  <a :href="link.link" x-text="link.label" class="block px-4 py-2 text-gray-600 dark:text-gray-400"> </a>
                 </li>
               </template>
             </div>

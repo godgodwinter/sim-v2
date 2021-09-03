@@ -62,19 +62,19 @@ i.data("mainState", (() => ({
         label: "SIAKAD (on Progress)",
         link: "/siakad/admin/beranda"
     }, {
-        label: "PPDB (soon)",
+        label: "PPDB !",
         link: "#"
     }, {
-        label: "GURU (soon)",
+        label: "GURU !",
         link: "#"
     }, {
-        label: "KEPSEK (soon)",
+        label: "KEPSEK !",
         link: "#"
     }, {
         label: "SISWA",
         link: "/siswa/tagihansiswa"
     }, {
-        label: "WALI MURID (soon)",
+        label: "WALI MURID !",
         link: "#"
     }],
     handelMouseEnter: e => {
