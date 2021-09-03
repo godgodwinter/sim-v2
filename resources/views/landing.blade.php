@@ -204,10 +204,10 @@
                   class="text-4xl font-extrabold leading-snug text-center text-transparent  md:text-6xl lg:text-7xl bg-gradient-to-tr from-pink-500 to-indigo-600 via-blue-600-300 bg-clip-text"
                 >
                  SISTEM INFORMASI MANAJEMEN <br />
-                  SMK DW KROMENGAN
+                  {{ Fungsi::sekolahnama() }}
                 </h2>
                 <p class="max-w-xl text-xl font-medium text-center text-gray-600 md:text-2xl">
-                  email : info@smkkromengan.sch.id
+                    {{ Fungsi::sekolahalamat() }}
                 </p>
 
                 <!-- CTA buttons -->
