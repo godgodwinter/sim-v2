@@ -321,10 +321,11 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
                 <b>{{ $sekolahttd }}</b>
                 <br>
                 <br>
+                {{-- <img src="{{ url('/assets/img/qrcode.png') }}" alt="barcode" /> --}}
        
-	{{-- <img src="data:image/png;base64,{{DNS2D::getBarcodePNG(url('/admin/laporan/cetak'), 'QRCODE')}}" alt="barcode" /> --}}
+	<img src="data:image/png;base64,{{DNS2D::getBarcodePNG(url('/admin/laporan/cetak'), 'QRCODE')}}" alt="barcode" />
 	{{-- <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('50', 'DATAMATRIX')}}" alt="barcode" /> --}}
-                {!! QrCode::size(250)->generate('www.google.com'); !!} 
+                {{-- {!! QrCode::size(250)->generate('www.google.com'); !!}  --}}
   
     {{-- {!! QrCode::size(250)->generate('www.google.com'); !!}  --}}
        {{-- {!! DNS2D::getBarcodeHTML( url('/barcode'), 'QRCODE') !!} --}}
