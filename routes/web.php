@@ -258,6 +258,14 @@ Route::get('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Controller
 Route::put('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@siakad_update')->name('siakadekstrakulikuler.update');
 Route::delete('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@destroy')->name('siakadekstrakulikuler.delete');
 
+
+// SIAKAD-MENU-siakadinputnilai
+Route::get('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel')->name('siakad.inputnilai.mapel');
+Route::post('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel_store')->name('siakad.inputnilai.mapel.store');
+
+Route::get('admin/inputnilai/kepribadian/{kepribadian}/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@kepribadian')->name('siakad.inputnilai.kepribadian');
+Route::get('admin/inputnilai/ekstra/{ekstrakulikuler}/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@ekstra')->name('siakad.inputnilai.ekstra');
+
 Route::get('admin/siakadlaporan', 'App\Http\Controllers\laporanController@siakad_index')->name('siakadlaporan');
 Route::get('admin/siakadeoy', 'App\Http\Controllers\proseController@siakad_eoy')->name('siakadeoy');
 Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy')->name('siakadsoy');

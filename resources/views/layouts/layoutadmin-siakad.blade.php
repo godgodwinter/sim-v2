@@ -184,20 +184,20 @@ if((Auth::user()->tipeuser)=='admin'){
                 @endif >
                 <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Data Ajar</span></a>
               </li>
-              <li @if ($pages==='siakadpegawai')
+              <li @if ($pages==='siakaddataajar')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Pelajaran</span></a>
+                <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Pelajaran</span></a>
               </li>
-              <li @if ($pages==='siakadpegawai')
+              <li @if ($pages==='siakaddataajar')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Kepribadian</span></a>
+                <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Kepribadian</span></a>
               </li>
-              <li @if ($pages==='siakadpegawai')
+              <li @if ($pages==='siakaddataajar')
                 class="active"
                 @endif >
-                <a href="{{ route('siakadpegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Ekstrakulikuler</span></a>
+                <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Nilai Ekstrakulikuler</span></a>
               </li>
 
 

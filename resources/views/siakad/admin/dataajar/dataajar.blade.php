@@ -135,7 +135,8 @@ data{{ $pages }}
       @endphp 
       @if($cekdatagurupengampu>0)
       @php
-        $guru=$dataajar->guru_nomerinduk." - ".$dataajar->guru_nama;
+        $guru=$dataajar->guru_nama;
+        // $guru=$dataajar->guru_nomerinduk." - ".$dataajar->guru_nama;
         $warna='light';
       @endphp
             {{-- {{ $dataajar->guru_nomerinduk }} - 
@@ -144,10 +145,14 @@ data{{ $pages }}
         -
       @endif
       <br>
-        <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}">{{ $guru }}</button>
+        <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}">{{ substr($guru, 0, 7) }}</button>
+        <br>
+        @if($cekdatagurupengampu>0)
+        <a href="{{ url('/admin/inputnilai/mapel') }}/{{ $dataajar->id }}" type="button" class="btn btn-outline-primary"  data-toggle="tooltip" data-placement="top" title="Input nilai Mapel" ><i class="fas fa-user-graduate"></i></a>
+        <a href="{{ url('/admin/inputnilai/kepribadian') }}/{{ $dp->id }}/{{ $dk->id }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Kepribadian"><i class="fas fa-ribbon"></i></a>
+        <a href="{{ url('/admin/inputnilai/ekstrakulikuler') }}/{{ $dp->id }}/{{ $dk->id }}" type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Ekstrakulikuler"><i class="fas fa-dungeon"></i></a>
+        @endif
       @endif
-
-
     </td>
   @endforeach
 </tr>
