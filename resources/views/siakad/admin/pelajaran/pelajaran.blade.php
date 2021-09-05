@@ -151,7 +151,7 @@ data{{ $pages }}
                   </div>
                   @if(old('kkm')===null)
                   @php
-                    $kkm=1;
+                    $kkm=75;
                   @endphp
                     
                   @endif

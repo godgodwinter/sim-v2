@@ -233,7 +233,7 @@ data{{ $pages }}
                                 @endphp
                             @else
                             @php
-                            $nilai=1;
+                            $nilai=75;
                             @endphp
                             @endif
                               <input type="number" name="nilai" min="1" max="100" id="nilai" class="form-control @error('kkm') is-invalid @enderror"value="{{ $nilai }}" required>
