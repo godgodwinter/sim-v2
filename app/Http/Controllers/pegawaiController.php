@@ -37,6 +37,27 @@ class pegawaiController extends Controller
         return view('admin.pegawai.index',compact('pages','jmldata','datas','kategori','request'));
         // return view('admin.beranda');
     }
+
+    public function siakad_index(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='siakadpegawai';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('pegawai')
+        ->paginate($this->paginationjml());
+        // $kategori=kategori::all();
+        $kategori = DB::table('kategori')->where('prefix','pegawai')->get();
+        $jmldata = DB::table('pegawai')->count();
+
+        return view('siakad.admin.pegawai.index',compact('pages','jmldata','datas','kategori','request'));
+        // return view('admin.beranda');
+    }
     public function cari(Request $request)
     {
         // dd($request);
@@ -64,6 +85,35 @@ class pegawaiController extends Controller
 
         return view('admin.pegawai.index',compact('pages','jmldata','datas','kategori','request'));
     }
+
+    public function siakad_cari(Request $request)
+    {
+        // dd($request);
+        $cari=$request->cari;
+        $kategori_nama=$request->kategori_nama;
+
+        #WAJIB
+        $pages='siakadpegawai';
+        $jmldata='0';
+        $datas='0';
+
+
+    $datas=DB::table('pegawai')
+    // ->where('nis','like',"%".$cari."%")
+    ->where('nama','like',"%".$cari."%")
+    ->where('kategori_nama','like',"%".$kategori_nama."%")
+    ->orWhere('nig','like',"%".$cari."%")
+    ->where('kategori_nama','like',"%".$kategori_nama."%")
+    ->paginate($this->paginationjml());
+
+        // $kategori=kategori::all();
+        $kategori = DB::table('kategori')->where('prefix','pegawai')->get();
+        $jmldata = DB::table('pegawai')->count();
+
+
+        return view('siakad.admin.pegawai.index',compact('pages','jmldata','datas','kategori','request'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -160,6 +210,25 @@ class pegawaiController extends Controller
         // return view('admin.beranda');
     }
 
+    public function siakad_show(Request $request,pegawai $pegawai)
+    {
+        // dd($pegawai);
+        #WAJIB
+        $pages='siakadpegawai';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=pegawai::all();
+        // $kategori=kategori::all();
+        $kategori = DB::table('kategori')->where('prefix','pegawai')->get();
+        $jmldata = DB::table('pegawai')->count();
+        $datausers = DB::table('users')->where('nomerinduk',$pegawai->nig)->get();
+
+        return view('siakad.admin.pegawai.edit',compact('pages','jmldata','datas','kategori','pegawai','datausers','request'));
+        // return view('admin.beranda');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -178,7 +247,20 @@ class pegawaiController extends Controller
      * @param  \App\Models\pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, pegawai $pegawai)
+    {
+        $this->proses_update($request,$pegawai);
+
+            return redirect(URL::to('/').'/admin/pegawai')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+
+    public function siakad_update(Request $request, pegawai $pegawai)
+    {
+        $this->proses_update($request,$pegawai);
+            return redirect(URL::to('/').'/admin/siakadpegawai')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+    public function proses_update($request,$pegawai)
     {
 
         // dd($siswa->nis);
@@ -262,7 +344,6 @@ class pegawaiController extends Controller
 
         }
 
-        return redirect(URL::to('/').'/admin/pegawai')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     /**
@@ -276,7 +357,7 @@ class pegawaiController extends Controller
         pegawai::destroy($pegawai->id);
        
         DB::table('users')->where('nomerinduk', $pegawai->nig)->delete();
-        return redirect(URL::to('/').'/admin/pegawai')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
+        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
   
     }
 

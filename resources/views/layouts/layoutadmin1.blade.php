@@ -82,11 +82,11 @@ crossorigin="anonymous"></script>
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">{{ $settings->aplikasijudul }}</a>
+            <a href="{{ url('/') }}">{{ $settings->aplikasijudul }}</a>
           </div>
 
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('dashboard') }}">{{ $settings->aplikasijudulsingkat }}</a>
+            <a href="{{ url('/') }}">{{ $settings->aplikasijudulsingkat }}</a>
           </div>
           <ul class="sidebar-menu">
 

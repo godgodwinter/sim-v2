@@ -195,6 +195,26 @@ Route::put('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller
 Route::delete('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller@destroy')->name('siakadguru.delete');
 Route::post('admin/siakadguru/{guru}/reset', 'App\Http\Controllers\siakadgurucontroller@resetpass')->name('siakadguru.resetpass');
 
+// SIAKAD-MENU-SIAKADsiswa
+Route::get('admin/siakadsiswa', 'App\Http\Controllers\siswaController@siakad_index')->name('siakadsiswa');
+Route::post('admin/siakadsiswa', 'App\Http\Controllers\siswaController@store')->name('siakadsiswa.store');
+Route::get('admin/siakadsiswa/{siswa}', 'App\Http\Controllers\siswaController@siakad_show')->name('siakad.siswa.edit');
+Route::put('admin/siakadsiswa/{siswa}', 'App\Http\Controllers\siswaController@siakad_update')->name('siakadsiswa.update');
+Route::delete('admin/siakadsiswa/{siswa}', 'App\Http\Controllers\siswaController@destroy')->name('siakadsiswa.delete');
+Route::post('admin/siakadsiswa/{siswa}/reset', 'App\Http\Controllers\siswaController@resetpass')->name('siakadsiswa.resetpass');
+Route::get('admin/carisiswa/siakad', 'App\Http\Controllers\siswaController@siakad_cari')->name('siakadsiswa.cari');
+
+
+// SIAKAD-MENU-SIAKADpegawai
+Route::get('admin/siakadpegawai', 'App\Http\Controllers\pegawaiController@siakad_index')->name('siakadpegawai');
+Route::post('admin/siakadpegawai', 'App\Http\Controllers\pegawaiController@store')->name('siakadpegawai.store');
+Route::get('admin/siakadpegawai/{pegawai}', 'App\Http\Controllers\pegawaiController@siakad_show')->name('siakad.pegawai.edit');
+Route::put('admin/siakadpegawai/{pegawai}', 'App\Http\Controllers\pegawaiController@siakad_update')->name('siakadpegawai.update');
+Route::delete('admin/siakadpegawai/{pegawai}', 'App\Http\Controllers\pegawaiController@destroy')->name('siakadpegawai.delete');
+Route::post('admin/siakadpegawai/{pegawai}/reset', 'App\Http\Controllers\pegawaiController@resetpass')->name('siakadpegawai.resetpass');
+Route::get('admin/caripegawai/siakad', 'App\Http\Controllers\pegawaiController@siakad_cari')->name('siakadpegawai.cari');
+
+
 // SIAKAD-MENU-SIAKADkelas
 Route::get('admin/siakadkelas', 'App\Http\Controllers\kelasController@siakad_index')->name('siakadkelas');
 Route::post('admin/siakadkelas', 'App\Http\Controllers\kelasController@store')->name('siakadkelas.store');
@@ -224,8 +244,20 @@ Route::get('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmind
 Route::put('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_update')->name('siakaddataajar.update');
 Route::delete('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@destroy')->name('siakaddataajar.delete');
 
-Route::get('admin/siakadpegawai', 'App\Http\Controllers\pegawaiController@siakad_index')->name('siakadpegawai');
-Route::get('admin/siakadsiswa', 'App\Http\Controllers\siswaController@siakad_index')->name('siakadsiswa');
+// SIAKAD-MENU-SIAKADkepribadian
+Route::get('admin/siakadkepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@siakad_index')->name('siakadkepribadian');
+Route::post('admin/siakadkepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@store')->name('siakadkepribadian.store');
+Route::get('admin/siakadkepribadian/{kepribadian}', 'App\Http\Controllers\siakadadminkepribadiancontroller@siakad_show')->name('siakad.kepribadian.edit');
+Route::put('admin/siakadkepribadian/{kepribadian}', 'App\Http\Controllers\siakadadminkepribadiancontroller@siakad_update')->name('siakadkepribadian.update');
+Route::delete('admin/siakadkepribadian/{kepribadian}', 'App\Http\Controllers\siakadadminkepribadiancontroller@destroy')->name('siakadkepribadian.delete');
+
+// SIAKAD-MENU-SIAKADekstrakulikuler
+Route::get('admin/siakadekstrakulikuler', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@siakad_index')->name('siakadekstrakulikuler');
+Route::post('admin/siakadekstrakulikuler', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@store')->name('siakadekstrakulikuler.store');
+Route::get('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@siakad_show')->name('siakad.ekstrakulikuler.edit');
+Route::put('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@siakad_update')->name('siakadekstrakulikuler.update');
+Route::delete('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@destroy')->name('siakadekstrakulikuler.delete');
+
 Route::get('admin/siakadlaporan', 'App\Http\Controllers\laporanController@siakad_index')->name('siakadlaporan');
 Route::get('admin/siakadeoy', 'App\Http\Controllers\proseController@siakad_eoy')->name('siakadeoy');
 Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy')->name('siakadsoy');

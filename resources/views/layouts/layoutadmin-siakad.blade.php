@@ -82,11 +82,11 @@ crossorigin="anonymous"></script>
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="{{ route('siakad.admin.beranda') }}">SIAKAD SEKOLAH</a>
+            <a href="{{ url('/') }}">SIAKAD SEKOLAH</a>
           </div>
 
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('siakad.admin.beranda') }}">SIAKAD</a>
+            <a href="{{ url('/') }}">SIAKAD</a>
           </div>
           <ul class="sidebar-menu">
 
@@ -143,18 +143,18 @@ if((Auth::user()->tipeuser)=='admin'){
                 <a href="{{ route('siakadpelajaran') }}" class="nav-link"><i class="fas fa-building"></i><span>Mata Pelajaran</span></a>
               </li>
 
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakadkepribadian')
                 class="active"
                 @endif >
-                <a href="{{ route('siakadpegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
+                <a href="{{ route('siakadkepribadian') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
               </li>
 
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakadekstrakulikuler')
                 class="active"
                 @endif >
-                <a href="{{ route('siakadpegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
+                <a href="{{ route('siakadekstrakulikuler') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
               </li>
-              <li @if ($pages==='siswa')
+              <li @if ($pages==='siakadsiswa')
                 class="active"
                 @endif >
                 <a href="{{ route('siakadsiswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
@@ -164,7 +164,7 @@ if((Auth::user()->tipeuser)=='admin'){
                 @endif >
                 <a href="{{ route('siakadguru') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
               </li>
-              <li @if ($pages==='pegawai')
+              <li @if ($pages==='siakadpegawai')
                 class="active"
                 @endif >
                 <a href="{{ route('siakadpegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Pegawai</span></a>
@@ -174,10 +174,10 @@ if((Auth::user()->tipeuser)=='admin'){
               {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
              
               <li class="menu-header">Transaksi</li>
-              {{--   <li @if ($pages==='siakadpegawai')
+              {{--   <li @if ($pages==='siakadkelas')
                 class="active"
                 @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>Wali Kelas</span></a>
+                <a href="{{ route('siakadkelas') }}" class="nav-link"><i class="fas fa-building"></i><span>Wali Kelas</span></a>
               </li>--}}
               <li @if ($pages==='siakaddataajar')
                 class="active"
