@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +104,8 @@ Route::get('kepsek/caritagihansiswa', 'App\Http\Controllers\tagihansiswaControll
 //usersiswa-menu
 Route::get('siswa/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@siswaindex')->name('siswa.tagihansiswa');
 Route::get('siswa/tagihanku/cetak', 'App\Http\Controllers\tagihansiswaController@siswacetaktagihanku')->name('siswa.cetak.tagihanku');
+
+
 
 Route::delete('admin/datatagihansiswa/multidel', 'App\Http\Controllers\tagihansiswaController@deletechecked')->name('tagihansiswa.multidel');
 
@@ -227,6 +231,16 @@ Route::get('admin/siakadeoy', 'App\Http\Controllers\proseController@siakad_eoy')
 Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy')->name('siakadsoy');
 Route::get('admin/siakadarsip', 'App\Http\Controllers\prosesController@siakad_arsip')->name('siakadarsip');
 
+Route::get('/qrtests', function()
+{
+	return QrCode::size(250)
+	->backgroundColor(255, 255, 204)
+	->generate(url('/qrtests'));
+});
+
+Route::get('admin/testing/qr', 'App\Http\Controllers\laporanController@qr')->name('testing.qr');
+
+Route::get('/barcode', [pagesController::class, 'barcode'])->name('barcode.index');
 
 Route::get('/register', 'App\Http\Controllers\adminberandaController@notfound')->name('cleartemp');
 

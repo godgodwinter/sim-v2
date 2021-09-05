@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Carbon\Carbon;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class laporanController extends Controller
 {
@@ -36,6 +37,19 @@ class laporanController extends Controller
         // dd($datapengeluaran);
 
         $pdf = PDF::loadview('admin.laporan.cetak',compact('databos','datapemasukan','datapengeluaran'))->setPaper('a4', 'potrait');
+        
+        \QrCode::size(500)
+            ->format('svg')
+            ->generate('www.google.com', public_path('assets/img/qrcode.png'));
+
         return $pdf->download('laporansekolah_'.$tgl.'-pdf');
+    }
+    public function qr(){
+
+        \QrCode::size(500)
+            ->format('svg')
+            ->generate('www.google.com', public_path('assets/img/qrcode.png'));
+
+            return view('admin.testing.qr');
     }
 }

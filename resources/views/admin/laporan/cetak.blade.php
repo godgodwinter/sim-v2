@@ -291,7 +291,7 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
 
                 <br>
               
-    <br><br><br><br><br>
+    {{-- <br><br><br><br><br> --}}
     <table width="100%" border="0">
         <tr>
             <th width="3%"></th>
@@ -319,10 +319,18 @@ Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }}
                 {{-- <img src="data:image/png;base64, {!! $qrcode !!}"> --}}
                 {{-- <hr style="width:80%; border-top:2px dotted; border-style: none none dotted;  "> --}}
                 <b>{{ $sekolahttd }}</b>
+                <br>
+                <br>
+       
+	{{-- <img src="data:image/png;base64,{{DNS2D::getBarcodePNG(url('/admin/laporan/cetak'), 'QRCODE')}}" alt="barcode" /> --}}
+	{{-- <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('50', 'DATAMATRIX')}}" alt="barcode" /> --}}
+                {!! QrCode::size(250)->generate('www.google.com'); !!} 
+  
+    {{-- {!! QrCode::size(250)->generate('www.google.com'); !!}  --}}
+       {{-- {!! DNS2D::getBarcodeHTML( url('/barcode'), 'QRCODE') !!} --}}
             </th>
             <th width="3%"></th>
     
         </tr>
-    </table>
     </body>
     </html>

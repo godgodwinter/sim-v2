@@ -35,6 +35,13 @@ class pagesController extends Controller
     ));
     }
 
+    public function barcode()
+    {
+        $pages='beranda';
+        return view('admin.testing.barcode',compact('pages'
+    ));
+    }
+
 
     public function eoy()
     {
