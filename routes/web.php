@@ -266,6 +266,10 @@ Route::post('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadm
 Route::get('admin/inputnilai/kepribadian/{kepribadian}/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@kepribadian')->name('siakad.inputnilai.kepribadian');
 Route::get('admin/inputnilai/ekstra/{ekstrakulikuler}/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@ekstra')->name('siakad.inputnilai.ekstra');
 
+
+Route::get('admin/siakadnilaikepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@nilai')->name('siakadnilaikepribadian');
+Route::get('admin/siakadnilaiekstrakulikuler', 'App\Http\Controllers\siakadadminekstrakulikulercontroller@nilai')->name('siakadnilaiekstrakulikuler');
+
 Route::get('admin/siakadlaporan', 'App\Http\Controllers\laporanController@siakad_index')->name('siakadlaporan');
 Route::get('admin/siakadeoy', 'App\Http\Controllers\proseController@siakad_eoy')->name('siakadeoy');
 Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy')->name('siakadsoy');

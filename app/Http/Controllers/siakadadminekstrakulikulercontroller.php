@@ -119,4 +119,22 @@ class siakadadminekstrakulikulercontroller extends Controller
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     
     }
+
+    public function nilai(Request $request){
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='ekstrakulikuler';
+        $jmldata='0';
+        $datas='0';
+
+        $datakelas=DB::table('kelas')->orderBy('nama','asc')
+        ->get();
+        $dataekstrakulikuler=DB::table('ekstrakulikuler')->orderBy('nama','asc')
+        ->get();
+
+        
+        return view('siakad.admin.inputnilai.ekstrakulikuler_index',compact('pages','jmldata','datakelas','dataekstrakulikuler'));
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kepribadian;
 use App\Models\pelajaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -142,4 +143,5 @@ class siakadadminpelajarancontroller extends Controller
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     
     }
+
 }

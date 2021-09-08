@@ -1,7 +1,5 @@
 
-@section('title')
-  {{ $dataajar->kelas_nama }} - {{ $dataajar->pelajaran_nama  }} - {{ $dataajar->guru_nomerinduk }} {{ $dataajar->guru_nama }}
-@endsection
+@section('title','Data Ekstra')
 @section('linkpages')
 data{{ $pages }}
 @endsection
@@ -50,9 +48,9 @@ data{{ $pages }}
 @section('headtable')
   <th width="5%" class="text-center">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
-    <th>Nama Siswa</th>
-      @foreach ($datajenisnilai as $dj)
-        <th class="text-center"> {{ $dj->nama }} </th>
+    <th>Nama Penilaian</th>
+      @foreach ($datakelas as $dk)
+        <th class="text-center"> {{ $dk->nama }} </th>
       @endforeach
   <th width="200px" class="text-center">Aksi</th>
 @endsection
@@ -93,44 +91,23 @@ data{{ $pages }}
 
   });
 </script>
-@foreach ($datasiswa as $ds)
+@foreach ($dataekstrakulikuler as $dp)
 <tr>
   <td> </td>
-  <td> {{ $ds->nis }} - {{ $ds->nama }}</td>
-  @foreach ($datajenisnilai as $dj)
+  <td> {{ $dp->nama }}</td>
+  @foreach ($datakelas as $dk)
   @php
-    $nama=$dj->nama;
+    $nama=$dk->nama;
   @endphp
     <td class="text-center">
       @php
-    $ceknilai = DB::table('nilaipelajaran')
-      ->where('siswa_nis', '=', $ds->nis)
-      ->where('kelas_nama', '=', $dataajar->kelas_nama)
-      ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
-      ->where('jenisnilai_nama', '=', $dj->nama)
-      ->count();
-
-      $ambilnilai = DB::table('nilaipelajaran')
-                            ->where('siswa_nis', '=', $ds->nis)
-                            ->where('kelas_nama', '=', $dataajar->kelas_nama)
-                          ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
-                          ->where('jenisnilai_nama', '=', $dj->nama)
-                            ->first();
+        $tombol='';
+        $guru='Belum diisi';
+        $warna='warning';
       @endphp
-      @if($ceknilai>0)
-          @php
-          $nilai=$ambilnilai->nilai;
-            $warna='light';
-          @endphp
-      @else 
-        @php
-        $nilai='Belum diisi';
-          $warna='warning';
-        @endphp
-      @endif
-
-      <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $ds->id }}_{{ $dj->id }}"> {{ $nilai }} </button>
-       
+   
+        <br>
+        <a href="{{ url('/admin/inputnilai/ekstrakulikuler') }}/{{ $dp->id }}/{{ $dk->id }}" type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Ekstrakulikuler"><i class="fas fa-dungeon"></i></a>
     </td>
   @endforeach
 </tr>
@@ -150,7 +127,7 @@ data{{ $pages }}
 {{-- DATATABLE-END --}}
 @section('container')
 
-{{-- {{ dd($datasiswa) }} --}}
+
   <div class="section-body">
     <div class="row mt-sm-4">
 
@@ -161,7 +138,6 @@ data{{ $pages }}
     </div>
   </div>
 @endsection
-
 
 @section('container-modals')
 
@@ -192,53 +168,32 @@ data{{ $pages }}
                 </div>
               </div>
 
-              @foreach ($datasiswa as $ds)
-                @foreach ($datajenisnilai as $dj)
+              @foreach ($dataekstrakulikuler as $dp)
+                @foreach ($datakelas as $dk)
 
-                  <div class="modal fade" id="pilihguru{{ $ds->id }}_{{ $dj->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    @php
+                    $tombol='';
+                  @endphp
+                
+                  <div class="modal fade" id="pilihguru{{ $dp->id }}_{{ $dk->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                      <form method="post" action="/admin/inputnilai/mapel/{{ $dataajar->id }}" enctype="multipart/form-data">
+                      <form method="post" action="/admin/{{ $pages }}" enctype="multipart/form-data">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Input nilai</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Pilih Guru Pengampu</h5>
                           </div>
                           <div class="modal-body">
                
                             {{ csrf_field() }}
                
-                            {{-- <label>Pilih</label> --}}
+                            <label>Pilih</label>
                             <div class="form-group">
-                              <input type="hidden" name="siswa_nama" value="{{ $ds->nama }}">
-                              <input type="hidden" name="siswa_nis" value="{{ $ds->nis }}">
-                              <input type="hidden" name="jenisnilai_nama" value="{{ $dj->nama }}">
-                            
-                          @php
-                          $ceknilai = DB::table('nilaipelajaran')
-                            ->where('siswa_nis', '=', $ds->nis)
-                            ->where('kelas_nama', '=', $dataajar->kelas_nama)
-                          ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
-                          ->where('jenisnilai_nama', '=', $dj->nama)
-                            ->count();
-
-                          $ambilnilai = DB::table('nilaipelajaran')
-                            ->where('siswa_nis', '=', $ds->nis)
-                            ->where('kelas_nama', '=', $dataajar->kelas_nama)
-                            ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
-                            ->where('jenisnilai_nama', '=', $dj->nama)
-                            ->first();
-                            @endphp
-                            @if($ceknilai>0)
-                                @php
-                              $nilai=$ambilnilai->nilai;
-                                @endphp
-                            @else
-                            @php
-                            $nilai=75;
-                            @endphp
-                            @endif
-                              <input type="number" name="nilai" min="1" max="100" id="nilai" class="form-control @error('kkm') is-invalid @enderror"value="{{ $nilai }}" required autofocus>
-                              @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
-                              @enderror
+                              <input type="hidden" name="pelajaran_nama" value="{{ $dp->nama }}">
+                              {{-- <input type="hidden" name="pelajaran_kelas_nama" value="{{ $dp->kelas_nama }}"> --}}
+                              <input type="hidden" name="kelas_nama" value="{{ $dk->nama }}">
+                              <select class="form-control form-control-lg" required name="guru_nomerinduk">  
+                               
+                              </select>
                             </div>
                
                           </div>
@@ -251,6 +206,7 @@ data{{ $pages }}
                     </div>
                   </div>
 
+                  
                 @endforeach
                 
               @endforeach

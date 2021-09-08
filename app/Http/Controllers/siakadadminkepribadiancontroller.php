@@ -119,4 +119,30 @@ class siakadadminkepribadiancontroller extends Controller
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
     
     }
+    public function nilai(Request $request){
+        // dd($kelas);
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='kepribadian';
+        $jmldata='0';
+        $datas='0';
+
+        // $kepribadian=$kepribadian;
+
+        // $jurusan=DB::table('kategori')->where('prefix','jurusan')->orderBy('prefix','asc')->get();
+        // $datakepribadian=DB::table('kepribadian')->orderBy('nama','asc')->get();
+        $datasiswa=DB::table('siswa')->orderBy('nama','asc')->get();
+
+        $datakelas=DB::table('kelas')->orderBy('nama','asc')
+        ->get();
+        $datakepribadian=DB::table('kepribadian')->orderBy('nama','asc')
+        ->get();
+        // $dataguru=DB::table('guru')->orderBy('nama','asc')
+        // ->get();
+
+        
+        return view('siakad.admin.inputnilai.kepribadian_index',compact('pages','jmldata','datakelas','datasiswa','datakepribadian'));
+    }
 }
