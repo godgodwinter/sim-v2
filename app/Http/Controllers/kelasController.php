@@ -80,6 +80,7 @@ class kelasController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'nama'=>'required|unique:kelas,nama'
 
@@ -90,10 +91,14 @@ class kelasController extends Controller
         ]);
             // dd($request);
         $guru_nama='';
-        $ambilnama=DB::table('guru')->where('nomerinduk',$request->guru_nomerinduk)
-        ->first();
-        if($ambilnama->nama!==null){
-            $guru_nama=$ambilnama->nama;
+        $cekambilnama=DB::table('guru')->where('nomerinduk',$request->guru_nomerinduk)
+        ->count();
+        if($cekambilnama>0){
+            $ambilnama=DB::table('guru')->where('nomerinduk',$request->guru_nomerinduk)
+            ->first();
+            if($ambilnama->nama!==null){
+                $guru_nama=$ambilnama->nama;
+            }
         }
         
         // dd($request->guru_nomerinduk);
