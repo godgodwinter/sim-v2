@@ -150,25 +150,7 @@ if((Auth::user()->tipeuser)=='admin'){
          
               {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
              
-              <li class="nav-item dropdown ">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pembiayaan</span></a>
-                <ul class="dropdown-menu">
-                
-              <li @if ($pages==='tagihanatur')
-                    class="active"
-                    @endif >
-                    <a href="{{ route('tagihanatur') }}" class="nav-link"><i class="fas fa-fire"></i><span>Tagihan Atur</span></a>
-                  </li>
-
-                  <li @if ($pages==='tagihansiswa')
-                    class="active"
-                    @endif >
-                    <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Siswa</span></a>
-                  </li> 
-                </ul>
-              </li>
-
-             {{--  <li class="menu-header">Transaksi</li>
+              <li class="menu-header">Transaksi</li>
 
               <li @if ($pages==='pemasukan')
                 class="active"
@@ -192,7 +174,7 @@ if((Auth::user()->tipeuser)=='admin'){
                 class="active"
                 @endif >
                 <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Siswa</span></a>
-              </li> --}}
+              </li>
 
               <li class="menu-header">Reporting</li>
               <li @if ($pages==='laporan')

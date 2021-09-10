@@ -262,9 +262,13 @@ Route::delete('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Control
 // SIAKAD-MENU-siakadinputnilai
 Route::get('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel')->name('siakad.inputnilai.mapel');
 Route::post('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel_store')->name('siakad.inputnilai.mapel.store');
+Route::get('admin/inputnilai/kelas/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@inputnilai')->name('siakad.inputnilai.kelas');
+Route::post('admin/inputnilai/kelas/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@inputnilai_store')->name('siakad.inputnilai.kelas.store');
 
 Route::get('admin/inputnilai/kepribadian/{kepribadian}/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@kepribadian')->name('siakad.inputnilai.kepribadian');
 Route::get('admin/inputnilai/ekstra/{ekstrakulikuler}/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@ekstra')->name('siakad.inputnilai.ekstra');
+Route::post('admin/inputnilai/ekstra/{ekstrakulikuler}/{kelas}/{siswa}', 'App\Http\Controllers\siakadadmininputnilaicontroller@ekstra_store')->name('siakad.inputnilai.ekstra.store');
+Route::post('admin/inputnilai/kepribadian/{kepribadian}/{kelas}/{siswa}', 'App\Http\Controllers\siakadadmininputnilaicontroller@kepribadian_store')->name('siakad.inputnilai.kepribadian.store');
 
 
 Route::get('admin/siakadnilaikepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@nilai')->name('siakadnilaikepribadian');

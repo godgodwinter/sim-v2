@@ -96,7 +96,7 @@ data{{ $pages }}
     <td>{{ $data->guru_nomerinduk }} - {{ $data->guru_nama }}</td>
 
     <td class="text-center">
-      <a class="btn btn-icon btn-secondary btn-sm "  data-toggle="tooltip" data-placement="top" title="Lihat selengkapnya!"> <i class="fas fa-angle-double-right"></i> </a>
+      <a class="btn btn-icon btn-secondary btn-sm " href="{{ url('/admin/inputnilai/kelas') }}/{{ $data->id }}"  data-toggle="tooltip" data-placement="top" title="Lihat selengkapnya!"> <i class="fas fa-angle-double-right"></i> </a>
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
         <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
     </td>
