@@ -94,7 +94,11 @@ data{{ $pages }}
 @foreach ($datapelajaran as $dp)
 <tr>
   <td> </td>
-  <td>Mapel {{ $dp->tipepelajaran }} - {{ $dp->nama }}</td>
+  <td> {{ $dp->nama }} 
+  @if($dp->jurusan!=='semua')
+  - {{ $dp->jurusan }}
+  @endif
+  </td>
   @foreach ($datakelas as $dk)
   @php
     $nama=$dk->nama;
