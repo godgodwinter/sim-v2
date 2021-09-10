@@ -1,6 +1,6 @@
 @extends('layouts.layoutadmin1')
 
-@section('title','Pegawai')
+@section('title','User')
 @section('halaman','pegawai')
 
 @section('csshere')

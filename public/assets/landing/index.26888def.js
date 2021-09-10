@@ -56,14 +56,8 @@ i.data("mainState", (() => ({
     }
 })), i.data("navbarLinksState", (() => ({
     navigationLinks: [{
-        label: "PEMBAYARAN",
+        label: "ADMIN",
         link: "/dashboard"
-    }, {
-        label: "SIAKAD (on Progress)",
-        link: "/siakad/admin/beranda"
-    }, {
-        label: "PPDB !",
-        link: "#"
     }, {
         label: "GURU !",
         link: "#"

@@ -1,4 +1,4 @@
-@extends('layouts.layoutadmin-siakad')
+@extends('layouts.layoutadminv3')
 @extends('siakad.admin.inputnilai.mapel')
 
 

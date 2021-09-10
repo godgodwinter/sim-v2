@@ -1,2 +1,2 @@
-@extends('layouts.layoutadmin1')
+@extends('layouts.layoutadminv3')
 @extends('admin.pegawai.pegawai_edit')
