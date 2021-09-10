@@ -279,6 +279,8 @@ Route::get('admin/siakadeoy', 'App\Http\Controllers\proseController@siakad_eoy')
 Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy')->name('siakadsoy');
 Route::get('admin/siakadarsip', 'App\Http\Controllers\prosesController@siakad_arsip')->name('siakadarsip');
 
+
+
 Route::get('/qrtests', function()
 {
 	return QrCode::size(250)
@@ -292,7 +294,6 @@ Route::get('/barcode', [pagesController::class, 'barcode'])->name('barcode.index
 
 Route::get('/register', 'App\Http\Controllers\adminberandaController@notfound')->name('cleartemp');
 
-Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');
 // Route::post('/checkemail',['uses'=>'PagesController@checkEmail']);
 // Route::post('/checkemail', 'App\Http\Controllers\PagesController@checkEmail')->name('checkEmail');
 // Route::get('/home', function () {
@@ -301,6 +302,12 @@ Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');
 
 });
 
+// SIAKAD-MENU-raport
+Route::get('raport', 'App\Http\Controllers\raportcontroller@index')->name('raport');
+Route::get('raport/{nis}', 'App\Http\Controllers\raportcontroller@show')->name('raport.show');
+Route::get('raport/{nis}/cetak', 'App\Http\Controllers\raportcontroller@cetak')->name('raport.cetak');
+
+Route::get('/404', 'App\Http\Controllers\adminberandaController@notfound');
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');

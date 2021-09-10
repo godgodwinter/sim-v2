@@ -62,6 +62,29 @@ class siakadadmininputnilaicontroller extends Controller
         
         return view('siakad.admin.inputnilai.kepribadian_index_input',compact('pages','jmldata','kelas','datasiswa','datakepribadian','dataekstrakulikuler'));
     }
+    public function lihatraport(siswa $siswa){
+        // dd($kelas);
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='dataajar';
+        $jmldata='0';
+        $datas='0';
+
+        $kelas=$kelas;
+
+        // $jurusan=DB::table('kategori')->where('prefix','jurusan')->orderBy('prefix','asc')->get();
+        $datakepribadian=DB::table('kepribadian')->orderBy('nama','asc')->get();
+        $dataekstrakulikuler=DB::table('ekstrakulikuler')->orderBy('nama','asc')->get();
+        // $datajenisnilai=DB::table('jenisnilai')->orderBy('kode','asc')->get();
+        $datasiswa=DB::table('siswa')->where('kelas_nama',$kelas->nama)->orderBy('nama','asc')->get();
+
+
+        $jmldata = DB::table('pelajaran')->count();
+        
+        return view('siakad.admin.inputnilai.kepribadian_index_input',compact('pages','jmldata','kelas','datasiswa','datakepribadian','dataekstrakulikuler'));
+    }
 
     public function mapel_store(dataajar $dataajar,Request $request){
         // dd($dataajar);

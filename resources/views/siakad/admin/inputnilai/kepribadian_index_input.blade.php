@@ -1,4 +1,4 @@
 @extends('layouts.layoutadmin-siakad')
-@extends('siakad.admin.inputnilai.inputkepribadian')
+@extends('siakad.admin.inputnilai.inputkepribadiandanekstra')
 
 

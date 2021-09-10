@@ -12,20 +12,39 @@ class Fungsi {
     public static function periksajurusan($datas) {
             $strex=explode(" ",$datas);
             // dd($strex);
+        if(isset($strex[1])){
             if($strex[1]=='OTO'){
-                $hasil='Otomotif';
+                $hasil='Teknik Otomotif';
             }elseif($strex[1]=='TKJ'){
                 $hasil='Teknik Komputer dan Jaringan';
             }else{
                 $hasil='Umum';
             }
+        }
         
         return (isset($hasil) ? $hasil : '');
     }
 
+    public static function periksajurusankompetensi($datas) {
+        $strex=explode(" ",$datas);
+        // dd($strex);
+    if(isset($strex[1])){
+        if($strex[1]=='OTO'){
+            $hasil='Teknik dan Bisnis Sepeda Motor';
+        }elseif($strex[1]=='TKJ'){
+            $hasil='Teknik Komputer dan Jaringan';
+        }else{
+            $hasil='Umum';
+        }
+    }
+    
+    return (isset($hasil) ? $hasil : '');
+}
     public static function periksajurusankode($datas) {
         $strex=explode(" ",$datas);
         // dd($strex);
+        $hasil='null';
+        if(isset($strex[1])){
         if($strex[1]=='OTO'){
             $hasil=$strex[1];
         }elseif($strex[1]=='TKJ'){
@@ -33,6 +52,31 @@ class Fungsi {
         }else{
             $hasil='Umum';
         }
+    }
+    
+    return (isset($hasil) ? $hasil : '');
+    }
+
+    public static function periksajurusantingkat($datas) {
+        $strex=explode(" ",$datas);
+        // dd($strex);
+        $hasil='null';
+        if(isset($strex[0])){
+            $hasil=$strex[0];
+    }
+    
+    
+    return (isset($hasil) ? $hasil : '');
+    }
+    
+    public static function tahunaktif($datas) {
+        $strex=explode("/",$datas);
+        // dd($strex);
+        $hasil='null';
+        if(isset($strex[0])){
+            $hasil=$strex[0];
+    }
+    
     
     return (isset($hasil) ? $hasil : '');
     }
