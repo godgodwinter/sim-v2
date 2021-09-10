@@ -13,8 +13,8 @@ class adminseederController extends Controller
 {
     public function siswa(){
 
-        $jmldata=10;
-        $limitdata=100;
+        $jmldata=20;
+        $limitdata=200;
         // dd('seeder siswa');
         // 1. cek jika siswa diatas 100 maka kembali
         $ambiljmlsiswa=DB::table('siswa')->where('tapel_nama',$this->tapelaktif())

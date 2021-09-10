@@ -71,6 +71,9 @@ class settingsController extends Controller
             $tapelaktif=$this->tapelaktif();
             $tapel=tapel::all();
 
+            $semester = DB::table('kategori')
+            ->where('prefix', '=', 'semester')
+            ->get();
 
         return view('admin.settings',compact('pages'
         ,'pemasukan'
@@ -97,6 +100,7 @@ class settingsController extends Controller
         ,'sekolahttd'
         ,'sekolahttd2'
         ,'minimalpembayaranujian'
+        ,'semester'
     ));
     }
 }

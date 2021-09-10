@@ -222,6 +222,7 @@ class oneseeder extends Seeder
             'sekolahttd' => 'Nama Kepala Sekolah M.Pd',
             'sekolahttd2' => 'Nama Kepala Sekolah M.Pd', //masih konsep
             'minimalpembayaranujian' => 70, //untuk melihat pass dan user moodle
+            'semesteraktif' => 1, //semesteraktif
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -286,6 +287,24 @@ class oneseeder extends Seeder
          'updated_at' => Carbon::now()
       ]);
 
+         //kategori semester
+         DB::table('kategori')->insert([
+            'nama' => '1',
+            'kode' => 'SATU',
+            'prefix' => 'semester',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         //kategori semester
+         DB::table('kategori')->insert([
+            'nama' => '2',
+            'kode' => 'DUA',
+            'prefix' => 'semester',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
       DB::table('kategori')->insert([
          'nama' => 'Teknik Jaringan dan Komputer',
          'kode' => 'TKJ',
@@ -296,24 +315,32 @@ class oneseeder extends Seeder
 
          //kategori tipepelajaran
          DB::table('kategori')->insert([
-            'nama' => 'Umum',
-            'kode' => 'umum',
+            'nama' => 'A. Nilai Akademik',
+            'kode' => 'A',
             'prefix' => 'tipepelajaran',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('kategori')->insert([
-            'nama' => 'Jurusan',
-            'kode' => 'jurusan',
+            'nama' => 'B. Muatan kewilayahan',
+            'kode' => 'B',
             'prefix' => 'tipepelajaran',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
          DB::table('kategori')->insert([
-            'nama' => 'Mulok',
-            'kode' => 'mulok',
+            'nama' => 'C1. Dasar Bidang Keahlian',
+            'kode' => 'C1',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('kategori')->insert([
+            'nama' => 'C2. Dasar Program Keahlian',
+            'kode' => 'C2',
             'prefix' => 'tipepelajaran',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

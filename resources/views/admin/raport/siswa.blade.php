@@ -51,7 +51,7 @@
           <div class="col-lg-12">
             <div class="invoice-title">
               <h2>Laporan Penilaian Hasil Belajar</h2>
-              <div class="invoice-number">Semester 1 Tahun Pelajaran {{ Fungsi::tapelaktif() }}</div>
+              <div class="invoice-number">Semester 1 Tahun Pelajaran {{ getsettings::tapelaktif() }}</div>
             </div>
             <hr>
             <div class="row">
@@ -76,9 +76,9 @@
                   <strong>Semester</strong><br>
               </div>
               <div class="col-md-3 text-md-left">
-                  <strong>: {{ Fungsi::tapelaktif() }}</strong><br>
-                  <strong>: {{ Fungsi::periksajurusantingkat($siswa->kelas_nama) }} / {{ Fungsi::tahunaktif(Fungsi::tapelaktif()) }} </strong><br>
-                  <strong>: 1 (Satu)</strong><br>
+                  <strong>: {{ getsettings::tapelaktif() }}</strong><br>
+                  <strong>: {{ Fungsi::periksajurusantingkat($siswa->kelas_nama) }} / {{ Fungsi::tahunaktif(getsettings::tapelaktif()) }} </strong><br>
+                  <strong>: {{ getsettings::semesteraktif() }} ({{ Fungsi::periksasemester(getsettings::semesteraktif()) }})</strong><br>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@
                     <th class="text-center">Nilai</th>
                     <th class="text-center">Predikat</th>
                   </tr>
-                  @foreach ($mapelumum as $mapel)
+                  @foreach ($mapela  as $mapel)
                       
                 <tr>
                   <td class="text-center">{{ (($loop->index)+1) }}</td>
@@ -139,7 +139,7 @@
                     <th class="text-center">Nilai</th>
                     <th class="text-center">Predikat</th>
                   </tr>
-                  @foreach ($mapelmulok as $mapel)
+                  @foreach ($mapelb as $mapel)
                       
                 <tr>
                   <td class="text-center">{{ (($loop->index)+1) }}</td>
@@ -174,7 +174,7 @@
                     <th class="text-center">Nilai</th>
                     <th class="text-center">Predikat</th>
                   </tr>
-                  @foreach ($mapelumum as $mapel)
+                  @foreach ($mapelc1 as $mapel)
                       
                 <tr>
                   <td class="text-center">{{ (($loop->index)+1) }}</td>
@@ -208,7 +208,7 @@
                     <th class="text-center">Nilai</th>
                     <th class="text-center">Predikat</th>
                   </tr>
-                  @foreach ($mapelumum as $mapel)
+                  @foreach ($mapelc2  as  $mapel)
                       
                 <tr>
                   <td class="text-center">{{ (($loop->index)+1) }}</td>

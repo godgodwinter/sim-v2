@@ -26,11 +26,13 @@ class raportcontroller extends Controller
         $jmldata = DB::table('siswa')->count();
         $datausers = DB::table('users')->where('nomerinduk',$nis)->first();
         $siswa = DB::table('siswa')->where('nis',$nis)->first();
-        $mapelumum = DB::table('pelajaran')->where('tipepelajaran','Umum')->get();
-        $mapelmulok = DB::table('pelajaran')->where('tipepelajaran','Mulok')->get();
+        $mapela = DB::table('pelajaran')->where('tipepelajaran','A. Nilai Akademik')->get();
+        $mapelb = DB::table('pelajaran')->where('tipepelajaran','B. Muatan kewilayahan')->get();
+        $mapelc1 = DB::table('pelajaran')->where('tipepelajaran','C1. Dasar Bidang Keahlian')->get();
+        $mapelc2 = DB::table('pelajaran')->where('tipepelajaran','C2. Dasar Program Keahlian')->get();
 
-        // dd($siswa);
+        // dd($mapelc1);
 
-        return view('admin.raport.index',compact('pages','jmldata','datas','tapel','kelas','siswa','datausers','mapelumum','mapelmulok'));
+        return view('admin.raport.index',compact('pages','jmldata','datas','tapel','kelas','siswa','datausers','mapela','mapelb','mapelc1','mapelc2'));
     }
 }

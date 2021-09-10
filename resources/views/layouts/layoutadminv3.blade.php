@@ -141,6 +141,12 @@ if((Auth::user()->tipeuser)=='admin'){
                 @endif >
                 <a href="{{ route('siswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
               </li>
+
+              <li @if ($pages==='siakadguru')
+                class="active"
+                @endif >
+                <a href="{{ route('siakadguru') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
+              </li>
               <li @if ($pages==='pegawai')
                 class="active"
                 @endif >
@@ -194,6 +200,18 @@ if((Auth::user()->tipeuser)=='admin'){
                 class="active"
                 @endif >
                 <a href="{{ route('siakadpelajaran') }}" class="nav-link"><i class="fas fa-building"></i><span>Mata Pelajaran</span></a>
+              </li>
+
+              <li @if ($pages==='siakadkepribadian')
+                class="active"
+                @endif >
+                <a href="{{ route('siakadkepribadian') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
+              </li>
+
+              <li @if ($pages==='siakadekstrakulikuler')
+                class="active"
+                @endif >
+                <a href="{{ route('siakadekstrakulikuler') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
               </li>
 
                <li class="nav-item dropdown ">

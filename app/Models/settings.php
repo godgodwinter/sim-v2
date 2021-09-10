@@ -27,5 +27,6 @@ class settings extends Model
         'sekolahttd',
         'sekolahttd2',
         'minimalpembayaranujian',
+        'semesterakatif',
     ];
 }

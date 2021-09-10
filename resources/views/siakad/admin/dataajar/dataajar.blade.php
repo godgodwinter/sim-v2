@@ -105,7 +105,7 @@ data{{ $pages }}
         $guru='Belum diisi';
         $warna='warning';
       @endphp
-      @if($dp->tipepelajaran!='Jurusan')
+      @if($dp->tipepelajaran!='C2. Dasar Program Keahlian')
           @php
             $tombol=$dp->tipepelajaran;
           @endphp
@@ -219,7 +219,7 @@ data{{ $pages }}
                     @php
                     $tombol='';
                   @endphp
-                  @if($dp->tipepelajaran!='Jurusan')
+                  @if($dp->tipepelajaran!='C2. Dasar Program Keahlian')
                       @php
                         $tombol=$dp->tipepelajaran;
                       @endphp

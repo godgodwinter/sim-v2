@@ -9,6 +9,23 @@ class Fungsi {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+
+    public static function periksasemester($datas) {
+        $strex=explode(" ",$datas);
+        // dd($strex);
+    if(isset($datas)){
+            $hasil='null';
+        $cekambilkode = DB::table('kategori')->where('nama',$datas)->where('prefix','semester')->count();
+        if($cekambilkode>0){
+        $ambilkode = DB::table('kategori')->where('nama',$datas)->where('prefix','semester')->first();
+        $hasil=$ambilkode->kode;
+        }
+        return $hasil;
+    }
+    
+    return (isset($hasil) ? $hasil : '');
+}
+
     public static function periksajurusan($datas) {
             $strex=explode(" ",$datas);
             // dd($strex);

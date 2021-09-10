@@ -229,6 +229,23 @@ $ambilkepsek = DB::table('users')
               @enderror
             </div>
 
+            @php
+              $semesteraktif=getsettings::semesteraktif();
+            @endphp
+            <div class="form-group col-md-5 col-5  mt-3 ml-5">
+              <label>Semester Aktif<code>*)</code></label>
+              <select class="form-control form-control-lg @error('semesteraktif') is-invalid @enderror" required name="semesteraktif">  
+                    @if ($semesteraktif)
+                    <option value="{{$semesteraktif}}">{{$semesteraktif}} ({{ Fungsi::periksasemester($semesteraktif) }})</option>                        
+                    @endif
+                @foreach ($semester as $t)
+                    <option value="{{ $t->nama }}">{{ $t->nama }} ({{ $t->kode }})</option>
+                @endforeach
+              </select>
+              @error('semesteraktif')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+            </div>
+
 
             @if ($nominaltagihandefault)
             @php                    

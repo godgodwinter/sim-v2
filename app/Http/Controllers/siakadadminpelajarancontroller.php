@@ -52,7 +52,7 @@ class siakadadminpelajarancontroller extends Controller
         // dd($request->guru_nomerinduk);
         // dd($ambilnama->nama);
         //inser guru
-        if($request->tipepelajaran!='Jurusan'){
+        if($request->tipepelajaran!='C2. Dasar Program Keahlian'){
             $jurusan='semua';
         }else{
             $jurusan=$request->jurusan;
@@ -116,7 +116,7 @@ class siakadadminpelajarancontroller extends Controller
 
 
          //aksi update
-        if($request->tipepelajaran!='Jurusan'){
+        if($request->tipepelajaran!='C2. Dasar Program Keahlian'){
             $jurusan='semua';
         }else{
             $jurusan=$request->jurusan;
