@@ -50,35 +50,25 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="invoice-title">
-              <h2>Laporan Penilaian Hasil Belajar</h2>
-              <div class="invoice-number">Semester 1 Tahun Pelajaran {{ getsettings::tapelaktif() }}</div>
+              <h2>Semester 1 Tahun Pelajaran {{ getsettings::tapelaktif() }}</h2>
+              {{-- <h2>Laporan Penilaian Hasil Belajar</h2> --}}
+              {{-- <div class="invoice-number">Semester 1 Tahun Pelajaran {{ getsettings::tapelaktif() }}</div> --}}
             </div>
             <hr>
             <div class="row">
-              <div class="col-md-3">
-                  <strong>Nama Peserta Didik</strong><br>
-                  <strong>Nomer Induk</strong><br>
-                  <strong>Program Keahlian</strong><br>
-                  <strong>Kompetensi Keahlian</strong><br>
+              <div class="col-md-6">
+                  <strong>Nama Peserta Didik</strong>  <strong>: {{ $siswa->nama }}</strong><br>
+                  <strong>Nomer Induk</strong> <strong>: {{ $siswa->nis }}</strong><br>
+                  <strong>Program Keahlian</strong><strong>: {{ Fungsi::periksajurusan($siswa->kelas_nama) }}</strong><br>
+                  <strong>Kompetensi Keahlian</strong>  <strong>: {{ Fungsi::periksajurusankompetensi($siswa->kelas_nama) }}</strong><br>
 
               </div>
-              {{-- <div class="col-md-3 text-md-right"> --}}
-              <div class="col-md-3 text-md-left">
-                  <strong>: {{ $siswa->nama }}</strong><br>
-                  <strong>: {{ $siswa->nis }}</strong><br>
-                  <strong>: {{ Fungsi::periksajurusan($siswa->kelas_nama) }}</strong><br>
-                  <strong>: {{ Fungsi::periksajurusankompetensi($siswa->kelas_nama) }}</strong><br>
-              </div>
+            
            
-              <div class="col-md-3">
-                  <strong>Tahun Pelajaran</strong><br>
-                  <strong>Tingkat / Tahun</strong><br>
-                  <strong>Semester</strong><br>
-              </div>
-              <div class="col-md-3 text-md-left">
-                  <strong>: {{ getsettings::tapelaktif() }}</strong><br>
-                  <strong>: {{ Fungsi::periksajurusantingkat($siswa->kelas_nama) }} / {{ Fungsi::tahunaktif(getsettings::tapelaktif()) }} </strong><br>
-                  <strong>: {{ getsettings::semesteraktif() }} ({{ Fungsi::periksasemester(getsettings::semesteraktif()) }})</strong><br>
+              <div class="col-md-6">
+                  <strong>Tahun Pelajaran</strong><strong>: {{ getsettings::tapelaktif() }}</strong><br>
+                  <strong>Tingkat / Tahun</strong><strong>: {{ Fungsi::periksajurusantingkat($siswa->kelas_nama) }} / {{ Fungsi::tahunaktif(getsettings::tapelaktif()) }} </strong><br>
+                  <strong>Semester</strong><strong>: {{ getsettings::semesteraktif() }} ({{ Fungsi::periksasemester(getsettings::semesteraktif()) }})</strong><br>
               </div>
             </div>
           </div>
