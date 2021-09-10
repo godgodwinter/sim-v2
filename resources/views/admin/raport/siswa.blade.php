@@ -209,7 +209,12 @@
                     <th class="text-center">Predikat</th>
                   </tr>
                   @foreach ($mapelc2  as  $mapel)
-                      
+                   @php
+                     $kodekelas=Fungsi::periksajurusankode($siswa->kelas_nama);
+                    //  dd($kodekelas);
+                   @endphp   
+                   @if($mapel->jurusan===$kodekelas)
+                     
                 <tr>
                   <td class="text-center">{{ (($loop->index)+1) }}</td>
                   <td>{{ $mapel->nama }}</td>
@@ -219,6 +224,8 @@
                   <td class="text-center">80</td>
                   <td class="text-center">B+</td>
                 </tr>
+
+                @endif
                 @endforeach
                 <tr>
                     <td colspan="3" class="text-center"> <strong>JUMLAH</strong> </td>
