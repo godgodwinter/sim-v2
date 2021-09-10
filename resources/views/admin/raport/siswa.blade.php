@@ -243,17 +243,25 @@
 
             <div class="row mt-4">
               <div class="col-lg-8">
-                <div class="section-title">Payment Method</div>
-                <p class="section-lead">The payment method that we provide is to make it easier for you to pay invoices.</p>
+                {{-- <div class="section-title">Payment Method</div> --}}
+
+                {{-- <p class="section-lead">The payment method that we provide is to make it easier for you to pay invoices.</p> --}}
                 <div class="d-flex">
-                  <div class="mr-2 bg-visa" data-width="61" data-height="38"></div>
+        {{-- <div class="mr-2 bg-visa" data-width="61" data-height="38"></div>
                   <div class="mr-2 bg-jcb" data-width="61" data-height="38"></div>
                   <div class="mr-2 bg-mastercard" data-width="61" data-height="38"></div>
-                  <div class="bg-paypal" data-width="61" data-height="38"></div>
+                  <div class="bg-paypal" data-width="61" data-height="38"></div> --}}
                 </div>
               </div>
               <div class="col-lg-4 text-right">
-                <div class="invoice-detail-item">
+                {!! QrCode::size(250)->generate( url('/raport/'.$siswa->nis) ); !!} 
+
+       {{-- <div>{!! DNS1D::getBarcodeHTML('4445645656', 'C39') !!}</div></br>
+       <div>{!! DNS1D::getBarcodeHTML('4445645656', 'POSTNET') !!}</div></br>
+       <div>{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA') !!}</div></br>
+       <div>{!! DNS2D::getBarcodeHTML('4445645656', 'QRCODE') !!}</div></br>
+       <div>{!! DNS2D::getBarcodeHTML( url('/barcode'), 'QRCODE') !!}</div></br> --}}
+                {{-- <div class="invoice-detail-item">
                   <div class="invoice-detail-name">Subtotal</div>
                   <div class="invoice-detail-value">$670.99</div>
                 </div>
@@ -265,7 +273,7 @@
                 <div class="invoice-detail-item">
                   <div class="invoice-detail-name">Total</div>
                   <div class="invoice-detail-value invoice-detail-value-lg">$685.99</div>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>
@@ -274,8 +282,8 @@
       <hr>
       <div class="text-md-right">
         <div class="float-lg-left mb-lg-0 mb-3">
-          <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process Payment</button>
-          <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
+          {{-- <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process Payment</button>
+          <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button> --}}
         </div>
         <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
       </div>
