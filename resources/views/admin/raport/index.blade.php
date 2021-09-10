@@ -1,2 +1,2 @@
-@extends('layouts.layoutadminv3')
+@extends('layouts.layoutguest1')
 @extends('admin.raport.siswa')

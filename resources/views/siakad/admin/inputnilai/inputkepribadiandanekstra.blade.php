@@ -173,7 +173,7 @@ data{{ $pages }}
     </td>
   @endforeach
   <td class="text-center">
-     <a href="{{ url('/raport') }}/{{ $ds->nis }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Lihat raport siswa"><i class="fas fa-print"></i></a>
+     <a href="{{ url('/raport') }}/{{ $ds->nis }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Lihat raport siswa" target="_blank"><i class="fas fa-print"></i></a>
       
   </td>
 </tr>
