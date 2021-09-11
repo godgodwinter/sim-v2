@@ -44,6 +44,7 @@ class siakadadmindataajarcontroller extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'pelajaran_nama'=>'required',
             'pelajaran_tipepelajaran'=>'required',

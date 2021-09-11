@@ -198,6 +198,8 @@ Route::put('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller
 Route::delete('admin/siakadguru/{guru}', 'App\Http\Controllers\siakadgurucontroller@destroy')->name('siakadguru.delete');
 Route::post('admin/siakadguru/{guru}/reset', 'App\Http\Controllers\siakadgurucontroller@resetpass')->name('siakadguru.resetpass');
 
+Route::get('/select2/guru', 'App\Http\Controllers\siakadgurucontroller@dataAjax');
+
 // SIAKAD-MENU-SIAKADsiswa
 Route::get('admin/siakadsiswa', 'App\Http\Controllers\siswaController@siakad_index')->name('siakadsiswa');
 Route::post('admin/siakadsiswa', 'App\Http\Controllers\siswaController@store')->name('siakadsiswa.store');

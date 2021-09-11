@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\URL;
 
 class siakadgurucontroller extends Controller
 {
+
+    public function dataAjax(Request $request)
+    {
+    	$data = [];
+        $data=DB::table('guru')
+        ->get();
+        if($request->has('q')){
+            $search = $request->q;
+            $data =guru::select("id","nama")
+            		->where('nama','LIKE',"%$search%")
+            		->get();
+        }
+        return response()->json($data);
+    }
+
     public function siakad_index(Request $request)
     {
         if($this->checkauth('admin')==='404'){

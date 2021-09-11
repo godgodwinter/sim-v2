@@ -204,14 +204,6 @@ class adminseederController extends Controller
                 'updated_at' => Carbon::now()
             ]);
 
-            DB::table('pelajaran')->insert([
-                'nama' => 'Kimia',
-                'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
-                'jurusan' => 'semua',
-                'kkm' => '75',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
 
             DB::table('pelajaran')->insert([
                 'nama' => 'Simulasi dan Komunikasi Digital',
@@ -224,6 +216,15 @@ class adminseederController extends Controller
 
             DB::table('pelajaran')->insert([
                 'nama' => 'Fisika',
+                'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            
+            DB::table('pelajaran')->insert([
+                'nama' => 'Kimia',
                 'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
                 'jurusan' => 'semua',
                 'kkm' => '75',

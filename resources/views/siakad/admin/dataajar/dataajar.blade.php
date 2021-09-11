@@ -5,7 +5,19 @@ data{{ $pages }}
 @endsection
 @section('halaman','siakaddataajar')
 
-@section('csshere')
+@section('csshere') 
+ <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<style>
+  .container {
+      max-width: 500px;
+  }
+  h2 {
+      color: white;
+  }
+</style>
 @endsection
 
 @section('jshere')
@@ -247,15 +259,47 @@ data{{ $pages }}
                           <div class="modal-body">
                
                             {{ csrf_field() }}
-               
-                            <label>Pilih</label>
-                            <div class="form-group">
+                              <div class="form-group">
+                                <label>Pilih :</label>
+                                <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible multiple="multiple"  name="guru_nomerinduk">
+                                  @php
+                                  $cekdatagurupengampu = DB::table('dataajar')
+                                    ->where('kelas_nama', '=', $dk->nama)
+                                    ->where('pelajaran_nama', '=', $dp->nama)
+                                    ->count();
+                                  $dataajar=DB::table('dataajar')
+                                    ->where('kelas_nama', '=', $dk->nama)
+                                    ->where('pelajaran_nama', '=', $dp->nama)
+                                    ->first();
+                                    @endphp 
+                                    @if($cekdatagurupengampu>0)
+                                    <option value="{{ $dataajar->guru_nomerinduk }}" selected>{{ $dataajar->guru_nama }}</option>
+                                     
+                                      @else
+                                      
+                                    @endif
+                                  @foreach ($dataguru as $t)
+                                      <option value="{{ $t->nomerinduk }}"> {{ $t->nama }}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+
+
+                            <script type="text/javascript">
+                            var values = $('#tags option[selected="true"]').map(function() { return $(this).val(); }).get();
+
+                              // you have no need of .trigger("change") if you dont want to trigger an event
+                              $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({ placeholder: "Please select" });
+                          </script>
+                          
+                            {{-- <label>Pilih</label> --}}
+                            {{-- <div class="form-group"> --}}
                               <input type="hidden" name="pelajaran_nama" value="{{ $dp->nama }}">
                               <input type="hidden" name="pelajaran_tipepelajaran" value="{{ $dp->tipepelajaran }}">
                               <input type="hidden" name="pelajaran_jurusan" value="{{ $dp->jurusan }}">
                               {{-- <input type="hidden" name="pelajaran_kelas_nama" value="{{ $dp->kelas_nama }}"> --}}
                               <input type="hidden" name="kelas_nama" value="{{ $dk->nama }}">
-                              <select class="form-control form-control-lg" required name="guru_nomerinduk">  
+                              {{-- <select class="form-control form-control-lg" required name="guru_nomerinduk">  
                                 @php
                                 $cekdatagurupengampu = DB::table('dataajar')
                                   ->where('kelas_nama', '=', $dk->nama)
@@ -275,8 +319,8 @@ data{{ $pages }}
                                 @foreach ($dataguru as $t)
                                     <option value="{{ $t->nomerinduk }}">{{ $t->nomerinduk }} - {{ $t->nama }}</option>
                                 @endforeach
-                              </select>
-                            </div>
+                              </select> --}}
+                            {{-- </div> --}}
                
                           </div>
                           <div class="modal-footer">
