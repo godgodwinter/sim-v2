@@ -163,7 +163,7 @@
                               $jmlnilai+=$d->nilai;
                             }
                             if($jmlnilai>0){
-                              $hasilk=$jmlnilai/$cekambildataketrampilan;
+                              $hasilk=number_format(($jmlnilai/$cekambildataketrampilan),2);
                             }
                       }
                       $totalp+=$hasilp;
@@ -261,7 +261,7 @@
                                 $jmlnilai+=$d->nilai;
                               }
                               if($jmlnilai>0){
-                                $hasilk=$jmlnilai/$cekambildataketrampilan;
+                                $hasilk=number_format(($jmlnilai/$cekambildataketrampilan),2);
                               }
                         }
                       $totalp+=$hasilp;
@@ -359,7 +359,7 @@
                                 $jmlnilai+=$d->nilai;
                               }
                               if($jmlnilai>0){
-                                $hasilk=$jmlnilai/$cekambildataketrampilan;
+                                $hasilk=number_format(($jmlnilai/$cekambildataketrampilan),2);
                               }
                         }
                       $totalp+=$hasilp;
@@ -461,7 +461,7 @@
                                 $jmlnilai+=$d->nilai;
                               }
                               if($jmlnilai>0){
-                                $hasilk=$jmlnilai/$cekambildataketrampilan;
+                                $hasilk=number_format(($jmlnilai/$cekambildataketrampilan),2);
                               }
                         }
                       $totalp+=$hasilp;
@@ -482,8 +482,8 @@
                     // $totalk=$hasilak+$hasilbk+$hasilc1k+$hasilc2k;
                   @endphp
                     <td colspan="3" class="text-center"> <strong>JUMLAH</strong> </td>
-                    <td colspan="2" class="text-center">{{ $totalp }}</td>
-                    <td colspan="2" class="text-center">{{ $totalk }}</td>
+                    <td colspan="2" class="text-center">{{ number_format($totalp,2) }}</td>
+                    <td colspan="2" class="text-center">{{ number_format($totalk,2) }}</td>
                 </tr>
                 <tr>
                   @php
@@ -497,8 +497,8 @@
                     }
                   @endphp
                     <td colspan="3" class="text-center"> <strong>RATA - RATA </strong></td>
-                    <td colspan="2" class="text-center">{{ $ratap }}</td>
-                    <td colspan="2" class="text-center">{{ $ratak }}</td>
+                    <td colspan="2" class="text-center">{{ number_format($ratap,2) }}</td>
+                    <td colspan="2" class="text-center">{{ number_format($ratak,2)}}</td>
                 </tr>
 
               </table>
