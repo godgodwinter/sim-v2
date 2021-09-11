@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jenisnilai;
 use App\Models\pelajaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -279,6 +280,95 @@ class adminseederController extends Controller
 
 
     }
+
+    public function jenisnilai(){
+
+        jenisnilai::truncate();
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas 1',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'T1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas 2',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'T2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas 3',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'T3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas 4',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'T4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas 5',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'T5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Ujian Tengah Semester',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'UTS',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Ujian Akhir Semester',
+                'tipe' => 'Pengetahuan',
+                'kode' => 'UAS',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Setelah UTS',
+                'tipe' => 'Ketrampilan',
+                'kode' => 'KUTS',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas Ketrampilan 1',
+                'tipe' => 'Ketrampilan',
+                'kode' => 'KT1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('jenisnilai')->insert([
+                'nama' => 'Tugas Ketrampilan 2',
+                'tipe' => 'Ketrampilan',
+                'kode' => 'KT2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+
+            return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
+    
+        }
 
     public function kelas(){
         // dd('seeder kelas');

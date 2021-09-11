@@ -469,6 +469,13 @@ $ambilkepsek = DB::table('users')
                       class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Reset dan Seeder Data Mapel</span></button>
             </form>
 
+            <form action="{{ route('seeder.jenisnilai') }}" method="post" class="d-inline ml-2">
+              @csrf
+              <button class="btn btn-info btn-lg"
+                  onclick="return  confirm('Anda yakin mengosongkan dan menambahkan data jenis nilai palsu? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk menambahkan data jenisnilai palsu!"><span
+                      class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Reset dan Seeder Jenis Nilai</span></button>
+            </form>
+
            </div></div>
 
            
