@@ -454,6 +454,13 @@ $ambilkepsek = DB::table('users')
                       class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Seeder Data Siswa</span></button>
             </form>
 
+            <form action="{{ route('seeder.guru') }}" method="post" class="d-inline ml-2">
+              @csrf
+              <button class="btn btn-info btn-lg"
+                  onclick="return  confirm('Anda yakin menambahkan data guru palsu? Y/N')"  data-toggle="tooltip" data-placement="top" title="Untuk menambahkan data guru palsu!"><span
+                      class="pcoded-micon"> <i class="fas fa-user-graduate"></i> Seeder Data Guru</span></button>
+            </form>
+
            </div></div>
 
            

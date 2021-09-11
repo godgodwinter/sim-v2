@@ -67,6 +67,56 @@ class adminseederController extends Controller
 
     }
 
+    public function guru(){
+
+        $jmldata=5;
+        $limitdata=30;
+        // dd('seeder siswa');
+        // 1. cek jika siswa diatas 100 maka kembali
+        $ambiljmldata=DB::table('guru')
+        ->count();
+        if($ambiljmldata>$limitdata){
+            return redirect()->back()->with('status','Gagal! Data  lebih dari '.$limitdata)->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        // 2. looping 10(default) 
+        for($i=0;$i<$jmldata;$i++){
+        // 3. insert data siswa
+            $faker = Faker::create('id_ID');
+
+        $nama=$faker->name;
+        $nomerinduk=date('YmdHis').$i;
+
+
+            DB::table('guru')->insert([
+                'nama' => $nama,
+                'alamat' => 'Desa '.$faker->randomElement(['Sumbersari', 'Sumbermakmur','Mulyorejo','Morodadi']).' Kecamatan Losari Kabupaten Malang',
+                'nomerinduk' => $nomerinduk,
+                'jk' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            // dd($i);
+        // 3. insert data usersiswa
+
+            DB::table('users')->insert([
+                'name' => $nama,
+                'email' =>  $faker->email,
+                'password' => Hash::make($this->passdefaultpegawai()),
+                'tipeuser' => 'guru',
+                'nomerinduk' => $nomerinduk,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+
+
+        }
+
+        return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
+
+
+    }
+
     public function kelas(){
         // dd('seeder kelas');
 
