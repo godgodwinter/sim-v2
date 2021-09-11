@@ -261,7 +261,7 @@ data{{ $pages }}
                             {{ csrf_field() }}
                               <div class="form-group">
                                 <label>Pilih :</label>
-                                <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible multiple="multiple"  name="guru_nomerinduk">
+                                <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible multiple="multiple"  name="guru_nomerinduk" required>
                                   @php
                                   $cekdatagurupengampu = DB::table('dataajar')
                                     ->where('kelas_nama', '=', $dk->nama)
