@@ -51,6 +51,7 @@ class siakadjenisnilaicontroller extends Controller
         array(
                'nama'     =>   $request->nama,
                'kode'     =>   $request->kode,
+               'tipe'     =>   $request->tipe,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
@@ -115,6 +116,7 @@ class siakadjenisnilaicontroller extends Controller
             ->update([
                 'nama'=>$request->nama,
                 'kode'=>$request->kode,
+                'tipe'     =>   $request->tipe,
             ]);
     }
 

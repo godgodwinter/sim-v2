@@ -15,5 +15,7 @@ class jenisnilai extends Model
         'nama',
         'tapel_nama',
         'kode',
+        'tipe',
+        'semester_nama',
     ];
 }

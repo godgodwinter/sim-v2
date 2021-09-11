@@ -105,6 +105,21 @@
                     @enderror
                   </div>
 
+                  <div class="form-group col-md-12 col-12">
+                    <label>Tipe <code>*)</code></label>
+                    <select class="form-control form-control-lg @error('tipe') is-invalid @enderror" required name="tipe">  
+                      
+                      @if ($jenisnilai->tipe)
+                      <option>{{ $jenisnilai->tipe }}</option>                        
+                      @endif
+                    
+                          <option >Pengetahuan</option>
+                          <option >Ketrampilan</option>
+                    </select>
+                    @error('tipe')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                  </div>
+
                  
                 </div>
              

@@ -50,6 +50,7 @@ data{{ $pages }}
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
   <th> Nama </th>
   <th> Kode </th>
+  <th> Tipe </th>
   <th width="200px" class="text-center">Aksi</th>
 @endsection
 
@@ -94,6 +95,7 @@ data{{ $pages }}
     <td class="text-center">  <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">  {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
     <td>{{ $data->nama }}</td>
     <td>{{ $data->kode }}</td>
+    <td>{{ $data->tipe }}</td>
 
     <td class="text-center">
         <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
@@ -151,6 +153,19 @@ data{{ $pages }}
                     @error('kode')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
+
+                <div class="form-group col-md-12 col-12">
+                  <label>Tipe <code>*)</code></label>
+                  <select class="form-control form-control-lg @error('tipe') is-invalid @enderror" required name="tipe">  
+                    
+                  
+                        <option >Pengetahuan</option>
+                        <option >Ketrampilan</option>
+                  </select>
+                  @error('tipe')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+                </div>
+
 
                  
                 </div>
