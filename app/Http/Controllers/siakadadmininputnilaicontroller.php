@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\getsettings;
 use App\Models\dataajar;
 use App\Models\ekstrakulikuler;
 use App\Models\kelas;
@@ -30,13 +31,15 @@ class siakadadmininputnilaicontroller extends Controller
         $dataajar=$dataajar;
 
         // $jurusan=DB::table('kategori')->where('prefix','jurusan')->orderBy('prefix','asc')->get();
-        $datajenisnilai=DB::table('jenisnilai')->orderBy('kode','asc')->get();
+        $datajenisnilai=DB::table('jenisnilai')->orderBy('tipe','desc')->get();
+        $jmlpengetahuan=DB::table('jenisnilai')->where('tipe','Pengetahuan')->count();
+        $jmlketrampilan=DB::table('jenisnilai')->where('tipe','Ketrampilan')->count();
         $datasiswa=DB::table('siswa')->where('kelas_nama',$dataajar->kelas_nama)->orderBy('nama','asc')->get();
 
 
         $jmldata = DB::table('pelajaran')->count();
         
-        return view('siakad.admin.inputnilai.index',compact('pages','jmldata','dataajar','datasiswa','datajenisnilai'));
+        return view('siakad.admin.inputnilai.index',compact('pages','jmldata','dataajar','datasiswa','datajenisnilai','jmlpengetahuan','jmlketrampilan'));
     }
 
     public function inputnilai(kelas $kelas){
@@ -72,18 +75,18 @@ class siakadadmininputnilaicontroller extends Controller
         $jmldata='0';
         $datas='0';
 
-        $kelas=$kelas;
+        // $kelas=$kelas;
 
         // $jurusan=DB::table('kategori')->where('prefix','jurusan')->orderBy('prefix','asc')->get();
         $datakepribadian=DB::table('kepribadian')->orderBy('nama','asc')->get();
         $dataekstrakulikuler=DB::table('ekstrakulikuler')->orderBy('nama','asc')->get();
         // $datajenisnilai=DB::table('jenisnilai')->orderBy('kode','asc')->get();
-        $datasiswa=DB::table('siswa')->where('kelas_nama',$kelas->nama)->orderBy('nama','asc')->get();
+        // $datasiswa=DB::table('siswa')->where('kelas_nama',$kelas->nama)->orderBy('nama','asc')->get();
 
 
         $jmldata = DB::table('pelajaran')->count();
         
-        return view('siakad.admin.inputnilai.kepribadian_index_input',compact('pages','jmldata','kelas','datasiswa','datakepribadian','dataekstrakulikuler'));
+        return view('siakad.admin.inputnilai.kepribadian_index_input',compact('pages','jmldata','datakepribadian','dataekstrakulikuler'));
     }
 
     public function mapel_store(dataajar $dataajar,Request $request){
@@ -109,6 +112,7 @@ class siakadadmininputnilaicontroller extends Controller
     ->where('kelas_nama', '=', $dataajar->kelas_nama)
     ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
     ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
+    ->where('semester_nama', '=', getsettings::semesteraktif())
     // ->where('guru_nama', '=', $request->guru_nama)
     ->count();
     if($ceknilaipelajaran>0){
@@ -116,6 +120,7 @@ class siakadadmininputnilaicontroller extends Controller
         nilaipelajaran::where('siswa_nis',$request->siswa_nis)
         ->where('kelas_nama', '=', $dataajar->kelas_nama)
         ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+        ->where('semester_nama', '=', getsettings::semesteraktif())
         ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
             ->update([
                 'nilai'=>$request->nilai,
@@ -125,6 +130,7 @@ class siakadadmininputnilaicontroller extends Controller
         
        DB::table('nilaipelajaran')->insert(
         array(
+               'jenisnilai_tipe'     =>   $request->jenisnilai_tipe,
                'siswa_nis'     =>   $request->siswa_nis,
                'siswa_nama'     =>   $request->siswa_nama,
                'kelas_nama'     =>   $dataajar->kelas_nama,
@@ -134,6 +140,7 @@ class siakadadmininputnilaicontroller extends Controller
                'guru_nama'     =>   $dataajar->guru_nama,
                'guru_nomerinduk'     =>   $dataajar->guru_nomerinduk,
                'tapel_nama'     =>   $this->tapelaktif(),
+               'semester_nama'     =>   getsettings::semesteraktif(),
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));

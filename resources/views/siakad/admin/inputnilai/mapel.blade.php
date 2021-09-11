@@ -48,13 +48,17 @@ data{{ $pages }}
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="5%" class="text-center">
-    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
-    <th>Nama Siswa</th>
+<tr>
+  <th width="5%" class="text-center align-middle" rowspan="2">No</th>
+    <th rowspan="2" class=" align-middle text-center">Nama Siswa</th>
+    <th colspan="{{ $jmlpengetahuan }}" class="text-center">Pengetahuan</th>
+    <th colspan="{{ $jmlketrampilan }}" class="text-center">Ketrampilan</th>
+</tr>
+<tr>
       @foreach ($datajenisnilai as $dj)
-        <th class="text-center"> {{ $dj->nama }} </th>
+        <th class="text-center"  data-toggle="tooltip" data-placement="top" title="{{ $dj->nama }}" > {{ $dj->kode }} </th>
       @endforeach
-  <th width="200px" class="text-center">Aksi</th>
+</tr>
 @endsection
 
 @section('bodytable')
@@ -95,19 +99,20 @@ data{{ $pages }}
 </script>
 @foreach ($datasiswa as $ds)
 <tr>
-  <td> </td>
+  <td class="text-center">{{ ($loop->index+1) }}</td>
   <td> {{ $ds->nis }} - {{ $ds->nama }}</td>
   @foreach ($datajenisnilai as $dj)
   @php
     $nama=$dj->nama;
   @endphp
-    <td class="text-center">
+    <td class="text-center"   data-toggle="tooltip" data-placement="top" title="{{ $dj->nama }}">
       @php
     $ceknilai = DB::table('nilaipelajaran')
       ->where('siswa_nis', '=', $ds->nis)
       ->where('kelas_nama', '=', $dataajar->kelas_nama)
       ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
       ->where('jenisnilai_nama', '=', $dj->nama)
+      ->where('semester_nama', '=', getsettings::semesteraktif())
       ->count();
 
       $ambilnilai = DB::table('nilaipelajaran')
@@ -115,6 +120,7 @@ data{{ $pages }}
                             ->where('kelas_nama', '=', $dataajar->kelas_nama)
                           ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
                           ->where('jenisnilai_nama', '=', $dj->nama)
+                          ->where('semester_nama', '=', getsettings::semesteraktif())
                             ->first();
       @endphp
       @if($ceknilai>0)
@@ -129,18 +135,13 @@ data{{ $pages }}
         @endphp
       @endif
 
-      <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $ds->id }}_{{ $dj->id }}"> {{ $nilai }} </button>
+      <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $ds->id }}_{{ $dj->id }}" > {{ $nilai }} </button>
        
     </td>
   @endforeach
 </tr>
 @endforeach
 
-<tr>
-  <td class="text-left" colspan="2">
-    <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
-    onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
-</tr>
 @endsection
 
 @section('foottable') 
@@ -155,7 +156,39 @@ data{{ $pages }}
     <div class="row mt-sm-4">
 
       <div class="col-12 col-md-12 col-lg-12">
-        <x-layout-table2 pages="{{ $pages }}" pagination=""/>
+       
+                  <div class="card profile-widget">
+                    <div class="profile-widget-header">
+                        <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
+                        <div class="profile-widget-items">
+                            <div class="form-group col-md-12 col-12 mt-1 text-right">
+                              <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                                Import 
+                              </button>
+                              <a href="/admin/@yield('linkpages')/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+                                    class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a>
+                              </div>
+                        </div>
+                    </div>
+                {{-- @yield('datatable') --}}
+                {{-- {{ dd($datas) }} --}}      
+                
+                    <div class="card-body -mt-5">
+                        <div class="table-responsive">
+                          <table class="table table-striped table-hover table-md" border="1">
+                                @yield('headtable')
+
+                                @yield('bodytable')
+                            
+                            </table>
+                        </div>
+                        <div class="card-footer text-right">
+                                @yield('foottable')
+                        </div>
+                    </div>   
+                
+                </div>
+                  
       </div>    
     
     </div>
@@ -211,6 +244,7 @@ data{{ $pages }}
                               <input type="hidden" name="siswa_nama" value="{{ $ds->nama }}">
                               <input type="hidden" name="siswa_nis" value="{{ $ds->nis }}">
                               <input type="hidden" name="jenisnilai_nama" value="{{ $dj->nama }}">
+                              <input type="hidden" name="jenisnilai_tipe" value="{{ $dj->tipe }}">
                             
                           @php
                           $ceknilai = DB::table('nilaipelajaran')
