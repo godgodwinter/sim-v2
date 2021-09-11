@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pelajaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -111,6 +112,168 @@ class adminseederController extends Controller
 
 
         }
+
+        return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
+
+
+    }
+
+    public function mapel(){
+
+        pelajaran::truncate();
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Pendidikan Agama',
+                'tipepelajaran' => 'A. Nilai Akademik',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Pendidikan Kewarganegaraan',
+                'tipepelajaran' => 'A. Nilai Akademik',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Bahasa Indonesia',
+                'tipepelajaran' => 'A. Nilai Akademik',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Matematika',
+                'tipepelajaran' => 'A. Nilai Akademik',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Sejarah Indonesia',
+                'tipepelajaran' => 'A. Nilai Akademik',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Bahasa Inggris dan Bahasa Asing lainnya',
+                'tipepelajaran' => 'A. Nilai Akademik',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Seni Budaya',
+                'tipepelajaran' => 'B. Muatan kewilayahan',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Pendidikan Jasmani Olah Raga dan Kesehatan',
+                'tipepelajaran' => 'B. Muatan kewilayahan',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Mulok (Bahasa Jawa)',
+                'tipepelajaran' => 'B. Muatan kewilayahan',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Kimia',
+                'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Simulasi dan Komunikasi Digital',
+                'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Fisika',
+                'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
+                'jurusan' => 'semua',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Gambar Teknik Otomotif',
+                'tipepelajaran' => 'C2. Dasar Program Keahlian',
+                'jurusan' => 'OTO',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            
+            DB::table('pelajaran')->insert([
+                'nama' => 'Teknologi Dasar Otomotif',
+                'tipepelajaran' => 'C2. Dasar Program Keahlian',
+                'jurusan' => 'OTO',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            
+            DB::table('pelajaran')->insert([
+                'nama' => 'Pekerjaan Dasar Teknik Otomotif',
+                'tipepelajaran' => 'C2. Dasar Program Keahlian',
+                'jurusan' => 'OTO',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            
+            DB::table('pelajaran')->insert([
+                'nama' => 'Pemrograman 1',
+                'tipepelajaran' => 'C2. Dasar Program Keahlian',
+                'jurusan' => 'TKJ',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+            DB::table('pelajaran')->insert([
+                'nama' => 'Pemrograman 2',
+                'tipepelajaran' => 'C2. Dasar Program Keahlian',
+                'jurusan' => 'TKJ',
+                'kkm' => '75',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
 
         return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
 

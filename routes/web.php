@@ -172,6 +172,7 @@ Route::post('admin/reset/tagihansiswa', 'App\Http\Controllers\adminresetControll
 //seeder
 Route::post('admin/seeder/siswa', 'App\Http\Controllers\adminseederController@siswa')->name('seeder.siswa');
 Route::post('admin/seeder/guru', 'App\Http\Controllers\adminseederController@guru')->name('seeder.guru');
+Route::post('admin/seeder/mapel', 'App\Http\Controllers\adminseederController@mapel')->name('seeder.mapel');
 Route::post('admin/seeder/kelas', 'App\Http\Controllers\adminseederController@kelas')->name('seeder.kelas');
 
 
