@@ -10,6 +10,25 @@ class Fungsi {
     //     return (isset($user->username) ? $user->username : '');
     // }
 
+    public static function predikat($angka){
+        if($angka>=90){
+            $hasil='A';
+        }elseif(($angka<90)&&($angka>=85)){
+            $hasil='A-';
+        }elseif(($angka<85)&&($angka>=80)){
+            $hasil='B+';
+        }elseif(($angka<80)&&($angka>=75)){
+            $hasil='B-';
+        }elseif(($angka<75)&&($angka>=70)){
+            $hasil='C+';
+        }elseif(($angka<70)&&($angka>=65)){
+            $hasil='C-';
+        }elseif($angka<65){
+            $hasil='D';
+        }
+        return $hasil;
+    }
+
     public static function periksasemester($datas) {
         $strex=explode(" ",$datas);
         // dd($strex);

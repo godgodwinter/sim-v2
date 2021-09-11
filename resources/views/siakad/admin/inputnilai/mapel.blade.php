@@ -100,7 +100,7 @@ data{{ $pages }}
 @foreach ($datasiswa as $ds)
 <tr>
   <td class="text-center">{{ ($loop->index+1) }}</td>
-  <td> {{ $ds->nis }} - {{ $ds->nama }}</td>
+  <td>  {{ $ds->nis }} - {{ $ds->nama }}</td>
   @foreach ($datajenisnilai as $dj)
   @php
     $nama=$dj->nama;
@@ -139,6 +139,11 @@ data{{ $pages }}
        
     </td>
   @endforeach
+
+  <td>
+    <a href="{{ url('/raport') }}/{{ $ds->nis }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Lihat raport siswa" target="_blank"><i class="fas fa-print"></i></a>
+   
+  </td>
 </tr>
 @endforeach
 
@@ -162,6 +167,9 @@ data{{ $pages }}
                         <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
                         <div class="profile-widget-items">
                             <div class="form-group col-md-12 col-12 mt-1 text-right">
+                              <a type="button" class="btn btn-icon btn-success btn-sm" href="{{ url('/admin/siakaddataajar') }}"><i class="fas fa-upload"></i>
+                                Nilai Pelajaran 
+                              </a>
                               <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import 
                               </button>

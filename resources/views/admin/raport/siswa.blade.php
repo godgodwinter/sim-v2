@@ -43,6 +43,13 @@
 
 
 @section('container')
+@php
+  //default hasil
+
+  $totalp=0;
+  $totalk=0;
+  $jmlmapel=0;
+@endphp
 
 <div class="section-body">
     <div class="invoice">
@@ -100,10 +107,73 @@
                   <td class="text-center">{{ (($loop->index)+1) }}</td>
                   <td>{{ $mapel->nama }}</td>
                   <td class="text-center">{{ $mapel->kkm }}</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
+                  @php
+                  $hasilp=0;
+                  $hasilk=0;
+                  $jmlmapel+=1;;
+
+                    $cekambildata=DB::table('nilaipelajaran')
+                      ->where('siswa_nis', '=', $siswa->nis)
+                      ->where('kelas_nama', '=', $siswa->kelas_nama)
+                      // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                      ->where('semester_nama', '=', getsettings::semesteraktif())
+                      ->where('pelajaran_nama', '=', $mapel->nama)
+                      ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                      ->count();
+                    if($cekambildata>0){
+
+                          $jmlnilai=0;
+                            $ambildata=DB::table('nilaipelajaran')
+                              ->where('siswa_nis', '=', $siswa->nis)
+                              ->where('kelas_nama', '=', $siswa->kelas_nama)
+                              // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                              ->where('semester_nama', '=', getsettings::semesteraktif())
+                              ->where('pelajaran_nama', '=', $mapel->nama)
+                              ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                              ->get();
+                            foreach ($ambildata as $d) {
+                              $jmlnilai+=$d->nilai;
+                            }
+                            if($jmlnilai>0){
+                              $hasilp=$jmlnilai/$cekambildata;
+                            }
+                      }
+
+                      //ketrampilan
+                    $cekambildataketrampilan=DB::table('nilaipelajaran')
+                      ->where('siswa_nis', '=', $siswa->nis)
+                      ->where('kelas_nama', '=', $siswa->kelas_nama)
+                      // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                      ->where('semester_nama', '=', getsettings::semesteraktif())
+                      ->where('pelajaran_nama', '=', $mapel->nama)
+                      ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                      ->count();
+                    if($cekambildataketrampilan>0){
+
+                          $jmlnilai=0;
+                            $ambildata=DB::table('nilaipelajaran')
+                              ->where('siswa_nis', '=', $siswa->nis)
+                              ->where('kelas_nama', '=', $siswa->kelas_nama)
+                              // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                              ->where('semester_nama', '=', getsettings::semesteraktif())
+                              ->where('pelajaran_nama', '=', $mapel->nama)
+                              ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                              ->get();
+                            foreach ($ambildata as $d) {
+                              $jmlnilai+=$d->nilai;
+                            }
+                            if($jmlnilai>0){
+                              $hasilk=$jmlnilai/$cekambildataketrampilan;
+                            }
+                      }
+                      $totalp+=$hasilp;
+                      $totalk+=$hasilk;
+                    // dd($cekambildata);
+                  @endphp
+                  <td class="text-center">{{ $hasilp }}</td>
+                  <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
+                  <td class="text-center">{{ $hasilk }}</td>
+                  <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
                 </tr>
                 @endforeach
 
@@ -131,15 +201,78 @@
                   </tr>
                   @foreach ($mapelb as $mapel)
                       
-                <tr>
-                  <td class="text-center">{{ (($loop->index)+1) }}</td>
-                  <td>{{ $mapel->nama }}</td>
-                  <td class="text-center">{{ $mapel->kkm }}</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                </tr>
+                  <tr>
+                    <td class="text-center">{{ (($loop->index)+1) }}</td>
+                    <td>{{ $mapel->nama }}</td>
+                    <td class="text-center">{{ $mapel->kkm }}</td>
+                    @php
+                    $hasilp=0;
+                    $hasilk=0;
+                  $jmlmapel+=1;
+  
+                      $cekambildata=DB::table('nilaipelajaran')
+                        ->where('siswa_nis', '=', $siswa->nis)
+                        ->where('kelas_nama', '=', $siswa->kelas_nama)
+                        // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        ->where('pelajaran_nama', '=', $mapel->nama)
+                        ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                        ->count();
+                      if($cekambildata>0){
+  
+                            $jmlnilai=0;
+                              $ambildata=DB::table('nilaipelajaran')
+                                ->where('siswa_nis', '=', $siswa->nis)
+                                ->where('kelas_nama', '=', $siswa->kelas_nama)
+                                // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                ->where('pelajaran_nama', '=', $mapel->nama)
+                                ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                                ->get();
+                              foreach ($ambildata as $d) {
+                                $jmlnilai+=$d->nilai;
+                              }
+                              if($jmlnilai>0){
+                                $hasilp=$jmlnilai/$cekambildata;
+                              }
+                        }
+  
+                        //ketrampilan
+                      $cekambildataketrampilan=DB::table('nilaipelajaran')
+                        ->where('siswa_nis', '=', $siswa->nis)
+                        ->where('kelas_nama', '=', $siswa->kelas_nama)
+                        // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        ->where('pelajaran_nama', '=', $mapel->nama)
+                        ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                        ->count();
+                      if($cekambildataketrampilan>0){
+  
+                            $jmlnilai=0;
+                              $ambildata=DB::table('nilaipelajaran')
+                                ->where('siswa_nis', '=', $siswa->nis)
+                                ->where('kelas_nama', '=', $siswa->kelas_nama)
+                                // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                ->where('pelajaran_nama', '=', $mapel->nama)
+                                ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                                ->get();
+                              foreach ($ambildata as $d) {
+                                $jmlnilai+=$d->nilai;
+                              }
+                              if($jmlnilai>0){
+                                $hasilk=$jmlnilai/$cekambildataketrampilan;
+                              }
+                        }
+                      $totalp+=$hasilp;
+                      $totalk+=$hasilk;
+                      // dd($cekambildata);
+                    @endphp
+                    <td class="text-center">{{ $hasilp }}</td>
+                    <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
+                    <td class="text-center">{{ $hasilk }}</td>
+                    <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
+                  </tr>
                 @endforeach
 
               </table>
@@ -166,15 +299,78 @@
                   </tr>
                   @foreach ($mapelc1 as $mapel)
                       
-                <tr>
-                  <td class="text-center">{{ (($loop->index)+1) }}</td>
-                  <td>{{ $mapel->nama }}</td>
-                  <td class="text-center">{{ $mapel->kkm }}</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                </tr>
+                  <tr>
+                    <td class="text-center">{{ (($loop->index)+1) }}</td>
+                    <td>{{ $mapel->nama }}</td>
+                    <td class="text-center">{{ $mapel->kkm }}</td>
+                    @php
+                    $hasilp=0;
+                    $hasilk=0;
+                  $jmlmapel+=1;
+  
+                      $cekambildata=DB::table('nilaipelajaran')
+                        ->where('siswa_nis', '=', $siswa->nis)
+                        ->where('kelas_nama', '=', $siswa->kelas_nama)
+                        // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        ->where('pelajaran_nama', '=', $mapel->nama)
+                        ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                        ->count();
+                      if($cekambildata>0){
+  
+                            $jmlnilai=0;
+                              $ambildata=DB::table('nilaipelajaran')
+                                ->where('siswa_nis', '=', $siswa->nis)
+                                ->where('kelas_nama', '=', $siswa->kelas_nama)
+                                // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                ->where('pelajaran_nama', '=', $mapel->nama)
+                                ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                                ->get();
+                              foreach ($ambildata as $d) {
+                                $jmlnilai+=$d->nilai;
+                              }
+                              if($jmlnilai>0){
+                                $hasilp=$jmlnilai/$cekambildata;
+                              }
+                        }
+  
+                        //ketrampilan
+                      $cekambildataketrampilan=DB::table('nilaipelajaran')
+                        ->where('siswa_nis', '=', $siswa->nis)
+                        ->where('kelas_nama', '=', $siswa->kelas_nama)
+                        // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        ->where('pelajaran_nama', '=', $mapel->nama)
+                        ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                        ->count();
+                      if($cekambildataketrampilan>0){
+  
+                            $jmlnilai=0;
+                              $ambildata=DB::table('nilaipelajaran')
+                                ->where('siswa_nis', '=', $siswa->nis)
+                                ->where('kelas_nama', '=', $siswa->kelas_nama)
+                                // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                ->where('pelajaran_nama', '=', $mapel->nama)
+                                ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                                ->get();
+                              foreach ($ambildata as $d) {
+                                $jmlnilai+=$d->nilai;
+                              }
+                              if($jmlnilai>0){
+                                $hasilk=$jmlnilai/$cekambildataketrampilan;
+                              }
+                        }
+                      $totalp+=$hasilp;
+                      $totalk+=$hasilk;
+                      // dd($cekambildata);
+                    @endphp
+                    <td class="text-center">{{ $hasilp }}</td>
+                    <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
+                    <td class="text-center">{{ $hasilk }}</td>
+                    <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
+                  </tr>
                 @endforeach
 
               </table>
@@ -204,28 +400,105 @@
                     //  dd($kodekelas);
                    @endphp   
                    @if($mapel->jurusan===$kodekelas)
-                     
-                <tr>
-                  <td class="text-center">{{ (($loop->index)+1) }}</td>
-                  <td>{{ $mapel->nama }}</td>
-                  <td class="text-center">{{ $mapel->kkm }}</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                  <td class="text-center">80</td>
-                  <td class="text-center">B+</td>
-                </tr>
+                      
+                  <tr>
+                    <td class="text-center">{{ (($loop->index)+1) }}</td>
+                    <td>{{ $mapel->nama }}</td>
+                    <td class="text-center">{{ $mapel->kkm }}</td>
+                    @php
+                    $hasilp=0;
+                    $hasilk=0;
+                  $jmlmapel+=1;
+  
+                      $cekambildata=DB::table('nilaipelajaran')
+                        ->where('siswa_nis', '=', $siswa->nis)
+                        ->where('kelas_nama', '=', $siswa->kelas_nama)
+                        // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        ->where('pelajaran_nama', '=', $mapel->nama)
+                        ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                        ->count();
+                      if($cekambildata>0){
+  
+                            $jmlnilai=0;
+                              $ambildata=DB::table('nilaipelajaran')
+                                ->where('siswa_nis', '=', $siswa->nis)
+                                ->where('kelas_nama', '=', $siswa->kelas_nama)
+                                // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                ->where('pelajaran_nama', '=', $mapel->nama)
+                                ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                                ->get();
+                              foreach ($ambildata as $d) {
+                                $jmlnilai+=$d->nilai;
+                              }
+                              if($jmlnilai>0){
+                                $hasilp=$jmlnilai/$cekambildata;
+                              }
+                        }
+  
+                        //ketrampilan
+                      $cekambildataketrampilan=DB::table('nilaipelajaran')
+                        ->where('siswa_nis', '=', $siswa->nis)
+                        ->where('kelas_nama', '=', $siswa->kelas_nama)
+                        // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        ->where('pelajaran_nama', '=', $mapel->nama)
+                        ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                        ->count();
+                      if($cekambildataketrampilan>0){
+  
+                            $jmlnilai=0;
+                              $ambildata=DB::table('nilaipelajaran')
+                                ->where('siswa_nis', '=', $siswa->nis)
+                                ->where('kelas_nama', '=', $siswa->kelas_nama)
+                                // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                ->where('pelajaran_nama', '=', $mapel->nama)
+                                ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                                ->get();
+                              foreach ($ambildata as $d) {
+                                $jmlnilai+=$d->nilai;
+                              }
+                              if($jmlnilai>0){
+                                $hasilk=$jmlnilai/$cekambildataketrampilan;
+                              }
+                        }
+                      $totalp+=$hasilp;
+                      $totalk+=$hasilk;
+                      // dd($cekambildata);
+                    @endphp
+                    <td class="text-center">{{ $hasilp }}</td>
+                    <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
+                    <td class="text-center">{{ $hasilk }}</td>
+                    <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
+                  </tr>
 
                 @endif
                 @endforeach
                 <tr>
+                  @php
+                    // $totalp=$hasilap+$hasilbp+$hasilc1p+$hasilc2p;
+                    // $totalk=$hasilak+$hasilbk+$hasilc1k+$hasilc2k;
+                  @endphp
                     <td colspan="3" class="text-center"> <strong>JUMLAH</strong> </td>
-                    <td colspan="2" class="text-center">1200</td>
-                    <td colspan="2" class="text-center">1200</td>
+                    <td colspan="2" class="text-center">{{ $totalp }}</td>
+                    <td colspan="2" class="text-center">{{ $totalk }}</td>
                 </tr>
                 <tr>
+                  @php
+                    $ratap=0;
+                    $ratak=0;
+                    if($totalp>0){
+                      $ratap=$totalp/$jmlmapel;
+                    }
+                    if($totalk>0){
+                      $ratak=$totalk/$jmlmapel;
+                    }
+                  @endphp
                     <td colspan="3" class="text-center"> <strong>RATA - RATA </strong></td>
-                    <td colspan="2" class="text-center">1200</td>
-                    <td colspan="2" class="text-center">1200</td>
+                    <td colspan="2" class="text-center">{{ $ratap }}</td>
+                    <td colspan="2" class="text-center">{{ $ratak }}</td>
                 </tr>
 
               </table>
