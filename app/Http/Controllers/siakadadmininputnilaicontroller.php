@@ -145,8 +145,84 @@ class siakadadmininputnilaicontroller extends Controller
                'updated_at'=>date("Y-m-d H:i:s")
         ));
     }
+        // //make response JSON
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'List Data Post',
+        //     'data'    => $dataajar  
+        // ], 200);
 
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    }
+
+    public function mapel_store_ajax(Request $request,dataajar $dataajar)
+    {
+        $request->validate([
+            'nilai'=>'required|numeric|min:1|max:100',
+
+        ],
+        [
+            'nilai.required'=>'nilai Harus diisi',
+
+        ]);
+
+
+    // $dataguru=DB::table('guru')
+    // ->where('nomerinduk', '=', $request->guru_nomerinduk)
+    // ->first();
+    // dd($dataajar);
+    // $guru_nama=$dataguru->nama;
+    
+
+    $ceknilaipelajaran=DB::table('nilaipelajaran')
+    ->where('siswa_nis', '=', $request->siswa_nis)
+    ->where('kelas_nama', '=', $dataajar->kelas_nama)
+    ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+    ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
+    ->where('semester_nama', '=', getsettings::semesteraktif())
+    // ->where('guru_nama', '=', $request->guru_nama)
+    ->count();
+    if($ceknilaipelajaran>0){
+
+        nilaipelajaran::where('siswa_nis',$request->siswa_nis)
+        ->where('kelas_nama', '=', $dataajar->kelas_nama)
+        ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
+        ->where('semester_nama', '=', getsettings::semesteraktif())
+        ->where('pelajaran_nama', '=', $dataajar->pelajaran_nama)
+            ->update([
+                'nilai'=>$request->nilai,
+                'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+    }else{
+        
+       DB::table('nilaipelajaran')->insert(
+        array(
+               'jenisnilai_tipe'     =>   $request->jenisnilai_tipe,
+               'siswa_nis'     =>   $request->siswa_nis,
+               'siswa_nama'     =>   $request->siswa_nama,
+               'kelas_nama'     =>   $dataajar->kelas_nama,
+               'jenisnilai_nama'     =>   $request->jenisnilai_nama,
+               'nilai'     =>   $request->nilai,
+               'pelajaran_nama'     =>   $dataajar->pelajaran_nama,
+               'guru_nama'     =>   $dataajar->guru_nama,
+               'guru_nomerinduk'     =>   $dataajar->guru_nomerinduk,
+               'tapel_nama'     =>   $this->tapelaktif(),
+               'semester_nama'     =>   getsettings::semesteraktif(),
+               'created_at'=>date("Y-m-d H:i:s"),
+               'updated_at'=>date("Y-m-d H:i:s")
+        ));
+    }
+        
+        // load ulang
+     
+   
+        return response()->json(
+            [
+                'success' => true,
+                // 'message' => 'Data inserted successfully'
+                'message' => $request->nilai
+            ]
+        );
     }
 
     public function ekstra_store(ekstrakulikuler $ekstrakulikuler,kelas $kelas,siswa $siswa,Request $request){
@@ -250,5 +326,40 @@ class siakadadmininputnilaicontroller extends Controller
     }
 
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    }
+
+    public function api_index(dataajar $dataajar)
+    {
+        //get data from table posts
+        // $posts = Post::latest()->get();
+
+        //make response JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'List Data Post',
+            'data'    => $dataajar  
+        ], 200);
+
+    }
+
+    public function api_nilaipelajaran($siswa_nis,$kelas_nama,$pelajaran_nama,$jenisnilai_nama,$semester_nama)
+    {
+        $ambilnilai = DB::table('nilaipelajaran')
+                              ->where('siswa_nis', '=', $siswa_nis)
+                              ->where('kelas_nama', '=', $kelas_nama)
+                            ->where('pelajaran_nama', '=', $pelajaran_nama)
+                            ->where('jenisnilai_nama', '=', $jenisnilai_nama)
+                            ->where('semester_nama', '=', $semester_nama)
+                              ->first();
+        //get data from table posts
+        // $posts = Post::latest()->get();
+
+        //make response JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'List Data Post',
+            'data'    => $ambilnilai  
+        ], 200);
+
     }
 }
