@@ -67,12 +67,11 @@ input[readonly]{
 {{-- DATATABLE --}}
 @section('headtable')
   <th width="5%" class="text-center">
-    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
-    <th>Mapel</th>
+   No</th>
+    <th  > Nama Mapel</th>
       @foreach ($datakelas as $dk)
-        <th class="text-center"> {{ $dk->nama }} </th>
+        <th   > {{ $dk->nama }} </th>
       @endforeach
-  <th width="200px" class="text-center">Aksi</th>
 @endsection
 
 @section('bodytable')
@@ -113,7 +112,7 @@ input[readonly]{
 </script>
 @foreach ($datapelajaran as $dp)
 <tr>
-  <td> </td>
+  <td class="text-center"> {{(($loop->index)+1)}}</td>
   <td> {{ $dp->nama }} 
   @if($dp->jurusan!=='semua')
   - {{ $dp->jurusan }}
@@ -123,7 +122,9 @@ input[readonly]{
   @php
     $nama=$dk->nama;
   @endphp
-    <td class="text-center">
+    <td class="text-center"  data-toggle="tooltip" data-placement="top" title="{{ $dp->nama }} - {{ $dk->nama }} " >
+      <div class="row">
+
       @php
         $tombol='';
         $guru='Belum diisi';
@@ -166,10 +167,9 @@ input[readonly]{
             {{-- {{ $dataajar->guru_nomerinduk }} - 
             {{ $dataajar->guru_nama }} --}}
         @else
-        -
+        
       @endif
-      <br>
-        <input class=" text-center text-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}" value="{{ substr($guru, 0, 7) }}" readonly>
+        <input  class="form-control w-50 text-center text-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}" value="{{ substr($guru, 0, 7) }}" readonly> &nbsp;
         @php
           $href="";
           $disabled="";
@@ -190,8 +190,9 @@ input[readonly]{
         
         @endif
 
-        <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}"  data-toggle="tooltip" data-placement="top" title="Input nilai Mapel" id="link{{ $dp->id }}_{{ $dk->id }}" ><i class="fas fa-user-graduate" {{ $disabled }}></i></a>
+        <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" id="link{{ $dp->id }}_{{ $dk->id }}" ><i class="fas fa-user-graduate" {{ $disabled }}></i></a>
       @endif
+    </div>
     </td>
   @endforeach
 </tr>
