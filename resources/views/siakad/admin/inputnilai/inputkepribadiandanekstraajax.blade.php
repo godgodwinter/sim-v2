@@ -330,6 +330,28 @@ data{{ $pages }}
                       </form>
                     </div>
                   </div>
+  
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                              var input{{ $ds->id }}_{{ $dj->id }} = $("#kkmekstra{{ $ds->id }}_{{ $dj->id }}");
+                              var input2{{ $ds->id }}_{{ $dj->id }} =  input{{ $ds->id }}_{{ $dj->id }}.val();
+                        $('#pilihekstra{{ $ds->id }}_{{ $dj->id }}').on('shown.bs.modal', function() {
+                          setTimeout(function (){
+            
+                            // console.log(input2{{ $ds->id }}_{{ $dj->id }});
+                            $('#kkmekstra{{ $ds->id }}_{{ $dj->id }}').val(0);
+                            input{{ $ds->id }}_{{ $dj->id }}.focus().val(input2{{ $ds->id }}_{{ $dj->id }});
+                          }, 100);
+            
+                          input{{ $ds->id }}_{{ $dj->id }}.keypress(function (e) {
+                            if (e.which == 13) {
+                              $('#tombol-simpanekstra{{ $ds->id }}_{{ $dj->id }}').click();
+                            }
+                          });
+                        })
+            
+                    });
+                    </script>
 
                   <script type="text/javascript">
                     $(document).ready(function(){
@@ -453,6 +475,27 @@ data{{ $pages }}
                     </div>
                   </div>
 
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                              var input{{ $ds->id }}_{{ $dj->id }} = $("#kkmkepribadian{{ $ds->id }}_{{ $dj->id }}");
+                              var input2{{ $ds->id }}_{{ $dj->id }} =  input{{ $ds->id }}_{{ $dj->id }}.val();
+                        $('#pilihkepribadian{{ $ds->id }}_{{ $dj->id }}').on('shown.bs.modal', function() {
+                          setTimeout(function (){
+            
+                            // console.log(input2{{ $ds->id }}_{{ $dj->id }});
+                            $('#kkmkepribadian{{ $ds->id }}_{{ $dj->id }}').val(0);
+                            input{{ $ds->id }}_{{ $dj->id }}.focus().val(input2{{ $ds->id }}_{{ $dj->id }});
+                          }, 100);
+            
+                          input{{ $ds->id }}_{{ $dj->id }}.keypress(function (e) {
+                            if (e.which == 13) {
+                              $('#tombol-simpankepribadian{{ $ds->id }}_{{ $dj->id }}').click();
+                            }
+                          });
+                        })
+            
+                    });
+                    </script>
                   <script type="text/javascript">
                     $(document).ready(function(){
 
