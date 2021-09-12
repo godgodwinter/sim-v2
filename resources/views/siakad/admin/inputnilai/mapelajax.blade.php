@@ -69,7 +69,7 @@ data{{ $pages }}
 @section('bodytable')
 
 <script>
-  console.log('asdad');
+  // console.log('asdad');
   $().jquery;
   $.fn.jquery;
   $(function(e){
@@ -142,6 +142,43 @@ data{{ $pages }}
 
       <input class="form-control-plaintext form-control2 no-border text-center btn btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $ds->id }}_{{ $dj->id }}" id="tdnilaisiswa{{ $ds->id }}_{{ $dj->id }}" readonly value="{{ $nilai }}">
        
+      <script type="text/javascript">
+        $(document).ready(function(){
+                  var input{{ $ds->id }}_{{ $dj->id }} = $("#kkm{{ $ds->id }}_{{ $dj->id }}");
+                  var input2{{ $ds->id }}_{{ $dj->id }} =  input{{ $ds->id }}_{{ $dj->id }}.val();
+            $('#pilihguru{{ $ds->id }}_{{ $dj->id }}').on('shown.bs.modal', function() {
+              setTimeout(function (){
+
+                // console.log(input2{{ $ds->id }}_{{ $dj->id }});
+                $('#kkm{{ $ds->id }}_{{ $dj->id }}').val(0);
+                // $('#kkm{{ $ds->id }}_{{ $dj->id }}').focus();
+                input{{ $ds->id }}_{{ $dj->id }}.focus().val(input2{{ $ds->id }}_{{ $dj->id }});
+                // $('#kkm{{ $ds->id }}_{{ $dj->id }}').setSelectionRange(0,2);
+
+                  // var len = input.val().length;
+                  // input[0].focus();
+                  // input[0].setSelectionRange(len, len);
+              }, 100);
+
+              input{{ $ds->id }}_{{ $dj->id }}.keypress(function (e) {
+                if (e.which == 13) {
+                  // $('form#login').submi.tombol-simpan{{ $ds->id }}_{{ $dj->id }}t();
+                  $('#tombol-simpan{{ $ds->id }}_{{ $dj->id }}').click();
+                }
+              });
+            })
+
+        // var vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }} = document.getElementById('tdnilaisiswa{{ $ds->id }}_{{ $dj->id }}');
+        // var vkkm{{ $ds->id }}_{{ $dj->id }} = document.getElementById('kkm{{ $ds->id }}_{{ $dj->id }}');
+
+
+              // $("#tdnilaisiswa{{ $ds->id }}_{{ $dj->id }}").click(function(e){
+              //   e.preventDefault();
+              //   $('#kkm{{ $ds->id }}_{{ $dj->id }}').focus();
+
+              // });
+        });
+        </script>
     </td>
   @endforeach
 
@@ -246,7 +283,7 @@ data{{ $pages }}
 
                   <div class="modal fade" id="pilihguru{{ $ds->id }}_{{ $dj->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                      <form method="post" class="form-user">	
+                      {{-- <form method="post" class="form-user form{{ $ds->id }}_{{ $dj->id }}" id=form{{ $ds->id }}_{{ $dj->id }}>	 --}}
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Input nilai : *) <code>1-100</code></h5>
@@ -286,7 +323,7 @@ data{{ $pages }}
                             $nilai=75;
                             @endphp
                             @endif
-                              <input type="number" name="nilai{{ $ds->id }}_{{ $dj->id }}" min="1" max="100" class="form-control @error('kkm') is-invalid @enderror" value="{{ $nilai }}" required autofocus id="kkm{{ $ds->id }}_{{ $dj->id }}">
+                              <input type="text" name="nilai{{ $ds->id }}_{{ $dj->id }}" min="1" max="100" class="form-control @error('kkm') is-invalid @enderror" value="{{ $nilai }}" required autofocus id="kkm{{ $ds->id }}_{{ $dj->id }}">
                               @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
                             </div>
@@ -297,7 +334,7 @@ data{{ $pages }}
                             {{-- <a type="submit" class="btn btn-primary tombol-simpan{{ $ds->id }}_{{ $dj->id }}">Simpan</a> --}}
                               <a href="#" class="btn btn-icon btn-primary btn-sm tombol-simpan{{ $ds->id }}_{{ $dj->id }}"
                                   data-toggle="tooltip" data-placement="top" title="Simpan Data!"><span
-                                      class="pcoded-micon"> Simpan</span></a>
+                                      class="pcoded-micon" id="tombol-simpan{{ $ds->id }}_{{ $dj->id }}"> Simpan</span></a>
                           </form>
                           </div>
                         </div>
