@@ -244,6 +244,7 @@ Route::delete('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakada
 
 // SIAKAD-MENU-SIAKADdataajar
 Route::get('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index')->name('siakaddataajar');
+Route::post('admin/siakaddataajarajax', 'App\Http\Controllers\siakadadmindataajarcontroller@store_ajax')->name('siakaddataajar.store.ajax');
 Route::post('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@store')->name('siakaddataajar.store');
 Route::get('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_show')->name('siakad.dataajar.edit');
 Route::put('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_update')->name('siakaddataajar.update');
