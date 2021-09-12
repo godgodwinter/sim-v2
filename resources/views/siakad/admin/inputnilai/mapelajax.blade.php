@@ -323,7 +323,7 @@ data{{ $pages }}
                             $nilai=75;
                             @endphp
                             @endif
-                              <input type="text" name="nilai{{ $ds->id }}_{{ $dj->id }}" min="1" max="100" class="form-control @error('kkm') is-invalid @enderror" value="{{ $nilai }}" required autofocus id="kkm{{ $ds->id }}_{{ $dj->id }}">
+                              <input type="number" name="nilai{{ $ds->id }}_{{ $dj->id }}" min="1" max="100" class="form-control @error('kkm') is-invalid @enderror" value="{{ $nilai }}" required autofocus id="kkm{{ $ds->id }}_{{ $dj->id }}">
                               @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
                             </div>
