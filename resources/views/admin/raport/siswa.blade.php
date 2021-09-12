@@ -170,9 +170,9 @@
                       $totalk+=$hasilk;
                     // dd($cekambildata);
                   @endphp
-                  <td class="text-center">{{ $hasilp }}</td>
+                  <td class="text-center">{{ number_format($hasilp,2) }}</td>
                   <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
-                  <td class="text-center">{{ $hasilk }}</td>
+                  <td class="text-center">{{ number_format($hasilk,2) }}</td>
                   <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
                 </tr>
                 @endforeach
@@ -268,9 +268,9 @@
                       $totalk+=$hasilk;
                       // dd($cekambildata);
                     @endphp
-                    <td class="text-center">{{ $hasilp }}</td>
+                    <td class="text-center">{{ number_format($hasilp,2) }}</td>
                     <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
-                    <td class="text-center">{{ $hasilk }}</td>
+                    <td class="text-center">{{ number_format($hasilk,2) }}</td>
                     <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
                   </tr>
                 @endforeach
@@ -366,9 +366,9 @@
                       $totalk+=$hasilk;
                       // dd($cekambildata);
                     @endphp
-                    <td class="text-center">{{ $hasilp }}</td>
+                    <td class="text-center">{{ number_format($hasilp,2) }}</td>
                     <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
-                    <td class="text-center">{{ $hasilk }}</td>
+                    <td class="text-center">{{ number_format($hasilk,2) }}</td>
                     <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
                   </tr>
                 @endforeach
@@ -468,9 +468,9 @@
                       $totalk+=$hasilk;
                       // dd($cekambildata);
                     @endphp
-                    <td class="text-center">{{ $hasilp }}</td>
+                    <td class="text-center">{{ number_format($hasilp,2) }}</td>
                     <td class="text-center">{{ Fungsi::predikat($hasilp) }}</td>
-                    <td class="text-center">{{ $hasilk }}</td>
+                    <td class="text-center">{{ number_format($hasilk,2) }}</td>
                     <td class="text-center">{{ Fungsi::predikat($hasilk) }}</td>
                   </tr>
 
