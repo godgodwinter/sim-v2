@@ -13,7 +13,7 @@ class adminberandaController extends Controller
     public function index()
     {
 
-        if(($this->checkauth('siswa')==='404')&&($this->checkauth('admin')==='404')&&($this->checkauth('kepsek')==='404')){
+        if(($this->checkauth('siswa')==='404')&&($this->checkauth('admin')==='404')&&($this->checkauth('kepsek')==='404')&&($this->checkauth('guru')==='404')){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
 

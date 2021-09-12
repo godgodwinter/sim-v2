@@ -13,11 +13,11 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('SISTEM KEUANGAN DAN PEMBAYARAN') }}
+                        {{ __('BERANDA') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('siakad.admin.beranda') }}" :active="request()->routeIs('siakad.admin.beranda')">
+                    {{-- <x-jet-nav-link href="{{ route('siakad.admin.beranda') }}" :active="request()->routeIs('siakad.admin.beranda')">
                         {{ __('SIAKAD') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
                 </div>
             </div>
 

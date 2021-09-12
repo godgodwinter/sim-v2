@@ -62,6 +62,10 @@ $tipeuser=(Auth::user()->tipeuser);
 @php
     $hakakses='Siswa';
 @endphp
+@elseif(($tipeuser)==='guru')
+@php
+    $hakakses='guru';
+@endphp
 @endif
 
 
@@ -266,7 +270,7 @@ $ambilkepsek = DB::table('users')
         
           </div>
 
-          <div class="card profile-widget mt-5">
+          {{-- <div class="card profile-widget mt-5">
             <div class="profile-widget-header">
               <img alt="image" src="https://ui-avatars.com/api/?name=Download dan Guide&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
               <div class="profile-widget-items">
@@ -285,7 +289,7 @@ $ambilkepsek = DB::table('users')
     
          
         
-          </div>
+          </div> --}}
 
 
           @endif
