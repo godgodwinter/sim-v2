@@ -108,9 +108,7 @@ crossorigin="anonymous"></script>
                 <a href="{{ route('profile.show') }}" class="nav-link"><i class="far fa-address-card"></i><span>Profile</span></a>
               </li>--}}
 
-@php
-if((Auth::user()->tipeuser)=='admin'){
-    @endphp
+@if((Auth::user()->tipeuser)=='admin')
 
                 <li @if ($pages==='settings')
                   class="active"
@@ -281,9 +279,7 @@ if((Auth::user()->tipeuser)=='admin'){
 
             </ul>
 
-            @php
-    }elseif((Auth::user()->tipeuser)=='kepsek'){
-        @endphp
+    @elseif((Auth::user()->tipeuser)=='kepsek')
               <li class="menu-header">Menu Kepala Sekolah</li>
               <li @if ($pages==='laporan')
                 class="active"
@@ -297,19 +293,39 @@ if((Auth::user()->tipeuser)=='admin'){
                 <a href="{{ route('kepsek.tagihansiswa') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Pembayaran Siswa</span></a>
               </li>
 
-        @php
-    }elseif((Auth::user()->tipeuser)=='siswa'){
-        @endphp
+    @elseif((Auth::user()->tipeuser)=='siswa')
               <li class="menu-header">Menu Siswa</li>
               <li @if ($pages==='tagihansiswa')
                 class="active"
                 @endif >
                 <a href="{{ route('siswa.tagihansiswa') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Tagihanku</span></a>
               </li>
+              <li @if ($pages==='tagihansiswa')
+                class="active"
+                @endif >
+                <a href="{{ route('siswa.tagihansiswa') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Nilai Mapel</span></a>
+              </li>
 
-        @php
-    }
-        @endphp
+              <li @if ($pages==='tagihansiswa')
+                class="active"
+                @endif >
+                <a href="{{ route('siswa.tagihansiswa') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Lihat Raport</span></a>
+              </li>
+
+    @elseif((Auth::user()->tipeuser)=='guru')
+    <li class="menu-header">Menu Guru</li>
+              <li @if ($pages==='tagihansiswa')
+                class="active"
+                @endif >
+                <a href="{{ route('userguru.penilaian') }}" class="nav-link"><i class="fab fa-korvue"></i><span> Penilaian</span></a>
+              </li>
+                <li class="menu-header">Menu WaliKelas</li>
+                <li @if ($pages==='tagihansiswa')
+                  class="active"
+                  @endif >
+                <a href="{{ route('userguru.kelasku') }}" class="nav-link"><i class="fab fa-korvue"></i><span> Kelas Saya</span></a>
+              </li>
+    @endif
         </aside>
       </div>
 

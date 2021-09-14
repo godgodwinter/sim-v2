@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Fungsi;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -101,9 +102,6 @@ Route::get('admin/caritagihansiswa', 'App\Http\Controllers\tagihansiswaControlle
 Route::get('kepsek/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@kepsekindex')->name('kepsek.tagihansiswa');
 Route::get('kepsek/caritagihansiswa', 'App\Http\Controllers\tagihansiswaController@kepsekcari')->name('kepsek.tagihansiswa.cari');
 
-//usersiswa-menu
-Route::get('siswa/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@siswaindex')->name('siswa.tagihansiswa');
-Route::get('siswa/tagihanku/cetak', 'App\Http\Controllers\tagihansiswaController@siswacetaktagihanku')->name('siswa.cetak.tagihanku');
 
 
 
@@ -293,6 +291,13 @@ Route::get('admin/siakadsoy', 'App\Http\Controllers\prosesController@siakad_soy'
 Route::get('admin/siakadarsip', 'App\Http\Controllers\prosesController@siakad_arsip')->name('siakadarsip');
 
 
+//usersiswa-menu
+Route::get('siswa/tagihansiswa', 'App\Http\Controllers\tagihansiswaController@siswaindex')->name('siswa.tagihansiswa');
+Route::get('siswa/tagihanku/cetak', 'App\Http\Controllers\tagihansiswaController@siswacetaktagihanku')->name('siswa.cetak.tagihanku');
+
+//userguru-menu
+	Route::get('guru/kelasku', 'App\Http\Controllers\usergurupagescontroller@kelasku')->name('userguru.kelasku');
+	Route::get('guru/penilaian', 'App\Http\Controllers\usergurupagescontroller@penilaian')->name('userguru.penilaian');
 
 Route::get('/qrtests', function()
 {
