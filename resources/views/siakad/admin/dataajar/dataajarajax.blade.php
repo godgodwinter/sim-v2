@@ -5,7 +5,7 @@ data{{ $pages }}
 @endsection
 @section('halaman','siakaddataajar')
 
-@section('csshere') 
+@section('csshere')
  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -36,7 +36,7 @@ input[readonly]{
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -46,7 +46,7 @@ input[readonly]{
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -61,7 +61,7 @@ input[readonly]{
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -113,7 +113,7 @@ input[readonly]{
 @foreach ($datapelajaran as $dp)
 <tr>
   <td class="text-center"> {{(($loop->index)+1)}}</td>
-  <td> {{ $dp->nama }} 
+  <td> {{ $dp->nama }}
   @if($dp->jurusan!=='semua')
   - {{ $dp->jurusan }}
   @endif
@@ -140,7 +140,7 @@ input[readonly]{
           @if($dp->jurusan==Fungsi::periksajurusankode($dk->nama))
           {{-- {{ dd(Fungsi::periksajurusankode($dk->nama)) }} --}}
           @php
-          
+
             $tombol=Fungsi::periksajurusankode($dk->nama);
           @endphp
           @else
@@ -157,17 +157,17 @@ input[readonly]{
       ->where('kelas_nama', '=', $dk->nama)
       ->where('pelajaran_nama', '=', $dp->nama)
       ->first();
-      @endphp 
+      @endphp
       @if($cekdatagurupengampu>0)
       @php
         $guru=$dataajar->guru_nama;
         // $guru=$dataajar->guru_nomerinduk." - ".$dataajar->guru_nama;
         $warna='primary';
       @endphp
-            {{-- {{ $dataajar->guru_nomerinduk }} - 
+            {{-- {{ $dataajar->guru_nomerinduk }} -
             {{ $dataajar->guru_nama }} --}}
         @else
-        
+
       @endif
         <input  class="form-control w-50 text-center text-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}" value="{{ substr($guru, 0, 7) }}" readonly> &nbsp;
         @php
@@ -177,17 +177,27 @@ input[readonly]{
         @if($cekdatagurupengampu>0)
         @php
           $disabled="";
-          $link2=url('/admin/inputnilai/mapel/'.$dataajar->id);
-          $href='href='.$link2; 
+        //   $link2=url('/admin/inputnilai/mapel/'.$dataajar->id);
+        $mapel_nama=base64_encode($dp->nama);
+        $kelas_nama=base64_encode($dk->nama);
+        $tapel_nama=base64_encode(Fungsi::tapelaktif());
+          $link2=url('/admin/kompetensidasar/'.$mapel_nama.'/'.$kelas_nama.'/'.$tapel_nama);
+          $href='href='.$link2;
         @endphp
         {{-- <a href="{{ url('/admin/inputnilai/kepribadian') }}/{{ $dp->id }}/{{ $dk->id }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Kepribadian"><i class="fas fa-ribbon"></i></a>
         <a href="{{ url('/admin/inputnilai/ekstrakulikuler') }}/{{ $dp->id }}/{{ $dk->id }}" type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Ekstrakulikuler"><i class="fas fa-dungeon"></i></a> --}}
         @else
         @php
-          $disabled="disabled";
-          $href='href=#'; 
+        //   $disabled="disabled";
+        //   $href='href=#';
+
+        $mapel_nama=base64_encode($dp->nama);
+        $kelas_nama=base64_encode($dk->nama);
+        $tapel_nama=base64_encode(Fungsi::tapelaktif());
+          $link2=url('/admin/kompetensidasar/'.$mapel_nama.'/'.$kelas_nama.'/'.$tapel_nama);
+          $href='href='.$link2;
         @endphp
-        
+
         @endif
 
         <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" id="link{{ $dp->id }}_{{ $dk->id }}" ><i class="fas fa-user-graduate" {{ $disabled }}></i></a>
@@ -205,8 +215,8 @@ input[readonly]{
 </tr>
 @endsection
 
-@section('foottable') 
-  
+@section('foottable')
+
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -218,8 +228,8 @@ input[readonly]{
 
       <div class="col-12 col-md-12 col-lg-12">
         <x-layout-table2 pages="{{ $pages }}" pagination=""/>
-      </div>    
-    
+      </div>
+
     </div>
   </div>
 @endsection
@@ -235,14 +245,14 @@ input[readonly]{
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -281,7 +291,7 @@ input[readonly]{
                             <h5 class="modal-title" id="exampleModalLabel">Pilih Guru Pengampu</h5>
                           </div>
                           <div class="modal-body">
-               
+
                             {{ csrf_field() }}
                               <div class="form-group">
                                 <label>Pilih : </label>
@@ -296,12 +306,12 @@ input[readonly]{
                                     ->where('kelas_nama', '=', $dk->nama)
                                     ->where('pelajaran_nama', '=', $dp->nama)
                                     ->first();
-                                    @endphp 
+                                    @endphp
                                     @if($cekdatagurupengampu>0)
                                     <option value="{{ $dataajar->guru_nomerinduk }}" selected >{{ $dataajar->guru_nama }}</option>
-                                     
+
                                       @else
-                                      
+
                                     @endif
                                   @foreach ($dataguru as $t)
                                       <option value="{{ $t->nomerinduk }}" > {{ $t->nama }}</option>
@@ -317,11 +327,11 @@ input[readonly]{
                                           $('#pilihguru{{ $dp->id }}_{{ $dk->id }}').on('shown.bs.modal', function() {
                                               setTimeout(function (){
                                                 console.log(tags{{ $dp->id }}_{{ $dk->id }});
-                        
+
                                                 // tags{{ $dp->id }}_{{ $dk->id }}.focus().select();
-                        
+
                                               }, 100);
-                        
+
                                           });
 
                                           // tags{{ $dp->id }}_{{ $dk->id }}.click(function(e){
@@ -346,12 +356,12 @@ input[readonly]{
                             var values = $('#tags option[selected="true"]').map(function() { return $(this).val(); }).get();
 
                               // you have no need of .trigger("change") if you dont want to trigger an event
-                              $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({ 
+                              $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({
                                 placeholder: "Pilih Guru Pengampu",
                                 dropdownParent: $('#pilihguru{{ $dp->id }}_{{ $dk->id }}')
                                });
                           </script>
-                          
+
                             {{-- <label>Pilih</label> --}}
                             {{-- <div class="form-group"> --}}
                               <input type="hidden" name="pelajaran_nama{{ $dp->id }}_{{ $dk->id }}" value="{{ $dp->nama }}">
@@ -359,7 +369,7 @@ input[readonly]{
                               <input type="hidden" name="pelajaran_jurusan{{ $dp->id }}_{{ $dk->id }}" value="{{ $dp->jurusan }}">
                               {{-- <input type="hidden" name="pelajaran_kelas_nama" value="{{ $dp->kelas_nama }}"> --}}
                               <input type="hidden" name="kelas_nama{{ $dp->id }}_{{ $dk->id }}" value="{{ $dk->nama }}">
-                              {{-- <select class="form-control form-control-lg" required name="guru_nomerinduk">  
+                              {{-- <select class="form-control form-control-lg" required name="guru_nomerinduk">
                                 @php
                                 $cekdatagurupengampu = DB::table('dataajar')
                                   ->where('kelas_nama', '=', $dk->nama)
@@ -369,19 +379,19 @@ input[readonly]{
                                   ->where('kelas_nama', '=', $dk->nama)
                                   ->where('pelajaran_nama', '=', $dp->nama)
                                   ->first();
-                                  @endphp 
+                                  @endphp
                                   @if($cekdatagurupengampu>0)
                                   <option value="{{ $dataajar->guru_nomerinduk }}">{{ $dataajar->guru_nomerinduk }} - {{ $dataajar->guru_nama }}</option>
-                                   
+
                                     @else
-                                    
+
                                   @endif
                                 @foreach ($dataguru as $t)
                                     <option value="{{ $t->nomerinduk }}">{{ $t->nomerinduk }} - {{ $t->nama }}</option>
                                 @endforeach
                               </select> --}}
                             {{-- </div> --}}
-               
+
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -396,7 +406,7 @@ input[readonly]{
                   </div>
 
                   @endif
-                  
+
 
                   <script type="text/javascript">
                     $(document).ready(function(){
@@ -429,7 +439,7 @@ input[readonly]{
                             method:'POST',
                             data:{
                              "_token": "{{ csrf_token() }}",
-                             pelajaran_nama:pelajaran_nama, 
+                             pelajaran_nama:pelajaran_nama,
                               pelajaran_tipepelajaran:pelajaran_tipepelajaran,
                               pelajaran_jurusan:pelajaran_jurusan,
                               guru_nomerinduk:guru_nomerinduk,
@@ -437,7 +447,7 @@ input[readonly]{
                             },
                             success:function(response){
                             if(response.success){
-                              // $("a#changeme").attr('href', 
+                              // $("a#changeme").attr('href',
                               // 'http://maps.google.com/');
 
 
@@ -445,16 +455,16 @@ input[readonly]{
                               console.log(response.message);
                               if(response.message>0){
 
-                                $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('href', 
-                                '{{ url('/admin/inputnilai/mapel/') }}/'+response.message);
+                                // $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('href',
+                                // '{{ url('/admin/inputnilai/mapel/') }}/'+response.message);
 
-                                $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('class', 
+                                $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('class',
                                 'btn btn-outline-primary');
                               }
 
-                              // $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('href', 
+                              // $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('href',
                               // 'http://maps.google.com/');
-  
+
 
 
                               btnpilihguru{{ $dp->id }}_{{ $dk->id }}.value = guru_nama;
@@ -478,8 +488,8 @@ input[readonly]{
                     });
                     </script>
                 @endforeach
-                
+
               @endforeach
-          
+
 
 @endsection

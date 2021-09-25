@@ -3,11 +3,47 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
- 
+
 class Fungsi {
     // public static function get_username($user_id) {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
+    // }
+
+
+    public static function kompetensidasargeneratekode(){
+        $id=1;
+
+        // $datas=Fungsi::periksakompetensidasar($id);
+
+        $datas=DB::table('kompetensidasar')
+        ->where('kode',$id)
+        ->count();
+
+        do {
+            $id++;
+            $datas=DB::table('kompetensidasar')
+            ->where('kode',$id)
+            ->get();
+        }
+        while ($datas->count());
+
+        return $id;
+    }
+    // public static function periksakompetensidasar($id){
+
+
+    //     $datas=DB::table('kompetensidasar')
+    //     ->where('kode',$id)
+    //     ->count();
+
+    //     if($datas>0){
+    //         $id++;
+    //         $datas=Fungsi::periksakompetensidasar($id);
+
+    //     }
+
+    //     return $id;
     // }
 
     public static function predikat($angka){
@@ -41,7 +77,7 @@ class Fungsi {
         }
         return $hasil;
     }
-    
+
     return (isset($hasil) ? $hasil : '');
 }
 
@@ -57,7 +93,7 @@ class Fungsi {
                 $hasil='Umum';
             }
         }
-        
+
         return (isset($hasil) ? $hasil : '');
     }
 
@@ -73,7 +109,7 @@ class Fungsi {
             $hasil='Umum';
         }
     }
-    
+
     return (isset($hasil) ? $hasil : '');
 }
     public static function periksajurusankode($datas) {
@@ -89,7 +125,7 @@ class Fungsi {
             $hasil='Umum';
         }
     }
-    
+
     return (isset($hasil) ? $hasil : '');
     }
 
@@ -100,11 +136,11 @@ class Fungsi {
         if(isset($strex[0])){
             $hasil=$strex[0];
     }
-    
-    
+
+
     return (isset($hasil) ? $hasil : '');
     }
-    
+
     public static function tahunaktif($datas) {
         $strex=explode("/",$datas);
         // dd($strex);
@@ -112,140 +148,140 @@ class Fungsi {
         if(isset($strex[0])){
             $hasil=$strex[0];
     }
-    
-    
+
+
     return (isset($hasil) ? $hasil : '');
     }
 
 
     public static function checkauth($menu){
-	
+
         if(Auth::user()->tipeuser===$menu){
             return 'success';
-        }else{    
+        }else{
             return '404';
         }
-     
+
     }
     public static function rupiah($angka){
-	
+
         $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
         return $hasil_rupiah;
-     
+
     }
 
     public static function paginationjml(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->paginationjml;
         return $data;
-     
+
     }
 
     public static function sekolahnama(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->sekolahnama;
         return $data;
-     
+
     }
 
     public static function sekolahalamat(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->sekolahalamat;
         return $data;
-     
+
     }
 
     public static function sekolahtelp(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->sekolahtelp;
         return $data;
-     
+
     }
 
     public static function aplikasijudul(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->aplikasijudul;
         return $data;
-     
+
     }
 
     public static function tapelaktif(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->tapelaktif;
         return $data;
-     
+
     }
 
     public static function aplikasijudulsingkat(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->aplikasijudulsingkat;
         return $data;
-     
+
     }
     public static function nominaltagihandefault(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->nominaltagihandefault;
         return $data;
-     
+
     }
 
     public static function passdefaultsiswa(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->passdefaultsiswa;
         return $data;
-     
+
     }
     public static function passdefaultortu(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->passdefaultortu;
         return $data;
-     
+
     }
     public static function passdefaultpegawai(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->passdefaultpegawai;
         return $data;
-     
+
     }
     public static function sekolahlogo(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->sekolahlogo;
-        
+
         return $data;
-     
+
     }
     public static function sekolahttd(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->sekolahttd;
         return $data;
-     
+
     }
     public static function sekolahttd2(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->sekolahttd2;
         return $data;
-     
+
     }
     public static function minimalpembayaranujian(){
-	
+
         $settings = DB::table('settings')->first();
         $data=$settings->minimalpembayaranujian;
         return $data;
-     
+
     }
 
     //untuk kenaikan kelas
@@ -253,7 +289,7 @@ class Fungsi {
         {
                 //  $stre=str_replace('X','Xzz',$str);
                 //  $str=substr($stre,1);
-                
+
             $strex=explode(" ",$str);
             if($strex[0]==="X"){
                 $strex[0]="XI";
@@ -265,7 +301,7 @@ class Fungsi {
 
 
             $str=implode(" ",$strex);
-            
+
             return $str;
         }
 
@@ -281,7 +317,7 @@ class Fungsi {
 
 
         $str=implode(" ",$strex);
-        
+
         return $str;
     }
     //naik tapel
@@ -292,7 +328,7 @@ class Fungsi {
             $strex[1]=$strex[1]+1;
 
             $str=implode("/",$strex);
-            
+
             return $str;
         }
 
