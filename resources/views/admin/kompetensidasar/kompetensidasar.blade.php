@@ -44,7 +44,7 @@ $message=session('status');
     <label for="chkCheckAll"> All</label></th>
 <th width="20%"> Kompetensi Dasar </th>
 <th> Materi </th>
-{{-- <th width="200px" class="text-center">Aksi</th> --}}
+<th width="25%" class="text-center">Aksi</th>
 @endsection
 
 @section('bodytable')
@@ -115,27 +115,26 @@ $message=session('status');
 
 
             <tr>
-                <td  rowspan="{{$jmlmateri+1}}">  {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} {{$dkd->nama}}</td>
+                <td  rowspan="{{$jmlmateri+1}}">  {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}</td>
             </tr>
                 @foreach ($ambilmateri as $materi)
             <tr>
                 <td>
-                <h6> {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} {{ $materi->nama }}     <a href="{{$materi->link}}" target="_blank" class="btn btn-info btn-sm"> Link Materi {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a></h6>
+                {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} {{ $materi->nama }}
+                <td>
+                <a href="{{$materi->link}}" target="_blank" class="btn btn-info btn-sm"   data-toggle="tooltip" data-placement="top"  title="Materi untuk Siswa!"> Link Materi {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
+                <a href="{{$materi->link}}" target="_blank" class="btn btn-success btn-sm"  data-toggle="tooltip" data-placement="top"  title="Nilai Siswa!"> <i class="fas fa-user-graduate"></i> </a>
+                <a href="{{$materi->link}}" target="_blank" class="btn btn-dark btn-sm"  data-toggle="tooltip" data-placement="top"  title="Bank Soal!"> <i class="far fa-file-archive"></i> </a>
+                <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
+                <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
+            </td>
 
 
             </td>
             </tr>
             <script>
                 $(document).ready(function(){
-                    // alert('{{$totalrow}}');
-                //    $tr= $("#trdata[{{$data->id}}]").val();
-                //     alert(tr);
-                //  fetch_customer_data();
                 $("#trdata{{$data->id}}").html('<td rowspan="{{$totalrow}}">{{$no}}</td>');
-                // });
-
-                //  $("#tddata[{{$data->id}}]").prop('rowspan','{{$totalrow}}');
-                //  console.log('{{$totalrow}}');
                 });
 
             </script>
@@ -144,24 +143,26 @@ $message=session('status');
 
 @else
 @php
-$totalrow=$jmlkd+1;
+
+
+$jmlmateriperkd=DB::table('materipokok')
+    ->where('pelajaran_nama',$data->pelajaran_nama)
+    ->where('kelas_nama',$data->kelas_nama)
+    ->where('tapel_nama',$data->tapel_nama)
+    ->where('kompetensidasar_kode',$dkd->kode)
+    ->orderBy('created_at','asc')
+    ->count();
+$totalrow=$jmlkd+$jmlmateriperkd+1;
 @endphp
 <tr>
-<td  rowspan="1">  {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} {{$dkd->nama}}</td>
+<td  rowspan="1">  {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}</td>
 <td  rowspan="1">   Data Belum ada</td>
+<td  rowspan="1">   - </td>
 </tr>
 
 <script>
     $(document).ready(function(){
-        // alert('{{$totalrow}}');
-    //    $tr= $("#trdata[{{$data->id}}]").val();
-    //     alert(tr);
-    //  fetch_customer_data();
     $("#trdata{{$data->id}}").html('<td rowspan="{{$totalrow}}">{{$no}}</td>');
-    // });
-
-    //  $("#tddata[{{$data->id}}]").prop('rowspan','{{$totalrow}}');
-    //  console.log('{{$totalrow}}');
     });
 
 </script>

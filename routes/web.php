@@ -253,6 +253,11 @@ Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', '
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@store')->name('kompetensidasar.store');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materi', 'App\Http\Controllers\kompetensidasarcontroller@materistore')->name('kompetensidasar.store.materi');
 
+
+
+// SIAKAD-MENU-banksoal
+Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
+
 // SIAKAD-MENU-SIAKADkepribadian
 Route::get('admin/siakadkepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@siakad_index')->name('siakadkepribadian');
 Route::post('admin/siakadkepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@store')->name('siakadkepribadian.store');

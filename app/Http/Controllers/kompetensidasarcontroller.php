@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\kompetensidasar;
+use App\Models\materipokok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -52,6 +54,9 @@ class kompetensidasarcontroller extends Controller
     }
 
     public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama){
+        // RELASI
+            // 1.tabel kompetensidasar
+            // 2.tabel materipokok
 
         $p_nama=base64_decode($pelajaran_nama);
         $k_nama=base64_decode($kelas_nama);
@@ -68,6 +73,31 @@ class kompetensidasarcontroller extends Controller
         if($cekdatas>0){
             // update
             // dd('update');
+
+            kompetensidasar::where('pelajaran_nama',$p_nama)
+            ->where('kelas_nama',$k_nama)
+            ->where('tapel_nama',$t_nama)
+            ->where('tipe',$request->tipe)
+            ->where('kode',$request->kode)
+                ->update([
+                    'nama'     =>   $request->nama,
+                    'kode'     =>   $request->kode,
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+
+            materipokok::where('pelajaran_nama',$p_nama)
+            ->where('kelas_nama',$k_nama)
+            ->where('tapel_nama',$t_nama)
+            ->where('kompetensidasar_tipe',$request->tipe)
+            ->where('kompetensidasar_kode',$request->kode)
+                ->update([
+                    'kompetensidasar_nama'     =>   $request->nama,
+                    'kompetensidasar_kode'     =>   $request->kode,
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+                return redirect()->back()->with('status','Data berhasil di ubah!')->with('tipe','success')->with('icon','fas fa-feather');
+
         }else{
             // dd('insert');
             // insert
