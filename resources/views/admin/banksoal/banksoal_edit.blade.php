@@ -1,7 +1,8 @@
 @section('title','Bank Soal')
 @section('halaman')
+{{-- {{dd($datas)}} --}}
 <div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"> Data ajar</a></div>
-<div class="breadcrumb-item"><a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}">
+<div class="breadcrumb-item"><a href="/admin/kompetensidasar/{{$datas->pelajaran_nama}}/{{$datas->kelas_nama}}/{{$datas->tapel_nama}}">
         Kompetensi dasar</a></div>
 <div class="breadcrumb-item">Bank soal</div>
 @endsection
@@ -51,73 +52,18 @@ $message=session('status');
 <div class="section-body">
     <div class="row mt-sm-4">
 
-        <div class="col-12 col-md-12 col-lg-12">
-            <div class="card profile-widget">
-                <div class="profile-widget-header">
-                    <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png"
-                        class="rounded-circle profile-widget-picture">
-                    <div class="profile-widget-items">
-                        <div class="form-group col-md-12 col-12 mt-1 text-right">
-                            <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
-                                data-target="#importExcel"><i class="fas fa-upload"></i>
-                                Import
-                            </button>
-                            <a href="/admin/@yield('linkpages')/export" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Export </span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body -mt-5">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-md">
-                            <tr>
-                                <th width="10px" class="text-center"> No </th>
-                                <th> Pertanyaan </th>
-                                <th width="15%" class="text-center" >Jumlah Pilihan </th>
-                                {{-- <th> Nilai </th> --}}
-                                <th width="15%" class="text-center">Tingkat Kesulitan </th>
-                                <th width="15%" class="text-center"> Aksi </th>
-                            </tr>
 
-                                @foreach ($datas as $data)
-                                 <tr>
-                                <td>{{$loop->index+1}}</td>
-                                <td class="text-capitalize">{{$data->pertanyaan}}</td>
-                                <td class="text-center"> 0 </td>
-                                {{-- <td> 0 </td> --}}
-                                <td class="text-center text-capitalize"> {{$data->tingkatkesulitan}} </td>
-                                <td class="text-center">
-
-                                    <a href="/admin/banksoal/{{$data->id}}/detail"  class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="top"    title="Detail Bank Soal!"> <i class="fas fa-angle-double-right"></i> </a>
-                                    <x-button-edit link="/admin/banksoal/{{$data->id}}" />
-                                    <x-button-delete link="/admin/banksoal/{{$data->id}}" />
-
-                                </td>
-                            </tr>
-                                @endforeach
-
-
-                        </table>
-                    </div>
-                    <div class="card-footer text-right">
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
         <div class="col-12 col-md-12 col-lg-12">
 
             <div class="card">
                 <form
-                    action="{{url('/admin/')}}/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok_nama}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
+                    action="{{url('/admin/')}}/banksoal/{{$datas->id}}"
                     method="post">
+                    @method('put')
                     @csrf
                     <div class="card-header">
-                        <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> TAMBAH
-                            MATERI</span>
+                        <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> EDIT
+                            SOAL</span>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -126,7 +72,7 @@ $message=session('status');
                                 <label for="nama">Pertanyaan</label> :
                                 {{-- <label for="nama" class="text-dark" id="tingkatkesulitan">Tingkat kesulitan</label> --}}
                                 <textarea class="form-control" style="min-width: 100%;height:100%;" name="pertanyaan"
-                                    id="pertanyaan" required></textarea>
+                                    id="pertanyaan" required>{{$datas->pertanyaan}}</textarea>
                             </div>
                             <script>
                                 $(function () {
@@ -172,7 +118,7 @@ $message=session('status');
                             <div class="form-group col-md-6 col-6">
                                 <label for="tingkatkesulitan">Tingkat Kesulitan</label>
                                 <input type="text" name="tingkatkesulitan" id="tingkatkesulitan"
-                                    class="form-control text-dark text-capitalize" value="mudah"
+                                    class="form-control text-dark text-capitalize" value="{{$datas->tingkatkesulitan}}"
                                     required readonly >
 
                             </div>
@@ -181,7 +127,7 @@ $message=session('status');
                                 <label for="kodegenerate">kodegenerate</label>
                                 <input type="text" name="kodegenerate" id="kodegenerate"
                                     class="form-control @error('kodegenerate') is-invalid @enderror"
-                                    value="{{$kodegenerate}}" required readonly>
+                                    value="{{$datas->kodegenerate}}" required readonly>
                                 @error('kodegenerate')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
                             </div>
@@ -190,6 +136,7 @@ $message=session('status');
                         </div>
 
                         <div class="card-footer text-right">
+                            <a href="/admin/kompetensidasar/{{base64_encode($datas->pelajaran_nama)}}/{{base64_encode($datas->kelas_nama)}}/{{base64_encode($datas->tapel_nama)}}/materipokok/banksoal/{{base64_encode($datas->materipokok_nama)}}/{{base64_encode($datas->kompetensidasar_kode)}}/{{base64_encode($datas->kompetensidasar_tipe)}}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
                             <button class="btn btn-primary">Simpan</button>
                         </div>
                 </form>
