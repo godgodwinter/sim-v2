@@ -260,10 +260,21 @@ Route::delete('admin/kompetensidasar/materipokok/hapus/{id}', 'App\Http\Controll
 Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/banksoal/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\banksoalcontroller@index')->name('kompetensidasar.materipokok.banksoal.index');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/banksoal/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\banksoalcontroller@store')->name('kompetensidasar.materipokok.banksoal.store');
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/banksoal/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}/detail', 'App\Http\Controllers\banksoalcontroller@detail')->name('banksoal.detail');
-Route::get('admin/banksoal/{id}/detail', 'App\Http\Controllers\banksoalcontroller@detail')->name('banksoal.detail');
+
 Route::get('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@show')->name('banksoal.edit');
 Route::put('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@update')->name('banksoal.update');
 Route::delete('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@destroy')->name('banksoal.delete');
+Route::get('admin/banksoal/{id}/detail', 'App\Http\Controllers\banksoalcontroller@detail')->name('banksoal.detail');
+Route::post('admin/banksoal/{id}/detail', 'App\Http\Controllers\banksoalcontroller@detailstore')->name('banksoal.detailstore');
+Route::get('admin/banksoal/{id}/detail/{detail}', 'App\Http\Controllers\banksoalcontroller@detail')->name('banksoal.detail');
+Route::post('admin/banksoal/{id}/detail/{detail}', 'App\Http\Controllers\banksoalcontroller@detailstore')->name('banksoal.detailstore');
+Route::get('admin/banksoaldetail/{id}', 'App\Http\Controllers\banksoalcontroller@detailshow')->name('banksoal.detail.show');
+Route::put('admin/banksoaldetailupdate/{id}', 'App\Http\Controllers\banksoalcontroller@detailupdate')->name('banksoal.detail.update');
+Route::delete('admin/banksoaldetail/{id}', 'App\Http\Controllers\banksoalcontroller@detaildestroy')->name('banksoal.detail.delete');
+
+//moodle-generatesoal
+Route::get('admin/moodle/generate2', 'App\Http\Controllers\banksoalcontroller@generateDocx')->name('moodle.generateDocx');
+Route::post('admin/moodle/generate', 'App\Http\Controllers\banksoalcontroller@generateworldsoal')->name('moodle.generate');
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 
 //API

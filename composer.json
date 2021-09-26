@@ -18,6 +18,7 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^8.0",
+        "phpoffice/phpword": "^0.18.2",
         "ramsey/uuid": "^4.2",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
