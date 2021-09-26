@@ -245,7 +245,7 @@ $message=session('status');
 <div class="modal fade" id="moodlegenerate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="post" action="{{ route('moodle.generate') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('moodle.generate.soal') }}" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Moodle Generate Soal</h5>

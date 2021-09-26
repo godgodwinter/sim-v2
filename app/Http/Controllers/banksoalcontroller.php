@@ -434,6 +434,205 @@ class banksoalcontroller extends Controller
 
     }
 
+    public function generateworldsoallooping(Request $request){
+    // dd($request);
+        $p_nama=base64_decode($request->pelajaran_nama);
+        $k_nama=base64_decode($request->kelas_nama);
+        $t_nama=base64_decode($request->tapel_nama);
+        $mp_nama=base64_decode($request->materipokok_nama);
+        $kd_kode=base64_decode($request->kompetensidasar_kode);
+        $kd_tipe=base64_decode($request->kompetensidasar_tipe);
+
+    $ambildata=DB::table('banksoal')
+    ->where('pelajaran_nama',$p_nama)
+    ->where('kelas_nama',$k_nama)
+    ->where('tapel_nama',$t_nama)
+    ->where('materipokok_nama',$mp_nama)
+    ->where('kompetensidasar_kode',$kd_kode)
+    ->where('kompetensidasar_tipe',$kd_tipe)
+    ->orderBy('created_at','desc')
+    ->get();
+    // dd($ambildata);
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        // $header = array('size' => 16, 'bold' => true);
+        $header = array('size' => 11, 'bold' => false);
+        $sebelastebal = array('size' => 11, 'bold' => true);
+        $sebelasbiasa = array('size' => 11, 'bold' => false);
+        $sebelasbiasaitalic = array('size' => 11, 'bold' => false,'italic' => true);
+        $sebelasbiruitalic = array('size' => 11, 'bold' => false,'italic' => true,'color' => '0A4E83');
+        $duabelastimesnew = array('size' => 12, 'bold' => false,'name'=>'Times New Roman');
+        //ISIDATA
+$no=0;
+foreach($ambildata as $data){
+    $no++;
+        $section->addText('Question '.$no, $header);
+        $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '000000',
+                            'cellMargin'=>0,
+                            'spaceBefore' => 0,
+                            'spaceAfter' => 0,
+                            'marginTop'     => -1,
+                            'marginLeft'    => -1,
+                            'marginBottom'     => -1,
+                            'marginRight'    => -1,
+                            'spacing' => 0);
+
+        $cellRowSpan = array('vMerge' => 'restart', 'valign' => 'center', 'bgColor' => 'FFFFFF');
+        $cellRowContinue = array('vMerge' => 'continue');
+        $cellColSpan = array('gridSpan' => 3,
+                            'valign' => 'center',
+                            'borderTopColor' =>'000000',
+                            'borderTopSize' => 6,
+                            'borderRightColor' =>'000000',
+                            'borderRightSize' => 6,
+                            'borderBottomColor' =>'000000',
+                            'borderBottomSize' => 6,
+                            'borderLeftColor' =>'000000',
+                            'borderLeftSize' => 6
+                        );
+        $cellHCentered = array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER);
+        $cellHCenteredright = array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::RIGHT);
+        $cellHCenteredleft = array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT);
+        $cellVCentered = array('valign' => 'center');
+
+        $spanTableStyleName = 'Colspan Rowspan';
+        $phpWord->addTableStyle($spanTableStyleName, $fancyTableStyle);
+        $table = $section->addTable($spanTableStyleName);
+
+        $table->addRow();
+
+        $cell1 = $table->addCell(6000, $cellColSpan);
+        $textrun1 = $cell1->addTextRun($cellHCenteredleft);
+        $textrun1->addText($data->pertanyaan, $duabelastimesnew);    //3 colspan
+        $table->addCell(700, $cellVCentered)->addText('MC', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $cell3 = $table->addCell(2000, $cellColSpan);
+        $textrun2 = $cell3->addTextRun($cellHCenteredright);
+        $textrun2->addText('Default mark:', $sebelastebal);
+        $table->addCell(700, $cellRowSpan)->addText('1',$sebelasbiasa, $cellHCenteredleft);
+
+        $table->addRow();
+        $cell3 = $table->addCell(2000, $cellColSpan);
+        $textrun2 = $cell3->addTextRun($cellHCenteredright);
+        $textrun2->addText('Shuffle the choices?', $sebelastebal);
+        $table->addCell(700, $cellRowSpan)->addText('No',$sebelasbiasa, $cellHCenteredleft);
+
+        $table->addRow();
+        $cell3 = $table->addCell(2000, $cellColSpan);
+        $textrun2 = $cell3->addTextRun($cellHCenteredright);
+        $textrun2->addText('Number the choices?', $sebelastebal);
+        $table->addCell(700, $cellRowSpan)->addText('A',$sebelasbiasa, $cellHCenteredleft);
+
+        $table->addRow();
+        $cell3 = $table->addCell(2000, $cellColSpan);
+        $textrun2 = $cell3->addTextRun($cellHCenteredright);
+        $textrun2->addText('Penalty for each incorrect try:', $sebelastebal);
+        $table->addCell(700, $cellRowSpan)->addText('33.3',$sebelasbiasa, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(600, $cellVCentered)->addText('#', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Answer', $sebelastebal, $cellHCentered);
+        $table->addCell(3000, $cellVCentered)->addText('Feedback', $sebelastebal, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('Grade', $sebelastebal, $cellHCentered);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('A.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Mengatasi Perbedaan 1', $duabelastimesnew, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', null, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('0', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('B.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Mengatasi Perbedaan 2', $duabelastimesnew, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', null, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('0', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('C.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Mengatasi Perbedaan 3', $duabelastimesnew, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', null, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('0', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('D.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Mengatasi Perbedaan 4', $duabelastimesnew, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', null, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('0', $sebelasbiruitalic, $cellHCenteredleft);
+
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('E.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Mengatasi Perbedaan 5', $duabelastimesnew, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', null, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('100', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('General feedback:', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', null, $cellHCentered);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('For any correct response:', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('Your answer is correct.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('For any incorrect response:', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('Your answer is incorrect.', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Hint 1:', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Show the number of correct responses (Hint 1):', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('No', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Clear incorrect responses (Hint 1):', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('No', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $table->addRow();
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(4000, $cellVCentered)->addText('Tags:', $sebelastebal, $cellHCenteredleft);
+        $table->addCell(3000, $cellVCentered)->addText('', $sebelasbiasa, $cellHCenteredleft);
+        $table->addCell(500, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+
+        $table->addRow();
+
+        $cell1 = $table->addCell(6000, $cellColSpan);
+        $textrun1 = $cell1->addTextRun($cellHCenteredleft);
+        $textrun1->addText('Allows the selection of a single or multiple responses from a pre-defined list. (MC/MA)', $sebelasbiasaitalic);    //3 colspan
+        $table->addCell(700, $cellVCentered)->addText('', $sebelasbiruitalic, $cellHCenteredleft);
+
+        $section->addPageBreak();  //untuk ganti halaman
+    }
+
+
+        //END-ISIDATA
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('sim-generate.docx'));
+        } catch (Exception $e) {
+        }
+        return response()->download(storage_path('sim-generate.docx'));
+
+    }
+
 //     public function generateDocx()
 //     {
 //         $phpWord = new \PhpOffice\PhpWord\PhpWord();
