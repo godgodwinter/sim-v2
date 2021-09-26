@@ -275,7 +275,7 @@ Route::delete('admin/banksoaldetail/{id}', 'App\Http\Controllers\banksoalcontrol
 //moodle-generatesoal
 Route::get('admin/moodle/generate2', 'App\Http\Controllers\banksoalcontroller@generateDocx')->name('moodle.generateDocx');
 Route::post('admin/moodle/generate', 'App\Http\Controllers\banksoalcontroller@generateworldsoal')->name('moodle.generate');
-Route::post('admin/moodle/generate/soal', 'App\Http\Controllers\banksoalcontroller@generateworldsoallooping')->name('moodle.generate.soal');
+Route::post('admin/moodle/generate/soal', 'App\Http\Controllers\banksoalcontroller@generateworldsoallooping')->name('moodle.generate.soallooping');
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 
 //API
