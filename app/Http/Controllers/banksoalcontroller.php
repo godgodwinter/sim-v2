@@ -427,10 +427,10 @@ class banksoalcontroller extends Controller
         //END-ISIDATA
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
-            $objWriter->save(storage_path('sim-'.date('Y-m-d-H-i-s').'.docx'));
+            $objWriter->save(storage_path('sim-generate.docx'));
         } catch (Exception $e) {
         }
-        return response()->download(storage_path('sim-'.date('Y-m-d-H-i-s').'.docx'));
+        return response()->download(storage_path('sim-generate.docx'));
 
     }
 
