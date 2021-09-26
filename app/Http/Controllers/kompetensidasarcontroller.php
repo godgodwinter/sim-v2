@@ -127,6 +127,22 @@ class kompetensidasarcontroller extends Controller
         $ambildatakompetensidasar=DB::table('kompetensidasar')->where('id',$request->kompetensidasar_id)->first();
         // dd($request,$ambildatakompetensidasar);
 
+
+
+        $cekdatas=DB::table('materipokok')->where('pelajaran_nama',$p_nama)
+                ->where('kelas_nama',$k_nama)
+                ->where('tapel_nama',$t_nama)
+                ->where('kompetensidasar_kode',$ambildatakompetensidasar->kode)
+                ->where('kompetensidasar_tipe',$ambildatakompetensidasar->tipe)
+                ->where('nama',$request->nama)
+                  ->count();
+                //   dd($request,$cekdatas);
+
+        if($cekdatas>0){
+
+                return redirect()->back()->with('status','Data ditemukan, Sudah pernah ditambahkan!')->with('tipe','warning')->with('icon','fas fa-feather');
+        }else{
+
        DB::table('materipokok')->insert(
         array(
                'nama'     =>   $request->nama,
@@ -140,8 +156,20 @@ class kompetensidasarcontroller extends Controller
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
-
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+
+    }
+
+    }
+    public function materidestroy($id){
+        // dd($id);
+        // $p_nama=base64_decode($pelajaran_nama);
+        // $k_nama=base64_decode($kelas_nama);
+        // $t_nama=base64_decode($tapel_nama);
+
+        DB::table('materipokok')->where('id', $id)->delete();
+        return redirect()->back()->with('status','Data berhasil di hapus!')->with('tipe','danger')->with('icon','fas fa-feather');
+
     }
 
 }

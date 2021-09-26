@@ -252,11 +252,21 @@ Route::delete('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadm
 Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@store')->name('kompetensidasar.store');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materi', 'App\Http\Controllers\kompetensidasarcontroller@materistore')->name('kompetensidasar.store.materi');
+Route::delete('admin/kompetensidasar/materipokok/hapus/{id}', 'App\Http\Controllers\kompetensidasarcontroller@materidestroy')->name('kompetensidasar.materipokok    .delete');
 
 
 
 // SIAKAD-MENU-banksoal
-Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
+Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/banksoal/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\banksoalcontroller@index')->name('kompetensidasar.materipokok.banksoal.index');
+Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/banksoal/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\banksoalcontroller@store')->name('kompetensidasar.materipokok.banksoal.store');
+// Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
+
+//API
+Route::get('admin/api/fungsi/tingkatkesulitan', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.fungsi.tingkatkesulitan');
+
+
+// SIAKAD-MENU-inputnilai
+Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@index')->name('kompetensidasar.materipokok.inputnilai.index');
 
 // SIAKAD-MENU-SIAKADkepribadian
 Route::get('admin/siakadkepribadian', 'App\Http\Controllers\siakadadminkepribadiancontroller@siakad_index')->name('siakadkepribadian');

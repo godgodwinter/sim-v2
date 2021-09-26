@@ -1,4 +1,7 @@
 @section('title','Kompetensi Dasar')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"   > Data ajar</a></div><div class="breadcrumb-item"> Kompetensi dasar</div>
+@endsection
 @section('csshere')
 @endsection
 
@@ -122,11 +125,18 @@ $message=session('status');
                 <td>
                 {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} {{ $materi->nama }}
                 <td>
+                    @php
+                        $materipokok=base64_encode($materi->nama);
+                        $kompetensidasar_kode=base64_encode($dkd->kode);
+                        $kompetensidasar_tipe=base64_encode($dkd->tipe);
+                    @endphp
                 <a href="{{$materi->link}}" target="_blank" class="btn btn-info btn-sm"   data-toggle="tooltip" data-placement="top"  title="Materi untuk Siswa!"> Link Materi {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
-                <a href="{{$materi->link}}" target="_blank" class="btn btn-success btn-sm"  data-toggle="tooltip" data-placement="top"  title="Nilai Siswa!"> <i class="fas fa-user-graduate"></i> </a>
-                <a href="{{$materi->link}}" target="_blank" class="btn btn-dark btn-sm"  data-toggle="tooltip" data-placement="top"  title="Bank Soal!"> <i class="far fa-file-archive"></i> </a>
+
+                <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}/inputnilai"  class="btn btn-success btn-sm"  data-toggle="tooltip" data-placement="top"  title="Nilai Siswa!"> <i class="fas fa-user-graduate"></i> </a>
+
+                <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"  class="btn btn-dark btn-sm"  data-toggle="tooltip" data-placement="top"  title="Bank Soal!"> <i class="far fa-file-archive"></i> </a>
                 <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
-                <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
+                <x-button-delete link="/admin/kompetensidasar/materipokok/hapus/{{$materi->id}}" />
             </td>
 
 

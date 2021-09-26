@@ -16,7 +16,7 @@ class oneseeder extends Seeder
      */
     public function run()
     {
-        
+
         //ADMIN SEEDER
         DB::table('users')->insert([
             'name' => 'Admin',
@@ -342,6 +342,134 @@ class oneseeder extends Seeder
             'nama' => 'C2. Dasar Program Keahlian',
             'kode' => 'C2',
             'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+
+
+        //kko
+        DB::table('kko')->insert([
+            'nama' => 'pengetahuan',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengutip',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menyebutkan',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menjalaskan',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menggambar',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+
+        //kko
+        DB::table('kko')->insert([
+            'nama' => 'menugaskan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengurutkan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menentukan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menerapkan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menyesuaikan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+
+
+        //kko
+        DB::table('kko')->insert([
+            'nama' => 'mengatur',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengabstraksi',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menganimasikan',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengumpulkan',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengkategorikan',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

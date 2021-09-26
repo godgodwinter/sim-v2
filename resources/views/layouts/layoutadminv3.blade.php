@@ -44,37 +44,37 @@ crossorigin="anonymous"></script>
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-       
+
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            
+
           <figure class="avatar avatar-sm">
                 <img alt="image" src="{{ Auth::user()->profile_photo_url }}" class="rounded-circle mr-1"  >
 
           </figure>
                 {{-- <img alt="image" src="{{ asset("assets/") }}/img/avatar/avatar-1.png" class="rounded-circle mr-1"> --}}
-            
+
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in</div>
-            
+
               <a href="{{ route('profile.show') }}"  class="dropdown-item has-icon">
                 <i class="fas fa-user"></i>
                 {{ __('Profile') }}
             </a>
-          
+
               <div class="dropdown-divider"></div>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
-            
+
                     <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
                     onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                        <i class="fas fa-sign-out-alt">    
+                        <i class="fas fa-sign-out-alt">
                         </i> Logout
                       </a>
             </form>
-             
+
             </div>
           </li>
         </ul>
@@ -92,7 +92,7 @@ crossorigin="anonymous"></script>
 
               <li class="menu-header">Dashboard v-3.0</li>
         @if(((Auth::user()->tipeuser)=='admin')||((Auth::user()->tipeuser)=='kepsek'))
-            
+
               <li @if ($pages==='beranda')
               class="active"
               @endif >
@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
                   @endif >
                   <a href="{{ route('settings') }}" class="nav-link"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
                  </li>
-               
+
               <li class="menu-header">Mastering</li>
 
               {{--  <li @if ($pages==='kategori')
@@ -163,15 +163,15 @@ crossorigin="anonymous"></script>
                 class="active"
                 @endif >
                 <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Pembelajaran</span></a>
-              </li> 
+              </li>
 
-         
+
               {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
-             
+
               {{--   <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pembiayaan</span></a>
                 <ul class="dropdown-menu">
-                
+
               <li @if ($pages==='tagihanatur')
                     class="active"
                     @endif >
@@ -182,7 +182,7 @@ crossorigin="anonymous"></script>
                     class="active"
                     @endif >
                     <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Siswa</span></a>
-                  </li> 
+                  </li>
                 </ul>
               </li>--}}
 
@@ -215,14 +215,14 @@ crossorigin="anonymous"></script>
                <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Penilaian</span></a>
                 <ul class="dropdown-menu">
-                
+
               <li @if ($pages==='siakaddataajar')
                 class="active"
                 @endif >
                 <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru Mapel</span></a>
               </li>
 
-                 
+
               <li @if ($pages==='siakadkelas')
                 class="active"
                 @endif >
@@ -230,7 +230,7 @@ crossorigin="anonymous"></script>
               </li>
                 </ul>
               </li>
-              
+
              {{--  <li class="menu-header">Transaksi</li>
 
               <li @if ($pages==='pemasukan')
@@ -252,9 +252,9 @@ crossorigin="anonymous"></script>
                 @endif >
                 <a href="{{ route('laporan') }}" class="nav-link"><i class="fab fa-resolving"></i><span>Laporan</span></a>
               </li>
-             
+
               <li class="menu-header">Eoy dan SoY</li>
-              
+
 
               <li @if ($pages==='eoy')
                 class="active"
@@ -269,7 +269,7 @@ crossorigin="anonymous"></script>
               </li>
 
               <li class="menu-header">Menu Arsip</li>
-              
+
 
               <li @if ($pages==='arsip')
                 class="active"
@@ -341,7 +341,7 @@ crossorigin="anonymous"></script>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
                 {{-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> --}}
-              <div class="breadcrumb-item">@yield('halaman')</div>
+           @yield('halaman')
             </div>
           </div>
           {{-- HEADER-END --}}
