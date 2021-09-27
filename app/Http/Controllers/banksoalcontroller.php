@@ -889,6 +889,7 @@ $innerCell->addText('Inside nested table');
                 ->orderBy('created_at','desc')
         ->get();
 
+        $kodegenerate=Uuid::uuid4()->getHex();
 
 //     return response()->view('admin.banksoal.xml',compact(
 //     'datas'
@@ -899,7 +900,7 @@ $innerCell->addText('Inside nested table');
 ->header('Content-Type', 'application/force-download')
 ->header('Content-Type', 'application/download')
 ->header('Content-Description', 'File Transfer')
-->header('Content-Disposition', 'attachment; filename="asdasd"')
+->header('Content-Disposition', 'attachment; filename="banksoal-'.$kodegenerate.'.xml"')
 ->header('Expires', '0')
 ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
 ->header('Pragma', 'public');

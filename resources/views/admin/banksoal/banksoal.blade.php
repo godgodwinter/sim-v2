@@ -66,9 +66,9 @@ $message=session('status');
                                 class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Export </span></a>
 
-                                        <a href="{{route('moodle.generate.xmlget')}}" type="submit" value="Import"
+                                        {{-- <a href="{{route('moodle.generate.xmlget')}}" type="submit" value="Import"
                                             class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
-                                                    class="fas fa-download"></i> XML Example</span></a>
+                                                    class="fas fa-download"></i> XML Example</span></a> --}}
 
                                         <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
                                             data-target="#moodlegenerate"><i class="fas fa-upload"></i>
@@ -190,14 +190,14 @@ $message=session('status');
 
                             </div>
 
-                            <div class="form-group col-md-6 col-6">
+                            {{-- <div class="form-group col-md-6 col-6">
                                 <label for="kodegenerate">kodegenerate</label>
                                 <input type="text" name="kodegenerate" id="kodegenerate"
                                     class="form-control @error('kodegenerate') is-invalid @enderror"
                                     value="{{$kodegenerate}}" required readonly>
                                 @error('kodegenerate')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
 
                         </div>
