@@ -13,7 +13,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -23,7 +23,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -44,7 +44,7 @@
                       </div>
                     </div>
 @endif
-@endsection 
+@endsection
 
 @php
 $tipeuser=(Auth::user()->tipeuser);
@@ -217,9 +217,9 @@ $ambilkepsek = DB::table('users')
 
             <div class="form-group col-md-5 col-5  mt-3 ml-5">
               <label>Tahun Pelajaran Aktif<code>*)</code></label>
-              <select class="form-control form-control-lg @error('tapelaktif') is-invalid @enderror" required name="tapelaktif">  
+              <select class="form-control form-control-lg @error('tapelaktif') is-invalid @enderror" required name="tapelaktif">
                     @if ($tapelaktif)
-                    <option>{{$tapelaktif}}</option>                        
+                    <option>{{$tapelaktif}}</option>
                     @endif
                 @foreach ($tapel as $t)
                     <option>{{ $t->nama }}</option>
@@ -234,9 +234,9 @@ $ambilkepsek = DB::table('users')
             @endphp
             <div class="form-group col-md-5 col-5  mt-3 ml-5">
               <label>Semester Aktif<code>*)</code></label>
-              <select class="form-control form-control-lg @error('semesteraktif') is-invalid @enderror" required name="semesteraktif">  
+              <select class="form-control form-control-lg @error('semesteraktif') is-invalid @enderror" required name="semesteraktif">
                     @if ($semesteraktif)
-                    <option value="{{$semesteraktif}}">{{$semesteraktif}} ({{ Fungsi::periksasemester($semesteraktif) }})</option>                        
+                    <option value="{{$semesteraktif}}">{{$semesteraktif}} ({{ Fungsi::periksasemester($semesteraktif) }})</option>
                     @endif
                 @foreach ($semester as $t)
                     <option value="{{ $t->nama }}">{{ $t->nama }} ({{ $t->kode }})</option>
@@ -248,13 +248,13 @@ $ambilkepsek = DB::table('users')
 
 
             @if ($nominaltagihandefault)
-            @php                    
+            @php
               $nominaltagihandefault=$nominaltagihandefault;
             @endphp
         @else
             @php
             $nominaltagihandefault=1;
-            @endphp                    
+            @endphp
         @endif
         <div class="form-group col-md-5 col-5  mt-3 ml-5">
           <label for="nominaltagihandefault">Nominal Default Tagihan Atur <code>*)</code> </label>
@@ -265,7 +265,7 @@ $ambilkepsek = DB::table('users')
         </div>
 
         <script type="text/javascript">
-          
+
           var rupiah = document.getElementById('rupiah');
           var labelrupiah = document.getElementById('labelrupiah');
           rupiah.addEventListener('keyup', function(e){
@@ -274,7 +274,7 @@ $ambilkepsek = DB::table('users')
             // rupiah.value = formatRupiah(this.value, 'Rp. ');
             labelrupiah.value = formatRupiah(this.value, 'Rp. ');
           });
-      
+
           /* Fungsi formatRupiah */
           function formatRupiah(angka, prefix){
             var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -282,18 +282,18 @@ $ambilkepsek = DB::table('users')
             sisa     		= split[0].length % 3,
             rupiah     		= split[0].substr(0, sisa),
             ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-      
+
             // tambahkan titik jika yang di input sudah menjadi angka ribuan
             if(ribuan){
               separator = sisa ? '.' : '';
               rupiah += separator + ribuan.join('.');
             }
-      
+
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
           }
         </script>
-      
+
 
                   <div class="form-group col-md-5 col-5 mt-3 ml-5">
                     <label for="passdefaultsiswa">Pass Siswa Default <code>*)</code></label>
@@ -319,8 +319,8 @@ $ambilkepsek = DB::table('users')
             <div class="card-footer text-right">
               <button class="btn btn-primary">Simpan</button>
             </div>
-          
-          
+
+
             </form>
           </div>
 
@@ -330,15 +330,15 @@ $ambilkepsek = DB::table('users')
 
            <div class="row">
             <div class="card-body">
-              
+
                 {{-- <span class="btn btn-icon btn-light ml-4"><i class="fas fa-feather"></i> EDIT {{ Str::upper($pages) }}</span> --}}
 
-            
+
                 <form method="post" action="/admin/settings/upload/1" enctype="multipart/form-data">
                   {{ csrf_field() }}
-                  
 
-                  <div class="form-group col-md-3 col-3 ml-4">      
+
+                  <div class="form-group col-md-3 col-3 ml-4">
                     <div class="col-lg-8 d-flex align-items-stretch mb-4">
                       @php
                           $logostatus='Belum Di upload!';
@@ -348,7 +348,7 @@ $ambilkepsek = DB::table('users')
                   $logostatus='Berhasil Di upload!';
                 @endphp
                 {{-- <img alt="image" src="{{ asset("storage/") }}/{{ $du->profile_photo_path }}" class="rounded-circle profile-widget-picture" width="100px"> --}}
-          
+
                 <img alt="image" src="{{ asset("storage/") }}/{{ $sekolahlogo }}"class="img-thumbnail">
 
                 @else
@@ -365,7 +365,7 @@ $ambilkepsek = DB::table('users')
                     @enderror
 
                   <div class="card-footer text-right">
-                  
+
                     <button class="btn btn-success"><i class="fas fa-upload"></i> Simpan</button>
                   </form>
 
@@ -385,9 +385,9 @@ $ambilkepsek = DB::table('users')
            </div>
 
 
-          
+
           <div class="card-body ml-3">
-         
+
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
 
               <form action="{{ route('reset.hard') }}" method="post" class="d-inline">
@@ -422,19 +422,20 @@ $ambilkepsek = DB::table('users')
             </div>
             {{-- <div class="clearfix"></div>
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
-              
+
               <a  href="{{ route('tagihanatur') }}" type="button" class="btn btn-danger"><i class="fas fa-fire"></i> Tagihan Atur </a>
               <a  href="{{ route('tagihansiswa') }}" type="button" class="btn btn-danger"><i class="fas fa-graduation-cap"></i> Tagihan Siswa </a>
             </div> --}}
 
-            
+
 
             </div>
 
 
-          <div class="form-group col-md-12 col-12 mt-5 ml-5">
-            <h5>Fungsi Seeder / Tambahkan data acak untuk testing</h5>
-           </div>
+            <div class="form-group col-md-12 col-12 mt-5 ml-5">
+                <h5>Fungsi Seeder / Tambahkan data acak untuk testing</h5>
+               </div>
+
 
            <div class="card-body ml-3">
            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
@@ -478,27 +479,38 @@ $ambilkepsek = DB::table('users')
 
            </div></div>
 
-           
+
+          <div class="form-group col-md-12 col-12 mt-5 ml-5">
+            <h5>Fungsi dan Mastering Tambahan</h5>
+           </div>
+
+
+           <div class="card-body ml-3">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <a  href="{{ route('kko') }}" type="button" class="btn btn-success"><i class="fas fa-graduation-cap"></i> Fungsi KKO </a>
+            </div></div>
+
+
           </div></div>
-             
-              
-              
+
+
+
           </div>
 
-       
-      
+
+
         </div>
         @endif
 
-        @if($tipeuser==='siswa') 
+        @if($tipeuser==='siswa')
         <div class="card profile-widget mt-5">
           <div class="profile-widget-header">
             <img alt="image" src="../assets/img/products/product-3-50.png" class="rounded-circle profile-widget-picture">
             <div class="profile-widget-items">
               <h3 class="ml-5 mt-4">Menu Siswa</h3>
             </div>
-             
-              
+
+
               <div class="card-body">
                 <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                   <a  href="{{ url('user/profile') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Profile</a>
@@ -506,15 +518,15 @@ $ambilkepsek = DB::table('users')
                 <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                   <a  href="{{ route('siswa.tagihansiswa') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Tagihanku</a>
                 </div>
-              
+
           </div>
-  
-       
-      
+
+
+
         </div>
-          
+
         @endif
-        
+
 
 
 
@@ -526,7 +538,7 @@ $ambilkepsek = DB::table('users')
 
 
   </div>
-  
+
 @endsection
 
 @section('container-modals')
@@ -540,11 +552,11 @@ $ambilkepsek = DB::table('users')
                         <h5 class="modal-title" id="exampleModalLabel">Hapus Temporari</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label></label>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

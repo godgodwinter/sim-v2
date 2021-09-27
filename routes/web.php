@@ -46,6 +46,14 @@ Route::get('admin/tapel', 'App\Http\Controllers\tapelController@index')->name('t
 Route::post('admin/tapel', 'App\Http\Controllers\tapelController@store')->name('tapel.add');
 Route::delete('admin/datatapel/multidel', 'App\Http\Controllers\tapelController@deletechecked')->name('tapel.multidel');
 
+//KKO-MENU
+Route::get('admin/kko', 'App\Http\Controllers\kkoController@index')->name('kko');
+Route::post('admin/kko', 'App\Http\Controllers\kkoController@store')->name('kko.add');
+Route::get('admin/kko/{id}', 'App\Http\Controllers\kkoController@show')->name('kko.show');
+Route::put('admin/kko/{id}', 'App\Http\Controllers\kkoController@update')->name('kko.update');
+Route::delete('admin/kko/{id}', 'App\Http\Controllers\kkoController@destroy')->name('kko.update');
+Route::delete('admin/datakko/multidel', 'App\Http\Controllers\kkoController@deletechecked')->name('kko.multidel');
+
 
 //KELAS-MENU
 Route::resource('admin/kelas','App\Http\Controllers\kelasController')->except(['index']);
@@ -134,6 +142,8 @@ Route::get('admin/datapemasukan/export', 'App\Http\Controllers\prosesController@
 Route::post('admin/datapemasukan/import', 'App\Http\Controllers\prosesController@importpemasukan')->name('pemasukan.import');
 Route::get('admin/datapengeluaran/export', 'App\Http\Controllers\prosesController@exportpengeluaran')->name('pengeluaran.export');
 Route::post('admin/datapengeluaran/import', 'App\Http\Controllers\prosesController@importpengeluaran')->name('pengeluaran.import');
+Route::get('admin/datakko/export', 'App\Http\Controllers\prosesController@exportkko')->name('kko.export');
+Route::post('admin/datakko/import', 'App\Http\Controllers\prosesController@importkko')->name('kko.import');
 
 Route::get('admin/datasiswa/export', 'App\Http\Controllers\prosesController@exportsiswa')->name('siswa.export');
 Route::post('admin/datasiswa/import', 'App\Http\Controllers\prosesController@importsiswa')->name('siswa.import');
