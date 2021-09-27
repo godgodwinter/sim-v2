@@ -47,12 +47,12 @@ Route::post('admin/tapel', 'App\Http\Controllers\tapelController@store')->name('
 Route::delete('admin/datatapel/multidel', 'App\Http\Controllers\tapelController@deletechecked')->name('tapel.multidel');
 
 //KKO-MENU
-Route::get('admin/kko', 'App\Http\Controllers\kkoController@index')->name('kko');
-Route::post('admin/kko', 'App\Http\Controllers\kkoController@store')->name('kko.add');
-Route::get('admin/kko/{id}', 'App\Http\Controllers\kkoController@show')->name('kko.show');
-Route::put('admin/kko/{id}', 'App\Http\Controllers\kkoController@update')->name('kko.update');
-Route::delete('admin/kko/{id}', 'App\Http\Controllers\kkoController@destroy')->name('kko.update');
-Route::delete('admin/datakko/multidel', 'App\Http\Controllers\kkoController@deletechecked')->name('kko.multidel');
+Route::get('admin/kko', 'App\Http\Controllers\kkocontroller@index')->name('kko');
+Route::post('admin/kko', 'App\Http\Controllers\kkocontroller@store')->name('kko.add');
+Route::get('admin/kko/{id}', 'App\Http\Controllers\kkocontroller@show')->name('kko.show');
+Route::put('admin/kko/{id}', 'App\Http\Controllers\kkocontroller@update')->name('kko.update');
+Route::delete('admin/kko/{id}', 'App\Http\Controllers\kkocontroller@destroy')->name('kko.update');
+Route::delete('admin/datakko/multidel', 'App\Http\Controllers\kkocontroller@deletechecked')->name('kko.multidel');
 
 
 //KELAS-MENU
