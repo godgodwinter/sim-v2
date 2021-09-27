@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Ramsey\Uuid\Uuid;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class banksoalcontroller extends Controller
 {
@@ -817,5 +818,142 @@ $innerCell->addText('Inside nested table');
         } catch (Exception $e) {
         }
         return response()->download(storage_path('helloWorld.docx'));
+    }
+
+
+    public function generatetxt(Request $request){
+        // dd($request);
+            $p_nama=base64_decode($request->pelajaran_nama);
+            $k_nama=base64_decode($request->kelas_nama);
+            $t_nama=base64_decode($request->tapel_nama);
+            $mp_nama=base64_decode($request->materipokok_nama);
+            $kd_kode=base64_decode($request->kompetensidasar_kode);
+            $kd_tipe=base64_decode($request->kompetensidasar_tipe);
+        $output='';
+        $ambildata=DB::table('banksoal')
+        ->where('pelajaran_nama',$p_nama)
+        ->where('kelas_nama',$k_nama)
+        ->where('tapel_nama',$t_nama)
+        ->where('materipokok_nama',$mp_nama)
+        ->where('kompetensidasar_kode',$kd_kode)
+        ->where('kompetensidasar_tipe',$kd_tipe)
+        ->orderBy('created_at','desc')
+        ->first();
+
+        $output.=$ambildata->pertanyaan."\nA) 123 \nB) aa \nC) cc \nD) vv \nE) zxczc \nANSWER: A";
+            //Usage
+                // $attemptToWriteObject = User::where('is_active', 0)->get();
+
+                Storage::put('attempt1.txt', $output);
+        dd($request);
+    }
+
+    public function generatexml2(Request $request){
+    //     $pages='';
+    //     return view('admin.banksoal.xml_ready_img_normal',compact('pages'
+    // ));
+    return response()->view('admin.banksoal.xml_ready_img_normal')->header('Content-Type', 'text/xml');
+    }
+    public function generatexml_do(Request $request){
+        // dd($request);
+            $p_nama=base64_decode($request->pelajaran_nama);
+            $k_nama=base64_decode($request->kelas_nama);
+            $t_nama=base64_decode($request->tapel_nama);
+            $mp_nama=base64_decode($request->materipokok_nama);
+            $kd_kode=base64_decode($request->kompetensidasar_kode);
+            $kd_tipe=base64_decode($request->kompetensidasar_tipe);
+
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+
+        #WAJIB
+        $pages='banksoal';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('banksoal')
+                ->where('pelajaran_nama',$p_nama)
+                ->where('kelas_nama',$k_nama)
+                ->where('tapel_nama',$t_nama)
+                ->where('materipokok_nama',$mp_nama)
+                ->where('kompetensidasar_kode',$kd_kode)
+                ->where('kompetensidasar_tipe',$kd_tipe)
+                // ->where('kode',1)
+                // ->orWhere('pelajaran_nama',$p_nama)
+                // ->where('kelas_nama',$k_nama)
+                // ->where('tapel_nama',$t_nama)
+                // ->where('kode',2)
+                ->orderBy('created_at','desc')
+        ->get();
+
+
+//     return response()->view('admin.banksoal.xml',compact(
+//     'datas'
+// ))->header('Content-Type', 'text/xml');
+    return response()->view('admin.banksoal.xml',compact(
+    'datas'
+))->header('Content-Type', 'application/xml; charset=utf-8')
+->header('Content-Type', 'application/force-download')
+->header('Content-Type', 'application/download')
+->header('Content-Description', 'File Transfer')
+->header('Content-Disposition', 'attachment; filename="asdasd"')
+->header('Expires', '0')
+->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+->header('Pragma', 'public');
+    }
+
+    public function generatexml(Request $request){
+        // dd($request);
+            $p_nama=base64_decode($request->pelajaran_nama);
+            $k_nama=base64_decode($request->kelas_nama);
+            $t_nama=base64_decode($request->tapel_nama);
+            $mp_nama=base64_decode($request->materipokok_nama);
+            $kd_kode=base64_decode($request->kompetensidasar_kode);
+            $kd_tipe=base64_decode($request->kompetensidasar_tipe);
+
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+
+        #WAJIB
+        $pages='banksoal';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('banksoal')
+                ->where('pelajaran_nama',$p_nama)
+                ->where('kelas_nama',$k_nama)
+                ->where('tapel_nama',$t_nama)
+                ->where('materipokok_nama',$mp_nama)
+                ->where('kompetensidasar_kode',$kd_kode)
+                ->where('kompetensidasar_tipe',$kd_tipe)
+                // ->where('kode',1)
+                // ->orWhere('pelajaran_nama',$p_nama)
+                // ->where('kelas_nama',$k_nama)
+                // ->where('tapel_nama',$t_nama)
+                // ->where('kode',2)
+                ->orderBy('created_at','desc')
+        ->get();
+
+        // $datas=$datastanpauniq->unique('kode');
+
+
+
+
+
+        // 1. ambil datas dari tabel kompetensi dasar where tapel kelas dan pelajarannama
+        // 1. ambil last id (Fungsi generatekompetesiid)
+
+            // dd($request);
+        return view('admin.banksoal.xml',compact('pages','datas','request','pelajaran_nama','kelas_nama','tapel_nama'
+        ,'materipokok_nama'
+        ,'kompetensidasar_kode'
+        ,'kompetensidasar_tipe'
+    ));
     }
 }

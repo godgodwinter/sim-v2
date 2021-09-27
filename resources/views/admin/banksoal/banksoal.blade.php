@@ -65,6 +65,11 @@ $message=session('status');
                             <a href="/admin/@yield('linkpages')/export" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Export </span></a>
+
+                                        <a href="{{route('moodle.generate.xmlget')}}" type="submit" value="Import"
+                                            class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
+                                                    class="fas fa-download"></i> XML Example</span></a>
+
                                         <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
                                             data-target="#moodlegenerate"><i class="fas fa-upload"></i>
                                             Generate Ke Moodle
@@ -245,7 +250,7 @@ $message=session('status');
 <div class="modal fade" id="moodlegenerate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="post" action="{{ route('moodle.generate.soallooping') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('moodle.generate.xmlget_do') }}" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Moodle Generate Soal 2</h5>

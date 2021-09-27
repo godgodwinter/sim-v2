@@ -275,7 +275,11 @@ Route::delete('admin/banksoaldetail/{id}', 'App\Http\Controllers\banksoalcontrol
 //moodle-generatesoal
 Route::get('admin/moodle/generate2', 'App\Http\Controllers\banksoalcontroller@generateDocx')->name('moodle.generateDocx');
 Route::post('admin/moodle/generate', 'App\Http\Controllers\banksoalcontroller@generateworldsoal')->name('moodle.generate');
-Route::post('admin/moodle/generate/soal', 'App\Http\Controllers\banksoalcontroller@generateworldsoallooping')->name('moodle.generate.soallooping');
+Route::post('admin/moodle/generate/soal', 'App\Http\Controllers\banksoalcontroller@generateworldsoallooping')->name('moodle.generate.soallooping'); //world
+Route::post('admin/moodle/generate/txt', 'App\Http\Controllers\banksoalcontroller@generatetxt')->name('moodle.generate.txt'); //txt
+Route::post('generatesoalxml', 'App\Http\Controllers\banksoalcontroller@generatexml')->name('moodle.generate.xml'); //txt
+Route::get('soal/xml', 'App\Http\Controllers\banksoalcontroller@generatexml2')->name('moodle.generate.xmlget'); //txt
+Route::post('soal/xml/generate', 'App\Http\Controllers\banksoalcontroller@generatexml_do')->name('moodle.generate.xmlget_do'); //txt
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 
 //API
