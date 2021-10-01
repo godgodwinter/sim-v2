@@ -14,7 +14,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -24,7 +24,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -39,7 +39,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -111,12 +111,12 @@
         @endphp
         @endforeach
     <td> {{ $email }} </td>
-    <td> 
+    <td>
       @if($profile_photo_path!='')
               {{-- <img alt="image" src="{{ $ae->profile_photo_url }}" class="rounded-circle mr-1"> --}}
-              <img alt="image" src="{{ asset("storage/") }}/{{ $profile_photo_path }}" class="img-thumbnail" width="50px">
+              <img alt="image" src="{{ asset("storage/") }}/{{ $profile_photo_path }}" class="rounded mx-auto d-block" width="50px" height="50px" style="overflow: auto;">
       @else
-            <img alt="image" src="https://ui-avatars.com/api/?name={{ $data->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="50px">
+            <img alt="image" src="https://ui-avatars.com/api/?name={{ $data->nama }}&color=7F9CF5&background=EBF4FF" class="rounded mx-auto d-block" width="50px" height="50px">
 
       @endif
     </td>
@@ -135,7 +135,7 @@
 </tr>
 @endsection
 
-@section('foottable') 
+@section('foottable')
 @php
   $cari=$request->cari;
   $tapel_nama=$request->tapel_nama;
@@ -162,7 +162,7 @@
 @section('container')
 
   <div class="section-body">
-    
+
 
     <div class="row ">
       <div class="col-12 col-md-12 col-lg-12">
@@ -177,8 +177,8 @@
                   </div>
 
                   <div class="form-group col-md-2 col-2 text-right">
-            
-                    <select class="form-control form-control-sm" name="tapel_nama" >   
+
+                    <select class="form-control form-control-sm" name="tapel_nama" >
                     @if($request->tapel_nama)
                       <option>{{$request->tapel_nama}}</option>
                     @else
@@ -190,40 +190,40 @@
                 </select>
                   </div>
                   <div class="form-group  col-md-2 col-2 text-right">
-             
-                  <select class="form-control form-control-sm" name="kelas_nama">    
+
+                  <select class="form-control form-control-sm" name="kelas_nama">
                     @if($request->kelas_nama)
                       <option>{{$request->kelas_nama}}</option>
                     @else
                      <option value="" disabled selected>Pilih Kelas</option>
                     @endif
-                 
+
                 @foreach ($kelas as $t)
                     <option>{{ $t->nama }}</option>
                 @endforeach
               </select>
                   </div>
               <div class="form-group   text-right">
-         
+
               <button type="submit" value="CARI" class="btn btn-icon btn-info btn-md mt-1" ><span
               class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
                   </div>
-               
-             
+
+
             </form>
             <div class="form-group col-md-4 col-4 mt-1 text-right">
               <a href="/admin/{{  $pages }}/#add"  class="btn btn-icon btn-primary btn-sm"><span
                 class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah </span></a href="$add">
-             
-              
+
+
               <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                Import 
+                Import
               </button>
 
 
 
-     
+
               <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
                     class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
 
@@ -237,11 +237,11 @@
 
               </div>
           </div>
-        
+
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-          
-       </div> 
-       </div> 
+
+       </div>
+       </div>
 
       <div class="col-12 col-md-12 col-lg-12" id="add">
         <div class="card">
@@ -258,14 +258,14 @@
                     @error('nis')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
                   <div class="form-group col-md-6 col-6">
                     <label for="nama">Nama <code>*)</code></label>
                     <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}" required>
                     @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
                   <div class="form-group col-md-6 col-6">
                     <label for="tempatlahir">Tempat Lahir <code>*)</code></label>
                     <input type="text" name="tempatlahir" id="tempatlahir" class="form-control @error('tempatlahir') is-invalid @enderror" value="{{old('tempatlahir')}}" required>
@@ -282,9 +282,9 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Agama <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="agama"> 
+                    <select class="form-control form-control-lg" required name="agama">
                       @if (old('agama'))
-                      <option>{{old('agama')}}</option>                        
+                      <option>{{old('agama')}}</option>
                       @endif
                       <option>Islam</option>
                       <option>Kristen</option>
@@ -306,9 +306,9 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Tahun Pelajaran <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="tapel_nama">  
+                    <select class="form-control form-control-lg" required name="tapel_nama">
                           @if (old('tapel_nama'))
-                          <option>{{old('tapel_nama')}}</option>                        
+                          <option>{{old('tapel_nama')}}</option>
                           @endif
                       @foreach ($tapel as $t)
                           <option>{{ $t->nama }}</option>
@@ -320,7 +320,7 @@
                     <label>Kelas <code>*)</code></label>
                     <select class="form-control form-control-lg" required name="kelas_nama">
                           @if (old('kelas_nama'))
-                          <option>{{old('kelas_nama')}}</option>                        
+                          <option>{{old('kelas_nama')}}</option>
                           @endif
                       @foreach ($kelas as $k)
                           <option>{{ $k->nama }}</option>
@@ -332,10 +332,10 @@
                     <label>Jenis Kelamin <code>*)</code></label>
                     <select class="form-control form-control-lg" required name="jk">
                       @if (old('jk'))
-                      <option>{{old('jk')}}</option>                        
+                      <option>{{old('jk')}}</option>
                       @endif
-                       
-                    
+
+
                           <option>Laki-laki</option>
                           <option>Perempuan</option>
                     </select>
@@ -375,9 +375,9 @@
                     @error('moodlepass')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
                 </div>
-             
+
             </div>
             <div class="card-footer text-right">
               <button class="btn btn-primary">Simpan</button>
@@ -386,13 +386,13 @@
         </div>
 
 
-        
+
 
       </div>
     </div>
   </div>
 
-  
+
 @endsection
 
 @section('container-modals')
@@ -406,14 +406,14 @@
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -423,8 +423,8 @@
                   </form>
                 </div>
               </div>
-          
-          
+
+
               <!-- Import Excel -->
               <div class="modal fade" id="cleartemp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -434,11 +434,11 @@
                         <h5 class="modal-title" id="exampleModalLabel">Hapus Temporari</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label></label>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
