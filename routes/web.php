@@ -295,6 +295,11 @@ Route::post('soal/xml/generate', 'App\Http\Controllers\banksoalcontroller@genera
 
 //API
 Route::get('admin/api/fungsi/tingkatkesulitan', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.fungsi.tingkatkesulitan');
+Route::get('admin/api/fungsi/generate/kompetensidasar', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.fungsi.generate.kompetensidasar');
+
+Route::get('admin/api/form/banksoal_jawaban', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.form.banksoal_jawaban');
+
+Route::get('admin/api/periksa/banksoal_jawaban/edit', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.periksa.banksoal_jawaban.edit');
 
 
 // SIAKAD-MENU-inputnilai

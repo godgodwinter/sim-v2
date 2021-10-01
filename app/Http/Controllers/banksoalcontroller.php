@@ -80,6 +80,8 @@ class banksoalcontroller extends Controller
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
         $kodegenerate=Uuid::uuid4()->getHex();
+        // dd($request);
+        $a=0;
 
         // $path = 'myfolder/myimage.png';
 // 		$file = $request->file('file');
@@ -136,6 +138,87 @@ class banksoalcontroller extends Controller
 
     //    dd($request->tingkatkesulitan);
 
+        //input jawaban soal
+        function inputsoal($kategorisoal_nama,$kodegenerate,$nilai,$jawaban,$hasil){
+            // $a=$jawaban;
+            // return $a;
+            if($jawaban!=null && $jawaban!=''){
+            DB::table('banksoal_jawaban')->insert(
+                array(
+                    'jawaban'     =>   $jawaban,
+                    'hasil'     =>   $hasil,
+                    'nilai'     =>   $nilai,
+                    'kategorisoal_nama'     =>   $kategorisoal_nama,
+                    'kodegenerate'     =>   $kodegenerate,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
+            }
+        }
+
+        function carinilai($kategorisoal_nama,$hasil){
+                if(($kategorisoal_nama==1) && ($hasil=='benar')){
+                        $data=100;
+                }elseif(($kategorisoal_nama==2) && ($hasil=='benar')){
+                        $data=50;
+                }elseif(($kategorisoal_nama==3) && ($hasil=='benar')){
+                        $data=100;
+                }else{
+                    $data=0;
+                }
+                // dd($kategorisoal_nama,$hasil);
+            return $data;
+        }
+
+        if($request->kategorisoal_nama==1){
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil1);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban1,$request->jawaban_hasil1);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil2);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban2,$request->jawaban_hasil2);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil3);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban3,$request->jawaban_hasil3);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil4);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban4,$request->jawaban_hasil4);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil5);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban5,$request->jawaban_hasil5);
+
+        }elseif($request->kategorisoal_nama==2){
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil1);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban1,$request->jawaban_hasil1);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil2);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban2,$request->jawaban_hasil2);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil3);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban3,$request->jawaban_hasil3);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil4);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban4,$request->jawaban_hasil4);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil5);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban5,$request->jawaban_hasil5);
+
+
+        }else{
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil1);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban1,$request->jawaban_hasil1);
+
+            $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil2);
+            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban2,$request->jawaban_hasil2);
+
+        }
+
+
+        // dd('terakir',$nilai,$request->jawaban1);
+
+
+
        DB::table('banksoal')->insert(
         array(
                'pertanyaan'     =>   $request->pertanyaan,
@@ -154,6 +237,7 @@ class banksoalcontroller extends Controller
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
+
 
         //jika ada gambar maka upload
 

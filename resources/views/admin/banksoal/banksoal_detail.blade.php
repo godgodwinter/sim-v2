@@ -129,7 +129,7 @@ $message=session('status');
                         <div class="row">
 
 
-                            <div class="form-group col-md-6 col-6">
+                            <div class="form-group col-md-6 col-12">
                                 <label for="jawaban">Jawaban</label>
                                 <input type="text" name="jawaban" id="jawaban"
                                     class="form-control @error('jawaban') is-invalid @enderror"
@@ -138,7 +138,7 @@ $message=session('status');
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-6 col-6">
+                            <div class="form-group col-md-6 col-12">
                                 <label for="jawaban">Hasil</label>
                             <select class="form-control form-control-sm" name="hasil" >
                                   <option class="text-capitalize">salah</option>

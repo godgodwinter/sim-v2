@@ -147,7 +147,7 @@ $message=session('status');
                     <div class="card-body">
                         <div class="row">
 
-                            <div class="form-group col-md-6 col-6">
+                            <div class="form-group col-md-6 col-12">
                                 <label for="nama">Pertanyaan</label> :
                                 {{-- <label for="nama" class="text-dark" id="tingkatkesulitan">Tingkat kesulitan</label> --}}
                                 <textarea class="form-control" style="min-width: 100%;height:100%;" name="pertanyaan"
@@ -205,14 +205,253 @@ $message=session('status');
                   <div class="form-group col-md-6 col-12 mt-2">
                     <label for="nama">Jenis Soal</label>
 
-                    <select class="form-control form-control-sm" name="kategorisoal_nama">
+                    <select class="form-control form-control-sm" name="kategorisoal_nama" id="kategorisoal_nama" required>
                        <option value="" disabled selected>Pilih</option>
 
-                      <option value="1">Pilihan ganda</option>
+                      <option value="1" >Pilihan ganda</option>
                       <option value="2">Pilihan ganda Komplek</option>
                       <option value="3">True / False</option>
                 </select>
                   </div>
+
+<script>
+    $( document ).ready(function() {
+        var formtipe1=`<div class="form-group col-md-6 col-12">
+                                <label for="jawaban1">Jawaban 1</label> :
+                                <input type="text" name="jawaban1" id="jawaban1"
+                                    class="form-control @error('jawaban1') is-invalid @enderror"
+                                    value="{{old('jawaban1')}}"  >
+                                @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil1">Hasil Jawaban 1</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil1" >
+                                  <option class="text-capitalize">benar</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban2">Jawaban 2</label> :
+                                <input type="text" name="jawaban2" id="jawaban2"
+                                    class="form-control @error('jawaban2') is-invalid @enderror"
+                                    value="{{old('jawaban2')}}"  >
+                                @error('jawaban2')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil2">Hasil Jawaban 2</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil2" >
+                                  <option class="text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>
+
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban3">Jawaban 3</label> :
+                                <input type="text" name="jawaban3" id="jawaban3"
+                                    class="form-control @error('jawaban3') is-invalid @enderror"
+                                    value="{{old('jawaban3')}}"  >
+                                @error('jawaban3')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil3">Hasil Jawaban 3</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil3" >
+                                  <option class="text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban4">Jawaban 4</label> :
+                                <input type="text" name="jawaban4" id="jawaban4"
+                                    class="form-control @error('jawaban4') is-invalid @enderror"
+                                    value="{{old('jawaban4')}}"  >
+                                @error('jawaban4')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil4">Hasil Jawaban4</label>
+                            <select class="form-control form-control-sm" name="jawaban_hasil4" >
+                                  <option class="text-capitalize text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban5">Jawaban 5</label> :
+                                <input type="text" name="jawaban5" id="jawaban1"
+                                    class="form-control @error('jawaban5') is-invalid @enderror"
+                                    value="{{old('jawaban5')}}"  >
+                                @error('jawaban5')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil5">Hasil Jawaban 5</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil5" >
+                                  <option class="text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>`;
+
+
+        var formtipe2=`<div class="form-group col-md-6 col-12">
+                                <label for="jawaban1">Jawaban 1</label> :
+                                <input type="text" name="jawaban1" id="jawaban1"
+                                    class="form-control @error('jawaban1') is-invalid @enderror"
+                                    value="{{old('jawaban1')}}"  >
+                                @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil1">Hasil Jawaban 1</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil1" >
+                                  <option class="text-capitalize">benar</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban2">Jawaban 2</label> :
+                                <input type="text" name="jawaban2" id="jawaban2"
+                                    class="form-control @error('jawaban2') is-invalid @enderror"
+                                    value="{{old('jawaban2')}}"  >
+                                @error('jawaban2')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil2">Hasil Jawaban 2</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil2" >
+                                  <option class="text-capitalize">benar</option>
+
+
+                            </select>
+                            </div>
+
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban3">Jawaban 3</label> :
+                                <input type="text" name="jawaban3" id="jawaban3"
+                                    class="form-control @error('jawaban3') is-invalid @enderror"
+                                    value="{{old('jawaban3')}}"  >
+                                @error('jawaban3')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil3">Hasil Jawaban 3</label>
+                            <select class="form-control form-control-sm" name="jawaban_hasil3" >
+                                  <option class="text-capitalize text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban4">Jawaban 4</label> :
+                                <input type="text" name="jawaban4" id="jawaban4"
+                                    class="form-control @error('jawaban4') is-invalid @enderror"
+                                    value="{{old('jawaban4')}}"  >
+                                @error('jawaban4')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil4">Hasil Jawaban4</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil4" >
+                                  <option class="text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban5">Jawaban 5</label> :
+                                <input type="text" name="jawaban5" id="jawaban1"
+                                    class="form-control @error('jawaban5') is-invalid @enderror"
+                                    value="{{old('jawaban5')}}"  >
+                                @error('jawaban5')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil5">Hasil Jawaban 5</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil5" >
+                                  <option class="text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>`;
+
+
+        var formtipe3=`<div class="form-group col-md-6 col-12">
+                                <label for="jawaban1">Jawaban 1</label> :
+                                <input type="text" name="jawaban1" id="jawaban1"
+                                    class="form-control @error('jawaban1') is-invalid @enderror"
+                                    value="{{old('jawaban1')}}"  >
+                                @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil1">Hasil Jawaban 1</label>
+                            <select class="form-control form-control-sm  text-capitalize" name="jawaban_hasil1" >
+                                  <option class="text-capitalize">benar</option>
+
+
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban2">Jawaban 2</label> :
+                                <input type="text" name="jawaban2" id="jawaban2"
+                                    class="form-control @error('jawaban2') is-invalid @enderror"
+                                    value="{{old('jawaban2')}}"  >
+                                @error('jawaban2')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban_hasil2">Hasil Jawaban 2</label>
+                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil2" >
+                                  <option class="text-capitalize">salah</option>
+
+
+                            </select>
+                            </div>`;
+
+
+        $('#kategorisoal_nama').change(function(){
+                 var value = $(this).val();
+                //  alert(value);
+
+                 if(value==1){
+                     $('#pilihanjawaban').html(formtipe1);
+                 }else if(value==2){
+                     $('#pilihanjawaban').html(formtipe2);
+                 }else{
+                     $('#pilihanjawaban').html(formtipe3);
+                 }
+
+        });
+    });
+</script>
 
                   <div class="form-group col-md-6 col-12 mt-2">
                     <label for="nama">Upload Gambar</label>
@@ -236,6 +475,11 @@ $message=session('status');
 
 
                         </div>
+                        <h5 class="ml-3 mb-4">Pilihan Jawaban</h3>
+
+                        <div class="row" id="pilihanjawaban">
+
+                        </div>
 
                         <div class="card-footer text-right">
                             <button class="btn btn-primary">Simpan</button>
@@ -244,6 +488,8 @@ $message=session('status');
 
             </div>
         </div>
+
+
     </div>
 
 

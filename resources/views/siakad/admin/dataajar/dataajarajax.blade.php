@@ -208,11 +208,11 @@ input[readonly]{
 </tr>
 @endforeach
 
-<tr>
+{{-- <tr>
   <td class="text-left" colspan="2">
     <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
     onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
-</tr>
+</tr> --}}
 @endsection
 
 @section('foottable')

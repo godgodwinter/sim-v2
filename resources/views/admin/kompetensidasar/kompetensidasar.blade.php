@@ -143,7 +143,7 @@ $message=session('status');
 
 
             <tr>
-                <td  rowspan="{{$jmlmateri+1}}"  >
+                <td  rowspan="{{$jmlmateri+1}}"   data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}" >
                          {{ $kodetampil.$dkd->kode }} {{$dkd->nama}} &nbsp;
                          <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
                             @method('delete')
@@ -200,7 +200,7 @@ $jmlmateriperkd=DB::table('materipokok')
 $totalrow=$jmlkd+$jmlmateriperkd+1;
 @endphp
 <tr>
-<td  rowspan="1">
+<td  rowspan="1"  data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}">
 
     {{ $kodetampil.$dkd->kode }} {{$dkd->nama}} &nbsp;
     <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
