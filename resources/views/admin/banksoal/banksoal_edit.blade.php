@@ -126,17 +126,17 @@ $message=session('status');
 
                   <div class="form-group col-md-6 col-12 mt-2">
                     <label for="nama">Jenis Soal</label>
-                
-                    <select class="form-control form-control-sm" name="kategorisoal_nama">   
+
+                    <select class="form-control form-control-sm" name="kategorisoal_nama">
                         @if ($datas->kategorisoal_nama==1)
                         <option value="1">Pilihan ganda</option>
-                        @elseif ($datas->kategorisoal_nama)
+                        @elseif ($datas->kategorisoal_nama==2)
                         <option value="2">Pilihan ganda Komplek</option>
                         @else
                         <option value="3">True / False</option>
                         @endif
                        <option value="" disabled >Pilih</option>
-                   
+
                       <option value="1">Pilihan ganda</option>
                       <option value="2">Pilihan ganda Komplek</option>
                       <option value="3">True / False</option>
@@ -150,15 +150,15 @@ $message=session('status');
                     @enderror
 
                     @if ($datas->gambar!='' AND $datas->gambar!=null)
-                   
+
                     <img alt="image" src="{{url('/assets/banksoal/'.$datas->kodegenerate.'.jpg')}}" class="img-thumbnail" width="200px">
                         @else
                         <img alt="image" src="https://ui-avatars.com/api/?name=Soal&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="200px">
                     @endif
-                  
+
 
                   </div>
-                  
+
                             {{-- <div class="form-group col-md-6 col-6">
                                 <label for="kodegenerate">kodegenerate</label>
                                 <input type="text" name="kodegenerate" id="kodegenerate"
