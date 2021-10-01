@@ -43,14 +43,14 @@ class kompetensidasarcontroller extends Controller
 
 
 
-        $generate_kode=Fungsi::kompetensidasargeneratekode();
-
+        $generate_kode=Fungsi::kompetensidasargeneratekode($t_nama,$k_nama,$p_nama);
+// a
 
         // 1. ambil datas dari tabel kompetensi dasar where tapel kelas dan pelajarannama
         // 1. ambil last id (Fungsi generatekompetesiid)
 
 
-        return view('admin.kompetensidasar.index',compact('pages','datas','datastanpauniq','request','generate_kode','pelajaran_nama','kelas_nama','tapel_nama'));
+        return view('admin.kompetensidasar.index',compact('pages','datas','datastanpauniq','request','generate_kode','pelajaran_nama','kelas_nama','tapel_nama','t_nama','p_nama','k_nama'));
     }
 
     public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama){

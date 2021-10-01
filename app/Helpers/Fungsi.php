@@ -11,22 +11,31 @@ class Fungsi {
     // }
 
 
-    public static function kompetensidasargeneratekode(){
-        $id=1;
-
+    public static function kompetensidasargeneratekode($tapel_nama,$kelas_nama,$pelajaran_nama){
+        $id=0;
         // $datas=Fungsi::periksakompetensidasar($id);
 
         $datas=DB::table('kompetensidasar')
         ->where('kode',$id)
+        ->where('tapel_nama',$tapel_nama)
+        ->where('kelas_nama',$kelas_nama)
+        ->where('pelajaran_nama',$pelajaran_nama)
         ->count();
+        // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
 
         do {
-            $id++;
+        $id++;
+
             $datas=DB::table('kompetensidasar')
             ->where('kode',$id)
-            ->get();
+            ->where('tapel_nama',$tapel_nama)
+            ->where('kelas_nama',$kelas_nama)
+            ->where('pelajaran_nama',$pelajaran_nama)
+            ->count();
+            // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
         }
-        while ($datas->count());
+        while ($datas>0);
+        // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
 
         return $id;
     }

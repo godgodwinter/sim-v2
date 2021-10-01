@@ -1,4 +1,6 @@
-@section('title','Kompetensi Dasar')
+@section('title')
+Kompetensi Dasar - {{base64_decode($tapel_nama)}} - {{base64_decode($kelas_nama)}} - {{base64_decode($pelajaran_nama)}}
+@endsection
 @section('halaman')
 <div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"   > Data ajar</a></div><div class="breadcrumb-item"> Kompetensi dasar</div>
 @endsection
@@ -61,9 +63,15 @@ $message=session('status');
 
     @php
     $datakd=DB::table('kompetensidasar')->where('kode',$data->kode)
+    ->where('pelajaran_nama',$p_nama)
+    ->where('kelas_nama',$k_nama)
+    ->where('tapel_nama',$t_nama)
     ->orderBy('tipe','desc')
     ->get();
     $jmlkd=DB::table('kompetensidasar')->where('kode',$data->kode)
+    ->where('pelajaran_nama',$p_nama)
+    ->where('kelas_nama',$k_nama)
+    ->where('tapel_nama',$t_nama)
     ->orderBy('tipe','desc')
     ->count();
     // dd($jmlkd);
