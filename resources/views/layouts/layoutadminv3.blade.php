@@ -116,118 +116,93 @@ crossorigin="anonymous"></script>
                   <a href="{{ route('settings') }}" class="nav-link"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
                  </li>
 
-              <li class="menu-header">Mastering</li>
+              {{-- <li class="menu-header">Mastering</li> --}}
+              <li class="nav-item dropdown ">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Mastering</span></a>
+                <ul class="dropdown-menu">
 
-              {{--  <li @if ($pages==='kategori')
-                class="active"
-                @endif >
-                <a href="{{ route('kategori') }}" class="nav-link"><i class="fab fa-korvue"></i><span>Kategori</span></a>
-              </li> --}}
+                                <li @if ($pages==='kelas')
+                            class="active"
+                            @endif >
+                            <a href="{{ route('kelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
+                        </li>
+                        <li @if ($pages==='siswa')
+                            class="active"
+                            @endif >
+                            <a href="{{ route('siswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
+                        </li>
 
-              <li @if ($pages==='tapel')
-                class="active"
-                @endif >
-                <a href="{{ route('tapel') }}" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Tahun Pelajaran</span></a>
-              </li>
-              <li @if ($pages==='kelas')
-                class="active"
-                @endif >
-                <a href="{{ route('kelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Kelas</span></a>
-              </li>
-              <li @if ($pages==='siswa')
-                class="active"
-                @endif >
-                <a href="{{ route('siswa') }}" class="nav-link"><i class="fas fa-user-graduate"></i><span>Siswa</span></a>
-              </li>
-
-              <li @if ($pages==='siakadguru')
-                class="active"
-                @endif >
-                <a href="{{ route('siakadguru') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
-              </li>
-              <li @if ($pages==='pegawai')
-                class="active"
-                @endif >
-                <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>User</span></a>
-              </li>
-
-              <li class="menu-header">Pembiayaan</li>
-
-              <li @if ($pages==='tagihanatur')
-                class="active"
-                @endif >
-                <a href="{{ route('tagihanatur') }}" class="nav-link"><i class="fas fa-fire"></i><span>Atur Tagihan</span></a>
-              </li>
-
-              <li @if ($pages==='tagihansiswa')
-                class="active"
-                @endif >
-                <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Pembelajaran</span></a>
+                        <li @if ($pages==='siakadguru')
+                            class="active"
+                            @endif >
+                            <a href="{{ route('siakadguru') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru</span></a>
+                        </li>
+                        <li @if ($pages==='pegawai')
+                            class="active"
+                            @endif >
+                            <a href="{{ route('pegawai') }}" class="nav-link"><i class="fas fa-building"></i><span>User</span></a>
+                        </li>
+                </ul>
               </li>
 
 
-              {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
-
-              {{--   <li class="nav-item dropdown ">
+              <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pembiayaan</span></a>
                 <ul class="dropdown-menu">
+                        <li @if ($pages==='tagihanatur')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('tagihanatur') }}" class="nav-link"><i class="fas fa-fire"></i><span>Atur Tagihan</span></a>
+                        </li>
 
-              <li @if ($pages==='tagihanatur')
-                    class="active"
-                    @endif >
-                    <a href="{{ route('tagihanatur') }}" class="nav-link"><i class="fas fa-fire"></i><span>Tagihan Atur</span></a>
-                  </li>
-
-                  <li @if ($pages==='tagihansiswa')
-                    class="active"
-                    @endif >
-                    <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Siswa</span></a>
-                  </li>
+                        <li @if ($pages==='tagihansiswa')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Tagihan Pembelajaran</span></a>
+                        </li>
                 </ul>
-              </li>--}}
-
-              <li class="menu-header">Pembelajaran</li>
-
-              <li @if ($pages==='siakadjenisnilai')
-                class="active"
-                @endif >
-                <a href="{{ route('siakadjenisnilai') }}" class="nav-link"><i class="fas fa-building"></i><span>Jenis Nilai</span></a>
               </li>
 
-              <li @if ($pages==='siakadpelajaran')
-                class="active"
-                @endif >
-                <a href="{{ route('siakadpelajaran') }}" class="nav-link"><i class="fas fa-building"></i><span>Mata Pelajaran</span></a>
-              </li>
 
-              <li @if ($pages==='siakadkepribadian')
-                class="active"
-                @endif >
-                <a href="{{ route('siakadkepribadian') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
-              </li>
 
-              <li @if ($pages==='siakadekstrakulikuler')
-                class="active"
-                @endif >
-                <a href="{{ route('siakadekstrakulikuler') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
-              </li>
+
+
+
 
                <li class="nav-item dropdown ">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Penilaian</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
 
-              <li @if ($pages==='siakaddataajar')
-                class="active"
-                @endif >
-                <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Guru Mapel</span></a>
-              </li>
+                        <li @if ($pages==='siakadjenisnilai')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('siakadjenisnilai') }}" class="nav-link"><i class="fas fa-building"></i><span>Jenis Nilai</span></a>
+                        </li>
+
+                        <li @if ($pages==='siakadpelajaran')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('siakadpelajaran') }}" class="nav-link"><i class="fas fa-building"></i><span>Mata Pelajaran</span></a>
+                        </li>
+
+                        <li @if ($pages==='siakadkepribadian')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('siakadkepribadian') }}" class="nav-link"><i class="fas fa-building"></i><span>Kepribadian</span></a>
+                        </li>
+
+                        <li @if ($pages==='siakadekstrakulikuler')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('siakadekstrakulikuler') }}" class="nav-link"><i class="fas fa-building"></i><span>Ekstrakulikuler</span></a>
+                        </li>
+                        <li @if ($pages==='siakaddataajar')
+                            class="active"
+                            @endif >
+                            <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-building"></i><span>Proses Belajar</span></a>
+                        </li>
 
 
-              <li @if ($pages==='siakadkelas')
-                class="active"
-                @endif >
-                <a href="{{ route('siakadkelas') }}" class="nav-link"><i class="fas fa-school"></i><span>Wali Kelas</span></a>
-              </li>
                 </ul>
               </li>
 
