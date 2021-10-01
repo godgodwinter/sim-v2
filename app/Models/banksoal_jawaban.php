@@ -15,5 +15,6 @@ class banksoal_jawaban extends Model
         'jawaban',
         'nilai',
         'kodegenerate',
+        'kategorisoal_nama',
     ];
 }

@@ -83,9 +83,9 @@ $message=session('status');
                             </div>
 
                             <div class="form-group col-md-6 col-6">
-                                <label for="nilai">Hasil</label>
-                            <select class="form-control form-control-sm" name="nilai" >
-                                  <option class="text-capitalize">{{$datas->nilai}}</option>
+                                <label for="hasil">Hasil</label>
+                            <select class="form-control form-control-sm" name="hasil" >
+                                  <option class="text-capitalize">{{$datas->hasil}}</option>
                                   <option class="text-capitalize">salah</option>
                                   <option class="text-capitalize">benar</option>
 

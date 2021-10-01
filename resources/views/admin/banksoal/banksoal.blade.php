@@ -100,7 +100,7 @@ $message=session('status');
                                     if($data->kategorisoal_nama==1){
                                         $kategorisoal_nama='Pilihan ganda';
                                     }elseif($data->kategorisoal_nama==2){
-                                        $kategorisoal_nama='Pilihan ganda komples';
+                                        $kategorisoal_nama='Pilihan ganda kompleks';
                                     }else{
                                         $kategorisoal_nama='True/False';
                                     }

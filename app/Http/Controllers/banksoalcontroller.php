@@ -227,7 +227,7 @@ class banksoalcontroller extends Controller
             ]);
 
          //aksi update
-         banksoal_jawaban::where('id',$id->id)
+         banksoal_jawaban::where('kodegenerate',$id->kodegenerate)
         ->update([
             'kategorisoal_nama'=>$request->kategorisoal_nama,
             'updated_at'=>date("Y-m-d H:i:s")
@@ -393,11 +393,57 @@ class banksoalcontroller extends Controller
 
         ]);
          //aksi update
+        // dd($id,$request);
+        // $kategorisoal_nama=$id->kategorisoal_nama;
+        $nilai=0;
+        $hasil=$request->hasil;
+        $kategorisoal_nama=$id->kategorisoal_nama;
+        // dd($request,$id->kategorisoal_nama);
+
+        if($kategorisoal_nama==1){
+            // 1.cek jika jawaban benar sudah ada 1 maka kembali
+            if($hasil=='benar'){
+
+                //benar nilai 100
+                $nilai=100;
+            }else{
+                   // 2.cek jika jawaban salah ada 4 maka kembali
+
+            }
+
+
+            // dd('pilihanganda',$jmlbenar,$jmljawaban);
+
+            // update nilai benar adalah 100
+        }elseif($kategorisoal_nama==2){
+            // 1.cek jika jawaban benar sudah ada 2 maka kembali
+            if($hasil=='benar'){
+
+                //update nilai benar adalah 50
+                $nilai=50;
+            }else{
+                   // 2.cek jika jawaban salah ada 3 maka kembali
+
+            }
+
+        }else{
+            // 1.cek jika jawaban benar sudah ada 1 maka kembali
+            if($hasil=='benar'){
+
+                //update nilai benar adalah 100
+                $nilai=100;
+            }else{
+
+            }
+        }
+
+        // dd($id->kategorisoal_nama,$nilai,$id);
 
         banksoal_jawaban::where('id',$id->id)
             ->update([
                 'jawaban'=>$request->jawaban,
-                'nilai'=>$request->nilai,
+                'nilai'=>$nilai,
+                'hasil'=>$request->hasil,
             ]);
     }
 
