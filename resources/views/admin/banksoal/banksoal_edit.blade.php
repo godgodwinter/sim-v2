@@ -58,7 +58,7 @@ $message=session('status');
             <div class="card">
                 <form
                     action="{{url('/admin/')}}/banksoal/{{$datas->id}}"
-                    method="post">
+                    method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <div class="card-header">
@@ -123,19 +123,56 @@ $message=session('status');
 
                             </div>
 
-                            <div class="form-group col-md-6 col-6">
+
+                  <div class="form-group col-md-6 col-12 mt-2">
+                    <label for="nama">Jenis Soal</label>
+                
+                    <select class="form-control form-control-sm" name="kategorisoal_nama">   
+                        @if ($datas->kategorisoal_nama==1)
+                        <option value="1">Pilihan ganda</option>
+                        @elseif ($datas->kategorisoal_nama)
+                        <option value="2">Pilihan ganda Komplek</option>
+                        @else
+                        <option value="3">True / False</option>
+                        @endif
+                       <option value="" disabled >Pilih</option>
+                   
+                      <option value="1">Pilihan ganda</option>
+                      <option value="2">Pilihan ganda Komplek</option>
+                      <option value="3">True / False</option>
+                </select>
+                  </div>
+
+                  <div class="form-group col-md-6 col-12 mt-2">
+                    <label for="nama">Upload Gambar</label>
+                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" >
+                    @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+
+                    @if ($datas->gambar!='' AND $datas->gambar!=null)
+                   
+                    <img alt="image" src="{{url('/assets/banksoal/'.$datas->kodegenerate.'.jpg')}}" class="img-thumbnail" width="200px">
+                        @else
+                        <img alt="image" src="https://ui-avatars.com/api/?name=Soal&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="200px">
+                    @endif
+                  
+
+                  </div>
+                  
+                            {{-- <div class="form-group col-md-6 col-6">
                                 <label for="kodegenerate">kodegenerate</label>
                                 <input type="text" name="kodegenerate" id="kodegenerate"
                                     class="form-control @error('kodegenerate') is-invalid @enderror"
                                     value="{{$datas->kodegenerate}}" required readonly>
                                 @error('kodegenerate')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
 
                         </div>
 
                         <div class="card-footer text-right">
+                            <a href="#" class="btn btn-icon btn-danger ml-3"> <i class="fas fa-backward"></i> Hapus Gambar</a>
                             <a href="/admin/kompetensidasar/{{base64_encode($datas->pelajaran_nama)}}/{{base64_encode($datas->kelas_nama)}}/{{base64_encode($datas->tapel_nama)}}/materipokok/banksoal/{{base64_encode($datas->materipokok_nama)}}/{{base64_encode($datas->kompetensidasar_kode)}}/{{base64_encode($datas->kompetensidasar_tipe)}}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
                             <button class="btn btn-primary">Simpan</button>
                         </div>

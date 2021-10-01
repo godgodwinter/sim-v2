@@ -73,10 +73,57 @@ class banksoalcontroller extends Controller
 
 
     public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama,$materipokok_nama,$kompetensidasar_kode,$kompetensidasar_tipe){
-        // dd($request);
+      
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
+        $kodegenerate=Uuid::uuid4()->getHex();
+      
+        // $path = 'myfolder/myimage.png';
+// 		$file = $request->file('file');
+// 		$path=$file->getRealPath();
+// $type = pathinfo($path, PATHINFO_EXTENSION);
+// $data = file_get_contents($path);
+// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+// // dd($base64);
+   
+// // $img = $_POST['img'];
+// $img = str_replace('data:image/png;base64,', '', $base64);
+// $img = str_replace(' ', '+', $img);
+// $data = base64_decode($img);
+// $file =  uniqid() . '.png';
+// $success = file_put_contents($file, $data);
+// dd($success);
+		// $file = $request->file('file');
+
+//         // nama file
+        // $data=$file->getClientOriginalName();
+        // dd($request);
+// echo 'File Name: '.$file->getClientOriginalName();
+
+        $files = $request->file('file');
+        
+        if($files!=null){
+        $data = file_get_contents($request->file);
+
+
+        $encoded_data = base64_encode($data);
+
+    }else{
+        $encoded_data='';
+    }
+        // contoh export ganbar decode ke file assets/banksoal
+        $decoded_data = base64_decode($encoded_data);
+        // Show the decoded data
+        // echo $decoded_data;
+        $file = fopen("assets/banksoal/".$kodegenerate.".jpg", "w");
+        // Insert the decoded$kodegenerate.  to the image file
+        fwrite($file, $decoded_data);
+        // Close the file
+        fclose($file);
+        
+        // dd($encoded_data);
+        // dd($request->file('file'));
         $p_nama=base64_decode($pelajaran_nama);
         $k_nama=base64_decode($kelas_nama);
         $t_nama=base64_decode($tapel_nama);
@@ -84,7 +131,6 @@ class banksoalcontroller extends Controller
         $kd_kode=base64_decode($kompetensidasar_kode);
         $kd_tipe=base64_decode($kompetensidasar_tipe);
 
-        $kodegenerate=Uuid::uuid4()->getHex();
 
     //    dd($request->tingkatkesulitan);
 
@@ -96,6 +142,7 @@ class banksoalcontroller extends Controller
                'kategorisoal_nama'     =>   $request->kategorisoal_nama,
                'tingkatkesulitanangka'     =>   0,
                'kodegenerate'     =>   $kodegenerate,
+               'gambar'     =>   $encoded_data,
                'kompetensidasar_tipe'     =>   $kd_tipe,
                'materipokok_nama'     =>   $mp_nama,
                'kompetensidasar_kode'     =>   $kd_kode,
@@ -107,6 +154,7 @@ class banksoalcontroller extends Controller
         ));
 
         //jika ada gambar maka upload
+
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
 
@@ -136,7 +184,7 @@ class banksoalcontroller extends Controller
     public function proses_update($request,$id){
 
         // dd($tapel);
-
+        $kodegenerate=$id->kodegenerate;
         $request->validate([
             'pertanyaan'=>'required'
         ],
@@ -145,11 +193,36 @@ class banksoalcontroller extends Controller
 
 
         ]);
+
+
+        $files = $request->file('file');
+        
+        if($files!=null){
+        $data = file_get_contents($request->file);
+
+
+        $encoded_data = base64_encode($data);
+
+    }else{
+        $encoded_data='';
+    }
+        // contoh export ganbar decode ke file assets/banksoal
+        $decoded_data = base64_decode($encoded_data);
+        // Show the decoded data
+        // echo $decoded_data;
+        $file = fopen("assets/banksoal/".$kodegenerate.".jpg", "w");
+        // Insert the decoded$kodegenerate.  to the image file
+        fwrite($file, $decoded_data);
+        // Close the file
+        fclose($file);
+
          //aksi update
 
         banksoal::where('id',$id->id)
             ->update([
                 'pertanyaan'=>$request->pertanyaan,
+                'kategorisoal_nama'=>$request->kategorisoal_nama,
+                'gambar'=>$encoded_data,
                 'tingkatkesulitan'=>$request->tingkatkesulitan,
             ]);
     }
