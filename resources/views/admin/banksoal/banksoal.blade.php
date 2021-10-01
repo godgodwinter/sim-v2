@@ -190,6 +190,29 @@ $message=session('status');
 
                             </div>
 
+                  <div class="form-group col-md-6 col-12 mt-2">
+                    <label for="nama">Jenis Soal</label>
+                
+                    <select class="form-control form-control-sm" name="kategorisoal_nama">   
+                       <option value="" disabled selected>Pilih</option>
+                   
+                      <option value="1">Pilihan ganda</option>
+                      <option value="2">Pilihan ganda Komplek</option>
+                      <option value="3">True / False</option>
+                </select>
+                  </div>
+
+                  <div class="form-group col-md-6 col-12 mt-2">
+                    <label for="nama">Upload Gambar</label>
+                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                    @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                    <img alt="image" src="https://ui-avatars.com/api/?name=Soal&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="200px">
+
+
+                  </div>
+
+
                             {{-- <div class="form-group col-md-6 col-6">
                                 <label for="kodegenerate">kodegenerate</label>
                                 <input type="text" name="kodegenerate" id="kodegenerate"
