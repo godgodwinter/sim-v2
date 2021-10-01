@@ -227,7 +227,7 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil1">Hasil Jawaban 1</label>
-                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil1" >
+                            <select class="form-control form-control-sm text-capitalize text-dark btn-success" name="jawaban_hasil1" >
                                   <option class="text-capitalize">benar</option>
 
 
@@ -319,7 +319,7 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil1">Hasil Jawaban 1</label>
-                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil1" >
+                            <select class="form-control form-control-sm text-capitalize text-dark btn-success" name="jawaban_hasil1" >
                                   <option class="text-capitalize">benar</option>
 
 
@@ -337,7 +337,7 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil2">Hasil Jawaban 2</label>
-                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil2" >
+                            <select class="form-control form-control-sm text-capitalize text-dark btn-success" name="jawaban_hasil2" >
                                   <option class="text-capitalize">benar</option>
 
 
@@ -411,7 +411,7 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil1">Hasil Jawaban 1</label>
-                            <select class="form-control form-control-sm  text-capitalize" name="jawaban_hasil1" >
+                            <select class="form-control form-control-sm text-capitalize text-dark btn-success" name="jawaban_hasil1" >
                                   <option class="text-capitalize">benar</option>
 
 
