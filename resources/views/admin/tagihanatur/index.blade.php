@@ -15,7 +15,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -25,7 +25,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -40,10 +40,9 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 {{-- DATATABLE --}}
-@section('headtable')
 @section('headtable')
   <th width="10%" class="text-center">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
@@ -99,17 +98,17 @@
     <td>
       @if(($data->gambar===null)||$data->gambar==='')
         @php
-        $gambaricon="fas fa-eye-slash";  
-        $gambarlink='#';      
-        $gambarket='Gambar Scan belum di upload!';      
+        $gambaricon="fas fa-eye-slash";
+        $gambarlink='#';
+        $gambarket='Gambar Scan belum di upload!';
         @endphp
       @else
         @php
           $gambaricon="far fa-image";
         $gambarlink=asset("storage/gambar/scan")."/".$data->gambar;
-        $gambarket='Gambar Scan tahun '.$data->tapel_nama."-".$data->kelas_nama;      
+        $gambarket='Gambar Scan tahun '.$data->tapel_nama."-".$data->kelas_nama;
         @endphp
-        
+
       @endif
       <a href="{{ $gambarlink }}" class="btn btn-icon btn-light btn-sm"  data-toggle="tooltip" data-placement="top" title=" {{ $gambarket }} "><i class="{{ $gambaricon}}"></i></a>
     </td>
@@ -126,7 +125,7 @@
 </tr>
 @endsection
 
-@section('foottable') 
+@section('foottable')
   {{ $datas->links() }}
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -148,12 +147,12 @@
         <form action="{{ route('tagihanatur.cari') }}" method="GET">
           <div class="row">
               <div class="form-group col-md-2 col-2 mt-1 text-right">
-               
+
               </div>
 
               <div class="form-group col-md-2 col-2 text-right">
-            
-                <select class="form-control form-control-sm" name="tapel_nama" >   
+
+                <select class="form-control form-control-sm" name="tapel_nama" >
                 @if($request->tapel_nama)
                   <option>{{$request->tapel_nama}}</option>
                 @else
@@ -165,48 +164,48 @@
             </select>
               </div>
               <div class="form-group  col-md-2 col-2 text-right">
-         
-              <select class="form-control form-control-sm" name="kelas_nama">    
+
+              <select class="form-control form-control-sm" name="kelas_nama">
                 @if($request->kelas_nama)
                   <option>{{$request->kelas_nama}}</option>
                 @else
                  <option value="" disabled selected>Pilih Kelas</option>
                 @endif
-             
+
             @foreach ($kelas as $t)
                 <option>{{ $t->nama }}</option>
             @endforeach
           </select>
               </div>
           <div class="form-group   text-right">
-     
+
           <button type="submit" value="CARI" class="btn btn-icon btn-info btn-sm mt-1" ><span
           class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
               </div>
-           
-         
+
+
         </form>
         <div class="form-group col-md-4 col-4 mt-1 text-right">
-          
+
           <a href="/admin/{{  $pages }}#add" type="submit"class="btn btn-icon btn-primary btn-sm"><span
             class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah Tagihan Atur </span></a >
 
           <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting."><span
             class="pcoded-micon"> <i class="far fa-plus-square"></i> Fungsi Tambah Semua </span></a >
-         
-          
+
+
           <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-            Import 
+            Import
           </button>
 
 
 
- 
+
           <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
                 class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a >
 
- 
+
 
 
 
@@ -214,7 +213,7 @@
           </div>
       </div>
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-       </div> 
+       </div>
       <div class="col-12 col-md-12 col-lg-5" id="add">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
@@ -227,9 +226,9 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Tahun Pelajaran <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="tapel_nama">  
+                    <select class="form-control form-control-lg" required name="tapel_nama">
                           @if (old('tapel_nama'))
-                          <option>{{old('tapel_nama')}}</option>                        
+                          <option>{{old('tapel_nama')}}</option>
                           @endif
                       @foreach ($tapel as $t)
                           <option>{{ $t->nama }}</option>
@@ -241,24 +240,24 @@
                     <label>Kelas <code>*)</code></label>
                     <select class="form-control form-control-lg" required name="kelas_nama">
                           @if (old('kelas_nama'))
-                          <option>{{old('kelas_nama')}}</option>                        
+                          <option>{{old('kelas_nama')}}</option>
                           @endif
                       @foreach ($kelas as $k)
                           <option>{{ $k->nama }}</option>
                       @endforeach
                     </select>
                   </div>
-                  
+
 
 
                   @if (old('nominaltagihan'))
-                      @php                    
+                      @php
                         $nominaltagihan=old('nominaltagihan');
                       @endphp
                   @else
                       @php
                       $nominaltagihan=1;
-                      @endphp                    
+                      @endphp
                   @endif
                   <div class="form-group col-md-6 col-6">
                     <label for="nominaltagihan">Nominal <code>*)</code> </label>
@@ -269,7 +268,7 @@
                   </div>
 
                   <script type="text/javascript">
-                    
+
                     var rupiah = document.getElementById('rupiah');
                     var labelrupiah = document.getElementById('labelrupiah');
                     rupiah.addEventListener('keyup', function(e){
@@ -278,7 +277,7 @@
                       // rupiah.value = formatRupiah(this.value, 'Rp. ');
                       labelrupiah.value = formatRupiah(this.value, 'Rp. ');
                     });
-                
+
                     /* Fungsi formatRupiah */
                     function formatRupiah(angka, prefix){
                       var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -286,20 +285,20 @@
                       sisa     		= split[0].length % 3,
                       rupiah     		= split[0].substr(0, sisa),
                       ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-                
+
                       // tambahkan titik jika yang di input sudah menjadi angka ribuan
                       if(ribuan){
                         separator = sisa ? '.' : '';
                         rupiah += separator + ribuan.join('.');
                       }
-                
+
                       rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
                       return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
                     }
                   </script>
-                
+
                 </div>
-             
+
             </div>
             <div class="card-footer text-right">
               <button class="btn btn-primary">Simpan</button>
@@ -315,7 +314,7 @@
         </div>
 
 
-        
+
 
       </div>
     </div>
@@ -334,14 +333,14 @@
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -351,6 +350,6 @@
                   </form>
                 </div>
               </div>
-          
+
 
 @endsection
