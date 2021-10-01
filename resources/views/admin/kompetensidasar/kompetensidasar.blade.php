@@ -5,6 +5,23 @@ Kompetensi Dasar - {{base64_decode($tapel_nama)}} - {{base64_decode($kelas_nama)
 <div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"   > Data ajar</a></div><div class="breadcrumb-item"> Kompetensi dasar</div>
 @endsection
 @section('csshere')
+<style>
+    .divbutton {
+    height: 30px;
+    /* background: #000; */
+}
+
+#buttondel {
+    display: none;
+}
+
+.divbutton:hover #buttondel {
+    display: block;
+}
+/* .coba {
+    display: flex;
+} */
+</style>
 @endsection
 
 @section('jshere')
@@ -126,7 +143,17 @@ $message=session('status');
 
 
             <tr>
-                <td  rowspan="{{$jmlmateri+1}}">  {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}</td>
+                <td  rowspan="{{$jmlmateri+1}}"  >
+                         {{ $kodetampil.$dkd->kode }} {{$dkd->nama}} &nbsp;
+                         <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-icon btn-danger btn-sm"
+                                onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
+                                    class="pcoded-micon"> <i class="fas fa-trash"></i></span></button>
+                        </form>
+
+                </td>
             </tr>
                 @foreach ($ambilmateri as $materi)
             <tr>
@@ -173,7 +200,18 @@ $jmlmateriperkd=DB::table('materipokok')
 $totalrow=$jmlkd+$jmlmateriperkd+1;
 @endphp
 <tr>
-<td  rowspan="1">  {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}</td>
+<td  rowspan="1">
+
+    {{ $kodetampil.$dkd->kode }} {{$dkd->nama}} &nbsp;
+    <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
+       @method('delete')
+       @csrf
+       <button class="btn btn-icon btn-danger btn-sm"
+           onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Data!"><span
+               class="pcoded-micon"> <i class="fas fa-trash"></i></span></button>
+   </form>
+
+</td>
 <td  rowspan="1">   Data Belum ada</td>
 <td  rowspan="1">   - </td>
 </tr>
@@ -306,6 +344,9 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 
                                 @php
                                 $datakd=DB::table('kompetensidasar')->where('kode',$data->kode)
+                                    ->where('pelajaran_nama',$p_nama)
+                                    ->where('kelas_nama',$k_nama)
+                                    ->where('tapel_nama',$t_nama)
                                 ->orderBy('tipe','desc')
                                 ->get();
                                 @endphp

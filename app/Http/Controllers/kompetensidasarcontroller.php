@@ -172,4 +172,15 @@ class kompetensidasarcontroller extends Controller
 
     }
 
+    public function destroy($id){
+        // dd($id);
+        // $p_nama=base64_decode($pelajaran_nama);
+        // $k_nama=base64_decode($kelas_nama);
+        // $t_nama=base64_decode($tapel_nama);
+
+        DB::table('kompetensidasar')->where('id', $id)->delete();
+        return redirect()->back()->with('status','Data berhasil di hapus!')->with('tipe','danger')->with('icon','fas fa-feather');
+
+    }
+
 }

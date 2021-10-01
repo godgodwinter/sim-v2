@@ -55,14 +55,16 @@ class banksoalcontroller extends Controller
 
 
 
-        $generate_kode=Fungsi::kompetensidasargeneratekode();
+        // $generate_kode=Fungsi::kompetensidasargeneratekode($t_nama,$k_nama,$p_nama);
 
 
         // 1. ambil datas dari tabel kompetensi dasar where tapel kelas dan pelajarannama
         // 1. ambil last id (Fungsi generatekompetesiid)
 
 
-        return view('admin.banksoal.index',compact('pages','datas','request','kodegenerate','pelajaran_nama','kelas_nama','tapel_nama'
+        return view('admin.banksoal.index',compact('pages','datas','request'
+        ,'kodegenerate'
+        ,'pelajaran_nama','kelas_nama','tapel_nama'
         ,'materipokok_nama'
         ,'kompetensidasar_kode'
         ,'kompetensidasar_tipe'
