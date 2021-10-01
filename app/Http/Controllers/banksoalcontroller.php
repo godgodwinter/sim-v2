@@ -73,7 +73,7 @@ class banksoalcontroller extends Controller
 
 
     public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama,$materipokok_nama,$kompetensidasar_kode,$kompetensidasar_tipe){
-
+        // dd($request);
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
@@ -93,6 +93,7 @@ class banksoalcontroller extends Controller
                'pertanyaan'     =>   $request->pertanyaan,
                'nilai'     =>   100,
                'tingkatkesulitan'     =>   $request->tingkatkesulitan,
+               'kategorisoal_nama'     =>   $request->kategorisoal_nama,
                'tingkatkesulitanangka'     =>   0,
                'kodegenerate'     =>   $kodegenerate,
                'kompetensidasar_tipe'     =>   $kd_tipe,
@@ -104,8 +105,14 @@ class banksoalcontroller extends Controller
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
+
+        //jika ada gambar maka upload
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
+
+    }
+    public function uploadgambar(banksoal $id)
+    {
 
     }
     public function show(banksoal $id)

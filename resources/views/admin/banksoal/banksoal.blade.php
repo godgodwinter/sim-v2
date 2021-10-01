@@ -126,11 +126,11 @@ $message=session('status');
             <div class="card">
                 <form
                     action="{{url('/admin/')}}/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok_nama}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
-                    method="post">
+                    method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> TAMBAH
-                            MATERI</span>
+                            SOAL</span>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -204,7 +204,7 @@ $message=session('status');
 
                   <div class="form-group col-md-6 col-12 mt-2">
                     <label for="nama">Upload Gambar</label>
-                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" >
                     @error('file')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                     <img alt="image" src="https://ui-avatars.com/api/?name=Soal&color=7F9CF5&background=EBF4FF" class="img-thumbnail" width="200px">
