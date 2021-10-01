@@ -1028,7 +1028,7 @@ $innerCell->addText('Inside nested table');
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
 
-        // dd($request);
+
         #WAJIB
         $pages='banksoal';
         $jmldata='0';
@@ -1042,14 +1042,12 @@ $innerCell->addText('Inside nested table');
                 ->where('materipokok_nama',$mp_nama)
                 ->where('kompetensidasar_kode',$kd_kode)
                 ->where('kompetensidasar_tipe',$kd_tipe)
-                ->skip(0)->take($request->jumlahsoal)
-                ->inRandomOrder()
                 // ->where('kode',1)
                 // ->orWhere('pelajaran_nama',$p_nama)
                 // ->where('kelas_nama',$k_nama)
                 // ->where('tapel_nama',$t_nama)
                 // ->where('kode',2)
-                // ->orderBy('created_at','desc')
+                ->orderBy('created_at','desc')
         ->get();
 
         $kodegenerate=Uuid::uuid4()->getHex();

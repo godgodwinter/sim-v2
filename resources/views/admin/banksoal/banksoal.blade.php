@@ -204,10 +204,10 @@ $message=session('status');
 
                   <div class="form-group col-md-6 col-12 mt-2">
                     <label for="nama">Jenis Soal</label>
-                
-                    <select class="form-control form-control-sm" name="kategorisoal_nama">   
+
+                    <select class="form-control form-control-sm" name="kategorisoal_nama">
                        <option value="" disabled selected>Pilih</option>
-                   
+
                       <option value="1">Pilihan ganda</option>
                       <option value="2">Pilihan ganda Komplek</option>
                       <option value="3">True / False</option>
@@ -288,7 +288,7 @@ $message=session('status');
         <form method="post" action="{{ route('moodle.generate.xmlget_do') }}" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Moodle Generate Soal 2</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Moodle Generate Soal</h5>
                 </div>
                 <div class="modal-body">
 
