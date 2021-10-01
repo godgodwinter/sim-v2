@@ -83,6 +83,7 @@ $message=session('status');
                                 <th width="10px" class="text-center"> No </th>
                                 <th> Jawaban </th>
                                 <th width="15%" class="text-center" >Hasil </th>
+                                <th width="15%" class="text-center" >Nilai </th>
                                 {{-- <th> Nilai </th> --}}
                                 <th width="15%" class="text-center"> Aksi </th>
                             </tr>
@@ -90,6 +91,7 @@ $message=session('status');
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
                                     <td>{{$data->jawaban}}</td>
+                                    <td class="text-center text-capitalize">{{$data->hasil}}</td>
                                     <td class="text-center text-capitalize">{{$data->nilai}}</td>
                                     <td class="text-center">
                                         <x-button-edit link="/admin/banksoaldetail/{{$data->id}}" />
@@ -138,7 +140,7 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-6">
                                 <label for="jawaban">Hasil</label>
-                            <select class="form-control form-control-sm" name="nilai" >
+                            <select class="form-control form-control-sm" name="hasil" >
                                   <option class="text-capitalize">salah</option>
                                   <option class="text-capitalize">benar</option>
 

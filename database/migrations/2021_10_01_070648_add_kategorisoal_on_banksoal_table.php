@@ -22,6 +22,7 @@ class AddKategorisoalOnBanksoalTable extends Migration
         Schema::table('banksoal_jawaban', function (Blueprint $table) {
             $table->string('kategorisoal_nama')->nullable();  //1 = ganda biasa //2 = ganda komplek //3=true and false
             $table->longText('gambar')->nullable();
+            $table->longText('hasil')->nullable();
         }); //
     }
 

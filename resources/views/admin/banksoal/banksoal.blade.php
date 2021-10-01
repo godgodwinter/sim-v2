@@ -85,6 +85,7 @@ $message=session('status');
                                 <th width="10px" class="text-center"> No </th>
                                 <th> Pertanyaan </th>
                                 <th width="15%" class="text-center" >Jumlah Pilihan </th>
+                                <th width="15%" class="text-center" >Jenis Soal </th>
                                 {{-- <th> Nilai </th> --}}
                                 <th width="15%" class="text-center">Tingkat Kesulitan </th>
                                 <th width="15%" class="text-center"> Aksi </th>
@@ -94,6 +95,17 @@ $message=session('status');
                                  <tr>
                                 <td>{{$loop->index+1}}</td>
                                 <td class="text-capitalize">{{$data->pertanyaan}}</td>
+                                @php
+                                $kategorisoal_nama='TIdak diketahui';
+                                    if($data->kategorisoal_nama==1){
+                                        $kategorisoal_nama='Pilihan ganda';
+                                    }elseif($data->kategorisoal_nama==2){
+                                        $kategorisoal_nama='Pilihan ganda komples';
+                                    }else{
+                                        $kategorisoal_nama='True/False';
+                                    }
+                                @endphp
+                                <td class="text-capitalize">{{$kategorisoal_nama}}</td>
                                 @php
                                     $jml=DB::table('banksoal_jawaban')->where('kodegenerate',$data->kodegenerate)->count();
                                 @endphp

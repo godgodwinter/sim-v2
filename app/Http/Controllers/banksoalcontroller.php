@@ -217,14 +217,21 @@ class banksoalcontroller extends Controller
         fclose($file);
 
          //aksi update
-
         banksoal::where('id',$id->id)
             ->update([
                 'pertanyaan'=>$request->pertanyaan,
                 'kategorisoal_nama'=>$request->kategorisoal_nama,
                 'gambar'=>$encoded_data,
                 'tingkatkesulitan'=>$request->tingkatkesulitan,
+                'updated_at'=>date("Y-m-d H:i:s")
             ]);
+
+         //aksi update
+         banksoal_jawaban::where('id',$id->id)
+        ->update([
+            'kategorisoal_nama'=>$request->kategorisoal_nama,
+            'updated_at'=>date("Y-m-d H:i:s")
+        ]);
     }
 
     public function update(Request $request, banksoal $id)
@@ -264,7 +271,78 @@ class banksoalcontroller extends Controller
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
+        $kategorisoal_nama=$id->kategorisoal_nama;
+        $nilai=0;
+        $hasil=$request->hasil;
+        // dd($request,$id->kategorisoal_nama);
+        
+        if($id->kategorisoal_nama==1){
+            // 1.cek jika jawaban benar sudah ada 1 maka kembali
+            if($hasil=='benar'){
+            $jmlbenar=DB::table('banksoal_jawaban')->where('hasil',$hasil)->where('kategorisoal_nama',$id->kategorisoal_nama)->where('kodegenerate',$id->kodegenerate)->count();
+                if($jmlbenar>=1){
+                    
+                        return redirect()->back()->with('status','Gagal, Sudah ada 1 jawaban benar!')->with('tipe','warning')->with('icon','fas fa-feather');
 
+                }
+                //benar nilai 100
+                $nilai=100;
+            }else{
+                   // 2.cek jika jawaban salah ada 4 maka kembali
+            $jmljawaban=DB::table('banksoal_jawaban')->where('hasil',$hasil)->where('kodegenerate',$id->kodegenerate)->count();
+            if($jmljawaban>=4){
+
+                return redirect()->back()->with('status','Gagal Sudah ada 4 jawaban salah!')->with('tipe','warning')->with('icon','fas fa-feather');
+            }
+            }
+         
+            
+            // dd('pilihanganda',$jmlbenar,$jmljawaban);
+
+            // update nilai benar adalah 100
+        }elseif($id->kategorisoal_nama==2){
+            // 1.cek jika jawaban benar sudah ada 2 maka kembali
+            if($hasil=='benar'){
+            $jmlbenar=DB::table('banksoal_jawaban')->where('hasil',$hasil)->where('kategorisoal_nama',$id->kategorisoal_nama)->where('kodegenerate',$id->kodegenerate)->count();
+                if($jmlbenar>=2){
+                    
+                        return redirect()->back()->with('status','Gagal, Sudah ada 2 jawaban benar!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+                }
+                //update nilai benar adalah 50
+                $nilai=50;
+            }else{
+                   // 2.cek jika jawaban salah ada 3 maka kembali
+            $jmljawaban=DB::table('banksoal_jawaban')->where('hasil',$hasil)->where('kodegenerate',$id->kodegenerate)->count();
+            if($jmljawaban>=3){
+
+                return redirect()->back()->with('status','Gagal Sudah ada 3 jawaban salah!')->with('tipe','warning')->with('icon','fas fa-feather');
+            }
+            }
+         
+        }else{
+            // 1.cek jika jawaban benar sudah ada 1 maka kembali
+            if($hasil=='benar'){
+            $jmlbenar=DB::table('banksoal_jawaban')->where('hasil',$hasil)->where('kategorisoal_nama',$id->kategorisoal_nama)->where('kodegenerate',$id->kodegenerate)->count();
+                if($jmlbenar>=1){
+                    
+                        return redirect()->back()->with('status','Gagal, Sudah ada 1 jawaban benar!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+                }
+                //update nilai benar adalah 100
+                $nilai=100;
+            }else{
+                   // 2.cek jika jawaban salah ada 1 maka kembali
+            $jmljawaban=DB::table('banksoal_jawaban')->where('hasil',$hasil)->where('kodegenerate',$id->kodegenerate)->count();
+            if($jmljawaban>=1){
+
+                return redirect()->back()->with('status','Gagal Sudah ada 1 jawaban salah!')->with('tipe','warning')->with('icon','fas fa-feather');
+            }
+            }
+        }
+        
+        // 1.periksa data banksoaljawaban cek apakah sudah ada jawaban benar jika ada maka kembali
+        // 2
         // $kodegenerate=Uuid::uuid4()->getHex();
 
     //    dd($request->tingkatkesulitan);
@@ -272,7 +350,9 @@ class banksoalcontroller extends Controller
        DB::table('banksoal_jawaban')->insert(
         array(
                'jawaban'     =>   $request->jawaban,
-               'nilai'     =>   $request->nilai,
+               'nilai'     =>   $nilai,
+               'hasil'     =>   $hasil,
+               'kategorisoal_nama'     =>   $id->kategorisoal_nama,
                'kodegenerate'     =>   $id->kodegenerate,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
