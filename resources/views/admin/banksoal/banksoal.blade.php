@@ -178,7 +178,7 @@ $message=session('status');
                                     })
                                 }
                                 // console.log( "ready!" );
-                                $("#pertanyaan").keyup(function () {
+                                $("#pertanyaan").on("keyup change", function(e){
                                     pertanyaan = $("#pertanyaan").val();
 
                                     data = $("textarea[name=pertanyaan]").val();
