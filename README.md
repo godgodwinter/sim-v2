@@ -99,6 +99,12 @@ Library/Plugin
 * [Stisla](https://github.com/stisla/stisla)
 
 
+Fitur Utama
+* [Menejemen Pembayaran Tagihan Siswa](#)
+* [Menejemen Penilaian Siswa per Materi pada Kompetensi Dasar](#)
+* [Menejemen Bank Soal untuk di Import pada Moodle melalui XML](#)
+* [Guru dapat Mengisi nilai, Kompetensi dasar, Bank Soal dan Nilai Siswa](#)
+* [Siswa dapat melihat nilai dan tagihan serta materi dari guru](#)
 
 <!-- GETTING STARTED -->
 ## Getting Started
