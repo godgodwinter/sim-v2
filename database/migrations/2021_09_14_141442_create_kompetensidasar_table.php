@@ -15,7 +15,7 @@ class CreateKompetensidasarTable extends Migration
     {
         Schema::create('kompetensidasar', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
+            $table->longText('nama')->nullable();
             $table->string('kode')->nullable(); //3.1 untuk pengetahuan dan 4.1 untuk ketrampilan  : 1 adalah kode
             $table->string('tipe')->nullable(); //pengetahuan dan ketrampilan (3 adalah pengetahuan dan 4 adalah ketrampilan)
             $table->string('tapel_nama')->nullable();

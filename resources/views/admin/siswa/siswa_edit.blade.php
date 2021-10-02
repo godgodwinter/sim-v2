@@ -85,11 +85,36 @@
 
                  </div>
                 {{-- <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png" class="rounded-circle profile-widget-picture"> --}}
-                    <label for="file">Pilih Photo <code>*)</code></label>
-                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                    {{-- <label for="file">Pilih Photo <code>*)</code></label> --}}
+
+                    {{-- <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" required>
+                    @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror --}}
+
+                    <div class="form-group row mb-4">
+                        {{-- <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Pilih Photo <code>*)</code></label> --}}
+                        <div class="col-sm-12 col-md-7">
+                          <div id="image-preview" class="image-preview  @error('file') is-invalid @enderror">
+                            <label for="image-upload" id="image-label">Choose File</label>
+                            <input type="file" name="file" id="image-upload" />
                     @error('file')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
+                          </div>
+                        </div>
+                      </div>
 
+                      <script type="text/javascript">
+                        $(document).ready(function() {
+                          $.uploadPreview({
+                            input_field: "#image-upload",   // Default: .image-upload
+                            preview_box: "#image-preview",  // Default: .image-preview
+                            label_field: "#image-label",    // Default: .image-label
+                            label_default: "Choose File",   // Default: Choose File
+                            label_selected: "Change File",  // Default: Change File
+                            no_label: false                 // Default: false
+                          });
+                        });
+                        </script>
                   <div class="card-footer text-right">
 
                     <button class="btn btn-success"><i class="fas fa-upload"></i> Simpan</button>
@@ -103,7 +128,8 @@
                           onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><span
                               class="pcoded-micon"> <i class="fas fa-trash"></i> Hapus</span></button>
                   </form>
-                  <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
+
+                  <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3 mt-2"> <i class="fas fa-backward"></i> Batal</a>
                   </div>
                   </div>
 

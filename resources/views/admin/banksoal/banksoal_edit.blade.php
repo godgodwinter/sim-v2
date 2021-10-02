@@ -144,10 +144,10 @@ $message=session('status');
                   </div>
 
                   <div class="form-group col-md-6 col-12 mt-2">
-                    <label for="nama">Upload Gambar</label>
-                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" >
+                    {{-- <label for="nama">Upload Gambar</label> --}}
+                    {{-- <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" >
                     @error('file')<div class="invalid-feedback"> {{$message}}</div>
-                    @enderror
+                    @enderror --}}
 
                     @if ($datas->gambar!='' AND $datas->gambar!=null)
 
@@ -157,7 +157,26 @@ $message=session('status');
                     @endif
 
 
+                      <div id="image-preview" class="image-preview  @error('file') is-invalid @enderror">
+                        <label for="image-upload" id="image-label">Choose File</label>
+                        <input type="file" name="file" id="image-upload" />
+                @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                @enderror
+                      </div>
                   </div>
+
+                  <script type="text/javascript">
+                    $(document).ready(function() {
+                      $.uploadPreview({
+                        input_field: "#image-upload",   // Default: .image-upload
+                        preview_box: "#image-preview",  // Default: .image-preview
+                        label_field: "#image-label",    // Default: .image-label
+                        label_default: "Choose File",   // Default: Choose File
+                        label_selected: "Change File",  // Default: Change File
+                        no_label: false                 // Default: false
+                      });
+                    });
+                    </script>
 
                             {{-- <div class="form-group col-md-6 col-6">
                                 <label for="kodegenerate">kodegenerate</label>

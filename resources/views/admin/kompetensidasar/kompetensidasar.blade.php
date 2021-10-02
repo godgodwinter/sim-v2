@@ -150,12 +150,12 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
     <td rowspan="{{$jmlmateri+1}}" data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}">
         {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}
         &nbsp;
-        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data!"><i class="fas fa-edit"></i></a>
+        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data!"><i class="fas fa-edit"></i></a>
         &nbsp;
         <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
             @method('delete')
             @csrf
-            <button class="btn btn-icon btn-danger btn-sm"
+            <button class="btn btn-icon btn-outer-danger btn-sm"
                 onclick="return  confirm('Anda yakin menghapus data ini? Y/N')" data-toggle="tooltip"
                 data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
                         class="fas fa-trash"></i></span></button>
@@ -177,7 +177,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
             data-placement="top" title="Materi untuk Siswa!"> Link Materi
             {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
 
-        <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}/inputnilai"
+            <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/inputnilai/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
             class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
                 class="fas fa-user-graduate"></i> </a>
 
@@ -219,12 +219,12 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 
         {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}
         &nbsp;
-        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data!"><i class="fas fa-edit"></i></a>
+        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data!"><i class="fas fa-edit"></i></a>
         &nbsp;
         <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
             @method('delete')
             @csrf
-            <button class="btn btn-icon btn-danger btn-sm"
+            <button class="btn btn-icon btn-outer-danger btn-sm"
                 onclick="return  confirm('Anda yakin menghapus data ini? Y/N')" data-toggle="tooltip"
                 data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
                         class="fas fa-trash"></i></span></button>
@@ -276,12 +276,12 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
                     <div class="profile-widget-items">
                         <div class="form-group col-md-12 col-12 mt-1 text-right">
 
-                            <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#add">
+                            <button type="button" class="btn btn-icon btn-success btn-sm" data-toggle="modal" data-target="#add">
                                 <i class="fas fa-plus-square"></i>
                                 Tambah Kompetensi Dasar
                               </button>
-                              <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#add2">
-                                  <i class="fas fa-plus-square"></i>
+                              <button type="button" class="btn btn-icon btn-info btn-sm" data-toggle="modal" data-target="#add2">
+                                  <i class="fas fa-plus"></i>
                                   Tambah Materi
                                 </button>
                           <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
