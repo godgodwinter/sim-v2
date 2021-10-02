@@ -21,5 +21,8 @@ class nilaipelajaran extends Model
         'jenisnilai_nama',
         'pelajaran_nama',
         'nilai',
+        'materipokok_nama',
+        'kompetensidasar_kode',
+        'kompetensidasar_tipe',
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\nilaipelajaran;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -80,5 +81,62 @@ class inputnilaicontroller extends Controller
         ,'kompetensidasar_tipe'
     ));
 
+    }
+
+    public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama,$materipokok_nama,$kompetensidasar_kode,$kompetensidasar_tipe){
+
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        $p_nama=base64_decode($pelajaran_nama);
+        $k_nama=base64_decode($kelas_nama);
+        $t_nama=base64_decode($tapel_nama);
+        $mp_nama=base64_decode($materipokok_nama);
+        $kd_kode=base64_decode($kompetensidasar_kode);
+        $kd_tipe=base64_decode($kompetensidasar_tipe);
+        // 1. periksa apakah data sudah ada
+        $cek=DB::table('nilaipelajaran')
+                ->where('siswa_nis',$request->siswa_nis)
+                ->where('materipokok_nama',$request->materipokok_nama)
+                ->where('kompetensidasar_kode',$request->kompetensidasar_kode)
+                ->where('kompetensidasar_tipe',$request->kompetensidasar_tipe)
+                ->where('pelajaran_nama',$p_nama)
+                ->where('kelas_nama',$k_nama)
+                ->where('tapel_nama',$t_nama)
+                ->count();
+                // dd($request,$cek);
+                // jika belum maka insert
+                if($cek<1){
+                    DB::table('nilaipelajaran')->insert(
+                     array(
+                            'siswa_nama'     =>   $request->siswa_nama,
+                            'siswa_nis'     =>   $request->siswa_nis,
+                            'nilai'     =>   $request->nilai,
+                            'materipokok_nama'     =>   $request->materipokok_nama,
+                            'kompetensidasar_kode'     =>   $request->kompetensidasar_kode,
+                            'kompetensidasar_tipe'     =>   $request->kompetensidasar_tipe,
+                            'pelajaran_nama'     =>   $p_nama,
+                            'kelas_nama'     =>   $k_nama,
+                            'tapel_nama'     =>   $t_nama,
+                            'created_at'=>date("Y-m-d H:i:s"),
+                            'updated_at'=>date("Y-m-d H:i:s")
+                     ));
+
+                }else{
+                    // jika sudah maka update
+
+                    nilaipelajaran::where('siswa_nis',$request->siswa_nis)
+                        ->where('materipokok_nama',$request->materipokok_nama)
+                        ->where('kompetensidasar_kode',$request->kompetensidasar_kode)
+                        ->where('kompetensidasar_tipe',$request->kompetensidasar_tipe)
+                        ->where('pelajaran_nama',$p_nama)
+                        ->where('kelas_nama',$k_nama)
+                        ->where('tapel_nama',$t_nama)
+                        ->update([
+                            'nilai'=>$request->nilai,
+                        ]);
+
+                }
+        return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 }
