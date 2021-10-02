@@ -14,7 +14,7 @@ class UpdateStructureNilaipelajaranTable extends Migration
     public function up()
     {
         Schema::table('nilaipelajaran', function($table) {
-            $table->string('materipokok_nama')->nullable();
+            $table->longText('materipokok_nama')->nullable();
             $table->string('kompetensidasar_kode')->nullable();
             $table->string('kompetensidasar_tipe')->nullable();
        });

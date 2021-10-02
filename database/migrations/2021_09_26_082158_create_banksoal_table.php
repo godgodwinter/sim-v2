@@ -23,7 +23,7 @@ class CreateBanksoalTable extends Migration
             $table->string('tapel_nama')->nullable();
             $table->string('kelas_nama')->nullable();
             $table->string('pelajaran_nama')->nullable();
-            $table->string('materipokok_nama')->nullable();
+            $table->longText('materipokok_nama')->nullable();
             $table->string('kompetensidasar_kode')->nullable();
             $table->string('kompetensidasar_tipe')->nullable(); //pengetahuan dan ketrampilan (3 adalah pengetahuan dan 4 adalah ketrampilan)
             $table->timestamps();
