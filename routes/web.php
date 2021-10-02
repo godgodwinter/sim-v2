@@ -266,6 +266,8 @@ Route::post('admin/kompetensidasar/edit/{id}', 'App\Http\Controllers\kompetensid
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@store')->name('kompetensidasar.store');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materi', 'App\Http\Controllers\kompetensidasarcontroller@materistore')->name('kompetensidasar.store.materi');
 Route::delete('admin/kompetensidasar/materipokok/hapus/{id}', 'App\Http\Controllers\kompetensidasarcontroller@materidestroy')->name('kompetensidasar.materipokok.delete');
+Route::get('admin/materipokok/edit/{id}', 'App\Http\Controllers\kompetensidasarcontroller@materipokokshow')->name('materipokok.materipokok.edit');
+Route::post('admin/materipokok/edit/{id}', 'App\Http\Controllers\kompetensidasarcontroller@materipokokupdate')->name('materipokok.materipokok.update');
 
 
 

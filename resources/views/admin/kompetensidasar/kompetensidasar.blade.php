@@ -125,6 +125,7 @@ $jmlmateriperkd=DB::table('materipokok')
 ->where('kelas_nama',$data->kelas_nama)
 ->where('tapel_nama',$data->tapel_nama)
 ->where('kompetensidasar_kode',$dkd->kode)
+->where('kompetensidasar_nama',$dkd->nama)
 ->orderBy('created_at','asc')
 ->count();
 @endphp
@@ -183,7 +184,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
         <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
             class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
                 class="far fa-file-archive"></i> </a>
-        <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
+        <x-button-edit link="/admin/materipokok/edit/{{$materi->id}}" />
         <x-button-delete link="/admin/kompetensidasar/materipokok/hapus/{{$materi->id}}" />
     </td>
 
@@ -208,6 +209,7 @@ $jmlmateriperkd=DB::table('materipokok')
 ->where('kelas_nama',$data->kelas_nama)
 ->where('tapel_nama',$data->tapel_nama)
 ->where('kompetensidasar_kode',$dkd->kode)
+->where('kompetensidasar_nama',$dkd->nama)
 ->orderBy('created_at','asc')
 ->count();
 $totalrow=$jmlkd+$jmlmateriperkd+1;

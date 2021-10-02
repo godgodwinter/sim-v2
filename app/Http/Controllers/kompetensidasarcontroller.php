@@ -74,18 +74,18 @@ class kompetensidasarcontroller extends Controller
 
 
         ]);
-
-
+        // dd($id->tapel_nama,$id->kelas_nama,$id->pelajaran_nama);
         kompetensidasar::where('id',$id->id)
             ->update([
                 'nama'=>$request->nama,
                 'updated_at'=>date("Y-m-d H:i:s")
             ]);
 
+            // dd($id);
         materipokok::where('tapel_nama',$id->tapel_nama)
-        ->where('kelas_nama',$id->$kelas_nama)
-        ->where('pelajaran_nama',$id->$kelas_nama)
-        ->where('kompetensidasar_kode',$id->$kode)
+        ->where('kelas_nama',$id->kelas_nama)
+        ->where('pelajaran_nama',$id->pelajaran_nama)
+        ->where('kompetensidasar_kode',$id->kode)
         ->update([
             'kompetensidasar_nama'=>$request->nama,
             'updated_at'=>date("Y-m-d H:i:s")
@@ -94,6 +94,45 @@ class kompetensidasarcontroller extends Controller
     public function update(Request $request, kompetensidasar $id)
     {
         $this->proses_update($request,$id);
+
+            return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+
+    public function materipokokshow(materipokok $id)
+    {
+        // $kela lihat di route:list
+        // $kelas=$kelas;
+
+        #WAJIB
+        $pages='kompetensidasar';
+
+        $datas=$id;
+        return view('admin.kompetensidasar.materipokok_edit',compact('datas','pages'));
+    }
+    public function materipokokproses_update($request,$id)
+    {
+
+        $request->validate([
+            'nama'=>'required',
+            'link'=>'required'
+        ],
+        [
+            'nama.required'=>'Nama harus diisi'
+
+
+        ]);
+
+            // dd($id);
+        materipokok::where('id',$id->id)
+        ->update([
+            'nama'=>$request->nama,
+            'link'=>$request->link,
+            'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+    }
+    public function materipokokupdate(Request $request, materipokok $id)
+    {
+        $this->materipokokproses_update($request,$id);
 
             return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }

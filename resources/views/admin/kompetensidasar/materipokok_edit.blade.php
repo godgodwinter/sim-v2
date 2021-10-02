@@ -1,3 +1,5 @@
+@extends('layouts.layoutadminv3')
+
 @section('title')
 Kompetensi Dasar - {{$datas->tapel_nama}} - {{$datas->kelas_nama}} - {{$datas->pelajaran_nama}}
 @endsection
@@ -71,29 +73,27 @@ $message=session('status');
 
         <div class="col-12 col-md-12 col-lg-4">
             <div class="card">
-                <form action="/admin/kompetensidasar/edit/{{$datas->id}}" method="post">
+                <form action="/admin/materipokok/edit/{{$datas->id}}" method="post">
                     @csrf
                     <div class="card-header">
-                        <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> EDIT
-                            {{ Str::upper($pages) }}</span>
+                        <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> EDIT</span>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-12 col-12 mt-0">
-                                <label for="nama">Pilih Tipe</label>
+                                <label for="nama">Pilih Kompetensi Dasar</label>
 
-                                <select class="form-control form-control-sm" name="tipe" id="kd_tipe" required readonly>
+                                {{-- {{dd($datas)}} --}}
 
-                                    <option value="{{$datas->tipe}}">{{$datas->tipe}}</option>
+                                <select class="form-control form-control-sm" name="kompetensidasar_id">
+
+                                    <option value="{{$datas->kompetensidasar_kode}}"> {{ $datas->kompetensidasar_kode.' - '.$datas->kompetensidasar_nama }}</option>
 
                                 </select>
-                                <input type="hidden" name="tapel_nama" value="{{$datas->tapel_nama}}">
-                                <input type="hidden" name="kelas_nama" value="{{$datas->kelas_nama}}">
-                                <input type="hidden" name="pelajaran_nama" value="{{$datas->pelajaran_nama}}">
                             </div>
 
                             <div class="form-group col-md-12 col-12">
-                                <label for="nama">Nama</label>
+                                <label for="nama">Judul</label>
                                 <input type="text" name="nama" id="nama"
                                     class="form-control @error('nama') is-invalid @enderror" value="{{$datas->nama}}"
                                     required>
@@ -101,40 +101,14 @@ $message=session('status');
                                 @enderror
                             </div>
 
-                        <div class="form-group col-md-12 col-12">
-                            <label>Kode</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text" id="kodeprefix">
-                                        @php
-                                            $kodeprefix='3';
-                                            if($datas->tipe=='Ketrampilan'){
-                                                $kodeprefix='4';
-                                            }
-                                        @endphp
-                                        <b>{{$kodeprefix}}.</b>
-                                    </div>
-                                </div>
-                                <input type="number" min="1" name="kode" id="kodegenerate"
-                                    class="form-control @error('kode') is-invalid @enderror" value="{{$datas->kode}}" required readonly>
-                                @error('kode')<div class="invalid-feedback"> {{$message}}</div>
+                            <div class="form-group col-md-12 col-12">
+                                <label for="link">Link Materi</label>
+                                <input type="link" name="link" id="link"
+                                    class="form-control @error('link') is-invalid @enderror" value="{{$datas->link}}"
+                                    required>
+                                @error('link')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
                             </div>
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="form-group mb-0 col-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-
-
-                            </div>
-                        </div>
-                    </div>
             </div>
             <div class="card-footer text-right">
 
