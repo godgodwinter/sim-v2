@@ -249,8 +249,14 @@ $message=session('status');
                                                             ->where('kelas_nama',$k_nama)
                                                             ->where('tapel_nama',$t_nama)
                                                             ->count();
+
+                                        $hasil=0;
+                                        if($ambiljmldatanilai>0){
+                                            $hasil=number_format(($ambiljmlnilai/$ambiljmldatanilai),2);
+                                        }
                                     @endphp
-                                    {{number_format(($ambiljmlnilai/$ambiljmldatanilai),2)}}
+                                    {{$hasil}}
+
                                 </td>
                                 <td>
                                     @php
@@ -270,8 +276,12 @@ $message=session('status');
                                                             ->where('kelas_nama',$k_nama)
                                                             ->where('tapel_nama',$t_nama)
                                                             ->count();
+                                        $hasil=0;
+                                        if($ambiljmldatanilai>0){
+                                            $hasil=number_format(($ambiljmlnilai/$ambiljmldatanilai),2);
+                                        }
                                     @endphp
-                                    {{number_format(($ambiljmlnilai/$ambiljmldatanilai),2)}}
+                                    {{$hasil}}
                                 </td>
                             </tr>
                                 @endforeach
