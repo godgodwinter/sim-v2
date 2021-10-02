@@ -1,7 +1,10 @@
-@extends('layouts.layoutadmin1')
+{{-- @extends('layouts.layoutadminv3') --}}
 
-@section('title','User')
-@section('halaman','pegawai')
+@section('title','Pegawai')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('pegawai')}}"> Pegawai</a></div>
+<div class="breadcrumb-item"> Index</div>
+@endsection
 
 @section('csshere')
 @endsection
@@ -15,7 +18,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -25,7 +28,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -40,7 +43,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -94,7 +97,7 @@
 <tr id="sid{{ $data->nig }}">
   <td class="text-center">
       <input type="checkbox" name="ids" class="checkBoxClass" value="{{ $data->nig }}"> {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-    
+
     <td>{{ $data->nama }}</td>
     <td>{{ $data->kategori_nama }}</td>
         @php
@@ -123,7 +126,7 @@
 </tr>
 @endsection
 
-@section('foottable')  
+@section('foottable')
 @php
   $cari=$request->cari;
   $kategori_nama=$request->kategori_nama;
@@ -161,36 +164,36 @@
                   </div>
 
                   <div class="form-group col-md-2 col-2 mt-1 text-right">
-                
-                    <select class="form-control form-control-sm" name="kategori_nama">   
+
+                    <select class="form-control form-control-sm" name="kategori_nama">
                       @if($request->kategori_nama)
                         <option>{{$request->kategori_nama}}</option>
                       @else
                        <option value="" disabled selected>Pilih Jabatan</option>
                       @endif
-                   
+
                   @foreach ($kategori as $t)
                       <option>{{ $t->nama }}</option>
                   @endforeach
                 </select>
                   </div>
               <div class="form-group   text-right">
-         
+
               <button type="submit" value="CARI" class="btn btn-icon btn-info btn-md mt-1" ><span
               class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
                   </div>
-               
-             
+
+
             </form>
             <div class="form-group col-md-4 col-4 mt-1 text-right">
               <a href="/admin/{{  $pages }}/#add" type="submit" value="CARI" class="btn btn-icon btn-primary btn-sm"><span
                 class="pcoded-micon"> <i class="far fa-plus-square"></i> Tambah @yield('title')</span></a href="$add">
 
               <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                Import 
+                Import
               </button>
-     
+
               <a href="/admin/data{{  $pages }}/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
                     class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a href="$add">
 
@@ -200,10 +203,10 @@
 
               </div>
           </div>
-             
+
 
         <x-layout-table pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-       </div> 
+       </div>
       <div class="col-12 col-md-12 col-lg-12" id="add">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
@@ -219,14 +222,14 @@
                     @error('nig')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
                   <div class="form-group col-md-6 col-6">
                     <label for="nama">Nama <code>*)</code></label>
                     <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}" required>
                     @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
 
                   <div class="form-group col-md-6 col-6">
                     <label for="alamat">Alamat <code>*)</code></label>
@@ -246,9 +249,9 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Kategori <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="kategori_nama">  
+                    <select class="form-control form-control-lg" required name="kategori_nama">
                           @if (old('kategori_nama'))
-                          <option>{{old('kategori_nama')}}</option>                        
+                          <option>{{old('kategori_nama')}}</option>
                           @endif
                       @foreach ($kategori as $t)
                           <option>{{ $t->nama }}</option>
@@ -277,9 +280,9 @@
                     @error('password2')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
                 </div>
-             
+
             </div>
             <div class="card-footer text-right">
               <button class="btn btn-primary">Simpan</button>
@@ -288,7 +291,7 @@
         </div>
 
 
-        
+
 
       </div>
     </div>
@@ -307,14 +310,14 @@
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -324,8 +327,9 @@
                   </form>
                 </div>
               </div>
-          
-          
-         
+
+
+
 
 @endsection
+

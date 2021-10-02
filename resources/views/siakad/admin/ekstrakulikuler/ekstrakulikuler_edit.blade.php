@@ -1,7 +1,9 @@
 
-@section('title','Data ekstrakulikuler')
-@section('halaman','ekstrakulikuler')
-
+@section('title','Ekstrakulikuler')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('siakadekstrakulikuler')}}"> Ekstrakulikuler</a></div>
+<div class="breadcrumb-item"> Edit</div>
+@endsection
 @section('csshere')
 @endsection
 
@@ -14,7 +16,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -24,7 +26,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -39,7 +41,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -49,7 +51,7 @@
 @section('bodytable')
 @endsection
 
-@section('foottable') 
+@section('foottable')
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -77,13 +79,13 @@
                     @enderror
                   </div>
 
-           
+
                 <div class="row">
                   <div class="form-group mb-0 col-12">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-                  
-                      
+
+
                     </div>
                   </div>
                 </div>
@@ -95,9 +97,9 @@
           </form>
         </div>
 
-        
 
-        
+
+
 
       </div>
     </div>

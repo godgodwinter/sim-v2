@@ -209,7 +209,7 @@ $jmlmateriperkd=DB::table('materipokok')
 ->where('kelas_nama',$data->kelas_nama)
 ->where('tapel_nama',$data->tapel_nama)
 ->where('kompetensidasar_kode',$dkd->kode)
-->where('kompetensidasar_nama',$dkd->nama)
+// ->where('kompetensidasar_nama',$dkd->nama)
 ->orderBy('created_at','asc')
 ->count();
 $totalrow=$jmlkd+$jmlmateriperkd+1;

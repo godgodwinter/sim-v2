@@ -1,6 +1,9 @@
 
 @section('title','Kelas')
-@section('halaman','kelas')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('kelas')}}"> Kelas</a></div>
+<div class="breadcrumb-item"> Edit</div>
+@endsection
 
 @section('csshere')
 @endsection
@@ -14,7 +17,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -24,7 +27,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -39,7 +42,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -63,7 +66,7 @@
 @endforeach
 @endsection
 
-@section('foottable') 
+@section('foottable')
   {{ $datas->links() }}
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -101,29 +104,29 @@
 
                   <div class="form-group col-md-12 col-12 mt-0">
                     <label for="nama">Pilih Walikelas</label>
-                
-                    <select class="form-control form-control-sm" name="guru_nomerinduk">   
+
+                    <select class="form-control form-control-sm" name="guru_nomerinduk">
                       @if($kelas->guru_nama)
                         <option value="{{ $kelas->guru_nomerinduk }}">{{$kelas->guru_nama}}</option>
                       @else
                        <option value="" disabled selected>Pilih Walikelas</option>
                       @endif
-                   
+
                   @foreach ($gurus as $guru)
                       <option value="{{ $guru->nomerinduk }}">{{ $guru->nama }}</option>
                   @endforeach
                 </select>
                   </div>
-                 
+
                 </div>
-             
-           
+
+
                 <div class="row">
                   <div class="form-group mb-0 col-12">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-                  
-                      
+
+
                     </div>
                   </div>
                 </div>
@@ -135,9 +138,9 @@
           </form>
         </div>
 
-        
 
-        
+
+
 
       </div>
     </div>

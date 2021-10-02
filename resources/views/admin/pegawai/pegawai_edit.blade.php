@@ -1,7 +1,10 @@
-@extends('layouts.layoutadmin1')
+{{-- @extends('layouts.layoutadminv3') --}}
 
 @section('title','User')
-@section('halaman','pegawai')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('pegawai')}}"> Pegawai</a></div>
+<div class="breadcrumb-item"> Edit</div>
+@endsection
 
 @section('csshere')
 @endsection
@@ -15,7 +18,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -25,7 +28,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -40,17 +43,17 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 @section('container')
 @foreach ($datausers as $du)
-  
+
 @endforeach
 
   <div class="section-body">
 
 
-            
+
 
     <div class="row mt-sm-4">
       <div class="col-12 col-md-12 col-lg-12">
@@ -69,14 +72,14 @@
                     @error('nig')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
                   <div class="form-group col-md-6 col-6">
                     <label for="nama">Nama <code>*)</code></label>
                     <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{$pegawai->nama}}" required>
                     @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
+
 
                   <div class="form-group col-md-6 col-6">
                     <label for="alamat">Alamat <code>*)</code></label>
@@ -96,9 +99,9 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Kategori <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="kategori_nama">  
+                    <select class="form-control form-control-lg" required name="kategori_nama">
                           @if ($pegawai->kategori_nama)
-                          <option>{{$pegawai->kategori_nama}}</option>                        
+                          <option>{{$pegawai->kategori_nama}}</option>
                           @endif
                       @foreach ($kategori as $t)
                           <option>{{ $t->nama }}</option>
@@ -107,7 +110,7 @@
                   </div>
 
 
-                 
+
                   <div class="form-group col-md-6 col-6">
                     <label for="email">Email <code>*)</code></label>
                     <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $du->email }}" onblur="duplicateEmail(this)"  required>
@@ -128,10 +131,10 @@
                     @error('password2')<div class="invalid-feedback"> {{$message}}</div>
                     @enderror
                   </div>
-                 
-                 
+
+
                 </div>
-             
+
             </div>
             <div class="card-footer text-right">
               <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
@@ -141,7 +144,7 @@
         </div>
 
 
-        
+
 
       </div>
     </div>

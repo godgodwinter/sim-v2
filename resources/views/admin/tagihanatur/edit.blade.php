@@ -1,8 +1,10 @@
 @extends('layouts.layoutadminv3')
-
 @section('title','Tagihan Atur')
-@section('halaman','tagihanatur')
 
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('tagihanatur')}}"> Atur</a></div>
+<div class="breadcrumb-item"> Edit</div>
+@endsection
 @section('csshere')
 @endsection
 
@@ -15,7 +17,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -25,7 +27,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -40,7 +42,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 {{-- DATATABLE --}}
 @section('headtable')
@@ -49,7 +51,7 @@
 @section('bodytable')
 @endsection
 
-@section('foottable') 
+@section('foottable')
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -72,9 +74,9 @@
 
                   <div class="form-group col-md-6 col-6">
                     <label>Tahun Pelajaran <code>*)</code></label>
-                    <select class="form-control form-control-lg" required name="tapel_nama">  
+                    <select class="form-control form-control-lg" required name="tapel_nama">
                           @if ($tagihanatur->tapel_nama)
-                          <option>{{$tagihanatur->tapel_nama}}</option>                        
+                          <option>{{$tagihanatur->tapel_nama}}</option>
                           @endif
                       @foreach ($tapel as $t)
                           {{-- <option>{{ $t->nama }}</option> --}}
@@ -86,24 +88,24 @@
                     <label>Kelas <code>*)</code></label>
                     <select class="form-control form-control-lg" required name="kelas_nama">
                           @if ($tagihanatur->kelas_nama)
-                          <option>{{$tagihanatur->kelas_nama}}</option>                        
+                          <option>{{$tagihanatur->kelas_nama}}</option>
                           @endif
                       @foreach ($kelas as $k)
                           {{-- <option>{{ $k->nama }}</option> --}}
                       @endforeach
                     </select>
                   </div>
-                  
+
 
 
                   @if ($tagihanatur->nominaltagihan)
-                      @php                    
+                      @php
                         $nominaltagihan=$tagihanatur->nominaltagihan;
                       @endphp
                   @else
                       @php
                       $nominaltagihan=1;
-                      @endphp                    
+                      @endphp
                   @endif
                   <div class="form-group col-md-6 col-6">
                     <label for="nominaltagihan">Nominal <code>*)</code> </label>
@@ -114,7 +116,7 @@
                   </div>
 
                   <script type="text/javascript">
-                    
+
                     var rupiah = document.getElementById('rupiah');
                     var labelrupiah = document.getElementById('labelrupiah');
                     rupiah.addEventListener('keyup', function(e){
@@ -123,7 +125,7 @@
                       // rupiah.value = formatRupiah(this.value, 'Rp. ');
                       labelrupiah.value = formatRupiah(this.value, 'Rp. ');
                     });
-                
+
                     /* Fungsi formatRupiah */
                     function formatRupiah(angka, prefix){
                       var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -131,20 +133,20 @@
                       sisa     		= split[0].length % 3,
                       rupiah     		= split[0].substr(0, sisa),
                       ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-                
+
                       // tambahkan titik jika yang di input sudah menjadi angka ribuan
                       if(ribuan){
                         separator = sisa ? '.' : '';
                         rupiah += separator + ribuan.join('.');
                       }
-                
+
                       rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
                       return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
                     }
                   </script>
-                
+
                 </div>
-             
+
             </div>
             <div class="card-footer text-right">
               <a href="{{ route($pages) }}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
@@ -161,7 +163,7 @@
         </div>
 
 
-        
+
 
       </div>
 
@@ -170,7 +172,7 @@
       <div class="card">
         <form method="post" action="/admin/datatagihanatur/upload/{{ $tagihanatur->id }}" enctype="multipart/form-data">
           {{ csrf_field() }}
-          
+
           <div class="card-header">
               <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> Scan Documen Pendukung</span>
           </div>
@@ -178,12 +180,12 @@
               <div class="row">
 
 
-                <div class="form-group col-md-12 col-3 ml-4">      
+                <div class="form-group col-md-12 col-3 ml-4">
                   <div class="col-lg-8 d-flex align-items-stretch mb-4">
 
               @if($tagihanatur->gambar!=null)
               {{-- <img alt="image" src="{{ asset("storage/") }}/{{ $du->profile_photo_path }}" class="rounded-circle profile-widget-picture" width="100px"> --}}
-        
+
               <img alt="image" src="{{ asset("storage/gambar/scan") }}/{{ $tagihanatur->gambar }}"class="img-thumbnail">
 
               @else
@@ -200,7 +202,7 @@
                   @enderror
 
                 <div class="card-footer text-right">
-                
+
                   <button class="btn btn-success"><i class="fas fa-upload"></i> Simpan</button>
                 </form>
 
@@ -218,7 +220,7 @@
 
 
 
-           
+
           </div>
           </div>
           {{-- <div class="card-footer text-right">
@@ -235,7 +237,7 @@
       </div>
 
 
-      
+
 
     </div>
   </div>

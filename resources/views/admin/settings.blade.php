@@ -1,7 +1,9 @@
 @extends('layouts.layoutadminv3')
 
 @section('title','Pengaturan')
-@section('halaman','settings')
+@section('halaman')
+<div class="breadcrumb-item"> Settings</div>
+@endsection
 
 @section('csshere')
 @endsection

@@ -1,8 +1,10 @@
 @extends('layouts.layoutadminv3')
-
 @section('title','Tagihan Siswa')
-@section('halaman','tagihansiswa')
 
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('tagihansiswa')}}"> Tagihan</a></div>
+<div class="breadcrumb-item"> Index</div>
+@endsection
 @section('csshere')
 @endsection
 
@@ -15,7 +17,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -25,7 +27,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -40,7 +42,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -121,7 +123,7 @@
       <td class="text-center">
 
     <span class="btn btn-icon icon-left btn-{{ $warna }}"><i class="{{ $icon }}"></i> {{ $persen }} %</span>
-      
+
       </td>
 
       {{-- <td class="text-center">
@@ -144,7 +146,7 @@
 </tr>
 @endsection
 
-@section('foottable')  
+@section('foottable')
 @php
   $cari=$request->cari;
   $tapel_nama=$request->tapel_nama;
@@ -171,13 +173,13 @@
 
 <form action="/admin/{{ $pages }}/sync" method="post" class="d-inline">
   @csrf
-  <button 
+  <button
       onclick="return  confirm('Anda yakin melakukan sinkronisasi data ? Y/N')" class="btn btn-icon icon-left btn-primary btn-sm mt-0" data-toggle="tooltip" data-placement="top" title="Akan mengambil data siswa dan tagihan atur yang belum dimasukkan kedalam tagihan siswa!"><i class="fas fa-retweet"></i> Sinkronisasi Data</button>
 </form>
 
 
 <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-Import 
+Import
 </button>
 
 
@@ -212,8 +214,8 @@ Import Detail Tagihan
               </div>
 
               <div class="form-group col-xl-2 col-md-3 col-2 text-right">
-            
-                <select class="form-control form-control-sm" name="tapel_nama" >   
+
+                <select class="form-control form-control-sm" name="tapel_nama" >
                 @if($request->tapel_nama)
                   <option>{{$request->tapel_nama}}</option>
                 @else
@@ -225,34 +227,34 @@ Import Detail Tagihan
             </select>
               </div>
               <div class="form-group col-xl-2  col-md-3 col-2 text-right">
-         
-              <select class="form-control form-control-sm" name="kelas_nama">    
+
+              <select class="form-control form-control-sm" name="kelas_nama">
                 @if($request->kelas_nama)
                   <option>{{$request->kelas_nama}}</option>
                 @else
                  <option value="" disabled selected>Pilih Kelas</option>
                 @endif
-             
+
             @foreach ($kelas as $t)
                 <option>{{ $t->nama }}</option>
             @endforeach
           </select>
               </div>
           <div class="form-group   text-right">
-     
+
           <button type="submit" value="CARI" class="btn btn-icon btn-info btn-md mt-1" ><span
           class="pcoded-micon"> <i class="fas fa-search"></i> Pecarian</span></button>
 
         </form>
-        
+
               </div>
-           
-         
-        
+
+
+
       </div>
       <div class="col-12 col-md-12 col-lg-12">
         <x-layout-table3 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-       </div> 
+       </div>
 
     </div>
   </div>
@@ -288,27 +290,27 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
             <div class="form-group">
 
               @if (old('nominal'))
-              @php                    
+              @php
                 $nominal=old('nominal');
               @endphp
           @else
               @php
               $nominal=0;
-              @endphp                    
+              @endphp
           @endif
 
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Sisa Tagihan :
               </div>
-            </div>  
+            </div>
              <input type="text" class="form-control-plaintext" readonly="" value="@currency($kurang)" >
           </div>
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Nominal Bayar:
               </div>
-            </div>  
+            </div>
              <input type="text" name="labelrupiah" min="0" id="labelrupiah{{ $data->id }}" class="form-control-plaintext" readonly="" value="@currency($nominal)" >
           </div>
               <div class="input-group">
@@ -327,7 +329,7 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
 
 
           <script type="text/javascript">
-            
+
             var rupiah{{ $data->id }} = document.getElementById('rupiah{{ $data->id }}');
             var labelrupiah{{ $data->id }} = document.getElementById('labelrupiah{{ $data->id }}');
             rupiah{{ $data->id }}.addEventListener('keyup', function(e){
@@ -336,7 +338,7 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
               // rupiah.value = formatRupiah(this.value, 'Rp. ');
               labelrupiah{{ $data->id }}.value = formatRupiah(this.value, 'Rp. ');
             });
-        
+
             /* Fungsi formatRupiah */
             function formatRupiah(angka, prefix){
               var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -344,18 +346,18 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
               sisa     		= split[0].length % 3,
               rupiah     		= split[0].substr(0, sisa),
               ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-        
+
               // tambahkan titik jika yang di input sudah menjadi angka ribuan
               if(ribuan){
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
               }
-        
+
               rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
               return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
             }
           </script>
-        
+
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Bayar</button>
             </form>
@@ -377,12 +379,12 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                       ->get();
                 @endphp
                 @foreach ($detailbayar as $db)
-                    
+
                 <tr>
                   <td  class="text-center">{{ ($loop->index)+1 }}</td>
                   <td class="text-left">
                     @currency($db->nominal)</td>
-                  <td class="text-center"> 
+                  <td class="text-center">
                     <form action="/admin/{{ $pages }}/bayartagihan/{{$db->id}}/hapus  " method="post" class="d-inline">
                         @method('delete')
                         @csrf
@@ -413,14 +415,14 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                         <h5 class="modal-title" id="exampleModalLabel">Import data "Tagihan Siswa" Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -440,14 +442,14 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                         <h5 class="modal-title" id="exampleModalLabel">Import data "Tagihan Siswa Detail" Excel </h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -457,6 +459,6 @@ $sumdetailbayar = DB::table('tagihansiswadetail')
                   </form>
                 </div>
               </div>
-          
+
 
 @endsection

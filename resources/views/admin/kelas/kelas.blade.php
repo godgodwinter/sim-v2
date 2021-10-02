@@ -3,7 +3,9 @@
 @section('linkpages')
 data{{ $pages }}
 @endsection
-@section('halaman','kelas')
+@section('halaman')
+<div class="breadcrumb-item"> Kelas</div>
+@endsection
 
 @section('csshere')
 @endsection
@@ -16,7 +18,7 @@ data{{ $pages }}
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -26,7 +28,7 @@ data{{ $pages }}
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -41,7 +43,7 @@ data{{ $pages }}
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -110,7 +112,7 @@ data{{ $pages }}
 </tr>
 @endsection
 
-@section('foottable') 
+@section('foottable')
   {{ $datas->links() }}
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -130,7 +132,7 @@ data{{ $pages }}
 
       <div class="col-12 col-md-12 col-lg-8">
         <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-      </div>    
+      </div>
       <div class="col-12 col-md-12 col-lg-4">
         <div class="card">
             <form action="/admin/{{ $pages }}" method="post">
@@ -149,29 +151,29 @@ data{{ $pages }}
 
                   <div class="form-group col-md-12 col-12 mt-0">
                     <label for="nama">Pilih Walikelas</label>
-                
-                    <select class="form-control form-control-sm" name="guru_nomerinduk">   
+
+                    <select class="form-control form-control-sm" name="guru_nomerinduk">
                       @if($request->guru_nama)
                         <option value="{{ $request->guru_nomerinduk }}">{{$request->guru_nama}}</option>
                       @else
                        <option value="" disabled selected>Pilih Walikelas</option>
                       @endif
-                   
+
                   @foreach ($gurus as $guru)
                       <option value="{{ $guru->nomerinduk }}">{{ $guru->nama }}</option>
                   @endforeach
                 </select>
                   </div>
-                 
+
                 </div>
-             
-           
+
+
                 <div class="row">
                   <div class="form-group mb-0 col-12">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-                  
-                      
+
+
                     </div>
                   </div>
                 </div>
@@ -183,7 +185,7 @@ data{{ $pages }}
         </div>
 
 
-        
+
 
       </div>
     </div>
@@ -201,14 +203,14 @@ data{{ $pages }}
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -218,6 +220,6 @@ data{{ $pages }}
                   </form>
                 </div>
               </div>
-          
+
 
 @endsection

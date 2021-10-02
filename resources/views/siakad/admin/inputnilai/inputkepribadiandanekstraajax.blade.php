@@ -5,7 +5,10 @@
 @section('linkpages')
 data{{ $pages }}
 @endsection
-@section('halaman','siakaddataajar')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('kelas')}}"> Kelas</a></div>
+<div class="breadcrumb-item"> Input nilai</div>
+@endsection
 
 @section('csshere')
 @endsection
@@ -18,7 +21,7 @@ data{{ $pages }}
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -28,7 +31,7 @@ data{{ $pages }}
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -43,7 +46,7 @@ data{{ $pages }}
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -125,7 +128,7 @@ data{{ $pages }}
       $nilai=$ambilnilai->nilai;
         $warna='light';
       @endphp
-  @else 
+  @else
     @php
     $nilai='Belum diisi';
       $warna='warning';
@@ -134,7 +137,7 @@ data{{ $pages }}
 
   <input class="form-control-plaintext form-control2 no-border text-center btn btn-{{ $warna }}" data-toggle="modal" data-target="#pilihekstra{{ $ds->id }}_{{ $dj->id }}" id="idpilihekstra{{ $ds->id }}_{{ $dj->id }}" readonly value="{{ $nilai }}">
   {{-- <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihekstra{{ $ds->id }}_{{ $dj->id }}"> {{ $nilai }} </button> --}}
-   
+
     </td>
   @endforeach
 
@@ -162,7 +165,7 @@ data{{ $pages }}
       $nilai=$ambilnilai->nilai;
         $warna='light';
       @endphp
-  @else 
+  @else
     @php
     $nilai='Belum diisi';
       $warna='warning';
@@ -170,14 +173,14 @@ data{{ $pages }}
   @endif
 
   <input class="form-control-plaintext form-control2 no-border text-center btn btn-{{ $warna }}" data-toggle="modal" data-target="#pilihkepribadian{{ $ds->id }}_{{ $dj->id }}" id="idpilihkepribadian{{ $ds->id }}_{{ $dj->id }}" readonly value="{{ $nilai }}">
-       
+
   {{-- <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihkepribadian{{ $ds->id }}_{{ $dj->id }}"> {{ $nilai }} </button> --}}
-   
+
     </td>
   @endforeach
   <td class="text-center">
      <a href="{{ url('/raport') }}/{{ $ds->nis }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Lihat raport siswa" target="_blank"><i class="fas fa-print"></i></a>
-      
+
   </td>
 </tr>
 @endforeach
@@ -189,8 +192,8 @@ data{{ $pages }}
 </tr>
 @endsection
 
-@section('foottable') 
-  
+@section('foottable')
+
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -207,10 +210,10 @@ data{{ $pages }}
                       <div class="profile-widget-items">
                           <div class="form-group col-md-12 col-12 mt-1 text-right">
                             <a type="button" class="btn btn-icon btn-success btn-sm" href="{{ url('/admin/siakaddataajar') }}"><i class="fas fa-upload"></i>
-                              Nilai Pelajaran 
+                              Nilai Pelajaran
                             </a>
                             <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                              Import 
+                              Import
                             </button>
                             <a href="/admin/@yield('linkpages')/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
                                   class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a>
@@ -218,8 +221,8 @@ data{{ $pages }}
                       </div>
                   </div>
               {{-- @yield('datatable') --}}
-              {{-- {{ dd($datas) }} --}}      
-              
+              {{-- {{ dd($datas) }} --}}
+
                   <div class="card-body -mt-5">
                       <div class="table-responsive">
                           <table class="table table-bordered table-md">
@@ -227,18 +230,18 @@ data{{ $pages }}
                               @yield('headtable')
                           </tr>
                               @yield('bodytable')
-                          
+
                           </table>
                       </div>
                       <div class="card-footer text-right">
                               @yield('foottable')
                       </div>
-                  </div>   
-              
+                  </div>
+
               </div>
-                
-      </div>    
-    
+
+      </div>
+
     </div>
   </div>
 @endsection
@@ -255,14 +258,14 @@ data{{ $pages }}
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -284,14 +287,14 @@ data{{ $pages }}
                             <h5 class="modal-title" id="exampleModalLabel">Input nilai</h5>
                           </div>
                           <div class="modal-body">
-               
+
                             {{ csrf_field() }}
-               
+
                             {{-- <label>Pilih</label> --}}
                             <div class="form-group">
                               <input type="hidden" name="siswa_nama{{ $ds->id }}_{{ $dj->id }}" value="{{ $ds->nama }}">
                               <input type="hidden" name="siswa_nis{{ $ds->id }}_{{ $dj->id }}" value="{{ $ds->nis }}">
-                            
+
                           @php
                           $ceknilai = DB::table('nilaiekstrakulikuler')
                             ->where('siswa_nis', '=', $ds->nis)
@@ -318,7 +321,7 @@ data{{ $pages }}
                               @error('nilai')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
                             </div>
-               
+
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -330,26 +333,26 @@ data{{ $pages }}
                       </form>
                     </div>
                   </div>
-  
+
                   <script type="text/javascript">
                     $(document).ready(function(){
                               var input{{ $ds->id }}_{{ $dj->id }} = $("#kkmekstra{{ $ds->id }}_{{ $dj->id }}");
                               var input2{{ $ds->id }}_{{ $dj->id }} =  input{{ $ds->id }}_{{ $dj->id }}.val();
                         $('#pilihekstra{{ $ds->id }}_{{ $dj->id }}').on('shown.bs.modal', function() {
                           setTimeout(function (){
-            
+
                             // console.log(input2{{ $ds->id }}_{{ $dj->id }});
                             $('#kkmekstra{{ $ds->id }}_{{ $dj->id }}').val(0);
                             input{{ $ds->id }}_{{ $dj->id }}.focus().val(input2{{ $ds->id }}_{{ $dj->id }});
                           }, 100);
-            
+
                           input{{ $ds->id }}_{{ $dj->id }}.keypress(function (e) {
                             if (e.which == 13) {
                               $('#tombol-simpanekstra{{ $ds->id }}_{{ $dj->id }}').click();
                             }
                           });
                         })
-            
+
                     });
                     </script>
 
@@ -380,7 +383,7 @@ data{{ $pages }}
                             method:'POST',
                             data:{
                              "_token": "{{ csrf_token() }}",
-                             siswa_nis:siswa_nis, 
+                             siswa_nis:siswa_nis,
                              siswa_nama:siswa_nama,
                               nilai:nilai
                             },
@@ -390,7 +393,7 @@ data{{ $pages }}
                             //  vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }} = vkkm{{ $ds->id }}_{{ $dj->id }}.value;
                             idpilihekstra{{ $ds->id }}_{{ $dj->id }}.value = kkmekstra{{ $ds->id }}_{{ $dj->id }}.value;
                             //  vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }}.class ="btn btn-icon btn-light";
-                             
+
                               // console.log(vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }}.val());
                             // alert(response.message) //Message come from controller
                             $('#pilihekstra{{ $ds->id }}_{{ $dj->id }}').modal('hide');
@@ -413,7 +416,7 @@ data{{ $pages }}
                     });
                     </script>
                 @endforeach
-                
+
               @endforeach
 
 
@@ -428,14 +431,14 @@ data{{ $pages }}
                             <h5 class="modal-title" id="exampleModalLabel">Input nilai</h5>
                           </div>
                           <div class="modal-body">
-               
+
                             {{ csrf_field() }}
-               
+
                             {{-- <label>Pilih</label> --}}
                             <div class="form-group">
                               <input type="hidden" name="siswa_nama{{ $ds->id }}_{{ $dj->id }}" value="{{ $ds->nama }}">
                               <input type="hidden" name="siswa_nis{{ $ds->id }}_{{ $dj->id }}" value="{{ $ds->nis }}">
-                            
+
                           @php
                           $ceknilai = DB::table('nilaikepribadian')
                             ->where('siswa_nis', '=', $ds->nis)
@@ -462,7 +465,7 @@ data{{ $pages }}
                               @error('nilai')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
                             </div>
-               
+
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -481,19 +484,19 @@ data{{ $pages }}
                               var input2{{ $ds->id }}_{{ $dj->id }} =  input{{ $ds->id }}_{{ $dj->id }}.val();
                         $('#pilihkepribadian{{ $ds->id }}_{{ $dj->id }}').on('shown.bs.modal', function() {
                           setTimeout(function (){
-            
+
                             // console.log(input2{{ $ds->id }}_{{ $dj->id }});
                             $('#kkmkepribadian{{ $ds->id }}_{{ $dj->id }}').val(0);
                             input{{ $ds->id }}_{{ $dj->id }}.focus().val(input2{{ $ds->id }}_{{ $dj->id }});
                           }, 100);
-            
+
                           input{{ $ds->id }}_{{ $dj->id }}.keypress(function (e) {
                             if (e.which == 13) {
                               $('#tombol-simpankepribadian{{ $ds->id }}_{{ $dj->id }}').click();
                             }
                           });
                         })
-            
+
                     });
                     </script>
                   <script type="text/javascript">
@@ -523,7 +526,7 @@ data{{ $pages }}
                             method:'POST',
                             data:{
                              "_token": "{{ csrf_token() }}",
-                             siswa_nis:siswa_nis, 
+                             siswa_nis:siswa_nis,
                              siswa_nama:siswa_nama,
                               nilai:nilai
                             },
@@ -533,7 +536,7 @@ data{{ $pages }}
                             //  vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }} = vkkm{{ $ds->id }}_{{ $dj->id }}.value;
                             idpilihkepribadian{{ $ds->id }}_{{ $dj->id }}.value = kkmkepribadian{{ $ds->id }}_{{ $dj->id }}.value;
                             //  vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }}.class ="btn btn-icon btn-light";
-                             
+
                               // console.log(vtdnilaisiswa{{ $ds->id }}_{{ $dj->id }}.val());
                             // alert(response.message) //Message come from controller
                             $('#pilihkepribadian{{ $ds->id }}_{{ $dj->id }}').modal('hide');
@@ -556,9 +559,9 @@ data{{ $pages }}
                     });
                     </script>
                 @endforeach
-                
+
               @endforeach
-          
-          
+
+
 
 @endsection

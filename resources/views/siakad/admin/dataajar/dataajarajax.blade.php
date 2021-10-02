@@ -1,9 +1,9 @@
 
-@section('title','Data Ajar')
-@section('linkpages')
-data{{ $pages }}
+@section('title','dataajar')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"> Data Ajar</a></div>
+<div class="breadcrumb-item"> Index</div>
 @endsection
-@section('halaman','siakaddataajar')
 
 @section('csshere')
  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

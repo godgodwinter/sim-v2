@@ -1,7 +1,9 @@
 @extends('layouts.layoutadminv3')
 
 @section('title','Beranda')
-@section('halaman','Index')
+@section('halaman')
+<div class="breadcrumb-item"> Index</div>
+@endsection
 
 @section('csshere')
 @endsection
@@ -13,7 +15,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -23,7 +25,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -44,7 +46,7 @@
                       </div>
                     </div>
 @endif
-@endsection 
+@endsection
 
 @php
 $tipeuser=(Auth::user()->tipeuser);
@@ -161,10 +163,10 @@ $ambilkepsek = DB::table('users')
             <a href="#" class="btn btn-info mr-1">
               <i class="fas fa-angle-double-right"></i>
             </a>
-            
+
           </div> --}}
-       
-      
+
+
         </div>
 
 
@@ -172,7 +174,7 @@ $ambilkepsek = DB::table('users')
             <div class="profile-widget-header">
               <img alt="image" src="../assets/img/products/product-4-50.png" class="rounded-circle profile-widget-picture">
               <div class="profile-widget-items">
-             
+
                 {{-- <div class="profile-widget-item">
                   <div class="profile-widget-item-label">Dana BOS</div>
                   <div class="profile-widget-item-value">@currency($sumpemasukanbos)</div>
@@ -188,7 +190,7 @@ $ambilkepsek = DB::table('users')
               </div>
 
               <div class="profile-widget-items mt-4">
-             
+
                 <div class="profile-widget-item">
                   <div class="profile-widget-item-label">Pengeluaran</div>
                   <div class="profile-widget-item-value">@currency($sumpengeluaran)</div>
@@ -204,9 +206,9 @@ $ambilkepsek = DB::table('users')
                 <a href="#" class="btn btn-info mr-1">
                   <i class="fas fa-angle-double-right"></i>
                 </a>
-                
+
               </div> --}}
-        
+
           </div>
 
 
@@ -219,28 +221,28 @@ $ambilkepsek = DB::table('users')
               <div class="profile-widget-items">
                 <h3 class="ml-5 mt-4">Menu Mastering</h3>
               </div>
-               
-                
+
+
                 <div class="card-body">
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('kategori') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Kategori</a>
                   </div>
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('tapel') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</a>
-                    <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>   
+                    <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>
                   </div>
                     <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('siswa') }}" type="button" class="btn btn-info"><i class="fas fa-user-graduate"></i> Siswa</a>
                     <a  href="{{ route('pegawai') }}" type="button" class="btn btn-info"><i class="fas fa-building"></i> Pegawai</a>
                   </div>
-                
-    
+
+
                   </div>
-                
+
             </div>
-    
-         
-        
+
+
+
           </div>
 
 
@@ -251,8 +253,8 @@ $ambilkepsek = DB::table('users')
               <div class="profile-widget-items">
                 <h3 class="ml-5 mt-4">Download dan Guide</h3>
               </div>
-               
-                
+
+
                 <div class="card-body">
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('formatimport') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Download Format Import</a>
@@ -263,11 +265,11 @@ $ambilkepsek = DB::table('users')
                     {{-- <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>    --}}
                   </div>
                   </div>
-                
+
             </div>
-    
-         
-        
+
+
+
           </div>
 
           {{-- <div class="card profile-widget mt-5">
@@ -276,36 +278,36 @@ $ambilkepsek = DB::table('users')
               <div class="profile-widget-items">
                 <h3 class="ml-5 mt-4">Sistem Lain</h3>
               </div>
-               
-                
+
+
                 <div class="card-body">
                   <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
                     <a  href="{{ route('siakad.admin.beranda') }}" type="button" class="btn btn-light"><i class="fab fa-korvue"></i> Sistem Akademik</a>  <code class="ml-3 mt-3"> *)Proses Pengembangan</code>
                   </div>
 
                   </div>
-                
+
             </div>
-    
-         
-        
+
+
+
           </div> --}}
 
 
           @endif
-    
+
 
       </div>
 
     @if($tipeuser==='admin')
     <div class="col-12 col-md-12 col-lg-6">
-         
+
       <div class="card profile-widget mt-5">
         <div class="profile-widget-header">
           <img alt="image" src="https://ui-avatars.com/api/?name=Menu Penting&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
           <div class="profile-widget-items">
             <h3 class="ml-5 mt-4">Menu Penting</h3>
-            
+
           </div>
 
           <div class="card-body">
@@ -313,49 +315,49 @@ $ambilkepsek = DB::table('users')
 
           <a href="{{ route('settings') }}"  class="btn btn-icon btn-light btn-md" data-toggle="tooltip" data-placement="top" title="Untuk mengatur data default, data sekolah dan data lainya!"><span
             class="pcoded-micon"> <i class="fas fa-cog"></i> Pengaturan </span></a href="$add">
-                  
+
             <button type="button" class="btn btn-icon btn-info btn-md" data-toggle="modal"  data-placement="top" title="File sampah sisa export dan import! Agar tidak membebani server."  data-target="#cleartemp"><i class="fas fa-trash"></i>
               Hapus File Sampah
             </button>
 
           <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-md" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting. Kemudian Syncron ke menu tagihan siswa!"><span
             class="pcoded-micon"> <i class="far fa-plus-square"></i> Fungsi Tambah Semua </span></a >
-         
+
               </div>
               </div>
       </div>
       </div>
 
-       
+
     <div class="card profile-widget mt-5">
       <div class="profile-widget-header">
         <img alt="image" src="https://ui-avatars.com/api/?name=Menu Transaksi&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
         <div class="profile-widget-items">
           <h3 class="ml-5 mt-4">Menu Transaksi</h3>
         </div>
-         
-          
+
+
           <div class="card-body">
-         
+
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
               <a  href="{{ route('pemasukan') }}" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Pemasukan</a>
               <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light"><i class="fas fa-file-invoice-dollar"></i> Pengeluaran</a>
             </div>
             <div class="clearfix"></div>
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
-              
+
               <a  href="{{ route('tagihanatur') }}" type="button" class="btn btn-danger"><i class="fas fa-fire"></i> Tagihan Atur </a>
               <a  href="{{ route('tagihansiswa') }}" type="button" class="btn btn-danger"><i class="fas fa-graduation-cap"></i> Tagihan Siswa </a>
             </div>
 
-            
+
 
             </div>
-          
+
       </div>
 
-   
-  
+
+
     </div>
 
 
@@ -365,19 +367,19 @@ $ambilkepsek = DB::table('users')
       <div class="profile-widget-items">
         <h3 class="ml-5 mt-4">Menu Reporting</h3>
       </div>
-       
-        
+
+
         <div class="card-body">
-         
+
             <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
               <a  href="{{ route('laporan') }}" type="button" class="btn btn-success"> <i class="fab fa-resolving"></i> Laporan </a>
             </div>
 
           </div>
-        
+
     </div>
 
- 
+
 
   </div>
 
@@ -391,7 +393,7 @@ $ambilkepsek = DB::table('users')
 @if($tipeuser==='admin')
 <div class="col-12 col-md-12 col-lg-6">
 
-        
+
 
 
 </div>
@@ -400,7 +402,7 @@ $ambilkepsek = DB::table('users')
 
 
   </div>
-  
+
 @endsection
 
 @section('container-modals')
@@ -414,11 +416,11 @@ $ambilkepsek = DB::table('users')
                         <h5 class="modal-title" id="exampleModalLabel">Hapus Temporari</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label></label>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

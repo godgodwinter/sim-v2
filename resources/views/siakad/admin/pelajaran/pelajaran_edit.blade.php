@@ -1,7 +1,10 @@
-
+{{-- @extends('layouts.layoutadminv3') --}}
 @section('title','Pelajaran')
-@section('halaman','pelajaran')
 
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('siakadpelajaran')}}"> Pelajaran</a></div>
+<div class="breadcrumb-item"> Edit</div>
+@endsection
 @section('csshere')
 @endsection
 
@@ -14,7 +17,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -24,7 +27,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -39,7 +42,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -49,7 +52,7 @@
 @section('bodytable')
 @endsection
 
-@section('foottable') 
+@section('foottable')
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -85,7 +88,7 @@
                   @php
                     $kkm=$pelajaran->kkm;
                   @endphp
-                    
+
                   @endif
                   <div class="form-group col-md-12 col-12">
                     <label for="kkm">KKM</label>
@@ -96,14 +99,14 @@
 
                   <div class="form-group col-md-12 col-12 mt-0">
                     <label for="nama">Pilih Tipe Mapel <code>*)</code></label>
-                
-                    <select class="form-control form-control-sm" name="tipepelajaran">   
+
+                    <select class="form-control form-control-sm" name="tipepelajaran">
                       @if($pelajaran->tipepelajaran)
                         <option value="{{ $pelajaran->tipepelajaran }}">{{$pelajaran->tipepelajaran}}</option>
                       @else
                        <option value="" disabled selected>Pilih Tipe *)</option>
                       @endif
-                   
+
                   @foreach ($tipepelajaran as $tp)
                       <option value="{{ $tp->nama }}">{{ $tp->nama }}</option>
                   @endforeach
@@ -112,29 +115,29 @@
 
                   <div class="form-group col-md-12 col-12 mt-0">
                     <label for="nama">Pilih Jurusan <code>//jika tipe bukan jurusan maka otomatis akan berisi umum</code></label>
-                
-                    <select class="form-control form-control-sm" name="jurusan">   
+
+                    <select class="form-control form-control-sm" name="jurusan">
                       @if($pelajaran->jurusan)
                         <option value="{{ $pelajaran->jurusan }}">{{$pelajaran->jurusan}}</option>
                       @else
                        <option value="" disabled selected>Pilih Tipe</option>
                       @endif
-                   
+
                   @foreach ($jurusan as $tp)
                       <option value="{{ $tp->kode }}">{{ $tp->kode }} - {{ $tp->nama }}</option>
                   @endforeach
                 </select>
                   </div>
-                 
+
                 </div>
-             
-           
+
+
                 <div class="row">
                   <div class="form-group mb-0 col-12">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-                  
-                      
+
+
                     </div>
                   </div>
                 </div>
@@ -146,9 +149,9 @@
           </form>
         </div>
 
-        
 
-        
+
+
 
       </div>
     </div>

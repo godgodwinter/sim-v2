@@ -1,6 +1,9 @@
 
 @section('title','Siswa')
-@section('halaman','siswa')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('siswa')}}"> Siswa</a></div>
+<div class="breadcrumb-item"> Index</div>
+@endsection
 
 @section('csshere')
 @endsection

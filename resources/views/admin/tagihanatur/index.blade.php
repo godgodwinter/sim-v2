@@ -1,7 +1,10 @@
 @extends('layouts.layoutadminv3')
-
 @section('title','Tagihan Atur')
-@section('halaman','tagihanatur')
+
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('tagihanatur')}}"> Atur</a></div>
+<div class="breadcrumb-item"> Index</div>
+@endsection
 
 @section('csshere')
 @endsection

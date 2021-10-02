@@ -1,11 +1,11 @@
 
-@section('title','Data Ajar')
-@section('linkpages')
-data{{ $pages }}
+@section('title','dataajar')
+@section('halaman')
+<div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"> Data Ajar</a></div>
+<div class="breadcrumb-item"> Index</div>
 @endsection
-@section('halaman','siakaddataajar')
 
-@section('csshere') 
+@section('csshere')
  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -28,7 +28,7 @@ data{{ $pages }}
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -38,7 +38,7 @@ data{{ $pages }}
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -53,7 +53,7 @@ data{{ $pages }}
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -106,7 +106,7 @@ data{{ $pages }}
 @foreach ($datapelajaran as $dp)
 <tr>
   <td> </td>
-  <td> {{ $dp->nama }} 
+  <td> {{ $dp->nama }}
   @if($dp->jurusan!=='semua')
   - {{ $dp->jurusan }}
   @endif
@@ -131,7 +131,7 @@ data{{ $pages }}
           @if($dp->jurusan==Fungsi::periksajurusankode($dk->nama))
           {{-- {{ dd(Fungsi::periksajurusankode($dk->nama)) }} --}}
           @php
-          
+
             $tombol=Fungsi::periksajurusankode($dk->nama);
           @endphp
           @else
@@ -148,14 +148,14 @@ data{{ $pages }}
       ->where('kelas_nama', '=', $dk->nama)
       ->where('pelajaran_nama', '=', $dp->nama)
       ->first();
-      @endphp 
+      @endphp
       @if($cekdatagurupengampu>0)
       @php
         $guru=$dataajar->guru_nama;
         // $guru=$dataajar->guru_nomerinduk." - ".$dataajar->guru_nama;
         $warna='light';
       @endphp
-            {{-- {{ $dataajar->guru_nomerinduk }} - 
+            {{-- {{ $dataajar->guru_nomerinduk }} -
             {{ $dataajar->guru_nama }} --}}
         @else
         -
@@ -182,8 +182,8 @@ data{{ $pages }}
 </tr>
 @endsection
 
-@section('foottable') 
-  
+@section('foottable')
+
 @endsection
 
 {{-- DATATABLE-END --}}
@@ -195,8 +195,8 @@ data{{ $pages }}
 
       <div class="col-12 col-md-12 col-lg-12">
         <x-layout-table2 pages="{{ $pages }}" pagination=""/>
-      </div>    
-    
+      </div>
+
     </div>
   </div>
 @endsection
@@ -212,14 +212,14 @@ data{{ $pages }}
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -258,7 +258,7 @@ data{{ $pages }}
                             <h5 class="modal-title" id="exampleModalLabel">Pilih Guru Pengampu</h5>
                           </div>
                           <div class="modal-body">
-               
+
                             {{ csrf_field() }}
                               <div class="form-group">
                                 <label>Pilih : <code>Hanya pilihan Terakhir akan disimpan!</code></label>
@@ -272,12 +272,12 @@ data{{ $pages }}
                                     ->where('kelas_nama', '=', $dk->nama)
                                     ->where('pelajaran_nama', '=', $dp->nama)
                                     ->first();
-                                    @endphp 
+                                    @endphp
                                     @if($cekdatagurupengampu>0)
                                     <option value="{{ $dataajar->guru_nomerinduk }}" selected >{{ $dataajar->guru_nama }}</option>
-                                     
+
                                       @else
-                                      
+
                                     @endif
                                   @foreach ($dataguru as $t)
                                       <option value="{{ $t->nomerinduk }}" > {{ $t->nama }}</option>
@@ -293,11 +293,11 @@ data{{ $pages }}
                                           $('#pilihguru{{ $dp->id }}_{{ $dk->id }}').on('shown.bs.modal', function() {
                                               setTimeout(function (){
                                                 console.log(tags{{ $dp->id }}_{{ $dk->id }});
-                        
+
                                                 tags{{ $dp->id }}_{{ $dk->id }}.focus().select();
-                        
+
                                               }, 100);
-                        
+
                                           });
 
                                           // tags{{ $dp->id }}_{{ $dk->id }}.click(function(e){
@@ -314,7 +314,7 @@ data{{ $pages }}
                               // you have no need of .trigger("change") if you dont want to trigger an event
                               $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({ placeholder: "Pilih Guru Pengampu" });
                           </script>
-                          
+
                             {{-- <label>Pilih</label> --}}
                             {{-- <div class="form-group"> --}}
                               <input type="hidden" name="pelajaran_nama" value="{{ $dp->nama }}">
@@ -322,7 +322,7 @@ data{{ $pages }}
                               <input type="hidden" name="pelajaran_jurusan" value="{{ $dp->jurusan }}">
                               {{-- <input type="hidden" name="pelajaran_kelas_nama" value="{{ $dp->kelas_nama }}"> --}}
                               <input type="hidden" name="kelas_nama" value="{{ $dk->nama }}">
-                              {{-- <select class="form-control form-control-lg" required name="guru_nomerinduk">  
+                              {{-- <select class="form-control form-control-lg" required name="guru_nomerinduk">
                                 @php
                                 $cekdatagurupengampu = DB::table('dataajar')
                                   ->where('kelas_nama', '=', $dk->nama)
@@ -332,19 +332,19 @@ data{{ $pages }}
                                   ->where('kelas_nama', '=', $dk->nama)
                                   ->where('pelajaran_nama', '=', $dp->nama)
                                   ->first();
-                                  @endphp 
+                                  @endphp
                                   @if($cekdatagurupengampu>0)
                                   <option value="{{ $dataajar->guru_nomerinduk }}">{{ $dataajar->guru_nomerinduk }} - {{ $dataajar->guru_nama }}</option>
-                                   
+
                                     @else
-                                    
+
                                   @endif
                                 @foreach ($dataguru as $t)
                                     <option value="{{ $t->nomerinduk }}">{{ $t->nomerinduk }} - {{ $t->nama }}</option>
                                 @endforeach
                               </select> --}}
                             {{-- </div> --}}
-               
+
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -356,10 +356,10 @@ data{{ $pages }}
                   </div>
 
                   @endif
-                  
+
                 @endforeach
-                
+
               @endforeach
-          
+
 
 @endsection
