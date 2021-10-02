@@ -200,7 +200,10 @@ input[readonly]{
 
         @endif
 
-        <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" id="link{{ $dp->id }}_{{ $dk->id }}" ><i class="fas fa-user-graduate" {{ $disabled }}></i></a>
+        <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" id="link{{ $dp->id }}_{{ $dk->id }}" >
+            <i class="fas fa-clipboard"></i>
+            {{-- <i class="fas fa-user-graduate" {{ $disabled }}></i> --}}
+        </a>
       @endif
     </div>
     </td>

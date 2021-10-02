@@ -184,6 +184,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
         <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
             class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
                 class="far fa-file-archive"></i> </a>
+
         <x-button-edit link="/admin/materipokok/edit/{{$materi->id}}" />
         <x-button-delete link="/admin/kompetensidasar/materipokok/hapus/{{$materi->id}}" />
     </td>
