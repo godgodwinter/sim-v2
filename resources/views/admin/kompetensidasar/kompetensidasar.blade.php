@@ -65,9 +65,8 @@ $message=session('status');
 
 {{-- DATATABLE --}}
 @section('headtable')
-<th width="20%"> Kompetensi Dasar </th>
-<th> Materi </th>
-<th width="25%" class="text-center">Aksi</th>
+<th width="50%"> Kompetensi Dasar </th>
+<th width="50%"> Materi </th>
 @endsection
 
 @section('bodytable')
@@ -143,15 +142,15 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 
 <tr>
     <td rowspan="{{$jmlmateri+1}}" data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}">
-        {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}
-        <div class="text-center btn-default">
+        <span style="font-size: 20px;font-weight: bold;padding-right: 10px"> {{ $kodetampil.$dkd->kode }}</span> {{$dkd->nama}}
+        <div class="text-right btn-default">
          &nbsp;
-         <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data atau Tambah Materi!"><i class="fas fa-edit"></i></a>
+         <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data atau Tambah Materi!"><i class="fas fa-feather-alt"></i> Edit atau Tambah Materi </a>
          &nbsp;
          <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
              @method('delete')
              @csrf
-             <button class="btn btn-icon btn-outer-danger btn-sm"
+             <button class="btn btn-icon btn-danger btn-sm"
                  onclick="return  confirm('Anda yakin menghapus data ini? Y/N')" data-toggle="tooltip"
                  data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
                          class="fas fa-trash"></i></span></button>
@@ -163,29 +162,30 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 @foreach ($ambilmateri as $materi)
 <tr>
     <td>
-        {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} {{ $materi->nama }}
-    <td>
-        @php
-        $materipokok=base64_encode($materi->nama);
-        $kompetensidasar_kode=base64_encode($dkd->kode);
-        $kompetensidasar_tipe=base64_encode($dkd->tipe);
-        @endphp
-        <a href="{{$materi->link}}" target="_blank" class="btn btn-info btn-sm" data-toggle="tooltip"
-            data-placement="top" title="Materi untuk Siswa!"> Link Materi
-            {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
+        <span style="font-size: 20px;font-weight: bold;padding-right: 10px">{{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </span>
+        {{ $materi->nama }}
 
-            <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/inputnilai/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
-            class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
-                class="fas fa-user-graduate"></i> </a>
+        <div class="text-right btn-default">
+            @php
+            $materipokok=base64_encode($materi->nama);
+            $kompetensidasar_kode=base64_encode($dkd->kode);
+            $kompetensidasar_tipe=base64_encode($dkd->tipe);
+            @endphp
+            <a href="{{$materi->link}}" target="_blank" class="btn btn-info btn-sm" data-toggle="tooltip"
+                data-placement="top" title="Materi untuk Siswa!"> Link Materi
+                {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
 
-        <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
-            class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-                class="far fa-file-archive"></i> </a>
+                <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/inputnilai/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
+                class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
+                    class="fas fa-user-graduate"></i> </a>
 
-        <x-button-edit link="/admin/materipokok/edit/{{$materi->id}}" />
-        <x-button-delete link="/admin/kompetensidasar/materipokok/hapus/{{$materi->id}}" />
-    </td>
+            <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
+                class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
+                    class="far fa-file-archive"></i> </a>
 
+            <x-button-edit link="/admin/materipokok/edit/{{$materi->id}}" />
+            <x-button-delete link="/admin/kompetensidasar/materipokok/hapus/{{$materi->id}}" />
+            </div>
 
     </td>
 </tr>
@@ -215,15 +215,15 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 <tr>
     <td rowspan="1" data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}">
 
-        {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}
-       <div class="text-center btn-default">
+        <span style="font-size: 20px;font-weight: bold;padding-right: 10px"> {{ $kodetampil.$dkd->kode }}</span> {{$dkd->nama}}
+       <div class="text-right btn-default">
         &nbsp;
-        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data atau Tambah Materi!"><i class="fas fa-edit"></i></a>
+        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data atau Tambah Materi!"><i class="fas fa-feather-alt"></i> Edit atau Tambah Materi </a>
         &nbsp;
         <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
             @method('delete')
             @csrf
-            <button class="btn btn-icon btn-outer-danger btn-sm"
+            <button class="btn btn-icon btn-danger btn-sm"
                 onclick="return  confirm('Anda yakin menghapus data ini? Y/N')" data-toggle="tooltip"
                 data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
                         class="fas fa-trash"></i></span></button>
@@ -231,7 +231,6 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
     </div>
     </td>
     <td rowspan="1"> Data Belum ada</td>
-    <td rowspan="1"> - </td>
 </tr>
 
 <script>
