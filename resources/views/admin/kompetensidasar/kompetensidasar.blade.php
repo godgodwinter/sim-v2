@@ -266,15 +266,69 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
                             <div class="form-group col-md-12 col-12 mt-0">
                                 <label for="nama">Pilih Tipe</label>
 
-                                <select class="form-control form-control-sm" name="tipe">
+                                <select class="form-control form-control-sm" name="tipe" id="kd_tipe">
 
 
+                                    <option disabled selected>Pilih</option>
 
                                     <option>Pengetahuan</option>
                                     <option>Ketrampilan</option>
                                 </select>
+                                <input type="hidden"  name="tapel_nama" value="{{base64_decode($tapel_nama)}}">
+                                <input type="hidden"  name="kelas_nama" value="{{base64_decode($kelas_nama)}}">
+                                <input type="hidden"  name="pelajaran_nama" value="{{base64_decode($pelajaran_nama)}}">
                             </div>
 
+                            <script>
+                                $( document ).ready(function() {
+                                            // var tipe = $('#kd_tipe').val();
+
+                                            function fetch_customer_data(tipe = '',kelas_nama='',pelajaran_nama='',tapel_nama='')
+                                            {
+                                            $.ajax({
+                                            url:"{{ route('api.fungsi.generate.kompetensidasar') }}",
+                                            method:'GET',
+                                            data:{
+                                                        "_token": "{{ csrf_token() }}",
+                                                        tipe: tipe,
+                                                        kelas_nama: kelas_nama,
+                                                        pelajaran_nama: pelajaran_nama,
+                                                        tapel_nama: tapel_nama,
+                                                    },
+                                            dataType:'json',
+                                            success:function(data)
+                                            {
+                                                // alert(tipe,kelas_nama,pelajaran_nama,tapel_nama,data.output);
+                                                // alert(data.output);
+                                                $('#kodegenerate').val(data.output);
+
+                                                // $('#tampil').html(data.show);
+                                                    // console.log($('#tampil').html(data.datas);
+                                                    // console.log(data.datas);
+                                                // $('tbody').html(data.table_data);
+                                                // $('#total_records').text(data.total_data);
+                                            }
+                                            })
+                                            }
+
+
+                                    $('#kd_tipe').change(function(){
+                                            var value = $(this).val();
+                                            var kelas_nama = $("input[name=kelas_nama]").val();
+                                            var pelajaran_nama = $("input[name=pelajaran_nama]").val();
+                                            var tapel_nama = $("input[name=tapel_nama]").val();
+                                            // alert(value);
+                                            // tipe = $("input[name=tipe]").val();
+                                                // console.log(kelas_nama);
+                                        var tipe = $(this).val();
+                                        fetch_customer_data(tipe,kelas_nama,pelajaran_nama,tapel_nama);
+
+
+                                    });
+
+                                });
+
+                            </script>
                             <div class="form-group col-md-12 col-12">
                                 <label for="nama">Nama</label>
                                 <input type="text" name="nama" id="nama"
@@ -295,7 +349,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
                             @endif
                             <div class="form-group col-md-12 col-12">
                                 <label for="kode">Kode</label>
-                                <input type="number" min="1" name="kode" id="kode"
+                                <input type="number" min="1" name="kode" id="kodegenerate"
                                     class="form-control @error('kode') is-invalid @enderror" value="{{$kode}}" required>
                                 @error('kode')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror

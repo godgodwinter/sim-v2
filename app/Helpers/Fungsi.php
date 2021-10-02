@@ -11,7 +11,7 @@ class Fungsi {
     // }
 
 
-    public static function kompetensidasargeneratekode($tapel_nama,$kelas_nama,$pelajaran_nama){
+    public static function kompetensidasargeneratekode($tapel_nama,$kelas_nama,$pelajaran_nama,$tipe='Pengetahuan'){
         $id=0;
         // $datas=Fungsi::periksakompetensidasar($id);
 
@@ -20,6 +20,7 @@ class Fungsi {
         ->where('tapel_nama',$tapel_nama)
         ->where('kelas_nama',$kelas_nama)
         ->where('pelajaran_nama',$pelajaran_nama)
+        ->where('tipe',$tipe)
         ->count();
         // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
 
@@ -31,10 +32,12 @@ class Fungsi {
             ->where('tapel_nama',$tapel_nama)
             ->where('kelas_nama',$kelas_nama)
             ->where('pelajaran_nama',$pelajaran_nama)
+            ->where('tipe',$tipe)
             ->count();
             // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
         }
         while ($datas>0);
+        // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
         // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
 
         return $id;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Fungsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -91,8 +92,31 @@ class apicontroller extends Controller
             'first' => $first
         ], 200);
 
-        dd($datas);
+        // dd($datas);
 
+
+    }
+    public function generatekompetensidasar(Request $request){
+        $output='';
+        $datas='';
+        $warna='';
+        $first='';
+
+        $tapel_nama=$request->tapel_nama;
+        $kelas_nama=$request->kelas_nama;
+        $pelajaran_nama=$request->pelajaran_nama;
+        $tipe=$request->tipe;
+
+        $kode=Fungsi::kompetensidasargeneratekode($tapel_nama,$kelas_nama,$pelajaran_nama,$tipe);
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => $kode,
+            // 'status' => $data->status,
+            'warna' => $warna,
+            'datas' => $datas,
+            'first' => $first
+        ], 200);
 
     }
 }

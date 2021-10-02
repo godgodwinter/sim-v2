@@ -295,7 +295,7 @@ Route::post('soal/xml/generate', 'App\Http\Controllers\banksoalcontroller@genera
 
 //API
 Route::get('admin/api/fungsi/tingkatkesulitan', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.fungsi.tingkatkesulitan');
-Route::get('admin/api/fungsi/generate/kompetensidasar', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.fungsi.generate.kompetensidasar');
+Route::get('admin/api/fungsi/generate/kompetensidasar', 'App\Http\Controllers\apicontroller@generatekompetensidasar')->name('api.fungsi.generate.kompetensidasar');
 
 Route::get('admin/api/form/banksoal_jawaban', 'App\Http\Controllers\apicontroller@tingkatkesulitan')->name('api.form.banksoal_jawaban');
 
