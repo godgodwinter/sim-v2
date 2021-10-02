@@ -296,7 +296,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 
                 <div class="card-body -mt-5">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-md">
+                        <table class="table table-bordered table-md" style="border-">
                         <tr>
                             @yield('headtable')
                         </tr>

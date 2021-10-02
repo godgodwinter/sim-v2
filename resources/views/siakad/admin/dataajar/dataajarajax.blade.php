@@ -70,7 +70,7 @@ input[readonly]{
    No</th>
     <th  > Nama Mapel</th>
       @foreach ($datakelas as $dk)
-        <th   > {{ $dk->nama }} </th>
+        <th   class="text-center"> {{ $dk->nama }} </th>
       @endforeach
 @endsection
 
@@ -113,7 +113,7 @@ input[readonly]{
 @foreach ($datapelajaran as $dp)
 <tr>
   <td class="text-center"> {{(($loop->index)+1)}}</td>
-  <td> {{ $dp->nama }}
+  <td > {{ $dp->nama }}
   @if($dp->jurusan!=='semua')
   - {{ $dp->jurusan }}
   @endif
@@ -123,12 +123,11 @@ input[readonly]{
     $nama=$dk->nama;
   @endphp
     <td class="text-center"  data-toggle="tooltip" data-placement="top" title="{{ $dp->nama }} - {{ $dk->nama }} " >
-      <div class="row">
 
       @php
         $tombol='';
         $guru='Belum diisi';
-        $warna='warning';
+        $warna='danger';
       @endphp
       @if($dp->tipepelajaran!='C2. Dasar Program Keahlian')
           @php
@@ -169,7 +168,7 @@ input[readonly]{
         @else
 
       @endif
-        <input  class="form-control w-50 text-center text-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}" value="{{ substr($guru, 0, 7) }}" readonly> &nbsp;
+        <input  class="form-control text-center text-{{ $warna }} mb-2" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}" value="{{ substr($guru, 0, 7) }}" readonly> &nbsp;
         @php
           $href="";
           $disabled="";
@@ -199,13 +198,12 @@ input[readonly]{
         @endphp
 
         @endif
-
         <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" id="link{{ $dp->id }}_{{ $dk->id }}" >
-            <i class="fas fa-clipboard"></i>
+            <i class="fas fa-inbox"></i>
             {{-- <i class="fas fa-user-graduate" {{ $disabled }}></i> --}}
         </a>
+
       @endif
-    </div>
     </td>
   @endforeach
 </tr>
