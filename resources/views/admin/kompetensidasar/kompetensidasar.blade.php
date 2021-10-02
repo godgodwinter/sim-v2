@@ -144,17 +144,19 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 <tr>
     <td rowspan="{{$jmlmateri+1}}" data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}">
         {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}
-        &nbsp;
-        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data!"><i class="fas fa-edit"></i></a>
-        &nbsp;
-        <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
-            @method('delete')
-            @csrf
-            <button class="btn btn-icon btn-outer-danger btn-sm"
-                onclick="return  confirm('Anda yakin menghapus data ini? Y/N')" data-toggle="tooltip"
-                data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
-                        class="fas fa-trash"></i></span></button>
-        </form>
+        <div class="text-center btn-default">
+         &nbsp;
+         <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data atau Tambah Materi!"><i class="fas fa-edit"></i></a>
+         &nbsp;
+         <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
+             @method('delete')
+             @csrf
+             <button class="btn btn-icon btn-outer-danger btn-sm"
+                 onclick="return  confirm('Anda yakin menghapus data ini? Y/N')" data-toggle="tooltip"
+                 data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
+                         class="fas fa-trash"></i></span></button>
+         </form>
+     </div>
 
     </td>
 </tr>
@@ -214,8 +216,9 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
     <td rowspan="1" data-toggle="tooltip" data-placement="top" title=" {{$dkd->tipe}}">
 
         {{ $kodetampil.$dkd->kode }} {{$dkd->nama}}
+       <div class="text-center btn-default">
         &nbsp;
-        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data!"><i class="fas fa-edit"></i></a>
+        <a href="/admin/kompetensidasar/edit/{{$dkd->id}}" class="btn btn-icon btn-outer-warning btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Ubah data atau Tambah Materi!"><i class="fas fa-edit"></i></a>
         &nbsp;
         <form action="/admin/kompetensidasar/hapus/{{$dkd->id}}" method="post" class="d-inline">
             @method('delete')
@@ -225,7 +228,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
                 data-placement="top" title="Hapus Data!"><span class="pcoded-micon"> <i
                         class="fas fa-trash"></i></span></button>
         </form>
-
+    </div>
     </td>
     <td rowspan="1"> Data Belum ada</td>
     <td rowspan="1"> - </td>
