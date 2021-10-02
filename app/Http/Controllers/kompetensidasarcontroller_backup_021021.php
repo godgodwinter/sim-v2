@@ -37,8 +37,7 @@ class kompetensidasarcontroller extends Controller
                 // ->where('tapel_nama',$t_nama)
                 // ->where('kode',2)
                 ->orderBy('kode','asc')
-                ->orderBy('tipe','desc')
-                ->get();
+        ->get();
 
         $datas=$datastanpauniq->unique('kode');
 

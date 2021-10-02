@@ -65,6 +65,8 @@ $message=session('status');
 
 {{-- DATATABLE --}}
 @section('headtable')
+<th width="5px" class="text-center">
+    <label for="chkCheckAll"> All</label></th>
 <th width="20%"> Kompetensi Dasar </th>
 <th> Materi </th>
 <th width="25%" class="text-center">Aksi</th>
@@ -94,7 +96,10 @@ $jmlkd=DB::table('kompetensidasar')->where('kode',$data->kode)
 ->count();
 // dd($jmlkd);
 @endphp
-
+{{-- <table class="table table-bordered  table-dark table-md"> --}}
+<tr id="trdata{{$data->id}}">
+    <td rowspan="1" class="tddata">{{$loop->index+1}}</td>
+</tr>
 @foreach ($datakd as $dkd)
 @php
 if($dkd->tipe=='Pengetahuan'){
@@ -189,7 +194,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 </tr>
 <script>
     $(document).ready(function () {
-        // $("#trdata{{$data->id}}").html('<td rowspan="{{$totalrow}}">{{$no}}</td>');
+        $("#trdata{{$data->id}}").html('<td rowspan="{{$totalrow}}">{{$no}}</td>');
     });
 
 </script>

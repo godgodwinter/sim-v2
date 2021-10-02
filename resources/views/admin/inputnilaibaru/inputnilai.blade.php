@@ -72,10 +72,6 @@ $message=session('status');
                                             class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
                                                     class="fas fa-download"></i> XML Example</span></a> --}}
 
-                                        <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
-                                            data-target="#moodlegenerate"><i class="fas fa-upload"></i>
-                                            Generate Ke Moodle
-                                        </button>
 
                         </div>
                     </div>
@@ -438,39 +434,5 @@ if($dkd->tipe=='Pengetahuan'){
     </div>
 </div>
 
-<!-- moodle generate Excel -->
-<div class="modal fade" id="moodlegenerate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form method="post" action="{{ route('moodle.generate.xmlget_do') }}" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Moodle Generate Soal</h5>
-                </div>
-                <div class="modal-body">
-
-                    {{ csrf_field() }}
-
-
-                    <div class="form-group">
-                        <label for="jumlahsoal">Jumlah Soal</label>
-                        <input type="number" class="form-control" name="jumlahsoal" id="jumlahsoal" required="required" value="30" min="1">
-                        <input type="hidden" class="form-control" name="pelajaran_nama" id="jumlahsoal" required="required" value="{{$pelajaran_nama}}">
-                        <input type="hidden" class="form-control" name="kelas_nama" id="jumlahsoal" required="required" value="{{$kelas_nama}}">
-                        <input type="hidden" class="form-control" name="tapel_nama" id="jumlahsoal" required="required" value="{{$tapel_nama}}">
-                        <input type="hidden" class="form-control" name="materipokok_nama" id="jumlahsoal" required="required" value="{{$materipokok_nama}}">
-                        <input type="hidden" class="form-control" name="kompetensidasar_kode" id="jumlahsoal" required="required" value="{{$kompetensidasar_kode}}">
-                        <input type="hidden" class="form-control" name="kompetensidasar_tipe" id="jumlahsoal" required="required" value="{{$kompetensidasar_tipe}}">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Generate</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
 @endsection

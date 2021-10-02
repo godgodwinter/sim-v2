@@ -126,15 +126,6 @@ $message=session('status');
                     </div>
 
 
-                    <div class="row">
-                        <div class="form-group mb-0 col-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" class="custom-control-input" id="newsletter">
-
-
-                            </div>
-                        </div>
-                    </div>
             </div>
             <div class="card-footer text-right">
 
@@ -142,6 +133,61 @@ $message=session('status');
                 <button class="btn btn-primary">Simpan</button>
             </div>
             </form>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-12 col-lg-8">
+        <div class="card">
+            <form action="/admin/kompetensidasar/{{base64_encode($datas->pelajaran_nama)}}/{{base64_encode($datas->kelas_nama)}}/{{base64_encode($datas->tapel_nama)}}/materi"
+                method="post">
+                @csrf
+                <div class="card-header">
+                    <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> Tambah Materi Pokok</span>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-12 col-12 mt-0">
+                            <label for="nama">Pilih Kompetensi Dasar</label>
+
+
+                            <select class="form-control form-control-sm" name="kompetensidasar_id">
+
+
+
+
+                                <option value="{{$datas->id}}"> {{ $kodeprefix.$datas->kode }} . {{$datas->nama}}</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12 col-12">
+                            <label for="nama">Judul</label>
+                            <input type="text" name="nama" id="nama"
+                                class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}"
+                                required>
+                            @error('nama')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-md-12 col-12">
+                            <label for="link">Link Materi</label>
+                            <input type="link" name="link" id="link"
+                                class="form-control @error('link') is-invalid @enderror" value="{{old('link')}}"
+                                required>
+                            @error('link')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Tambah Materi</button>
+            </div>
+
+
+                </div>
         </div>
     </div>
 
