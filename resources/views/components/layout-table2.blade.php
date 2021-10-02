@@ -16,6 +16,7 @@
 
     <div class="card-body -mt-5">
         <div class="table-responsive">
+
             <table class="table table-bordered table-md">
             <tr>
                 @yield('headtable')
@@ -23,6 +24,10 @@
                 @yield('bodytable')
 
             </table>
+            <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
+            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
+        </a>
         </div>
         <div class="card-footer text-right">
                 @yield('foottable')

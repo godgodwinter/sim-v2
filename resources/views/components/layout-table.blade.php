@@ -5,11 +5,11 @@
             <div class=" mt-2 ml-3 text-left">
                 <h5 >Tabel @yield('title')</h5>
             </div>
-          
+
         </div>
     </div>
 {{-- @yield('datatable') --}}
-{{-- {{ dd($datas) }} --}}      
+{{-- {{ dd($datas) }} --}}
 
     <div class="card-body -mt-5">
         <div class="table-responsive">
@@ -18,13 +18,16 @@
                 @yield('headtable')
             </tr>
                 @yield('bodytable')
-            
+
             </table>
+            <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
+            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
+        </a>
         </div>
         <div class="card-footer text-right">
                 @yield('foottable')
         </div>
-    </div>   
+    </div>
 
 </div>
-  

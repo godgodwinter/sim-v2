@@ -296,7 +296,7 @@ input[readonly]{
                             {{ csrf_field() }}
                               <div class="form-group">
                                 <label>Pilih : </label>
-                                <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible   name="guru_nomerinduk{{ $dp->id }}_{{ $dk->id }}" required>
+                                <select class="form-control form-control-md" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible   name="guru_nomerinduk{{ $dp->id }}_{{ $dk->id }}" required>
                                 {{-- <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible multiple="multiple"  name="guru_nomerinduk{{ $dp->id }}_{{ $dk->id }}" required> --}}
                                   @php
                                   $cekdatagurupengampu = DB::table('dataajar')
@@ -358,9 +358,11 @@ input[readonly]{
 
                               // you have no need of .trigger("change") if you dont want to trigger an event
                               $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({
+                                    theme: "classic",
                                 placeholder: "Pilih Guru Pengampu",
                                 dropdownParent: $('#pilihguru{{ $dp->id }}_{{ $dk->id }}')
                                });
+
                           </script>
 
                             {{-- <label>Pilih</label> --}}

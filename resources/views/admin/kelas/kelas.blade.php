@@ -48,11 +48,11 @@ data{{ $pages }}
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="10%" class="text-center">
+  <th width="10%" class="text-center" style="vertical-align: middle;">
     <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
-  <th> Nama kelas </th>
-  <th> Walikelas kelas </th>
-  <th width="200px" class="text-center">Aksi</th>
+  <th  style="vertical-align: middle;"> Nama kelas </th>
+  <th style="vertical-align: middle;"> Walikelas kelas </th>
+  <th width="200px" class="text-center" style="vertical-align: middle;">Aksi</th>
 @endsection
 
 @section('bodytable')
@@ -105,17 +105,16 @@ data{{ $pages }}
   </tr>
 @endforeach
 
-<tr>
-  <td class="text-left" colspan="2">
-    <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
-    onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
-</tr>
+
 @endsection
 
 @section('foottable')
+
   {{ $datas->links() }}
   <nav aria-label="breadcrumb">
+
   <ol class="breadcrumb">
+
       <li class="breadcrumb-item"><i class="far fa-file"></i> Halaman ke-{{ $datas->currentPage() }}</li>
       <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Total Data</li>
       <li class="breadcrumb-item active" aria-current="page"><i class="far fa-copy"></i> {{ $datas->perPage() }} Data Perhalaman</li>
@@ -132,6 +131,7 @@ data{{ $pages }}
 
       <div class="col-12 col-md-12 col-lg-8">
         <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
+
       </div>
       <div class="col-12 col-md-12 col-lg-4">
         <div class="card">

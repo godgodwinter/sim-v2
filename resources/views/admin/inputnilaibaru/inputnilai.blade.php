@@ -78,7 +78,7 @@ $message=session('status');
                 </div>
                 <div class="card-body -mt-5">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-md">
+                        <table class="table table-bordered table-md" >
 
                             <tr>
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> No  </th>
@@ -109,7 +109,7 @@ $message=session('status');
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> Avg P (3.)</th>
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> Avg K (4.)</th>
                             </tr>
-                            <tr>
+                            <tr >
                                 @foreach ($datakd as $dkd)
                                         @php
 
@@ -152,7 +152,7 @@ $message=session('status');
 
                                 @foreach ($datasiswa as $data)
                                  <tr>
-                                <td>{{$loop->index+1}}</td>
+                                <td  style="vertical-align: middle;" class="text-center">{{$loop->index+1}}</td>
                                 <td class="text-capitalize">{{$data->nama}}</td>
 
                                 @foreach ($datakd as $dkd)
@@ -214,7 +214,7 @@ $message=session('status');
                                                     $tampilkan=$ambil->nilai;
                                                 }
                                             @endphp
-                                            <td class="text-center">
+                                            <td class="text-center"  style="vertical-align: middle;">
 
                                             <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
                                                 data-target="#modalinput{{$kodeprefix}}_{{$dkd->kode}}_{{$loop->index+1}}_{{$data->nis}}">
@@ -227,7 +227,7 @@ $message=session('status');
                                             <td class="text-center"> - </td>
                                         @endif
                                 @endforeach
-                                <td>
+                                <td  style="vertical-align: middle;" class="text-center">
                                     @php
 
                                         $ambiljmlnilai=DB::table('nilaipelajaran')
@@ -254,7 +254,7 @@ $message=session('status');
                                     {{$hasil}}
 
                                 </td>
-                                <td>
+                                <td  style="vertical-align: middle;" class="text-center">
                                     @php
 
                                         $ambiljmlnilai=DB::table('nilaipelajaran')
