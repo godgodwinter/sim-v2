@@ -261,6 +261,8 @@ Route::delete('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadm
 // SIAKAD-MENU-kompetensidasar
 Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 Route::delete('admin/kompetensidasar/hapus/{id}', 'App\Http\Controllers\kompetensidasarcontroller@destroy')->name('kompetensidasar.materipokok.delete');
+Route::get('admin/kompetensidasar/edit/{id}', 'App\Http\Controllers\kompetensidasarcontroller@show')->name('kompetensidasar.materipokok.edit');
+Route::post('admin/kompetensidasar/edit/{id}', 'App\Http\Controllers\kompetensidasarcontroller@update')->name('kompetensidasar.materipokok.update');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@store')->name('kompetensidasar.store');
 Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materi', 'App\Http\Controllers\kompetensidasarcontroller@materistore')->name('kompetensidasar.store.materi');
 Route::delete('admin/kompetensidasar/materipokok/hapus/{id}', 'App\Http\Controllers\kompetensidasarcontroller@materidestroy')->name('kompetensidasar.materipokok.delete');

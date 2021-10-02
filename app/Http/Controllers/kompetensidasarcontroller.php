@@ -52,6 +52,51 @@ class kompetensidasarcontroller extends Controller
 
         return view('admin.kompetensidasar.index',compact('pages','datas','datastanpauniq','request','generate_kode','pelajaran_nama','kelas_nama','tapel_nama','t_nama','p_nama','k_nama'));
     }
+    public function show(kompetensidasar $id)
+    {
+        // $kela lihat di route:list
+        // $kelas=$kelas;
+
+        #WAJIB
+        $pages='kompetensidasar';
+
+        $datas=$id;
+        return view('admin.kompetensidasar.edit',compact('datas','pages'));
+    }
+    public function proses_update($request,$id)
+    {
+
+        $request->validate([
+            'nama'=>'required'
+        ],
+        [
+            'nama.required'=>'Nama harus diisi'
+
+
+        ]);
+
+
+        kompetensidasar::where('id',$id->id)
+            ->update([
+                'nama'=>$request->nama,
+                'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        materipokok::where('tapel_nama',$id->tapel_nama)
+        ->where('kelas_nama',$id->$kelas_nama)
+        ->where('pelajaran_nama',$id->$kelas_nama)
+        ->where('kompetensidasar_kode',$id->$kode)
+        ->update([
+            'kompetensidasar_nama'=>$request->nama,
+            'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+    }
+    public function update(Request $request, kompetensidasar $id)
+    {
+        $this->proses_update($request,$id);
+
+            return redirect()->back()->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+    }
 
     public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama){
         // RELASI
