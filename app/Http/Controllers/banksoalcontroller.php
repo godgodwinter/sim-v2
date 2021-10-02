@@ -293,9 +293,6 @@ class banksoalcontroller extends Controller
 
         $encoded_data = base64_encode($data);
 
-    }else{
-        $encoded_data='';
-    }
         // contoh export ganbar decode ke file assets/banksoal
         $decoded_data = base64_decode($encoded_data);
         // Show the decoded data
@@ -305,6 +302,10 @@ class banksoalcontroller extends Controller
         fwrite($file, $decoded_data);
         // Close the file
         fclose($file);
+
+    }else{
+        $encoded_data='';
+    }
 
          //aksi update
         banksoal::where('id',$id->id)
