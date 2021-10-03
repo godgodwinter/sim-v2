@@ -116,15 +116,25 @@ $message=session('status');
                     <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png"
                         class="rounded-circle profile-widget-picture">
                     <div class="profile-widget-items">
-                        <div class="form-group col-md-12 col-12 mt-1 text-right">
-                            <input type="number" name="nilaimulti" id="nilaimulti" value="75" min="1" max="100" class="form-controll ">
-                            <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
+                        <div class="form-group offset-md-8 col-md-4 col-12 mt-1  ">
+                                <div class="row">
+                                    <div class="col-md-4 col-12 mt-2 text-right">
+                                        <label for="nilaimulti">Nilai :</label>
+
+                                    </div>
+
+                                    <div class="col-md-8 col-12">
+                                        <input type="number" name="nilaimulti" id="nilaimulti" value="75" min="1" max="100" class="form-control">
+                                    </div>
+                                </div>
+
+                            {{-- <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
                                 data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
                             </button>
                             <a href="/admin/@yield('linkpages')/export" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Export </span></a>
+                                        class="fas fa-download"></i> Export </span></a> --}}
 
                                         {{-- <a href="{{route('moodle.generate.xmlget')}}" type="submit" value="Import"
                                             class="btn btn-icon btn-primary btn-sm"><span class="pcoded-micon"> <i
