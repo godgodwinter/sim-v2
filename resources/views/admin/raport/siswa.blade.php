@@ -216,9 +216,10 @@
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
                         // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        // ->where('semester_nama', '=', getsettings::semesteraktif())
                         ->where('pelajaran_nama', '=', $mapel->nama)
-                        ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                        // ->where('jenisnilai_tipe', '=', 'pengetahuan')
                         ->count();
                       if($cekambildata>0){
 
@@ -227,9 +228,10 @@
                                 ->where('siswa_nis', '=', $siswa->nis)
                                 ->where('kelas_nama', '=', $siswa->kelas_nama)
                                 // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                // ->where('semester_nama', '=', getsettings::semesteraktif())
                                 ->where('pelajaran_nama', '=', $mapel->nama)
-                                ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                                // ->where('jenisnilai_tipe', '=', 'pengetahuan')
                                 ->get();
                               foreach ($ambildata as $d) {
                                 $jmlnilai+=$d->nilai;
@@ -244,9 +246,10 @@
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
                         // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        // ->where('semester_nama', '=', getsettings::semesteraktif())
                         ->where('pelajaran_nama', '=', $mapel->nama)
-                        ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                        // ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
                         ->count();
                       if($cekambildataketrampilan>0){
 
@@ -255,9 +258,10 @@
                                 ->where('siswa_nis', '=', $siswa->nis)
                                 ->where('kelas_nama', '=', $siswa->kelas_nama)
                                 // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                // ->where('semester_nama', '=', getsettings::semesteraktif())
                                 ->where('pelajaran_nama', '=', $mapel->nama)
-                                ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                                // ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
                                 ->get();
                               foreach ($ambildata as $d) {
                                 $jmlnilai+=$d->nilai;
@@ -314,9 +318,10 @@
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
                         // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        // ->where('semester_nama', '=', getsettings::semesteraktif())
                         ->where('pelajaran_nama', '=', $mapel->nama)
-                        ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                        // ->where('jenisnilai_tipe', '=', 'pengetahuan')
                         ->count();
                       if($cekambildata>0){
 
@@ -325,9 +330,10 @@
                                 ->where('siswa_nis', '=', $siswa->nis)
                                 ->where('kelas_nama', '=', $siswa->kelas_nama)
                                 // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                // ->where('semester_nama', '=', getsettings::semesteraktif())
                                 ->where('pelajaran_nama', '=', $mapel->nama)
-                                ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                                // ->where('jenisnilai_tipe', '=', 'pengetahuan')
                                 ->get();
                               foreach ($ambildata as $d) {
                                 $jmlnilai+=$d->nilai;
@@ -342,9 +348,10 @@
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
                         // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        // ->where('semester_nama', '=', getsettings::semesteraktif())
                         ->where('pelajaran_nama', '=', $mapel->nama)
-                        ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                        // ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
                         ->count();
                       if($cekambildataketrampilan>0){
 
@@ -353,9 +360,10 @@
                                 ->where('siswa_nis', '=', $siswa->nis)
                                 ->where('kelas_nama', '=', $siswa->kelas_nama)
                                 // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                // ->where('semester_nama', '=', getsettings::semesteraktif())
                                 ->where('pelajaran_nama', '=', $mapel->nama)
-                                ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
+                                // ->where('jenisnilai_tipe', '=', 'ketrampilan')
                                 ->get();
                               foreach ($ambildata as $d) {
                                 $jmlnilai+=$d->nilai;
@@ -416,9 +424,10 @@
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
                         // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        // ->where('semester_nama', '=', getsettings::semesteraktif())
                         ->where('pelajaran_nama', '=', $mapel->nama)
-                        ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                        // ->where('jenisnilai_tipe', '=', 'pengetahuan')
                         ->count();
                       if($cekambildata>0){
 
@@ -427,9 +436,10 @@
                                 ->where('siswa_nis', '=', $siswa->nis)
                                 ->where('kelas_nama', '=', $siswa->kelas_nama)
                                 // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                // ->where('semester_nama', '=', getsettings::semesteraktif())
                                 ->where('pelajaran_nama', '=', $mapel->nama)
-                                ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                                // ->where('jenisnilai_tipe', '=', 'pengetahuan')
                                 ->get();
                               foreach ($ambildata as $d) {
                                 $jmlnilai+=$d->nilai;
@@ -444,9 +454,9 @@
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
                         // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                        ->where('semester_nama', '=', getsettings::semesteraktif())
+                        // ->where('semester_nama', '=', getsettings::semesteraktif())
                         ->where('pelajaran_nama', '=', $mapel->nama)
-                        ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                        ->where('jenisnilai_tipe', '=', 'Ketrampilan')
                         ->count();
                       if($cekambildataketrampilan>0){
 
@@ -455,9 +465,10 @@
                                 ->where('siswa_nis', '=', $siswa->nis)
                                 ->where('kelas_nama', '=', $siswa->kelas_nama)
                                 // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                                ->where('semester_nama', '=', getsettings::semesteraktif())
+                                // ->where('semester_nama', '=', getsettings::semesteraktif())
                                 ->where('pelajaran_nama', '=', $mapel->nama)
-                                ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
+                                // ->where('jenisnilai_tipe', '=', 'ketrampilan')
                                 ->get();
                               foreach ($ambildata as $d) {
                                 $jmlnilai+=$d->nilai;
