@@ -124,7 +124,7 @@ $message=session('status');
                                     </div>
 
                                     <div class="col-md-8 col-12">
-                                        <input type="number" name="nilaimulti" id="nilaimulti" value="75" min="1" max="100" class="form-control">
+                                        <input type="number" name="nilaimulti" id="nilaimulti" value="75" min="1" max="100" class="form-control btn btn-outline-primary">
                                     </div>
                                 </div>
 

@@ -211,7 +211,7 @@ $message=session('status');
                   <div class="form-group col-md-6 col-12">
                     <label for="nama">Pertanyaan</label> :
                     {{-- <label for="nama" class="text-dark" id="tingkatkesulitan">Tingkat kesulitan</label> --}}
-                    <textarea class="form-control" style="min-width: 100%;height:100%;" name="pertanyaan"
+                    <textarea class="form-control summernote-simple" style="min-width: 100%;height:100%;" name="pertanyaan"
                         id="pertanyaan" required></textarea>
                 </div>
 
