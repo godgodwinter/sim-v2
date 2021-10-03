@@ -207,7 +207,7 @@ $message=session('status');
                                             @foreach ($datamateri as $dm)
                                             <td class="text-center" width="10%">
 
-                                    <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} {{$dm->nama}}</label>
+                                    <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} </label>
                                     <script>
 
                                             $("#chkCheckAllmateri{{$dm->id}}").click(function(){
