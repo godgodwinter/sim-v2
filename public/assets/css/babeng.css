@@ -1,0 +1,39 @@
+
+  /*---------------------------------------
+    BUTTON ON TOP
+  -----------------------------------------*/
+
+
+.rounded-circle {
+    border-radius: 50% !important
+}
+
+  #scrollTop {
+    display: block;
+    position: fixed;
+    bottom: 330px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #299abd;
+    color: #e6ebee;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  #scrollTop:hover {
+    background-color: #d46922;
+    opacity: 1;
+  }
+
+  #arrow{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    display: block;
+}

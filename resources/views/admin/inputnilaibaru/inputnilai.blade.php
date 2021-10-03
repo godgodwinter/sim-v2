@@ -51,6 +51,63 @@ $message=session('status');
 
 
 <div class="section-body">
+
+
+    <a href="" id="scroll" >
+        <div class="rounded-circle" id="scrollTop" data-toggle="tooltip" data-placement="top"    title="Simpan Terpilih!">
+            <i class="fas fa-share-square" id="arrow" ></i>
+        </div>
+   </a>
+<i class="fa fa-arrow-up" aria-hidden="true" style="color: black;" id="arrow" ></i>
+
+{{-- <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a> --}}
+   <script>
+   $( "#scroll" ).click(function(e) {
+    // alert( "Handler for .click() called." );
+          e.preventDefault();
+          var allids=[];
+          var nilaimulti=$("#nilaimulti").val();
+              $("input:checkbox[name=ids]:checked").each(function(){
+                  allids.push($(this).val());
+
+
+              });
+              if(allids==''){
+                  alert('Pilih data dahulu!');
+
+              }else{
+            fetch_customer_data(allids);
+
+
+              alert('berhasil diubah!');
+              }
+
+
+
+              function fetch_customer_data(query = '') {
+                                    $.ajax({
+                                        url: "{{ route('api.inputnilai.multiinput') }}",
+                                        method: 'GET',
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            ids:allids,
+                                            nilaimulti:nilaimulti
+                                        },
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            $("#datasiswa").html(data.output);
+                                            // console.log(data.output);
+                                            // console.log(data.datas);
+                                        }
+                                    })
+                                }
+
+
+    return false;
+  });
+
+</script>
+
     <div class="row mt-sm-4">
 
         <div class="col-12 col-md-12 col-lg-12">
@@ -60,6 +117,7 @@ $message=session('status');
                         class="rounded-circle profile-widget-picture">
                     <div class="profile-widget-items">
                         <div class="form-group col-md-12 col-12 mt-1 text-right">
+                            <input type="number" name="nilaimulti" id="nilaimulti" value="75" min="1" max="100" class="form-controll ">
                             <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
                                 data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
@@ -149,8 +207,8 @@ $message=session('status');
                                         @endif
                                 @endforeach
                             </tr>
-
-                                @foreach ($datasiswa as $data)
+                            <tbody id="datasiswa">
+                            @foreach ($datasiswa as $data)
                                  <tr>
                                 <td  style="vertical-align: middle;" class="text-center">{{$loop->index+1}}</td>
                                 <td class="text-capitalize">{{$data->nama}}</td>
@@ -215,12 +273,11 @@ $message=session('status');
                                                 }
                                             @endphp
                                             <td class="text-center"  style="vertical-align: middle;">
-
-                                            <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#modalinput{{$kodeprefix}}_{{$dkd->kode}}_{{$loop->index+1}}_{{$data->nis}}">
+                                                <input type="checkbox" name="ids" class="checkBoxClass" value="{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}">
+                                            <input type="text" class="btn  btn-light btn-sm" data-toggle="modal"
+                                                data-target="#modalinput{{$kodeprefix}}_{{$dkd->kode}}_{{$loop->index+1}}_{{$data->nis}}" value="{{$tampilkan}}" id="tampilkan{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}">
                                                 {{-- {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} --}}
-                                                {{$tampilkan}}
-                                            </button>
+
                                             </td>
                                             @endforeach
                                         @else
@@ -281,6 +338,8 @@ $message=session('status');
                                 </td>
                             </tr>
                                 @endforeach
+                            </tbody>
+
 
 
                         </table>
