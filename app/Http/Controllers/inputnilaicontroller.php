@@ -264,7 +264,7 @@ class inputnilaicontroller extends Controller
                                     ->where('tapel_nama',$tapel_nama)
                                     ->count();
 
-                                $tampilkan='belum diisi';
+                                $tampilkan='-';
                                 if($cek>0){
 
                                     $ambil=DB::table('nilaipelajaran')
@@ -282,7 +282,7 @@ class inputnilaicontroller extends Controller
                                 $outputambahan.='
 
                                             <td class="text-center"  style="vertical-align: middle;">
-                                                <input type="checkbox" name="ids" class="checkBoxClass  siswa'.$data->nis.' materi'.$dm->id.'" value="'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'" id="chkCheckAll'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'">
+                                                <input type="checkbox" name="ids" class="checkBoxClass siswa'.$data->nis.' materi'.$dm->id.'" value="'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'" id="chkCheckAll'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'">
                                                 <label for="chkCheckAll'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'"> '.$tampilkan.'</label>
 
                                             </td>
@@ -367,7 +367,17 @@ class inputnilaicontroller extends Controller
 
             $output.='<tr>
             <td  style="vertical-align: middle;" class="text-center">'.$no++.'</td>
-            <td class="text-capitalize">'.$data->nama.'</td>'.$outputambahan.' '.$outputavgp.' '.$outputavgk.'
+            <td class="text-capitalize">
+            <input type="checkbox" id="chkCheckAll'.$data->nis.'"> <label for="chkCheckAll'.$data->nis.'"> '.$data->nama.'</label>
+            </td>
+
+<script>
+
+$("#chkCheckAll'.$data->nis.'").click(function(){
+    $(".siswa'.$data->nis.'").prop(\'checked\',$(this).prop(\'checked\'));
+})
+</script>
+            '.$outputambahan.' '.$outputavgp.' '.$outputavgk.'
             </tr>
     ';
 

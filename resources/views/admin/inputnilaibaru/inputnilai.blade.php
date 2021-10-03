@@ -140,7 +140,7 @@ $message=session('status');
 
                             <tr>
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> No  </th>
-                                <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> Nama </th>
+                                <th  class="text-center" rowspan="2" style="vertical-align: middle;"> Nama </th>
                                 @foreach ($datakd as $dkd)
                                 @php
 
@@ -205,7 +205,7 @@ $message=session('status');
                                         @endphp
                                         @if ($jmldatamateri>0)
                                             @foreach ($datamateri as $dm)
-                                            <td class="text-center">
+                                            <td class="text-center" width="10%">
 
                                     <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} {{$dm->nama}}</label>
                                     <script>
@@ -218,7 +218,7 @@ $message=session('status');
                                              </td>
                                             @endforeach
                                         @else
-                                            <td class="text-center"> - </td>
+                                            <td class="text-center" width="10%"> - </td>
                                         @endif
                                 @endforeach
                             </tr>
@@ -228,13 +228,15 @@ $message=session('status');
                                 <td  style="vertical-align: middle;" class="text-center">{{$loop->index+1}}</td>
                                 <td class="text-capitalize">
                                     <input type="checkbox" id="chkCheckAll{{$data->nis}}"> <label for="chkCheckAll{{$data->nis}}">  {{$data->nama}}</label>
-                                    <script>
 
-                                            $("#chkCheckAll{{$data->nis}}").click(function(){
-                                                $(".siswa{{$data->nis}}").prop('checked',$(this).prop('checked'));
-                                            })
-                                    </script>
                                 </td>
+
+                                <script>
+
+                                    $("#chkCheckAll{{$data->nis}}").click(function(){
+                                        $(".siswa{{$data->nis}}").prop('checked',$(this).prop('checked'));
+                                    })
+                                </script>
 
                                 @foreach ($datakd as $dkd)
                                         @php
@@ -282,7 +284,7 @@ $message=session('status');
                                                     ->where('tapel_nama',$t_nama)
                                                     ->count();
 
-                                                $tampilkan='belum diisi';
+                                                $tampilkan='-';
                                                 if($cek>0){
 
                                                     $ambil=DB::table('nilaipelajaran')
@@ -432,7 +434,7 @@ if($dkd->tipe=='Pengetahuan'){
                                     ->where('tapel_nama',$t_nama)
                                     ->count();
 
-                                $tampilkan='belum diisi';
+                                $tampilkan='-';
                                 $nilaiawal=75;
                                 if($cek>0){
 
