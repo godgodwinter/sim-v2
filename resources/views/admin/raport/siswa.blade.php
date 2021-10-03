@@ -14,7 +14,7 @@
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -24,7 +24,7 @@
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -39,7 +39,7 @@
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 @section('container')
@@ -70,8 +70,8 @@
                   <strong>Kompetensi Keahlian</strong>  <strong>: {{ Fungsi::periksajurusankompetensi($siswa->kelas_nama) }}</strong><br>
 
               </div>
-            
-           
+
+
               <div class="col-md-6">
                   <strong>Tahun Pelajaran</strong><strong>: {{ getsettings::tapelaktif() }}</strong><br>
                   <strong>Tingkat / Tahun</strong><strong>: {{ Fungsi::periksajurusantingkat($siswa->kelas_nama) }} / {{ Fungsi::tahunaktif(getsettings::tapelaktif()) }} </strong><br>
@@ -102,7 +102,7 @@
                     <th class="text-center">Predikat</th>
                   </tr>
                   @foreach ($mapela  as $mapel)
-                      
+
                 <tr>
                   <td class="text-center">{{ (($loop->index)+1) }}</td>
                   <td>{{ $mapel->nama }}</td>
@@ -116,9 +116,9 @@
                       ->where('siswa_nis', '=', $siswa->nis)
                       ->where('kelas_nama', '=', $siswa->kelas_nama)
                       // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                      ->where('semester_nama', '=', getsettings::semesteraktif())
+                    //   ->where('semester_nama', '=', getsettings::semesteraktif())
                       ->where('pelajaran_nama', '=', $mapel->nama)
-                      ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                      ->where('kompetensidasar_tipe','Pengetahuan')
                       ->count();
                     if($cekambildata>0){
 
@@ -127,9 +127,9 @@
                               ->where('siswa_nis', '=', $siswa->nis)
                               ->where('kelas_nama', '=', $siswa->kelas_nama)
                               // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                              ->where('semester_nama', '=', getsettings::semesteraktif())
+                            //   ->where('semester_nama', '=', getsettings::semesteraktif())
                               ->where('pelajaran_nama', '=', $mapel->nama)
-                              ->where('jenisnilai_tipe', '=', 'pengetahuan')
+                            ->where('kompetensidasar_tipe','Pengetahuan')
                               ->get();
                             foreach ($ambildata as $d) {
                               $jmlnilai+=$d->nilai;
@@ -144,9 +144,10 @@
                       ->where('siswa_nis', '=', $siswa->nis)
                       ->where('kelas_nama', '=', $siswa->kelas_nama)
                       // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                      ->where('semester_nama', '=', getsettings::semesteraktif())
+                    //   ->where('semester_nama', '=', getsettings::semesteraktif())
                       ->where('pelajaran_nama', '=', $mapel->nama)
-                      ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                    //   ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
                       ->count();
                     if($cekambildataketrampilan>0){
 
@@ -155,9 +156,10 @@
                               ->where('siswa_nis', '=', $siswa->nis)
                               ->where('kelas_nama', '=', $siswa->kelas_nama)
                               // ->where('jenisnilai_nama', '=', $request->jenisnilai_nama)
-                              ->where('semester_nama', '=', getsettings::semesteraktif())
+                            //   ->where('semester_nama', '=', getsettings::semesteraktif())
                               ->where('pelajaran_nama', '=', $mapel->nama)
-                              ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            //   ->where('jenisnilai_tipe', '=', 'ketrampilan')
+                            ->where('kompetensidasar_tipe','Ketrampilan')
                               ->get();
                             foreach ($ambildata as $d) {
                               $jmlnilai+=$d->nilai;
@@ -200,7 +202,7 @@
                     <th class="text-center">Predikat</th>
                   </tr>
                   @foreach ($mapelb as $mapel)
-                      
+
                   <tr>
                     <td class="text-center">{{ (($loop->index)+1) }}</td>
                     <td>{{ $mapel->nama }}</td>
@@ -209,7 +211,7 @@
                     $hasilp=0;
                     $hasilk=0;
                   $jmlmapel+=1;
-  
+
                       $cekambildata=DB::table('nilaipelajaran')
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
@@ -219,7 +221,7 @@
                         ->where('jenisnilai_tipe', '=', 'pengetahuan')
                         ->count();
                       if($cekambildata>0){
-  
+
                             $jmlnilai=0;
                               $ambildata=DB::table('nilaipelajaran')
                                 ->where('siswa_nis', '=', $siswa->nis)
@@ -236,7 +238,7 @@
                                 $hasilp=$jmlnilai/$cekambildata;
                               }
                         }
-  
+
                         //ketrampilan
                       $cekambildataketrampilan=DB::table('nilaipelajaran')
                         ->where('siswa_nis', '=', $siswa->nis)
@@ -247,7 +249,7 @@
                         ->where('jenisnilai_tipe', '=', 'ketrampilan')
                         ->count();
                       if($cekambildataketrampilan>0){
-  
+
                             $jmlnilai=0;
                               $ambildata=DB::table('nilaipelajaran')
                                 ->where('siswa_nis', '=', $siswa->nis)
@@ -298,7 +300,7 @@
                     <th class="text-center">Predikat</th>
                   </tr>
                   @foreach ($mapelc1 as $mapel)
-                      
+
                   <tr>
                     <td class="text-center">{{ (($loop->index)+1) }}</td>
                     <td>{{ $mapel->nama }}</td>
@@ -307,7 +309,7 @@
                     $hasilp=0;
                     $hasilk=0;
                   $jmlmapel+=1;
-  
+
                       $cekambildata=DB::table('nilaipelajaran')
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
@@ -317,7 +319,7 @@
                         ->where('jenisnilai_tipe', '=', 'pengetahuan')
                         ->count();
                       if($cekambildata>0){
-  
+
                             $jmlnilai=0;
                               $ambildata=DB::table('nilaipelajaran')
                                 ->where('siswa_nis', '=', $siswa->nis)
@@ -334,7 +336,7 @@
                                 $hasilp=$jmlnilai/$cekambildata;
                               }
                         }
-  
+
                         //ketrampilan
                       $cekambildataketrampilan=DB::table('nilaipelajaran')
                         ->where('siswa_nis', '=', $siswa->nis)
@@ -345,7 +347,7 @@
                         ->where('jenisnilai_tipe', '=', 'ketrampilan')
                         ->count();
                       if($cekambildataketrampilan>0){
-  
+
                             $jmlnilai=0;
                               $ambildata=DB::table('nilaipelajaran')
                                 ->where('siswa_nis', '=', $siswa->nis)
@@ -398,9 +400,9 @@
                    @php
                      $kodekelas=Fungsi::periksajurusankode($siswa->kelas_nama);
                     //  dd($kodekelas);
-                   @endphp   
+                   @endphp
                    @if($mapel->jurusan===$kodekelas)
-                      
+
                   <tr>
                     <td class="text-center">{{ (($loop->index)+1) }}</td>
                     <td>{{ $mapel->nama }}</td>
@@ -409,7 +411,7 @@
                     $hasilp=0;
                     $hasilk=0;
                   $jmlmapel+=1;
-  
+
                       $cekambildata=DB::table('nilaipelajaran')
                         ->where('siswa_nis', '=', $siswa->nis)
                         ->where('kelas_nama', '=', $siswa->kelas_nama)
@@ -419,7 +421,7 @@
                         ->where('jenisnilai_tipe', '=', 'pengetahuan')
                         ->count();
                       if($cekambildata>0){
-  
+
                             $jmlnilai=0;
                               $ambildata=DB::table('nilaipelajaran')
                                 ->where('siswa_nis', '=', $siswa->nis)
@@ -436,7 +438,7 @@
                                 $hasilp=$jmlnilai/$cekambildata;
                               }
                         }
-  
+
                         //ketrampilan
                       $cekambildataketrampilan=DB::table('nilaipelajaran')
                         ->where('siswa_nis', '=', $siswa->nis)
@@ -447,7 +449,7 @@
                         ->where('jenisnilai_tipe', '=', 'ketrampilan')
                         ->count();
                       if($cekambildataketrampilan>0){
-  
+
                             $jmlnilai=0;
                               $ambildata=DB::table('nilaipelajaran')
                                 ->where('siswa_nis', '=', $siswa->nis)
@@ -517,7 +519,7 @@
                 </div>
               </div>
               <div class="col-lg-4 text-right">
-                {!! QrCode::size(250)->generate( url('/raport/'.$siswa->nis) ); !!} 
+                {!! QrCode::size(250)->generate( url('/raport/'.$siswa->nis) ); !!}
 
        {{-- <div>{!! DNS1D::getBarcodeHTML('4445645656', 'C39') !!}</div></br>
        <div>{!! DNS1D::getBarcodeHTML('4445645656', 'POSTNET') !!}</div></br>
