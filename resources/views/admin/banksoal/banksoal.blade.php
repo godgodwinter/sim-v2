@@ -94,7 +94,7 @@ $message=session('status');
                                 @foreach ($datas as $data)
                                  <tr>
                                 <td>{{$loop->index+1}}</td>
-                                <td class="text-capitalize">{{$data->pertanyaan}}</td>
+                                <td class="text-capitalize">{!!nl2br($data->pertanyaan) !!}</td>
                                 @php
                                 $kategorisoal_nama='TIdak diketahui';
                                     if($data->kategorisoal_nama==1){
