@@ -218,6 +218,8 @@ class inputnilaicontroller extends Controller
             $no=1;
         foreach($datasiswa as $data){
             $outputambahan='';
+            $outputavgp='';
+            $outputavgk='';
 
             foreach($datakd as $dkd){
 
@@ -226,6 +228,7 @@ class inputnilaicontroller extends Controller
                 ->where('tapel_nama',$tapel_nama)
                 ->where('pelajaran_nama',$pelajaran_nama)
                 ->where('kompetensidasar_nama',$dkd->nama)
+                ->where('kompetensidasar_tipe',$dkd->tipe)
                 ->where('kompetensidasar_kode',$dkd->kode)
                 ->orderBy('created_at','asc')
                 // ->orderBy('tipe','desc')
@@ -236,6 +239,7 @@ class inputnilaicontroller extends Controller
                 ->where('tapel_nama',$tapel_nama)
                 ->where('pelajaran_nama',$pelajaran_nama)
                 ->where('kompetensidasar_nama',$dkd->nama)
+                ->where('kompetensidasar_tipe',$dkd->tipe)
                 ->where('kompetensidasar_kode',$dkd->kode)
                 ->orderBy('created_at','asc')
                 // ->orderBy('tipe','desc')
@@ -278,12 +282,13 @@ class inputnilaicontroller extends Controller
                                 $outputambahan.='
 
                                             <td class="text-center"  style="vertical-align: middle;">
-                                                <input type="checkbox" name="ids" class="checkBoxClass" value="'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'">
-                                            <input type="text" class="btn  btn-light btn-sm" data-toggle="modal"
-                                                data-target="#modalinput'.$kodeprefix.'_'.$dkd->kode.'_'.$no.'_'.$data->nis.'" value="'.$tampilkan.'">
+                                                <input type="checkbox" name="ids" class="checkBoxClass  siswa'.$data->nis.' materi'.$dm->id.'" value="'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'" id="chkCheckAll'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'">
+                                                <label for="chkCheckAll'.$data->nama.'^'.$data->nis.'^'.$dm->nama.'^'.$dkd->kode.'^'.$dkd->tipe.'^'.$pelajaran_nama.'^'.$kelas_nama.'^'.$tapel_nama.'"> '.$tampilkan.'</label>
 
                                             </td>
                                 ';
+                                // <input type="text" class="btn  btn-light btn-sm" data-toggle="modal"
+                                // data-target="#modalinput'.$kodeprefix.'_'.$dkd->kode.'_'.$no.'_'.$data->nis.'" value="'.$tampilkan.'">
 
                                 }
 
@@ -294,11 +299,75 @@ class inputnilaicontroller extends Controller
                             }
 
 
+
+                            $ambiljmlnilai=DB::table('nilaipelajaran')
+                            ->where('siswa_nis',$data->nis)
+                            ->where('kompetensidasar_tipe','Pengetahuan')
+                            ->where('pelajaran_nama',$pelajaran_nama)
+                            ->where('kelas_nama',$kelas_nama)
+                            ->where('tapel_nama',$tapel_nama)
+                            ->sum('nilai');
+
+                            $ambiljmldatanilai=DB::table('nilaipelajaran')
+                                                ->where('siswa_nis',$data->nis)
+                                                ->where('kompetensidasar_tipe','Pengetahuan')
+                                                ->where('pelajaran_nama',$pelajaran_nama)
+                                                ->where('kelas_nama',$kelas_nama)
+                                                ->where('tapel_nama',$tapel_nama)
+                                                ->count();
+
+                                $hasil=0;
+                                if($ambiljmldatanilai>0){
+                                    $hasil=number_format(($ambiljmlnilai/$ambiljmldatanilai),2);
+                                }
+                            $outputavgp='
+
+                            <td  style="vertical-align: middle;" class="text-center">
+
+                            '.$hasil.'
+
+                        </td>
+                            ';
+
+
+
+
+                            $ambiljmlnilai=DB::table('nilaipelajaran')
+                            ->where('siswa_nis',$data->nis)
+                            ->where('kompetensidasar_tipe','Ketrampilan')
+                            ->where('pelajaran_nama',$pelajaran_nama)
+                            ->where('kelas_nama',$kelas_nama)
+                            ->where('tapel_nama',$tapel_nama)
+                            ->sum('nilai');
+
+                            $ambiljmldatanilai=DB::table('nilaipelajaran')
+                                                ->where('siswa_nis',$data->nis)
+                                                ->where('kompetensidasar_tipe','Ketrampilan')
+                                                ->where('pelajaran_nama',$pelajaran_nama)
+                                                ->where('kelas_nama',$kelas_nama)
+                                                ->where('tapel_nama',$tapel_nama)
+                                                ->count();
+
+                                $hasil=0;
+                                if($ambiljmldatanilai>0){
+                                    $hasil=number_format(($ambiljmlnilai/$ambiljmldatanilai),2);
+                                }
+                            $outputavgk='
+
+                            <td  style="vertical-align: middle;" class="text-center">
+
+                            '.$hasil.'
+
+                        </td>
+                            ';
+
+
+
             }
 
             $output.='<tr>
             <td  style="vertical-align: middle;" class="text-center">'.$no++.'</td>
-            <td class="text-capitalize">'.$data->nama.'</td>'.$outputambahan.'
+            <td class="text-capitalize">'.$data->nama.'</td>'.$outputambahan.' '.$outputavgp.' '.$outputavgk.'
             </tr>
     ';
 

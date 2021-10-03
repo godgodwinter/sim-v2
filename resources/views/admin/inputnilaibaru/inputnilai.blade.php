@@ -150,6 +150,7 @@ $message=session('status');
                                 ->where('pelajaran_nama',$p_nama)
                                 ->where('kompetensidasar_nama',$dkd->nama)
                                 ->where('kompetensidasar_kode',$dkd->kode)
+                                ->where('kompetensidasar_tipe',$dkd->tipe)
                                 ->orderBy('created_at','asc')
                                 // ->orderBy('tipe','desc')
                                 ->count();
@@ -160,7 +161,9 @@ $message=session('status');
                                     $kodeprefix=4;
                                 }
                                 @endphp
-                                <th class="text-center" colspan="{{$jmldatamateri}}">{{$kodeprefix}}.{{$dkd->kode}} </th>
+                                <th class="text-center" colspan="{{$jmldatamateri}}">
+                                    {{$kodeprefix}}.{{$dkd->kode}}
+                                </th>
 
                                 @endforeach
 
@@ -177,6 +180,7 @@ $message=session('status');
                                             ->where('pelajaran_nama',$p_nama)
                                             ->where('kompetensidasar_nama',$dkd->nama)
                                             ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
                                             ->count();
@@ -187,6 +191,7 @@ $message=session('status');
                                             ->where('pelajaran_nama',$p_nama)
                                             ->where('kompetensidasar_nama',$dkd->nama)
                                             ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
                                             ->get();
@@ -200,7 +205,17 @@ $message=session('status');
                                         @endphp
                                         @if ($jmldatamateri>0)
                                             @foreach ($datamateri as $dm)
-                                            <td class="text-center"> {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} </td>
+                                            <td class="text-center">
+
+                                    <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} {{$dm->nama}}</label>
+                                    <script>
+
+                                            $("#chkCheckAllmateri{{$dm->id}}").click(function(){
+                                                $(".materi{{$dm->id}}").prop('checked',$(this).prop('checked'));
+                                            })
+                                    </script>
+
+                                             </td>
                                             @endforeach
                                         @else
                                             <td class="text-center"> - </td>
@@ -211,7 +226,15 @@ $message=session('status');
                             @foreach ($datasiswa as $data)
                                  <tr>
                                 <td  style="vertical-align: middle;" class="text-center">{{$loop->index+1}}</td>
-                                <td class="text-capitalize">{{$data->nama}}</td>
+                                <td class="text-capitalize">
+                                    <input type="checkbox" id="chkCheckAll{{$data->nis}}"> <label for="chkCheckAll{{$data->nis}}">  {{$data->nama}}</label>
+                                    <script>
+
+                                            $("#chkCheckAll{{$data->nis}}").click(function(){
+                                                $(".siswa{{$data->nis}}").prop('checked',$(this).prop('checked'));
+                                            })
+                                    </script>
+                                </td>
 
                                 @foreach ($datakd as $dkd)
                                         @php
@@ -222,6 +245,7 @@ $message=session('status');
                                             ->where('pelajaran_nama',$p_nama)
                                             ->where('kompetensidasar_nama',$dkd->nama)
                                             ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
                                             ->count();
@@ -232,6 +256,7 @@ $message=session('status');
                                             ->where('pelajaran_nama',$p_nama)
                                             ->where('kompetensidasar_nama',$dkd->nama)
                                             ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
                                             ->get();
@@ -272,10 +297,12 @@ $message=session('status');
                                                     $tampilkan=$ambil->nilai;
                                                 }
                                             @endphp
-                                            <td class="text-center"  style="vertical-align: middle;">
-                                                <input type="checkbox" name="ids" class="checkBoxClass" value="{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}">
-                                            <input type="text" class="btn  btn-light btn-sm" data-toggle="modal"
-                                                data-target="#modalinput{{$kodeprefix}}_{{$dkd->kode}}_{{$loop->index+1}}_{{$data->nis}}" value="{{$tampilkan}}" id="tampilkan{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}">
+                                            <td class="text-center"  style="vertical-align: middle;" >
+                                                <input type="checkbox" name="ids" class="checkBoxClass siswa{{$data->nis}} materi{{$dm->id}}" value="{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}" id="chkCheckAll{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}">
+                                                <label for="chkCheckAll{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}"> {{$tampilkan}}</label>
+
+                                            {{-- <input type="text" class="btn  btn-light btn-sm" data-toggle="modal"
+                                                data-target="#modalinput{{$kodeprefix}}_{{$dkd->kode}}_{{$loop->index+1}}_{{$data->nis}}" value="{{$tampilkan}}" id="tampilkan{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$p_nama}}^{{$k_nama}}^{{$t_nama}}"> --}}
                                                 {{-- {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} --}}
 
                                             </td>
