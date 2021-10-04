@@ -1,6 +1,6 @@
 {{-- @extends('layouts.layoutadminv3') --}}
 
-@section('title','Pegawai')
+@section('title','User')
 @section('halaman')
 <div class="breadcrumb-item"><a href="{{route('pegawai')}}"> Pegawai</a></div>
 <div class="breadcrumb-item"> Index</div>

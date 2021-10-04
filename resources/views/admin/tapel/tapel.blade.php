@@ -9,7 +9,7 @@ data{{ $pages }}
 
 @section('jshere')
 @endsection
-{{-- 
+{{--
 @section('headernav')
 @endsection--}}
 
@@ -18,7 +18,7 @@ data{{ $pages }}
 
 @if (session('tipe'))
         @php
-        $tipe=session('tipe');    
+        $tipe=session('tipe');
         @endphp
 @else
         @php
@@ -28,7 +28,7 @@ data{{ $pages }}
 
 @if (session('icon'))
         @php
-        $icon=session('icon');    
+        $icon=session('icon');
         @endphp
 @else
         @php
@@ -43,7 +43,7 @@ data{{ $pages }}
 <x-alert tipe="{{ $tipe }}" message="{{ $message }}" icon="{{ $icon }}"/>
 
 @endif
-@endsection 
+@endsection
 
 
 {{-- DATATABLE --}}
@@ -102,14 +102,9 @@ data{{ $pages }}
   </tr>
 @endforeach
 
-<tr>
-  <td class="text-left" colspan="2">
-    <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
-    onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
-</tr>
 @endsection
 
-@section('foottable') 
+@section('foottable')
   {{ $datas->links() }}
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -126,25 +121,25 @@ data{{ $pages }}
 
 <div class="row ">
 <div class="col-12 col-md-12 col-lg-12">
- 
+
   <div class="row">
       <div class="col-12 col-md-12 col-lg-7">
         <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-      </div>    
+      </div>
       <div class="col-12 col-md-12 col-lg-5">
         <x-table-tapel-add pages="{{ $pages }}" />
       </div>
-{{-- 
+{{--
       <div class="col-12 col-md-12 col-lg-7">
         <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-      </div>    
+      </div>
       <div class="col-12 col-md-12 col-lg-5">
         <x-table-tapel-add pages="{{ $pages }}" />
       </div>
 
       <div class="col-12 col-md-12 col-lg-7">
         <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
-      </div>    
+      </div>
       <div class="col-12 col-md-12 col-lg-5">
         <x-table-tapel-add pages="{{ $pages }}" />
       </div> --}}
@@ -164,14 +159,14 @@ data{{ $pages }}
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                       </div>
                       <div class="modal-body">
-           
+
                         {{ csrf_field() }}
-           
+
                         <label>Pilih file excel(.xlsx)</label>
                         <div class="form-group">
                           <input type="file" name="file" required="required">
                         </div>
-           
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -181,6 +176,6 @@ data{{ $pages }}
                   </form>
                 </div>
               </div>
-          
+
 
 @endsection

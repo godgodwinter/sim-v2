@@ -315,7 +315,7 @@ class oneseeder extends Seeder
 
          //kategori tipepelajaran
          DB::table('kategori')->insert([
-            'nama' => 'A. Nilai Akademik',
+            'nama' => 'A. Muatan Nasional',
             'kode' => 'A',
             'prefix' => 'tipepelajaran',
             'created_at' => Carbon::now(),
@@ -341,6 +341,14 @@ class oneseeder extends Seeder
          DB::table('kategori')->insert([
             'nama' => 'C2. Dasar Program Keahlian',
             'kode' => 'C2',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('kategori')->insert([
+            'nama' => 'C3. Kompetensi Keahlian',
+            'kode' => 'C3',
             'prefix' => 'tipepelajaran',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
