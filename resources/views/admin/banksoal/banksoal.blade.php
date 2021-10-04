@@ -52,11 +52,7 @@ $message=session('status');
     <div class="row mt-sm-4">
 
         <div class="col-12 col-md-12 col-lg-12">
-            <div class="card profile-widget">
-                <div class="profile-widget-header">
-                    <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png"
-                        class="rounded-circle profile-widget-picture">
-                    <div class="profile-widget-items">
+            <div class="card ">
                         <div class="form-group col-md-12 col-12 mt-1 text-right">
                             <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
                                 data-target="#importExcel"><i class="fas fa-upload"></i>
@@ -75,12 +71,10 @@ $message=session('status');
                                             Generate Ke Moodle
                                         </button>
 
-                        </div>
-                    </div>
                 </div>
                 <div class="card-body -mt-5">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-md">
+                        <table class="table table-striped table-sm">
                             <tr>
                                 <th width="10px" class="text-center"> No </th>
                                 <th> Pertanyaan </th>

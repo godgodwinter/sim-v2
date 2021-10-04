@@ -111,11 +111,7 @@ $message=session('status');
     <div class="row mt-sm-4">
 
         <div class="col-12 col-md-12 col-lg-12">
-            <div class="card profile-widget">
-                <div class="profile-widget-header">
-                    <img alt="image" src="{{ asset("assets/") }}/img/products/product-3-50.png"
-                        class="rounded-circle profile-widget-picture">
-                    <div class="profile-widget-items">
+            <div class="card ">
                         <div class="form-group offset-md-8 col-md-4 col-12 mt-1  ">
                                 <div class="row">
                                     <div class="col-md-4 col-12 mt-2 text-right">
@@ -141,12 +137,11 @@ $message=session('status');
                                                     class="fas fa-download"></i> XML Example</span></a> --}}
 
 
-                        </div>
-                    </div>
+
                 </div>
                 <div class="card-body -mt-5">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-md" >
+                        <table class="table table-striped table-sm" >
 
                             <tr>
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> No  </th>

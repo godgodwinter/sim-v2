@@ -331,7 +331,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-6 col-12 mt-0">
+                            <div class="form-group col-md-12 col-12 mt-0">
                                 <label for="nama">Pilih Tipe</label>
 
                                 <select class="form-control form-control-sm" name="tipe" id="kd_tipe" required>
