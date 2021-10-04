@@ -19,10 +19,68 @@ class siakadadmindataajarcontroller extends Controller
         $jmldata='0';
         $datas='0';
 
+        $datas=DB::table('dataajar')
+        ->orderBy('kelas_nama','asc')
+        // ->orderBy('pelajaran_jurusan','desc')
+        ->paginate($this->paginationjml());
+
+        $kelas=DB::table('kelas')->get();
+        $pelajaran=DB::table('pelajaran')->get();
+        return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran'));
+    }
+    public function siakad_index_cari (Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        $pelajaran_nama=$request->pelajaran_nama;
+        $kelas_nama=$request->kelas_nama;
+        // dd($request);
+        #WAJIB
+        $pages='siakaddataajar';
+        $jmldata='0';
+        $datas='0';
+
+        $datas=DB::table('dataajar')
+        // ->where('nis','like',"%".$cari."%")
+        // ->where('nama','like',"%".$cari."%")
+        ->where('pelajaran_nama','like',"%".$pelajaran_nama."%")
+        ->where('kelas_nama','like',"%".$kelas_nama."%")
+        ->orderBy('kelas_nama','asc')
+        ->paginate($this->paginationjml());
+
+
+        // $datas=DB::table('dataajar')
+        // ->orderBy('kelas_nama','asc')
+        // // ->orderBy('pelajaran_jurusan','desc')
+        // ->paginate($this->paginationjml());
+
+        $kelas=DB::table('kelas')->get();
+        $pelajaran=DB::table('pelajaran')->get();
+        return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran'));
+    }
+    public function siakad_index_old(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='siakaddataajar';
+        $jmldata='0';
+        $datas='0';
+
 
         // $datas=DB::table('dataajar')->orderBy('tipepelajaran','asc')
         // ->paginate($this->paginationjml());
 
+        // $datas=DB::table('kelas')
+        // ->select('pelajaran.nama','kelas.nama','pelajaran.jurusan')
+        // ->join('profiles','profiles.id','=','users.id')
+        // ->where(['something' => 'something', 'otherThing' => 'otherThing'])
+        // ->get();
+
+        // dd($datas);
         $datakelas=DB::table('kelas')->orderBy('nama','asc')
         ->get();
         $datapelajaran=DB::table('pelajaran')->orderBy('tipepelajaran','asc')
@@ -38,9 +96,41 @@ class siakadadmindataajarcontroller extends Controller
 
         $jmldata = DB::table('pelajaran')->count();
 
-        return view('siakad.admin.dataajar.index',compact('pages','jmldata','datakelas','request','tipepelajaran','jurusan','datapelajaran','dataguru'));
+        return view('siakad.admin.dataajar.index_old',compact('datas','pages','jmldata','datakelas','request','tipepelajaran','jurusan','datapelajaran','dataguru'));
         // return view('admin.beranda');
     }
+    // public function siakad_index(Request $request)
+    // {
+    //     if($this->checkauth('admin')==='404'){
+    //         return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+    //     }
+    //     #WAJIB
+    //     $pages='siakaddataajar';
+    //     $jmldata='0';
+    //     $datas='0';
+
+
+    //     // $datas=DB::table('dataajar')->orderBy('tipepelajaran','asc')
+    //     // ->paginate($this->paginationjml());
+
+    //     $datakelas=DB::table('kelas')->orderBy('nama','asc')
+    //     ->get();
+    //     $datapelajaran=DB::table('pelajaran')->orderBy('tipepelajaran','asc')
+    //     ->get();
+    //     $dataguru=DB::table('guru')->orderBy('nama','asc')
+    //     ->get();
+
+    //     $tipepelajaran=DB::table('kategori')->where('prefix','prefix')->get();
+    //     $jurusan=DB::table('kategori')->where('prefix','jurusan')->orderBy('prefix','asc')->get();
+
+    //     // $gurus=DB::table('pelajaran')
+    //     // ->get();
+
+    //     $jmldata = DB::table('pelajaran')->count();
+
+    //     return view('siakad.admin.dataajar.index',compact('pages','jmldata','datakelas','request','tipepelajaran','jurusan','datapelajaran','dataguru'));
+    //     // return view('admin.beranda');
+    // }
 
     public function store(Request $request)
     {
@@ -82,7 +172,7 @@ class siakadadmindataajarcontroller extends Controller
                 'updated_at'=>date("Y-m-d H:i:s")
             ]);
     }else{
-        
+
        DB::table('dataajar')->insert(
         array(
                'pelajaran_nama'     =>   $request->pelajaran_nama,
@@ -129,7 +219,7 @@ class siakadadmindataajarcontroller extends Controller
         ->where('pelajaran_nama', '=', $request->pelajaran_nama)
         ->where('kelas_nama', '=', $request->kelas_nama)
         ->count();
-                
+
                 if($cekdatajar>0){
 
                     dataajar::where('pelajaran_nama',$request->pelajaran_nama)
@@ -140,7 +230,7 @@ class siakadadmindataajarcontroller extends Controller
                             'updated_at'=>date("Y-m-d H:i:s")
                         ]);
                 }else{
-                    
+
                         DB::table('dataajar')->insert(
                             array(
                                 'pelajaran_nama'     =>   $request->pelajaran_nama,
@@ -154,8 +244,8 @@ class siakadadmindataajarcontroller extends Controller
                             ));
                 }
 
-      
-       
+
+
                 $dataajar_id=0;
                 // ambildataajar
                 $cekdataajar=DB::table('dataajar')
@@ -214,6 +304,6 @@ class siakadadmindataajarcontroller extends Controller
     {
         dataajar::destroy($id);
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
-    
+
     }
 }

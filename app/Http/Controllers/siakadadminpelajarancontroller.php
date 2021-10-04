@@ -48,11 +48,11 @@ class siakadadminpelajarancontroller extends Controller
             'nama.required'=>'Nama Harus diisi',
 
         ]);
-        
+
         // dd($request->guru_nomerinduk);
         // dd($ambilnama->nama);
         //inser guru
-        if($request->tipepelajaran!='C2. Dasar Program Keahlian'){
+        if(($request->tipepelajaran!='C2. Dasar Program Keahlian')&&($request->tipepelajaran!='C3. Kompetensi Keahlian')){
             $jurusan='semua';
         }else{
             $jurusan=$request->jurusan;
@@ -68,7 +68,7 @@ class siakadadminpelajarancontroller extends Controller
         ));
 
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
-    
+
     }
 
     public function siakad_show(pelajaran $pelajaran)
@@ -116,7 +116,7 @@ class siakadadminpelajarancontroller extends Controller
 
 
          //aksi update
-        if($request->tipepelajaran!='C2. Dasar Program Keahlian'){
+        if(($request->tipepelajaran!='C2. Dasar Program Keahlian')&&($request->tipepelajaran!='C3. Kompetensi Keahlian')){
             $jurusan='semua';
         }else{
             $jurusan=$request->jurusan;
@@ -141,7 +141,7 @@ class siakadadminpelajarancontroller extends Controller
     {
         pelajaran::destroy($id);
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
-    
+
     }
 
 }

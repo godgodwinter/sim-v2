@@ -129,8 +129,12 @@ Route::get('admin/laporan/cetak', 'App\Http\Controllers\laporanController@cetak'
 // tagihan-Menu
 Route::get('admin/datatagihan/addall', 'App\Http\Controllers\tagihanaturController@addall')->name('admin.tagihan.addall');
 // Route::get('admin/datatagihan/addallbayar', 'App\Http\Controllers\tagihanaturController@addallbayar')->name('admin.tagihan.addallbayar');
+
+// sinkronisasidata
 Route::post('admin/tagihansiswa/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
 Route::get('admin/datatagihan/sync', 'App\Http\Controllers\tagihansiswaController@sync')->name('tagihansiswa.sync');
+Route::post('admin/sync/dataajar', 'App\Http\Controllers\synccontroller@dataajar')->name('sync.dataajar');
+Route::get('admin/sync/dataajar', 'App\Http\Controllers\synccontroller@dataajar')->name('sync.dataajar');
 
 
 // ExportdanImport
@@ -252,6 +256,8 @@ Route::delete('admin/siakadpelajaran/{pelajaran}', 'App\Http\Controllers\siakada
 
 // SIAKAD-MENU-SIAKADdataajar
 Route::get('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index')->name('siakaddataajar');
+Route::get('admin/siakaddataajar/cari', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index_cari')->name('dataajar.cari');
+Route::get('admin/siakaddataajar_old', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index_old')->name('siakaddataajar_old');
 Route::post('admin/siakaddataajarajax', 'App\Http\Controllers\siakadadmindataajarcontroller@store_ajax')->name('siakaddataajar.store.ajax');
 Route::post('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@store')->name('siakaddataajar.store');
 Route::get('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_show')->name('siakad.dataajar.edit');

@@ -17,6 +17,14 @@
   h2 {
       color: white;
   }
+  .form-control2 {
+    border: 0;
+}
+input[readonly]{
+  background-color:transparent;
+  border: 0;
+  font-size: 1em;
+}
 </style>
 @endsection
 
@@ -59,12 +67,14 @@
 {{-- DATATABLE --}}
 @section('headtable')
   <th width="5%" class="text-center">
-    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
-    <th>Mapel</th>
+   No</th>
+    <th  > Nama Mapel</th>
+    {{-- <th  > Kelas</th> --}}
+    {{-- <th  > Walikelas</th>
+    <th  > Detail</th> --}}
       @foreach ($datakelas as $dk)
-        <th class="text-center"> {{ $dk->nama }} </th>
+        <th   class="text-center"> {{ $dk->nama }} </th>
       @endforeach
-  <th width="200px" class="text-center">Aksi</th>
 @endsection
 
 @section('bodytable')
@@ -105,8 +115,8 @@
 </script>
 @foreach ($datapelajaran as $dp)
 <tr>
-  <td> </td>
-  <td> {{ $dp->nama }}
+  <td class="text-center"> {{(($loop->index)+1)}}</td>
+  <td > {{ $dp->nama }}
   @if($dp->jurusan!=='semua')
   - {{ $dp->jurusan }}
   @endif
@@ -115,13 +125,14 @@
   @php
     $nama=$dk->nama;
   @endphp
-    <td class="text-center">
+    <td class="text-center"  data-toggle="tooltip" data-placement="top" title="{{ $dp->nama }} - {{ $dk->nama }} " >
+
       @php
         $tombol='';
         $guru='Belum diisi';
-        $warna='warning';
+        $warna='danger';
       @endphp
-      @if($dp->tipepelajaran!='C2. Dasar Program Keahlian')
+      @if(($dp->tipepelajaran!='C2. Dasar Program Keahlian')&&($dp->tipepelajaran!='C3. Kompetensi Keahlian'))
           @php
             $tombol=$dp->tipepelajaran;
           @endphp
@@ -153,33 +164,59 @@
       @php
         $guru=$dataajar->guru_nama;
         // $guru=$dataajar->guru_nomerinduk." - ".$dataajar->guru_nama;
-        $warna='light';
+        $warna='primary';
       @endphp
             {{-- {{ $dataajar->guru_nomerinduk }} -
             {{ $dataajar->guru_nama }} --}}
         @else
-        -
-      @endif
-      <br>
-        <button class="btn btn-icon btn-{{ $warna }}" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}">{{ substr($guru, 0, 7) }}</button>
 
-        <br>
+      @endif
+        <input  class="form-control text-center text-{{ $warna }} mb-2" data-toggle="modal" data-target="#pilihguru{{ $dp->id }}_{{ $dk->id }}" id="btnpilihguru{{ $dp->id }}_{{ $dk->id }}" value="{{ substr($guru, 0, 7) }}" readonly> &nbsp;
+        @php
+          $href="";
+          $disabled="";
+        @endphp
         @if($cekdatagurupengampu>0)
-        <a href="{{ url('/admin/inputnilai/mapel') }}/{{ $dataajar->id }}" type="button" class="btn btn-outline-primary"  data-toggle="tooltip" data-placement="top" title="Input nilai Mapel" ><i class="fas fa-user-graduate"></i></a>
+        @php
+          $disabled="";
+        //   $link2=url('/admin/inputnilai/mapel/'.$dataajar->id);
+        $mapel_nama=base64_encode($dp->nama);
+        $kelas_nama=base64_encode($dk->nama);
+        $tapel_nama=base64_encode(Fungsi::tapelaktif());
+          $link2=url('/admin/kompetensidasar/'.$mapel_nama.'/'.$kelas_nama.'/'.$tapel_nama);
+          $href='href='.$link2;
+        @endphp
         {{-- <a href="{{ url('/admin/inputnilai/kepribadian') }}/{{ $dp->id }}/{{ $dk->id }}"  type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Kepribadian"><i class="fas fa-ribbon"></i></a>
         <a href="{{ url('/admin/inputnilai/ekstrakulikuler') }}/{{ $dp->id }}/{{ $dk->id }}" type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Input nilai Ekstrakulikuler"><i class="fas fa-dungeon"></i></a> --}}
+        @else
+        @php
+        //   $disabled="disabled";
+        //   $href='href=#';
+
+        $mapel_nama=base64_encode($dp->nama);
+        $kelas_nama=base64_encode($dk->nama);
+        $tapel_nama=base64_encode(Fungsi::tapelaktif());
+          $link2=url('/admin/kompetensidasar/'.$mapel_nama.'/'.$kelas_nama.'/'.$tapel_nama);
+          $href='href='.$link2;
+        @endphp
+
         @endif
+        <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" id="link{{ $dp->id }}_{{ $dk->id }}" >
+            <i class="fas fa-inbox"></i>
+            {{-- <i class="fas fa-user-graduate" {{ $disabled }}></i> --}}
+        </a>
+
       @endif
     </td>
   @endforeach
 </tr>
 @endforeach
 
-<tr>
+{{-- <tr>
   <td class="text-left" colspan="2">
     <a href="#" class="btn btn-sm  btn-danger" id="deleteAllSelectedRecord"
     onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"><i class="fas fa-trash"></i> Hapus Terpilih</a></td>
-</tr>
+</tr> --}}
 @endsection
 
 @section('foottable')
@@ -252,7 +289,7 @@
                   @if($tombol!=='')
                   <div class="modal fade" id="pilihguru{{ $dp->id }}_{{ $dk->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                      <form method="post" action="/admin/{{ $pages }}" enctype="multipart/form-data">
+                      {{-- <form method="post" action="/admin/{{ $pages }}" enctype="multipart/form-data"> --}}
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Pilih Guru Pengampu</h5>
@@ -261,8 +298,9 @@
 
                             {{ csrf_field() }}
                               <div class="form-group">
-                                <label>Pilih : <code>Hanya pilihan Terakhir akan disimpan!</code></label>
-                                <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible multiple="multiple"  name="guru_nomerinduk" required>
+                                <label>Pilih : </label>
+                                <select class="form-control form-control-md" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible   name="guru_nomerinduk{{ $dp->id }}_{{ $dk->id }}" required>
+                                {{-- <select class="form-control form-control-lg" id="tags{{ $dp->id }}_{{ $dk->id }}" select2 select2-hidden-accessible multiple="multiple"  name="guru_nomerinduk{{ $dp->id }}_{{ $dk->id }}" required> --}}
                                   @php
                                   $cekdatagurupengampu = DB::table('dataajar')
                                     ->where('kelas_nama', '=', $dk->nama)
@@ -294,7 +332,7 @@
                                               setTimeout(function (){
                                                 console.log(tags{{ $dp->id }}_{{ $dk->id }});
 
-                                                tags{{ $dp->id }}_{{ $dk->id }}.focus().select();
+                                                // tags{{ $dp->id }}_{{ $dk->id }}.focus().select();
 
                                               }, 100);
 
@@ -309,19 +347,34 @@
                                 </script>
 
                             <script type="text/javascript">
+                            // $('#tags{{ $dp->id }}_{{ $dk->id }}').on('change', function (e) {
+
+                            // $('#tags{{ $dp->id }}_{{ $dk->id }} option:cl').on('change', function (e) {
+                                // var optionSelected = $("option:selected", this);
+                                // var valueSelected = this.value;
+                                // console.log(valueSelected);
+                                // console.log('halo');
+
+                            // });
+
                             var values = $('#tags option[selected="true"]').map(function() { return $(this).val(); }).get();
 
                               // you have no need of .trigger("change") if you dont want to trigger an event
-                              $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({ placeholder: "Pilih Guru Pengampu" });
+                              $('#tags{{ $dp->id }}_{{ $dk->id }}').select2({
+                                    theme: "classic",
+                                placeholder: "Pilih Guru Pengampu",
+                                dropdownParent: $('#pilihguru{{ $dp->id }}_{{ $dk->id }}')
+                               });
+
                           </script>
 
                             {{-- <label>Pilih</label> --}}
                             {{-- <div class="form-group"> --}}
-                              <input type="hidden" name="pelajaran_nama" value="{{ $dp->nama }}">
-                              <input type="hidden" name="pelajaran_tipepelajaran" value="{{ $dp->tipepelajaran }}">
-                              <input type="hidden" name="pelajaran_jurusan" value="{{ $dp->jurusan }}">
+                              <input type="hidden" name="pelajaran_nama{{ $dp->id }}_{{ $dk->id }}" value="{{ $dp->nama }}">
+                              <input type="hidden" name="pelajaran_tipepelajaran{{ $dp->id }}_{{ $dk->id }}" value="{{ $dp->tipepelajaran }}">
+                              <input type="hidden" name="pelajaran_jurusan{{ $dp->id }}_{{ $dk->id }}" value="{{ $dp->jurusan }}">
                               {{-- <input type="hidden" name="pelajaran_kelas_nama" value="{{ $dp->kelas_nama }}"> --}}
-                              <input type="hidden" name="kelas_nama" value="{{ $dk->nama }}">
+                              <input type="hidden" name="kelas_nama{{ $dp->id }}_{{ $dk->id }}" value="{{ $dk->nama }}">
                               {{-- <select class="form-control form-control-lg" required name="guru_nomerinduk">
                                 @php
                                 $cekdatagurupengampu = DB::table('dataajar')
@@ -348,7 +401,10 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="#" class="btn btn-icon btn-primary btn-sm tombol-simpan{{ $dp->id }}_{{ $dk->id }}"
+                                data-toggle="tooltip" data-placement="top" title="Simpan Data!"><span
+                                    class="pcoded-micon" id="tombol-simpan{{ $dp->id }}_{{ $dk->id }}"> Simpan</span></a>
+                            {{-- <button type="submit" class="btn btn-primary">Simpan</button> --}}
                           </div>
                         </div>
                       </form>
@@ -357,6 +413,86 @@
 
                   @endif
 
+
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+
+                    $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                    });
+
+
+                    var btnpilihguru{{ $dp->id }}_{{ $dk->id }} = document.getElementById('btnpilihguru{{ $dp->id }}_{{ $dk->id }}');
+                    var link{{ $dp->id }}_{{ $dk->id }} = document.getElementById('link{{ $dp->id }}_{{ $dk->id }}');
+                    var tags{{ $dp->id }}_{{ $dk->id }} = document.getElementById('tags{{ $dp->id }}_{{ $dk->id }}');
+
+
+                    $(".tombol-simpan{{ $dp->id }}_{{ $dk->id }}").click(function(e){
+                      e.preventDefault();
+
+                  var pelajaran_nama = $("input[name=pelajaran_nama{{ $dp->id }}_{{ $dk->id }}]").val();
+                  var pelajaran_tipepelajaran = $("input[name=pelajaran_tipepelajaran{{ $dp->id }}_{{ $dk->id }}]").val();
+                  var pelajaran_jurusan = $("input[name=pelajaran_jurusan{{ $dp->id }}_{{ $dk->id }}]").val();
+                  var kelas_nama = $("input[name=kelas_nama{{ $dp->id }}_{{ $dk->id }}]").val();
+                  var guru_nama = $( "#tags{{ $dp->id }}_{{ $dk->id }} option:selected" ).text();
+                  var guru_nomerinduk = $( "#tags{{ $dp->id }}_{{ $dk->id }} option:selected" ).val();
+
+
+                            $.ajax({
+                            url: "/admin/siakaddataajarajax",
+                            method:'POST',
+                            data:{
+                             "_token": "{{ csrf_token() }}",
+                             pelajaran_nama:pelajaran_nama,
+                              pelajaran_tipepelajaran:pelajaran_tipepelajaran,
+                              pelajaran_jurusan:pelajaran_jurusan,
+                              guru_nomerinduk:guru_nomerinduk,
+                              kelas_nama:kelas_nama
+                            },
+                            success:function(response){
+                            if(response.success){
+                              // $("a#changeme").attr('href',
+                              // 'http://maps.google.com/');
+
+
+
+                              console.log(response.message);
+                              if(response.message>0){
+
+                                // $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('href',
+                                // '{{ url('/admin/inputnilai/mapel/') }}/'+response.message);
+
+                                $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('class',
+                                'btn btn-outline-primary');
+                              }
+
+                              // $("a#link{{ $dp->id }}_{{ $dk->id }}").attr('href',
+                              // 'http://maps.google.com/');
+
+
+
+                              btnpilihguru{{ $dp->id }}_{{ $dk->id }}.value = guru_nama;
+                            $('#pilihguru{{ $dp->id }}_{{ $dk->id }}').modal('hide');
+                            console.log(link{{ $dp->id }}_{{ $dk->id }});
+                            // console.log(guru_nomerinduk);
+                            }else{
+                            alert("Error")
+                            }
+                            },
+                            error:function(error){
+
+                            alert('Gagal!') //Message come from controller
+                            // console.log(guru_nomerinduk)
+                            }
+                            });
+
+
+                          });
+
+                    });
+                    </script>
                 @endforeach
 
               @endforeach
