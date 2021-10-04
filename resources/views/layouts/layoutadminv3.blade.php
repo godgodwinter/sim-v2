@@ -43,6 +43,7 @@ crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset("assets/") }}/css/babeng.css">
 
+<script src="{{ asset("assets/") }}/stisla/chart.min.js"></script>
   @yield('csshere')
 </head>
 
@@ -194,10 +195,10 @@ crossorigin="anonymous"></script>
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
 
-                        <li @if ($pages==='siakadjenisnilai')
+                        {{-- <li @if ($pages==='siakadjenisnilai')
                         class="active"
                         @endif >
-                        <a href="{{ route('siakadjenisnilai') }}" class="nav-link"><i class="fas fa-receipt"></i><span>Jenis Nilai</span></a>
+                        <a href="{{ route('siakadjenisnilai') }}" class="nav-link"><i class="fas fa-receipt"></i><span>Jenis Nilai</span></a> --}}
                         </li>
 
                         <li @if ($pages==='siakadpelajaran')

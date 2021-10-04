@@ -488,10 +488,22 @@ $ambilkepsek = DB::table('users')
 
 
            <div class="card-body ml-3">
-            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <div class="btn-group btn-group-md" role="group" aria-label="Basic example">
                 <a  href="{{ route('kko') }}" type="button" class="btn btn-success"><i class="fas fa-graduation-cap"></i> Fungsi KKO </a>
             </div></div>
 
+
+            <div class="card-body ml-3">
+
+
+            <button type="button" class="btn btn-icon btn-info btn-md" data-toggle="modal"  data-placement="top" title="File sampah sisa export dan import! Agar tidak membebani server."  data-target="#cleartemp"><i class="fas fa-trash"></i>
+              Hapus File Sampah
+            </button>
+
+          <a href="/admin/datatagihan/addall"  class="btn btn-icon btn-warning btn-md" data-toggle="tooltip" data-placement="top" title="Tambah semua kelas yang belum di setting. Kemudian Syncron ke menu tagihan siswa!"><span
+            class="pcoded-micon"> <i class="far fa-plus-square"></i> Fungsi Tambah Semua </span></a >
+
+              </div>
 
           </div></div>
 

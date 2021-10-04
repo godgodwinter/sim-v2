@@ -133,8 +133,6 @@ $ambilkepsek = DB::table('users')
      Berikut beberapa Informasi tetang data dan menu di Sistem Ini.
     </p>
 
-
-
     <div class="row mt-sm-4">
       <div class="col-12 col-md-12 col-lg-6">
         <div class="card profile-widget">
@@ -172,12 +170,81 @@ $ambilkepsek = DB::table('users')
         </div>
 
 
+        <div class="card profile-widget mt-5">
+            <div class="profile-widget-header">
+              <img alt="image" src="../assets/img/products/product-4-50.png" class="rounded-circle profile-widget-picture">
+              <div class="profile-widget-items">
 
+                {{-- <div class="profile-widget-item">
+                  <div class="profile-widget-item-label">Dana BOS</div>
+                  <div class="profile-widget-item-value">@currency($sumpemasukanbos)</div>
+                </div> --}}
+                <div class="profile-widget-item">
+                  <div class="profile-widget-item-label">Pemasukan</div>
+                  <div class="profile-widget-item-value">@currency($sumpemasukan)</div>
+                </div>
+                <div class="profile-widget-item">
+                  <div class="profile-widget-item-label">Pembayaran Siswa</div>
+                  <div class="profile-widget-item-value">@currency($sumtagihansiswa)</div>
+                </div>
+              </div>
+
+              <div class="profile-widget-items mt-4">
+
+                <div class="profile-widget-item">
+                  <div class="profile-widget-item-label">Pengeluaran</div>
+                  <div class="profile-widget-item-value">@currency($sumpengeluaran)</div>
+                </div>
+                <div class="profile-widget-item">
+                  <div class="profile-widget-item-label">Saldo</div>
+                  <div class="profile-widget-item-value">@currency($sisasaldo)</div>
+                </div>
+              </div>
+            </div>
+            {{-- <div class="card-footer text-center">
+                <div class="font-weight-bold mb-2">Lihat Selengkapnya</div>
+                <a href="#" class="btn btn-info mr-1">
+                  <i class="fas fa-angle-double-right"></i>
+                </a>
+
+              </div> --}}
+
+          </div>
 
 
 
 
           @if($tipeuser==='admin')
+          <div class="card profile-widget mt-5">
+            <div class="profile-widget-header">
+              <img alt="image" src="https://ui-avatars.com/api/?name=Menu Mastering&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
+              <div class="profile-widget-items">
+                <h3 class="ml-5 mt-4">Menu Mastering</h3>
+              </div>
+
+
+                <div class="card-body">
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a  href="{{ route('kategori') }}" type="button" class="btn btn-warning"><i class="fab fa-korvue"></i> Kategori</a>
+                  </div>
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a  href="{{ route('tapel') }}" type="button" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</a>
+                    <a  href="{{ route('kelas') }}" type="button" class="btn btn-primary"><i class="fas fa-school"></i> Kelas</a>
+                  </div>
+                    <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a  href="{{ route('siswa') }}" type="button" class="btn btn-info"><i class="fas fa-user-graduate"></i> Siswa</a>
+                    <a  href="{{ route('pegawai') }}" type="button" class="btn btn-info"><i class="fas fa-building"></i> Pegawai</a>
+                  </div>
+
+
+                  </div>
+
+            </div>
+
+
+
+          </div>
+
 
 
           <div class="card profile-widget mt-5">
@@ -205,7 +272,26 @@ $ambilkepsek = DB::table('users')
 
           </div>
 
+          {{-- <div class="card profile-widget mt-5">
+            <div class="profile-widget-header">
+              <img alt="image" src="https://ui-avatars.com/api/?name=Download dan Guide&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
+              <div class="profile-widget-items">
+                <h3 class="ml-5 mt-4">Sistem Lain</h3>
+              </div>
 
+
+                <div class="card-body">
+                  <div class="btn-group mb-3 btn-group-lg" role="group" aria-label="Basic example">
+                    <a  href="{{ route('siakad.admin.beranda') }}" type="button" class="btn btn-light"><i class="fab fa-korvue"></i> Sistem Akademik</a>  <code class="ml-3 mt-3"> *)Proses Pengembangan</code>
+                  </div>
+
+                  </div>
+
+            </div>
+
+
+
+          </div> --}}
 
 
           @endif
@@ -227,6 +313,9 @@ $ambilkepsek = DB::table('users')
           <div class="card-body">
           <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
 
+          <a href="{{ route('settings') }}"  class="btn btn-icon btn-light btn-md" data-toggle="tooltip" data-placement="top" title="Untuk mengatur data default, data sekolah dan data lainya!"><span
+            class="pcoded-micon"> <i class="fas fa-cog"></i> Pengaturan </span></a href="$add">
+
             <button type="button" class="btn btn-icon btn-info btn-md" data-toggle="modal"  data-placement="top" title="File sampah sisa export dan import! Agar tidak membebani server."  data-target="#cleartemp"><i class="fas fa-trash"></i>
               Hapus File Sampah
             </button>
@@ -240,7 +329,59 @@ $ambilkepsek = DB::table('users')
       </div>
 
 
+    <div class="card profile-widget mt-5">
+      <div class="profile-widget-header">
+        <img alt="image" src="https://ui-avatars.com/api/?name=Menu Transaksi&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
+        <div class="profile-widget-items">
+          <h3 class="ml-5 mt-4">Menu Transaksi</h3>
+        </div>
 
+
+          <div class="card-body">
+
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+              <a  href="{{ route('pemasukan') }}" type="button" class="btn btn-light"><i class="fas fa-hand-holding-usd"></i> Pemasukan</a>
+              <a  href="{{ route('pengeluaran') }}" type="button" class="btn btn-light"><i class="fas fa-file-invoice-dollar"></i> Pengeluaran</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
+
+              <a  href="{{ route('tagihanatur') }}" type="button" class="btn btn-danger"><i class="fas fa-fire"></i> Tagihan Atur </a>
+              <a  href="{{ route('tagihansiswa') }}" type="button" class="btn btn-danger"><i class="fas fa-graduation-cap"></i> Tagihan Siswa </a>
+            </div>
+
+
+
+            </div>
+
+      </div>
+
+
+
+    </div>
+
+
+  <div class="card profile-widget mt-5">
+    <div class="profile-widget-header">
+      <img alt="image" src="https://ui-avatars.com/api/?name=Menu Reporting&color=FFEDDA&background=3DB2FF" class="rounded-circle profile-widget-picture">
+      <div class="profile-widget-items">
+        <h3 class="ml-5 mt-4">Menu Reporting</h3>
+      </div>
+
+
+        <div class="card-body">
+
+            <div class="btn-group btn-group-lg mt-3" role="group" aria-label="Basic example">
+              <a  href="{{ route('laporan') }}" type="button" class="btn btn-success"> <i class="fab fa-resolving"></i> Laporan </a>
+            </div>
+
+          </div>
+
+    </div>
+
+
+
+  </div>
 
 
 
@@ -261,151 +402,6 @@ $ambilkepsek = DB::table('users')
 
 
   </div>
-
-
-  <div class="row">
-    <div class="col-lg-8 col-md-12 col-12 col-sm-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Statistik Pembayaran terakhir</h4>
-          <div class="card-header-action">
-            <div class="btn-group">
-              <a href="#" class="btn btn-primary">Week</a>
-              <a href="#" class="btn">Month</a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <canvas id="myChart" height="182"></canvas>
-          <div class="statistic-details mt-sm-4">
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 7%</span>
-              <div class="detail-value">$243</div>
-              <div class="detail-name">Today's Sales</div>
-            </div>
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-danger"><i class="fas fa-caret-down"></i></span> 23%</span>
-              <div class="detail-value">$2,902</div>
-              <div class="detail-name">This Week's Sales</div>
-            </div>
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>9%</span>
-              <div class="detail-value">$12,821</div>
-              <div class="detail-name">This Month's Sales</div>
-            </div>
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 19%</span>
-              <div class="detail-value">$92,142</div>
-              <div class="detail-name">This Year's Sales</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-<script>
-"use strict";
-
-var statistics_chart = document.getElementById("myChart").getContext('2d');
-
-var myChart = new Chart(statistics_chart, {
-type: 'line',
-data: {
-labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-datasets: [{
-  label: 'Statistics',
-  data: [640, 387, 530, 302, 430, 270, 488],
-  borderWidth: 5,
-  borderColor: '#6777ef',
-  backgroundColor: 'transparent',
-  pointBackgroundColor: '#fff',
-  pointBorderColor: '#6777ef',
-  pointRadius: 4
-}]
-},
-options: {
-legend: {
-  display: false
-},
-scales: {
-  yAxes: [{
-    gridLines: {
-      display: false,
-      drawBorder: false,
-    },
-    ticks: {
-      stepSize: 150
-    }
-  }],
-  xAxes: [{
-    gridLines: {
-      color: '#fbfbfb',
-      lineWidth: 2
-    }
-  }]
-},
-}
-});
-
-$('#visitorMap').vectorMap(
-{
-map: 'world_en',
-backgroundColor: '#ffffff',
-borderColor: '#f2f2f2',
-borderOpacity: .8,
-borderWidth: 1,
-hoverColor: '#000',
-hoverOpacity: .8,
-color: '#ddd',
-normalizeFunction: 'linear',
-selectedRegions: false,
-showTooltip: true,
-pins: {
-id: '<div class="jqvmap-circle"></div>',
-my: '<div class="jqvmap-circle"></div>',
-th: '<div class="jqvmap-circle"></div>',
-sy: '<div class="jqvmap-circle"></div>',
-eg: '<div class="jqvmap-circle"></div>',
-ae: '<div class="jqvmap-circle"></div>',
-nz: '<div class="jqvmap-circle"></div>',
-tl: '<div class="jqvmap-circle"></div>',
-ng: '<div class="jqvmap-circle"></div>',
-si: '<div class="jqvmap-circle"></div>',
-pa: '<div class="jqvmap-circle"></div>',
-au: '<div class="jqvmap-circle"></div>',
-ca: '<div class="jqvmap-circle"></div>',
-tr: '<div class="jqvmap-circle"></div>',
-},
-});
-
-// weather
-getWeather();
-setInterval(getWeather, 600000);
-
-function getWeather() {
-$.simpleWeather({
-location: 'Bogor, Indonesia',
-unit: 'c',
-success: function(weather) {
-var html = '';
-html += '<div class="weather">';
-html += '<div class="weather-icon text-primary"><span class="wi wi-yahoo-' + weather.code + '"></span></div>';
-html += '<div class="weather-desc">';
-html += '<h4>' + weather.temp + '&deg;' + weather.units.temp + '</h4>';
-html += '<div class="weather-text">' + weather.currently + '</div>';
-html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
-html += '<li> <i class="wi wi-strong-wind"></i> ' + weather.wind.speed+' '+weather.units.speed + '</li></ul>';
-html += '</div>';
-html += '</div>';
-
-$("#myWeather").html(html);
-},
-error: function(error) {
-$("#myWeather").html('<div class="alert alert-danger">'+error+'</div>');
-}
-});
-}
-</script>
 
 @endsection
 
