@@ -67,7 +67,8 @@ class siakadadminpelajarancontroller extends Controller
                'updated_at'=>date("Y-m-d H:i:s")
         ));
 
-        return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 
@@ -134,13 +135,16 @@ class siakadadminpelajarancontroller extends Controller
     public function siakad_update(Request $request, pelajaran $pelajaran)
     {
         $this->proses_update($request,$pelajaran);
-            return redirect(URL::to('/').'/admin/siakadpelajaran')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+        return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+            // return redirect(URL::to('/').'/admin/siakadpelajaran')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     public function destroy($id)
     {
         pelajaran::destroy($id);
-        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
+        return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+
+        // return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
 
     }
 

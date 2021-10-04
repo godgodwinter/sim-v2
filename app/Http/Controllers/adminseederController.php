@@ -24,7 +24,7 @@ class adminseederController extends Controller
         if($ambiljmlsiswa>$limitdata){
             return redirect()->back()->with('status','Gagal! Data siswa lebih dari '.$limitdata)->with('tipe','danger')->with('icon','fas fa-trash');
         }
-        // 2. looping 10(default) 
+        // 2. looping 10(default)
         for($i=0;$i<$jmldata;$i++){
         // 3. insert data siswa
             $faker = Faker::create('id_ID');
@@ -80,7 +80,7 @@ class adminseederController extends Controller
         if($ambiljmldata>$limitdata){
             return redirect()->back()->with('status','Gagal! Data  lebih dari '.$limitdata)->with('tipe','danger')->with('icon','fas fa-trash');
         }
-        // 2. looping 10(default) 
+        // 2. looping 10(default)
         for($i=0;$i<$jmldata;$i++){
         // 3. insert data siswa
             $faker = Faker::create('id_ID');
@@ -222,7 +222,7 @@ class adminseederController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-            
+
             DB::table('pelajaran')->insert([
                 'nama' => 'Kimia',
                 'tipepelajaran' => 'C1. Dasar Bidang Keahlian',
@@ -240,7 +240,7 @@ class adminseederController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-            
+
             DB::table('pelajaran')->insert([
                 'nama' => 'Teknologi Dasar Otomotif',
                 'tipepelajaran' => 'C2. Dasar Program Keahlian',
@@ -249,7 +249,7 @@ class adminseederController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-            
+
             DB::table('pelajaran')->insert([
                 'nama' => 'Pekerjaan Dasar Teknik Otomotif',
                 'tipepelajaran' => 'C2. Dasar Program Keahlian',
@@ -258,7 +258,7 @@ class adminseederController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-            
+
             DB::table('pelajaran')->insert([
                 'nama' => 'Pemrograman 1',
                 'tipepelajaran' => 'C2. Dasar Program Keahlian',
@@ -277,7 +277,8 @@ class adminseederController extends Controller
                 'updated_at' => Carbon::now()
             ]);
 
-        return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
+            return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
 
 
     }
@@ -368,7 +369,7 @@ class adminseederController extends Controller
 
 
             return redirect()->back()->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
-    
+
         }
 
     public function kelas(){
@@ -446,7 +447,8 @@ class adminseederController extends Controller
 
         }
 
-        return redirect(URL::to('/').'/admin/datatagihan/addall')->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // return redirect(URL::to('/').'/admin/datatagihan/addall')->with('status','Seeder berhasil di lakukan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 }

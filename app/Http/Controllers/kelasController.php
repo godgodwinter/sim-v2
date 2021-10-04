@@ -100,7 +100,7 @@ class kelasController extends Controller
                 $guru_nama=$ambilnama->nama;
             }
         }
-        
+
         // dd($request->guru_nomerinduk);
         // dd($ambilnama->nama);
         //inser guru
@@ -113,8 +113,9 @@ class kelasController extends Controller
                'updated_at'=>date("Y-m-d H:i:s")
         ));
 
-        return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
-    
+        return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+
     }
 
     /**
@@ -229,7 +230,8 @@ class kelasController extends Controller
         // dd($kelas->id);
         $this->proses_kelas($request,$kelas);
 
-            return redirect(URL::to('/').'/admin/kelas')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
+        return redirect(URL::to('/').'/admin/sync/dataajar')->with('status','Sinkronisasi Data ajar!')->with('tipe','danger')->with('icon','fas fa-trash');
+            // return redirect(URL::to('/').'/admin/kelas')->with('status','Data berhasil diupdate!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 
     public function siakad_update(Request $request, kelas $kelas)
@@ -246,14 +248,17 @@ class kelasController extends Controller
      */
     public function destroy($id)
     {
+        $kelas=DB::table('kelas')->where('id',$id)->first();
+        $kelas_nama=$kelas->nama;
+        DB::table('dataajar')->where('kelas_nama', $kelas_nama)->delete();
         kelas::destroy($id);
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
-    
+
     }
 
     public function deletechecked(Request $request)
     {
-        
+
         $ids=$request->ids;
 
         // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
@@ -266,9 +271,9 @@ class kelasController extends Controller
         // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
         kelas::whereIn('id',$ids)->delete();
 
-        
+
         // load ulang
-     
+
         #WAJIB
         $pages='kelas';
         $jmldata='0';

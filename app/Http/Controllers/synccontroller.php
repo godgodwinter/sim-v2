@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\dataajar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -66,7 +67,42 @@ class synccontroller extends Controller
             }
 
         }
-        dd($jurusan,$ambildataajar,$k->nama);
+
+        // 1 periksa jika tidak ada di pelajaran dan nama maka hapus
+
+        $dataajar=DB::table('dataajar')
+                    ->get();
+        $pelajaran=DB::table('pelajaran')
+                    ->get();
+        $kelas=DB::table('kelas')
+                    ->get();
+        foreach($dataajar as $da){
+            $cek=0;
+            foreach($pelajaran as $p){
+                    if($da->pelajaran_nama==$p->nama){
+                        $cek++;
+                    }
+            }
+            if($cek==0){
+                // hapus
+                dataajar::destroy($da->id);
+
+            }
+
+            $cek=0;
+            foreach($kelas as $k){
+                    if($da->kelas_nama==$k->nama){
+                        $cek++;
+                    }
+            }
+            if($cek==0){
+                // hapus
+                dataajar::destroy($da->id);
+
+            }
+        }
+        return redirect()->back()->with('status','Data berhasil di sinkronisasi!')->with('tipe','success')->with('icon','fas fa-feather');
+        // dd($jurusan,$ambildataajar,$k->nama);
 
         // 4. jika ada skip
     }
