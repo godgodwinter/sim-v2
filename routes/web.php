@@ -281,9 +281,10 @@ Route::post('admin/materipokok/edit/{id}', 'App\Http\Controllers\kompetensidasar
 // admin-MENU-banksoal
 Route::get('admin/databanksoal/{id}', 'App\Http\Controllers\banksoalcontroller@index')->name('pelajaran.banksoal.index');
 Route::post('admin/databanksoal/{id}', 'App\Http\Controllers\banksoalcontroller@store')->name('pelajaran.banksoal.store');
+Route::get('admin/databanksoal/{dataajarid}/show/{id}', 'App\Http\Controllers\banksoalcontroller@show')->name('banksoal.edit');
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/banksoal/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}/detail', 'App\Http\Controllers\banksoalcontroller@detail')->name('banksoal.detail');
 
-Route::get('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@show')->name('banksoal.edit');
+// Route::get('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@show')->name('banksoal.edit');
 Route::put('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@update')->name('banksoal.update');
 Route::delete('admin/banksoal/{id}', 'App\Http\Controllers\banksoalcontroller@destroy')->name('banksoal.delete');
 Route::get('admin/banksoal/{id}/detail', 'App\Http\Controllers\banksoalcontroller@detail')->name('banksoal.detail');

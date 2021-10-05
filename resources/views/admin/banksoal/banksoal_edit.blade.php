@@ -192,7 +192,7 @@ $message=session('status');
 
                         <div class="card-footer text-right">
                             <a href="#" class="btn btn-icon btn-danger ml-3"> <i class="fas fa-backward"></i> Hapus Gambar</a>
-                            <a href="/admin/kompetensidasar/{{base64_encode($datas->pelajaran_nama)}}/{{base64_encode($datas->kelas_nama)}}/{{base64_encode($datas->tapel_nama)}}/materipokok/banksoal/{{base64_encode($datas->materipokok_nama)}}/{{base64_encode($datas->kompetensidasar_kode)}}/{{base64_encode($datas->kompetensidasar_tipe)}}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
+                            <a href="/admin/databanksoal/{{$dataajar->id}}" class="btn btn-icon btn-dark ml-3"> <i class="fas fa-backward"></i> Batal</a>
                             <button class="btn btn-primary">Simpan</button>
                         </div>
                 </form>

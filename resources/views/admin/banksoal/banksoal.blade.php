@@ -109,7 +109,7 @@ $message=session('status');
                                 <td class="text-center">
 
                                     <a href="/admin/banksoal/{{$data->id}}/detail"  class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="top"    title="Detail Bank Soal!"> <i class="fas fa-angle-double-right"></i> </a>
-                                    <x-button-edit link="/admin/banksoal/{{$data->id}}" />
+                                    <x-button-edit link="/admin/databanksoal/{{$dataajar->id}}/show/{{$data->id}}" />
                                     <x-button-delete link="/admin/banksoal/{{$data->id}}" />
 
                                 </td>

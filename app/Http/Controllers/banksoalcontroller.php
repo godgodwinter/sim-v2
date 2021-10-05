@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Fungsi;
 use App\Models\banksoal;
 use App\Models\banksoal_jawaban;
+use App\Models\dataajar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -234,13 +235,14 @@ class banksoalcontroller extends Controller
     {
 
     }
-    public function show(banksoal $id)
+    public function show(dataajar $dataajarid, banksoal $id)
     {
         // dd($id);
         #WAJIB
         $pages='banksoal';
         $jmldata='0';
         $datas=$id;
+        $dataajar=$dataajarid;
 
 
         // $datas=DB::table('kategori')->orderBy('prefix','asc')->get();
@@ -248,7 +250,7 @@ class banksoalcontroller extends Controller
         // $kategori = DB::table('kategori')->where('prefix','kategori')->get();
         // $jmldata = DB::table('kategori')->count();
 
-        return view('admin.banksoal.edit',compact('pages','datas'));
+        return view('admin.banksoal.edit',compact('pages','datas','dataajar'));
     }
 
 
