@@ -533,6 +533,54 @@ class banksoalcontroller extends Controller
     }
 
 
+    public function generatexml_new(Request $request){
+        // dd($request);
+            $p_nama=$request->pelajaran_nama;
+            $k_nama=$request->kelas_nama;
+            $t_nama=$request->tapel_nama;
+
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        // dd($request);
+        #WAJIB
+        $pages='banksoal';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('banksoal')
+                ->where('pelajaran_nama',$p_nama)
+                ->where('kelas_nama',$k_nama)
+                ->where('tapel_nama',$t_nama)
+                ->skip(0)->take($request->jumlahsoal)
+                // ->inRandomOrder()
+                // ->where('kode',1)
+                // ->orWhere('pelajaran_nama',$p_nama)
+                // ->where('kelas_nama',$k_nama)
+                // ->where('tapel_nama',$t_nama)
+                // ->where('kode',2)
+                // ->orderBy('created_at','desc')
+        ->get();
+
+        $kodegenerate=Uuid::uuid4()->getHex();
+
+//     return response()->view('admin.banksoal.xml',compact(
+//     'datas'
+// ))->header('Content-Type', 'text/xml');
+    return response()->view('admin.banksoal.xml',compact(
+    'datas'
+))->header('Content-Type', 'application/xml; charset=utf-8')
+->header('Content-Type', 'application/force-download')
+->header('Content-Type', 'application/download')
+->header('Content-Description', 'File Transfer')
+->header('Content-Disposition', 'attachment; filename="banksoal-'.$kodegenerate.'.xml"')
+->header('Expires', '0')
+->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+->header('Pragma', 'public');
+    }
+
 
     public function generateworldsoal(Request $request){
     // dd($request);

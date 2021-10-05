@@ -307,7 +307,8 @@ Route::post('admin/moodle/generate/soal', 'App\Http\Controllers\banksoalcontroll
 Route::post('admin/moodle/generate/txt', 'App\Http\Controllers\banksoalcontroller@generatetxt')->name('moodle.generate.txt'); //txt
 Route::post('generatesoalxml', 'App\Http\Controllers\banksoalcontroller@generatexml')->name('moodle.generate.xml'); //txt
 Route::get('soal/xml', 'App\Http\Controllers\banksoalcontroller@generatexml2')->name('moodle.generate.xmlget'); //txt
-Route::post('soal/xml/generate', 'App\Http\Controllers\banksoalcontroller@generatexml_do')->name('moodle.generate.xmlget_do'); //txt
+Route::post('soal/xml/generate', 'App\Http\Controllers\banksoalcontroller@generatexml_new')->name('moodle.generate.xmlget_do'); //txt
+// Route::post('soal/xml/generate', 'App\Http\Controllers\banksoalcontroller@generatexml_do')->name('moodle.generate.xmlget_do'); //txt
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 
 //API

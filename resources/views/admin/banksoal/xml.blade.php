@@ -167,7 +167,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
                             }
 
                         xmlwriter_start_element($xw, 'shuffleanswers');
-                                xmlwriter_text($xw, 'true');
+                                xmlwriter_text($xw, 'false');
                         xmlwriter_end_element($xw); // shuffleanswers
 
                         xmlwriter_start_element($xw, 'answernumbering');
