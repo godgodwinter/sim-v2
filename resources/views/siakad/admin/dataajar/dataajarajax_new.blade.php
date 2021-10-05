@@ -114,7 +114,7 @@ display: inline;
     <th   width="25%"> Nama Mapel</th>
     <th   width="5%"> Kelas</th>
     <th   width="25%" class="text-center"> Guru Pengajar</th>
-    <th  class="text-center" width="5%"> Detail</th>
+    <th  class="text-center" width="15%"> Detail</th>
 
 @endsection
 
@@ -177,10 +177,18 @@ display: inline;
       $href='href='.$link2;
       $warna='info';
     @endphp
-    <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }}" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
+    <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }} btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
         <i class="fas fa-inbox"></i>
         {{-- <i class="fas fa-user-graduate" {{ $disabled }}></i> --}}
     </a>
+
+    <a href="/admin/databanksoal/{{$data->id}}"
+    class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
+        class="far fa-file-archive"></i> </a>
+
+    <a href="/admin/inputnilai/{{$data->id}}"
+    class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
+        class="fas fa-user-graduate"></i> </a>
 
   </td>
 @endforeach

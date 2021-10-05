@@ -175,13 +175,13 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
                 data-placement="top" title="Materi untuk Siswa!"> Link Materi
                 {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
 
-                <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/inputnilai/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
+                {{-- <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/inputnilai/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
                 class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
-                    class="fas fa-user-graduate"></i> </a>
+                    class="fas fa-user-graduate"></i> </a> --}}
 
-            <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
+            {{-- <a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
                 class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-                    class="far fa-file-archive"></i> </a>
+                    class="far fa-file-archive"></i> </a> --}}
 
             <x-button-edit link="/admin/materipokok/edit/{{$materi->id}}" />
             <x-button-delete link="/admin/kompetensidasar/materipokok/hapus/{{$materi->id}}" />

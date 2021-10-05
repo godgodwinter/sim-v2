@@ -1,8 +1,8 @@
-@section('title')
-Bank Soal {{$dataajar->pelajaran_nama}}
-@endsection
+@section('title','Bank Soal')
 @section('halaman')
-<div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}">Silabus</a></div>
+<div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"> Data ajar</a></div>
+<div class="breadcrumb-item"><a href="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}">
+        Kompetensi dasar</a></div>
 <div class="breadcrumb-item">Bank soal</div>
 @endsection
 @section('csshere')
@@ -131,7 +131,7 @@ $message=session('status');
 
             <div class="card">
                 <form
-                    action="{{url('/admin/')}}/databanksoal/{{$dataajar->id}}"
+                    action="{{url('/admin/')}}/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materipokok/banksoal/{{$materipokok_nama}}/{{$kompetensidasar_kode}}/{{$kompetensidasar_tipe}}"
                     method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
@@ -222,9 +222,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil1">Hasil Jawaban 1</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil1" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-success" name="jawaban_hasil1" >
                                   <option class="text-capitalize">benar</option>
-                                  <option class="text-capitalize">salah</option>
 
 
                             </select>
@@ -241,9 +240,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil2">Hasil Jawaban 2</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil2" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-danger" name="jawaban_hasil2" >
                                   <option class="text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
@@ -261,9 +259,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil3">Hasil Jawaban 3</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil3" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-danger" name="jawaban_hasil3" >
                                   <option class="text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
@@ -280,9 +277,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil4">Hasil Jawaban4</label>
-                            <select class="form-control form-control-sm   text-capitalize" name="jawaban_hasil4" >
-                                  <option class="text-capitalize text-capitalize  ">salah</option>
-                                  <option class="text-capitalize">benar</option>
+                            <select class="form-control form-control-sm  text-light btn-danger text-capitalize" name="jawaban_hasil4" >
+                                  <option class="text-capitalize text-capitalize  text-light btn-danger">salah</option>
 
 
                             </select>
@@ -299,9 +295,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil5">Hasil Jawaban 5</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil5" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-danger" name="jawaban_hasil5" >
                                   <option class="text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
@@ -319,9 +314,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil1">Hasil Jawaban 1</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil1" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-success" name="jawaban_hasil1" >
                                   <option class="text-capitalize">benar</option>
-                                  <option class="text-capitalize">salah</option>
 
 
                             </select>
@@ -338,9 +332,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil2">Hasil Jawaban 2</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil2" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-success" name="jawaban_hasil2" >
                                   <option class="text-capitalize">benar</option>
-                                  <option class="text-capitalize">salah</option>
 
 
                             </select>
@@ -358,9 +351,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil3">Hasil Jawaban 3</label>
-                            <select class="form-control form-control-sm   text-capitalize" name="jawaban_hasil3" >
+                            <select class="form-control form-control-sm  text-light btn-danger text-capitalize" name="jawaban_hasil3" >
                                   <option class="text-capitalize text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
@@ -377,9 +369,8 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil4">Hasil Jawaban4</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil4" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-danger" name="jawaban_hasil4" >
                                   <option class="text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
@@ -396,35 +387,45 @@ $message=session('status');
 
                             <div class="form-group col-md-6 col-12">
                                 <label for="jawaban_hasil5">Hasil Jawaban 5</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil5" >
+                            <select class="form-control form-control-sm text-capitalize text-light btn-danger" name="jawaban_hasil5" >
                                   <option class="text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
                             </div>`;
 
 
-        var formtipe3=`
+        var formtipe3=`<div class="form-group col-md-6 col-12">
+                                <label for="jawaban1">Jawaban 1</label> :
+                                <input type="text" name="jawaban1" id="jawaban1"
+                                    class="form-control @error('jawaban1') is-invalid @enderror"
+                                    value="{{old('jawaban1')}}"  >
+                                @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
 
                             <div class="form-group col-md-6 col-12">
-                                <label for="jawaban_hasil1"> Jawaban 1</label>
-                            <select class="form-control form-control-sm text-capitalize " name="jawaban_hasil1" >
+                                <label for="jawaban_hasil1">Hasil Jawaban 1</label>
+                            <select class="form-control form-control-sm text-capitalize text-light btn-success" name="jawaban_hasil1" >
                                   <option class="text-capitalize">benar</option>
-                                  <option class="text-capitalize">salah</option>
 
 
                             </select>
                             </div>
 
-
-
+                            <div class="form-group col-md-6 col-12">
+                                <label for="jawaban2">Jawaban 2</label> :
+                                <input type="text" name="jawaban2" id="jawaban2"
+                                    class="form-control @error('jawaban2') is-invalid @enderror"
+                                    value="{{old('jawaban2')}}"  >
+                                @error('jawaban2')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
 
                             <div class="form-group col-md-6 col-12">
-                                <label for="jawaban_hasil2"> Jawaban 2</label>
-                            <select class="form-control form-control-sm text-capitalize" name="jawaban_hasil2" >
+                                <label for="jawaban_hasil2">Hasil Jawaban 2</label>
+                            <select class="form-control form-control-sm text-capitalize text-light btn-danger" name="jawaban_hasil2" >
                                   <option class="text-capitalize">salah</option>
-                                  <option class="text-capitalize">benar</option>
 
 
                             </select>
@@ -566,7 +567,10 @@ $message=session('status');
                         <input type="hidden" class="form-control" name="pelajaran_nama" id="jumlahsoal" required="required" value="{{$pelajaran_nama}}">
                         <input type="hidden" class="form-control" name="kelas_nama" id="jumlahsoal" required="required" value="{{$kelas_nama}}">
                         <input type="hidden" class="form-control" name="tapel_nama" id="jumlahsoal" required="required" value="{{$tapel_nama}}">
-                         </div>
+                        <input type="hidden" class="form-control" name="materipokok_nama" id="jumlahsoal" required="required" value="{{$materipokok_nama}}">
+                        <input type="hidden" class="form-control" name="kompetensidasar_kode" id="jumlahsoal" required="required" value="{{$kompetensidasar_kode}}">
+                        <input type="hidden" class="form-control" name="kompetensidasar_tipe" id="jumlahsoal" required="required" value="{{$kompetensidasar_tipe}}">
+                    </div>
 
                 </div>
                 <div class="modal-footer">

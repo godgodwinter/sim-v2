@@ -14,21 +14,21 @@ use Illuminate\Support\Facades\Storage;
 
 class banksoalcontroller extends Controller
 {
-    public function index(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama,$materipokok_nama,$kompetensidasar_kode,$kompetensidasar_tipe){
+    public function index(Request $request,$id){
 
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
-        $p_nama=base64_decode($pelajaran_nama);
-        $k_nama=base64_decode($kelas_nama);
-        $t_nama=base64_decode($tapel_nama);
-        $mp_nama=base64_decode($materipokok_nama);
-        $kd_kode=base64_decode($kompetensidasar_kode);
-        $kd_tipe=base64_decode($kompetensidasar_tipe);
+        // dd($id);
+        $dataajar=DB::table('dataajar')->where('id',$id)->first();
+
+        $pelajaran_nama=$dataajar->pelajaran_nama;
+        $kelas_nama=$dataajar->kelas_nama;
+        $tapel_nama=Fungsi::tapelaktif();
 
         $kodegenerate=Uuid::uuid4()->getHex();
 
-        // dd($p_nama,$k_nama,$t_nama,$mp_nama,$kd_kode,$kd_tipe,$kodegenerate);
+        // dd($pelajaran_nama,$kelas_nama,$t_nama,$mp_nama,$kd_kode,$kd_tipe,$kodegenerate);
 
         #WAJIB
         $pages='banksoal';
@@ -37,17 +37,9 @@ class banksoalcontroller extends Controller
 
 
         $datas=DB::table('banksoal')
-                ->where('pelajaran_nama',$p_nama)
-                ->where('kelas_nama',$k_nama)
-                ->where('tapel_nama',$t_nama)
-                ->where('materipokok_nama',$mp_nama)
-                ->where('kompetensidasar_kode',$kd_kode)
-                ->where('kompetensidasar_tipe',$kd_tipe)
-                // ->where('kode',1)
-                // ->orWhere('pelajaran_nama',$p_nama)
-                // ->where('kelas_nama',$k_nama)
-                // ->where('tapel_nama',$t_nama)
-                // ->where('kode',2)
+                ->where('pelajaran_nama',$pelajaran_nama)
+                ->where('kelas_nama',$kelas_nama)
+                ->where('tapel_nama',$tapel_nama)
                 ->orderBy('created_at','desc')
         ->get();
 
@@ -64,17 +56,14 @@ class banksoalcontroller extends Controller
 
         return view('admin.banksoal.index',compact('pages','datas','request'
         ,'kodegenerate'
-        ,'pelajaran_nama','kelas_nama','tapel_nama'
-        ,'materipokok_nama'
-        ,'kompetensidasar_kode'
-        ,'kompetensidasar_tipe'
+        ,'pelajaran_nama','kelas_nama','tapel_nama','dataajar'
     ));
 
     }
     //
 
 
-    public function store(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama,$materipokok_nama,$kompetensidasar_kode,$kompetensidasar_tipe){
+    public function store(Request $request,$id){
 
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
@@ -82,28 +71,6 @@ class banksoalcontroller extends Controller
         $kodegenerate=Uuid::uuid4()->getHex();
         // dd($request);
         $a=0;
-
-        // $path = 'myfolder/myimage.png';
-// 		$file = $request->file('file');
-// 		$path=$file->getRealPath();
-// $type = pathinfo($path, PATHINFO_EXTENSION);
-// $data = file_get_contents($path);
-// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-// // dd($base64);
-
-// // $img = $_POST['img'];
-// $img = str_replace('data:image/png;base64,', '', $base64);
-// $img = str_replace(' ', '+', $img);
-// $data = base64_decode($img);
-// $file =  uniqid() . '.png';
-// $success = file_put_contents($file, $data);
-// dd($success);
-		// $file = $request->file('file');
-
-//         // nama file
-        // $data=$file->getClientOriginalName();
-        // dd($request);
-// echo 'File Name: '.$file->getClientOriginalName();
 
         $files = $request->file('file');
 
@@ -132,12 +99,11 @@ class banksoalcontroller extends Controller
 
         // dd($encoded_data);
         // dd($request->file('file'));
-        $p_nama=base64_decode($pelajaran_nama);
-        $k_nama=base64_decode($kelas_nama);
-        $t_nama=base64_decode($tapel_nama);
-        $mp_nama=base64_decode($materipokok_nama);
-        $kd_kode=base64_decode($kompetensidasar_kode);
-        $kd_tipe=base64_decode($kompetensidasar_tipe);
+        $dataajar=DB::table('dataajar')->where('id',$id)->first();
+
+        $pelajaran_nama=$dataajar->pelajaran_nama;
+        $kelas_nama=$dataajar->kelas_nama;
+        $tapel_nama=Fungsi::tapelaktif();
 
 
     //    dd($request->tingkatkesulitan);
@@ -211,10 +177,28 @@ class banksoalcontroller extends Controller
         }else{
 
             $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil1);
-            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban1,$request->jawaban_hasil1);
+            DB::table('banksoal_jawaban')->insert(
+                array(
+                    'jawaban'     =>   $request->jawaban_hasil1,
+                    'hasil'     =>   $request->jawaban_hasil1,
+                    'nilai'     =>   $nilai,
+                    'kategorisoal_nama'     =>   $request->kategorisoal_nama,
+                    'kodegenerate'     =>   $kodegenerate,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
 
             $nilai=carinilai($request->kategorisoal_nama,$request->jawaban_hasil2);
-            inputsoal($request->kategorisoal_nama,$kodegenerate,$nilai,$request->jawaban2,$request->jawaban_hasil2);
+            DB::table('banksoal_jawaban')->insert(
+                array(
+                    'jawaban'     =>   $request->jawaban_hasil1,
+                    'hasil'     =>   $request->jawaban_hasil1,
+                    'nilai'     =>   $nilai,
+                    'kategorisoal_nama'     =>   $request->kategorisoal_nama,
+                    'kodegenerate'     =>   $kodegenerate,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
 
         }
 
@@ -232,12 +216,9 @@ class banksoalcontroller extends Controller
                'tingkatkesulitanangka'     =>   0,
                'kodegenerate'     =>   $kodegenerate,
                'gambar'     =>   $encoded_data,
-               'kompetensidasar_tipe'     =>   $kd_tipe,
-               'materipokok_nama'     =>   $mp_nama,
-               'kompetensidasar_kode'     =>   $kd_kode,
-               'pelajaran_nama'     =>   $p_nama,
-               'kelas_nama'     =>   $k_nama,
-               'tapel_nama'     =>   $t_nama,
+               'pelajaran_nama'     =>   $pelajaran_nama,
+               'kelas_nama'     =>   $kelas_nama,
+               'tapel_nama'     =>   $tapel_nama,
                'created_at'=>date("Y-m-d H:i:s"),
                'updated_at'=>date("Y-m-d H:i:s")
         ));
