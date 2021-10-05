@@ -26,7 +26,8 @@ class siakadadmindataajarcontroller extends Controller
 
         $kelas=DB::table('kelas')->get();
         $pelajaran=DB::table('pelajaran')->get();
-        return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran'));
+        $dataguru=DB::table('guru')->get();
+        return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran','dataguru'));
     }
     public function siakad_index_cari (Request $request)
     {
@@ -58,7 +59,8 @@ class siakadadmindataajarcontroller extends Controller
 
         $kelas=DB::table('kelas')->get();
         $pelajaran=DB::table('pelajaran')->get();
-        return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran'));
+        $dataguru=DB::table('guru')->get();
+        return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran','dataguru'));
     }
     public function siakad_index_old(Request $request)
     {
@@ -269,6 +271,80 @@ class siakadadmindataajarcontroller extends Controller
                         'success' => true,
                         // 'message' => 'Data inserted successfully'
                         'message' => $dataajar_id
+                    ]
+                );
+    }
+
+    public function store_ajax_new(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'id'=>'required',
+            'guru_nomerinduk'=>'required',
+
+        ],
+        [
+            'guru_nomerinduk.required'=>'Nama Harus diisi',
+
+        ]);
+
+
+        $dataguru=DB::table('guru')
+        ->where('nomerinduk', '=', $request->guru_nomerinduk)
+        ->first();
+        // dd($dataajar);
+        $guru_nama=$dataguru->nama;
+
+        $cekdatajar=DB::table('dataajar')
+        ->where('id', '=', $request->id)
+        ->count();
+
+                if($cekdatajar>0){
+
+                    dataajar::where('id',$request->id)
+                        ->update([
+                            'guru_nomerinduk'=>$request->guru_nomerinduk,
+                            'guru_nama'     =>   $guru_nama,
+                            'updated_at'=>date("Y-m-d H:i:s")
+                        ]);
+                }else{
+                        $ambildata=DB::table('dataajar')->where('id',$request->id)->first();
+                        DB::table('dataajar')->insert(
+                            array(
+                                'pelajaran_nama'     =>   $ambildata->pelajaran_nama,
+                                'pelajaran_tipepelajaran'     =>   $ambildata->pelajaran_tipepelajaran,
+                                'pelajaran_jurusan'     =>   $ambildata->pelajaran_jurusan,
+                                'kelas_nama'     =>   $ambildata->kelas_nama,
+                                'guru_nomerinduk'     =>   $request->guru_nomerinduk,
+                                'guru_nama'     =>   $guru_nama,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+                }
+
+
+
+                // $dataajar_id=0;
+                // // ambildataajar
+                // $cekdataajar=DB::table('dataajar')
+                // ->where('id', '=', $request->id)
+                // ->count();
+
+                // if ($cekdataajar>0){
+
+                // $ambildataajar=DB::table('dataajar')
+                // ->where('id', '=', $request->id)
+                // ->first();
+
+                // $dataajar_id=$ambildataajar->id;
+                // }
+
+
+                return response()->json(
+                    [
+                        'success' => true,
+                        // 'message' => 'Data inserted successfully'
+                        'message' => $request->id
                     ]
                 );
     }

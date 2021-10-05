@@ -113,7 +113,7 @@ display: inline;
    No</th>
     <th   width="25%"> Nama Mapel</th>
     <th   width="5%"> Kelas</th>
-    <th   width="25%"> Guru Pengajar</th>
+    <th   width="25%" class="text-center"> Guru Pengajar</th>
     <th  class="text-center" width="5%"> Detail</th>
 
 @endsection
@@ -159,7 +159,14 @@ display: inline;
   <td class="text-center"> {{(($loop->index)+1)}}</td>
   <td> {{ $data->pelajaran_nama }} </td>
   <td> {{ $data->kelas_nama }} </td>
-  <td> {{ $data->guru_nomerinduk }} - {{ $data->guru_nama }} </td>
+  <td class="text-center">
+      {{-- {{ $data->guru_nomerinduk }}  {{ $data->guru_nama }} --}}
+    <input  class="babeng text-center text-info mb-2" data-toggle="modal" data-target="#pilihguru{{ $data->id }}" id="btnpilihguru{{ $data->id }}" value="
+    {{-- {{ substr($data->guru_nama, 0, 7) }} --}}
+    {{ $data->guru_nama }}
+    " readonly> &nbsp;
+
+</td>
   <td class="text-center">
 
     @php
@@ -324,6 +331,130 @@ display: inline;
                 </div>
               </div>
 
+              @foreach ($datas as $data)
 
+              <div class="modal fade" id="pilihguru{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        <label>Pilih : </label>
+                        <input type="hidden" name="id{{ $data->id }}" value="{{ $data->id }}">
+                        <select class="babeng babeng-select" id="tags{{ $data->id }}" select2 select2-hidden-accessible   name="guru_nomerinduk{{ $data->id }}" required>
+
+                          @php
+                          $cekdatagurupengampu = DB::table('dataajar')
+                            ->where('kelas_nama', '=', $data->kelas_nama)
+                            ->where('pelajaran_nama', '=', $data->pelajaran_nama)
+                            ->count();
+                          $dataajar=DB::table('dataajar')
+                            ->where('kelas_nama', '=', $data->kelas_nama)
+                            ->where('pelajaran_nama', '=', $data->pelajaran_nama)
+                            ->first();
+                            @endphp
+                            @if($cekdatagurupengampu>0)
+                            <option value="{{ $dataajar->guru_nomerinduk }}" selected >{{ $dataajar->guru_nama }}</option>
+
+                              @else
+
+                            @endif
+                          @foreach ($dataguru as $t)
+                              <option value="{{ $t->nomerinduk }}" > {{ $t->nama }}</option>
+                          @endforeach
+                        </select>
+
+                        <script type="text/javascript">
+
+                            var values = $('#tags option[selected="true"]').map(function() { return $(this).val(); }).get();
+
+                              // you have no need of .trigger("change") if you dont want to trigger an event
+                              $('#tags{{ $data->id }}').select2({
+                                    theme: "classic",
+                                placeholder: "Pilih Guru ",
+                                dropdownParent: $('#pilihguru{{ $data->id }}')
+                               });
+
+
+                    $(document).ready(function(){
+
+                                        $.ajaxSetup({
+                                        headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                        });
+
+
+                                        var btnpilihguru{{ $data->id }} = document.getElementById('btnpilihguru{{ $data->id }}');
+                                        var link{{ $data->id }} = document.getElementById('link{{ $data->id }}');
+                                        var tags{{ $data->id }} = document.getElementById('tags{{ $data->id }}');
+
+
+                                        $(".tombol-simpan{{ $data->id }}").click(function(e){
+                                        e.preventDefault();
+
+                                        var id = $("input[name=id{{ $data->id }}]").val();
+                                        var guru_nomerinduk = $( "#tags{{ $data->id }} option:selected" ).val();
+                                        var guru_nama = $( "#tags{{ $data->id }} option:selected" ).text();
+
+
+                                                $.ajax({
+                                                url: "/admin/siakaddataajarajax_new",
+                                                method:'POST',
+                                                data:{
+                                                "_token": "{{ csrf_token() }}",
+                                                id:id,
+                                                guru_nomerinduk:guru_nomerinduk,
+                                                },
+                                                success:function(response){
+                                                if(response.success){
+                                                // $("a#changeme").attr('href',
+                                                // 'http://maps.google.com/');
+
+
+
+                                                console.log(response.message);
+                                                if(response.message>0){
+
+                                                    $("a#link{{ $data->id }}").attr('class',
+                                                    'btn btn-outline-primary');
+                                                }
+
+
+                                                btnpilihguru{{ $data->id }}.value = guru_nama;
+                                                $('#pilihguru{{ $data->id }}').modal('hide');
+                                                console.log(link{{ $data->id }});
+                                                }else{
+                                                alert("Error")
+                                                }
+                                                },
+                                                error:function(error){
+
+                                                alert('Gagal!') //Message come from controller
+                                                }
+                                                });
+
+
+                                            });
+
+                                        });
+
+                          </script>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="#" class="btn btn-icon btn-primary btn-sm tombol-simpan{{ $data->id }}"
+                            data-toggle="tooltip" data-placement="top" title="Simpan Data!"><span
+                                class="pcoded-micon" id="tombol-simpan{{ $data->id }}"> Simpan</span></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+
+              @endforeach
 
 @endsection

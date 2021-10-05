@@ -259,6 +259,7 @@ Route::get('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcont
 Route::get('admin/siakaddataajar/cari', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index_cari')->name('dataajar.cari');
 Route::get('admin/siakaddataajar_old', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_index_old')->name('siakaddataajar_old');
 Route::post('admin/siakaddataajarajax', 'App\Http\Controllers\siakadadmindataajarcontroller@store_ajax')->name('siakaddataajar.store.ajax');
+Route::post('admin/siakaddataajarajax_new', 'App\Http\Controllers\siakadadmindataajarcontroller@store_ajax_new')->name('siakaddataajar.store.ajax_new');
 Route::post('admin/siakaddataajar', 'App\Http\Controllers\siakadadmindataajarcontroller@store')->name('siakaddataajar.store');
 Route::get('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_show')->name('siakad.dataajar.edit');
 Route::put('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_update')->name('siakaddataajar.update');
