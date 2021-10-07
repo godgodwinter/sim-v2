@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 Route::get('/home', 'App\Http\Controllers\adminberandaController@index');
 Route::get('/dashboard', 'App\Http\Controllers\adminberandaController@index')->name('dashboard');
 Route::get('/admin/settings', 'App\Http\Controllers\settingsController@index')->name('settings');
+Route::get('/admin/passwordujian', 'App\Http\Controllers\pagesController@passwordujian')->name('passwordujian');
+Route::post('/admin/passwordujian/generate', 'App\Http\Controllers\pagesController@passwordujian_generate')->name('passwordujian.generate');
 Route::post('admin/settings/{settings}', 'App\Http\Controllers\adminberandaController@settingsstore')->name('settings.store');
 Route::post('admin/settings/upload/1', 'App\Http\Controllers\prosesController@uploadlogo')->name('settings.uploadlogo');
 Route::delete('admin/settings/upload/1', 'App\Http\Controllers\prosesController@uploadlogodelete')->name('siswa.uploadlogodelete');

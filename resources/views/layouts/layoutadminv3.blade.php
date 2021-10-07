@@ -211,7 +211,7 @@ crossorigin="anonymous"></script>
                             <li @if ($pages==='siakadguru')
                                 class="active"
                                 @endif >
-                                <a href="{{ route('siakadguru') }}" class="nav-link"><i class="fas fa-key"></i><span>Password Ujian</span></a>
+                                <a href="{{ route('passwordujian') }}" class="nav-link"><i class="fas fa-key"></i><span>Password Ujian</span></a>
                             </li>
                     </ul>
                 </li>

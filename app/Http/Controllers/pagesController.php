@@ -18,6 +18,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Faker\Factory as Faker;
 
 class pagesController extends Controller
 {
@@ -41,7 +42,44 @@ class pagesController extends Controller
         return view('admin.testing.barcode',compact('pages'
     ));
     }
+    public function passwordujian(Request $request){
+        $pages='passwordujian';
+        return view('admin.pages.passwordujian',compact('pages'
+    ));
 
+    }
+
+    public function passwordujian_generate(Request $request){
+        $jml=6;
+        if(($request->jml!=null)AND($request->jml!='')){
+            $jml=$request->jml;
+        }
+        $moodleuser='a';
+        $moodlepass='b';
+        // dd($jml);
+        // 1. ambil semua data siswa
+        $siswas=DB::table('siswa')
+            ->get();
+        foreach($siswas as $siswa){
+
+            $faker = Faker::create('id_ID');
+
+            $moodleuser=$faker->unique()->regexify('[A-Za-z0-9]{'.$jml.'}');
+            $moodlepass=$faker->unique()->regexify('[A-Za-z0-9]{'.$jml.'}');
+            // dd($moodleuser,$moodlepass,$jml);
+
+        siswa::where('id',$siswa->id)
+        ->update([
+            'moodleuser'     =>   $moodleuser,
+            'moodlepass'     =>   $moodlepass,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+        }
+        // 2. faker generate username dan password
+        // 3. update data
+        return redirect()->back()->with('status','Generate Berhasil !')->with('tipe','success')->with('icon','fas fa-feather');
+
+    }
 
     public function eoy()
     {
@@ -65,7 +103,7 @@ class pagesController extends Controller
 
         }
         // start-DATATAPEL
-        //ambildata 
+        //ambildata
         $datastapel=DB::table('tapel')
         ->get();
         foreach($datastapel as $tapel){
@@ -73,7 +111,7 @@ class pagesController extends Controller
         $datas=DB::table('arsip_tapel')
         ->where('nama',$tapel->nama)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_tapel')->insert(
@@ -93,7 +131,7 @@ class pagesController extends Controller
         // end-DATATAPEL
 
         // start-DATAKELAS
-        //ambildata 
+        //ambildata
         $dataskelas=DB::table('kelas')
         ->get();
         foreach($dataskelas as $kelas){
@@ -101,7 +139,7 @@ class pagesController extends Controller
         $datas=DB::table('arsip_kelas')
         ->where('nama',$kelas->nama)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_kelas')->insert(
@@ -123,7 +161,7 @@ class pagesController extends Controller
 
 
         // start-DATAUSERS
-        //ambildata 
+        //ambildata
         $datasusers=DB::table('users')
         ->where('tipeuser','siswa')
         ->get();
@@ -132,7 +170,7 @@ class pagesController extends Controller
         $datas=DB::table('arsip_users')
         ->where('nomerinduk',$users->nomerinduk)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_users')->insert(
@@ -176,7 +214,7 @@ class pagesController extends Controller
         }
         // end-DATAUSERS
         // start-DATASISWA
-        //ambildata 
+        //ambildata
         $datassiswa=DB::table('siswa')
         ->get();
         foreach($datassiswa as $siswa){
@@ -186,7 +224,7 @@ class pagesController extends Controller
         ->where('tapel_nama',$siswa->tapel_nama)
         ->where('kelas_nama',$siswa->kelas_nama)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_siswa')->insert(
@@ -231,7 +269,7 @@ class pagesController extends Controller
 
 
         // start-DATATAGIHANATUR
-        //ambildata 
+        //ambildata
         $datastagihanatur=DB::table('tagihanatur')
         ->get();
         foreach($datastagihanatur as $tagihanatur){
@@ -240,7 +278,7 @@ class pagesController extends Controller
         ->where('tapel_nama',$tagihanatur->tapel_nama)
         ->where('kelas_nama',$tagihanatur->kelas_nama)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_tagihanatur')->insert(
@@ -271,7 +309,7 @@ class pagesController extends Controller
 
 
         // start-DATATAGIHANSISWA
-        //ambildata 
+        //ambildata
         $datastagihansiswa=DB::table('tagihansiswa')
         ->get();
         foreach($datastagihansiswa as $tagihansiswa){
@@ -281,7 +319,7 @@ class pagesController extends Controller
         ->where('tapel_nama',$tagihansiswa->tapel_nama)
         ->where('kelas_nama',$tagihansiswa->kelas_nama)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_tagihansiswa')->insert(
@@ -314,7 +352,7 @@ class pagesController extends Controller
 
 
         // start-DATATAGIHANSISWADETAIL
-        //ambildata 
+        //ambildata
         $datastagihansiswadetail=DB::table('tagihansiswadetail')
         ->get();
         foreach($datastagihansiswadetail as $tagihansiswadetail){
@@ -325,7 +363,7 @@ class pagesController extends Controller
         ->where('kelas_nama',$tagihansiswadetail->kelas_nama)
         ->where('created_at',$tagihansiswadetail->created_at)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('arsip_tagihansiswadetail')->insert(
@@ -396,12 +434,12 @@ class pagesController extends Controller
             $nama=$kelas->nama;
             // 3. tambahkan 1 pada kelas dan tagihanatur jika xii maka alumni jika x dan xi maaka +1, nominaltagihan dari settings>nomminaltagihandefaul
             $nama_baru=$this->naik_k_tanpa_alumni($nama);
-            // dd($nama,$nama_baru);    
-            
+            // dd($nama,$nama_baru);
+
         $datas=DB::table('kelas')
         ->where('nama',$nama_baru)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('kelas')->insert(
@@ -412,8 +450,8 @@ class pagesController extends Controller
                         ));
                 }else{
 
-                }    
-            
+                }
+
         }
         //END-SOY-DATAKELAS
 
@@ -426,12 +464,12 @@ class pagesController extends Controller
             $nama=$tapel->nama;
             // 3. tambahkan 1 pada tapel dan tagihanatur jika xii maka alumni jika x dan xi maaka +1, nominaltagihan dari settings>nomminaltagihandefaul
             $nama_baru=$this->naik_t($nama);
-            // dd($nama,$nama_baru);    
-            
+            // dd($nama,$nama_baru);
+
         $datas=DB::table('tapel')
         ->where('nama',$nama_baru)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('tapel')->insert(
@@ -442,8 +480,8 @@ class pagesController extends Controller
                         ));
                 }else{
 
-                }    
-            
+                }
+
         }
         //END-SOY-DATATAPEL
 
@@ -456,14 +494,14 @@ class pagesController extends Controller
             $tapel_nama_baru=$this->naik_t($tagihanatur->tapel_nama);
             // 3. tambahkan 1 pada tagihanatur dan tagihanatur jika xii maka alumni jika x dan xi maaka +1, nominaltagihan dari settings>nomminaltagihandefaul
             $kelas_nama_baru=$this->naik_k_tanpa_alumni($tagihanatur->kelas_nama);
-            // dd($nama,$nama_baru);    
-            
+            // dd($nama,$nama_baru);
+
 
         $datas=DB::table('tagihanatur')
         ->where('tapel_nama',$tapel_nama_baru)
         ->where('kelas_nama',$kelas_nama_baru)
         ->count();
-    
+
             if ($datas<1) {
                     //insert data ke arsip_
                     DB::table('tagihanatur')->insert(
@@ -484,8 +522,8 @@ class pagesController extends Controller
                            'updated_at'=>$tagihanatur->updated_at
                         ]);
 
-                }  
-            
+                }
+
         }
         //END-SOY-DATAtagihanatur
 
@@ -495,13 +533,13 @@ class pagesController extends Controller
         ->get();
         foreach($dataarsipusers as $users){
             // 3. tambahkan 1 pada users dan users jika xii maka alumni jika x dan xi maaka +1, nominaltagihan dari settings>nomminaltagihandefaul
-            // dd($nama,$nama_baru);    
-            
+            // dd($nama,$nama_baru);
+
 
         $datas=DB::table('users')
         ->where('nomerinduk',$users->nomerinduk)
         ->count();
-    
+
         if ($datas<1) {
             //insert data ke arsip_
             DB::table('users')->insert(
@@ -538,7 +576,7 @@ class pagesController extends Controller
                 ]);
 
         }
-            
+
         }
         //END-SOY-DATAUSER
 
@@ -550,15 +588,15 @@ class pagesController extends Controller
             $tapel_nama_baru=$this->naik_t($siswa->tapel_nama);
             // 3. tambahkan 1 pada siswa dan siswa jika xii maka alumni jika x dan xi maaka +1, nominaltagihan dari settings>nomminaltagihandefaul
             $kelas_nama_baru=$this->naik_k($siswa->kelas_nama);
-            // dd($nama,$nama_baru);    
-            
+            // dd($nama,$nama_baru);
+
 
         $datas=DB::table('siswa')
         ->where('nis',$siswa->nis)
         ->where('tapel_nama',$tapel_nama_baru)
         ->where('kelas_nama',$kelas_nama_baru)
         ->count();
-    
+
         $strex=explode(" ",$kelas_nama_baru);
         if($strex[0]!=='Alumni'){
 
@@ -601,7 +639,7 @@ class pagesController extends Controller
         }else{
 
         }
-            
+
         }
         //END-SOY-DATASISWA
 
