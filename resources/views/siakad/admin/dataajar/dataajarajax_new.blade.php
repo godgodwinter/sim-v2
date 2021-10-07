@@ -10,65 +10,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<style>
-  .container {
-      max-width: 500px;
-  }
-  h2 {
-      color: white;
-  }
-  .form-control2 {
-    border: 0;
-}
-input[readonly]{
-  background-color:transparent;
-  border: 0;
-  font-size: 1em;
-}
-.babeng-select{
-  position: relative;
-  width: 200px;
-
-}
-.babeng{
-  width:150px;
-  border-radius: 5px;
-  background: #fff;
-  border: 1px solid #ccc;
-  outline:none;
-  padding: 6px;
-}
-
-.babeng:focus{
-  border:1px solid #56b4ef;
-  box-shadow: 0px 0px 3px 1px #c8def0;
-}
-
-#babeng-bar {
-    width: 100%;
-    /* height: 45px; */
-    overflow: hidden;
-    padding-bottom: 0px;
-}
-
-#babeng-bar span {
-    height: 100%;
-    display: inline;
-    overflow: hidden;
-    padding-left: 0px
-}
-
-#babeng-row {
-    height: 100%;
-    width: 100%;
-    text-align: center;
-display: inline;
-}
-
-#babeng-submit {
-    height: 35px;
-}
-</style>
 @endsection
 
 @section('jshere')
@@ -186,7 +127,7 @@ display: inline;
     class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
         class="far fa-file-archive"></i> </a>
 
-    <a href="/admin/inputnilai/{{$data->id}}"
+    <a href="/admin/datainputnilai/{{$data->id}}"
     class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
         class="fas fa-user-graduate"></i> </a>
 

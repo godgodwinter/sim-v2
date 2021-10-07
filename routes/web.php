@@ -297,8 +297,10 @@ Route::delete('admin/banksoaldetail/{id}', 'App\Http\Controllers\banksoalcontrol
 
 
 // SIAKAD-MENU-inputnilai
-Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@index')->name('kompetensidasar.materipokok.inputnilai.index');
-Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@store')->name('kompetensidasar.materipokok.inputnilai.index');
+Route::get('admin/datainputnilai/{id}', 'App\Http\Controllers\inputnilaicontroller@index')->name('pelajaran.inputnilai.index');
+Route::post('admin/datainputnilai/{id}', 'App\Http\Controllers\inputnilaicontroller@store')->name('pelajaran.inputnilai.store');
+// Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@index')->name('kompetensidasar.materipokok.inputnilai.index');
+// Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@store')->name('kompetensidasar.materipokok.inputnilai.index');
 Route::get('api/inputnilai/multiinput', 'App\Http\Controllers\inputnilaicontroller@apimultistore')->name('api.inputnilai.multiinput');
 
 //moodle-generatesoal

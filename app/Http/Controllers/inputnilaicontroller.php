@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Fungsi;
 use App\Models\nilaipelajaran;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
@@ -10,17 +11,16 @@ use Illuminate\Support\Facades\URL;
 
 class inputnilaicontroller extends Controller
 {
-    public function index(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama,$materipokok_nama,$kompetensidasar_kode,$kompetensidasar_tipe){
+    public function index(Request $request,$id){
 
         if($this->checkauth('admin')==='404'){
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
-        $p_nama=base64_decode($pelajaran_nama);
-        $k_nama=base64_decode($kelas_nama);
-        $t_nama=base64_decode($tapel_nama);
-        $mp_nama=base64_decode($materipokok_nama);
-        $kd_kode=base64_decode($kompetensidasar_kode);
-        $kd_tipe=base64_decode($kompetensidasar_tipe);
+        $dataajar=DB::table('dataajar')->where('id',$id)->first();
+
+        $pelajaran_nama=$dataajar->pelajaran_nama;
+        $kelas_nama=$dataajar->kelas_nama;
+        $tapel_nama=Fungsi::tapelaktif();
 
         $kodegenerate=Uuid::uuid4()->getHex();
 
@@ -33,12 +33,9 @@ class inputnilaicontroller extends Controller
 
 
         $datas=DB::table('banksoal')
-                ->where('pelajaran_nama',$p_nama)
-                ->where('kelas_nama',$k_nama)
-                ->where('tapel_nama',$t_nama)
-                ->where('materipokok_nama',$mp_nama)
-                ->where('kompetensidasar_kode',$kd_kode)
-                ->where('kompetensidasar_tipe',$kd_tipe)
+                ->where('pelajaran_nama',$pelajaran_nama)
+                ->where('kelas_nama',$kelas_nama)
+                ->where('tapel_nama',$tapel_nama)
                 // ->where('kode',1)
                 // ->orWhere('pelajaran_nama',$p_nama)
                 // ->where('kelas_nama',$k_nama)
@@ -47,11 +44,11 @@ class inputnilaicontroller extends Controller
                 ->orderBy('created_at','desc')
         ->get();
 
-        $datasiswa=DB::table('siswa')->where('kelas_nama',$k_nama)->get();
+        $datasiswa=DB::table('siswa')->where('kelas_nama',$kelas_nama)->get();
         $datakd=DB::table('kompetensidasar')
-            ->where('kelas_nama',$k_nama)
-            ->where('tapel_nama',$t_nama)
-            ->where('pelajaran_nama',$p_nama)
+            ->where('kelas_nama',$kelas_nama)
+            ->where('tapel_nama',$tapel_nama)
+            ->where('pelajaran_nama',$pelajaran_nama)
             ->orderBy('kode','asc')
             ->orderBy('tipe','desc')
             ->get();
@@ -72,13 +69,7 @@ class inputnilaicontroller extends Controller
         ,'kodegenerate'
         ,'datasiswa'
         ,'datakd'
-        ,'k_nama'
-        ,'t_nama'
-        ,'p_nama'
         ,'pelajaran_nama','kelas_nama','tapel_nama'
-        ,'materipokok_nama'
-        ,'kompetensidasar_kode'
-        ,'kompetensidasar_tipe'
     ));
 
     }

@@ -139,7 +139,7 @@ $message=session('status');
                 </div>
                 <div class="card-body -mt-5">
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered" >
+                        <table class="table table-striped table-sm" >
 
                             <tr>
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> No  </th>
@@ -203,8 +203,7 @@ $message=session('status');
                                             @foreach ($datamateri as $dm)
                                             <td class="text-center" width="10%">
 
-                                    {{-- <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} </label> --}}
-                                    {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}}
+                                    <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} </label>
                                     <script>
 
                                             $("#chkCheckAllmateri{{$dm->id}}").click(function(){
@@ -224,8 +223,8 @@ $message=session('status');
                                  <tr>
                                 <td  style="vertical-align: middle;" class="text-center">{{$loop->index+1}}</td>
                                 <td class="text-capitalize">
-                                    {{-- <input type="checkbox" id="chkCheckAll{{$data->nis}}"> <label for="chkCheckAll{{$data->nis}}">  {{$data->nama}}</label> --}}
-                                    {{$data->nama}}
+                                    <input type="checkbox" id="chkCheckAll{{$data->nis}}"> <label for="chkCheckAll{{$data->nis}}">  {{$data->nama}}</label>
+
                                 </td>
 
                                 <script>
@@ -272,7 +271,7 @@ $message=session('status');
                                                     ->where('tapel_nama',$tapel_nama)
                                                     ->count();
 
-                                                $tampilkan='0';
+                                                $tampilkan='-';
                                                 if($cek>0){
 
                                                     $ambil=DB::table('nilaipelajaran')
@@ -284,50 +283,20 @@ $message=session('status');
                                                     $tampilkan=$ambil->nilai;
                                                 }
                                             @endphp
-                                            <script>
-                                                $(document).ready(function () {
-                                                    var inputnilai{{$data->nis}}{{ $dm->id }}=$("#inputnilai{{$data->nis}}-{{$kodeprefix}}-{{$dkd->kode}}-{{$loop->index+1}}");
-
-                                                    inputnilai{{$data->nis}}{{ $dm->id }}.click(function (e) {
-                                                        e.preventDefault(e);
-                                                        inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',false);
-                                                        // alert(inputnilai{{$data->nis}}{{ $dm->id }}.val());
-                                                        console.log('klik inputan');
-
-                                                    });
-
-                                                    inputnilai{{$data->nis}}{{ $dm->id }}.focusout(function (e) {
-                                                        // e.preventDefault(e);
-                                                        // inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
-                                                        console.log('kirim update');
-                                                        inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
-                                                    });
-
-
-                                                    inputnilai{{$data->nis}}{{ $dm->id }}.keypress(function (e) {
-                                                        // e.preventDefault(e);
-                                                        if (e.which == 13) {
-                                                            console.log('kirim update');
-                                                        inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
-                                                            return false;    //<---- Add this line
-                                                        }
-                                                        // inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
-                                                    });
-
-                                                });
-
-                                            </script>
                                             <td class="text-center"  style="vertical-align: middle;" >
-                                                <input  class="babeng text-center text-info mb-2" id="inputnilai{{$data->nis}}-{{$kodeprefix}}-{{$dkd->kode}}-{{$loop->index+1}}" value="{{$tampilkan}}" readonly type="number">
+                                                <input type="checkbox" name="ids" class="checkBoxClass siswa{{$data->nis}} materi{{$dm->id}}" value="{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$pelajaran_nama}}^{{$kelas_nama}}^{{$tapel_nama}}" id="chkCheckAll{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$pelajaran_nama}}^{{$kelas_nama}}^{{$tapel_nama}}">
+                                                <label for="chkCheckAll{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$pelajaran_nama}}^{{$kelas_nama}}^{{$tapel_nama}}"> {{$tampilkan}}</label>
+
+                                            {{-- <input type="text" class="btn  btn-light btn-sm" data-toggle="modal"
+                                                data-target="#modalinput{{$kodeprefix}}_{{$dkd->kode}}_{{$loop->index+1}}_{{$data->nis}}" value="{{$tampilkan}}" id="tampilkan{{$data->nama}}^{{$data->nis}}^{{$dm->nama}}^{{$dkd->kode}}^{{$dkd->tipe}}^{{$pelajaran_nama}}^{{$kelas_nama}}^{{$tapel_nama}}"> --}}
+                                                {{-- {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} --}}
+
                                             </td>
                                             @endforeach
-
                                         @else
-                                            <td class="text-center"> -asda </td>
+                                            <td class="text-center"> - </td>
                                         @endif
                                 @endforeach
-
-
                                 <td  style="vertical-align: middle;" class="text-center">
                                     @php
 

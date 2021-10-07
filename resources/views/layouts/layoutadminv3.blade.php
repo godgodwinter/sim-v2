@@ -44,6 +44,66 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset("assets/") }}/css/babeng.css">
 
 <script src="{{ asset("assets/") }}/stisla/chart.min.js"></script>
+
+<style>
+    .container {
+        max-width: 500px;
+    }
+    h2 {
+        color: white;
+    }
+    .form-control2 {
+      border: 0;
+  }
+  input[readonly]{
+    background-color:transparent;
+    border: 0;
+    font-size: 1em;
+  }
+  .babeng-select{
+    position: relative;
+    width: 200px;
+
+  }
+  .babeng{
+    width:150px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    outline:none;
+    padding: 6px;
+  }
+
+  .babeng:focus{
+    border:1px solid #56b4ef;
+    box-shadow: 0px 0px 3px 1px #c8def0;
+  }
+
+  #babeng-bar {
+      width: 100%;
+      /* height: 45px; */
+      overflow: hidden;
+      padding-bottom: 0px;
+  }
+
+  #babeng-bar span {
+      height: 100%;
+      display: inline;
+      overflow: hidden;
+      padding-left: 0px
+  }
+
+  #babeng-row {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+  display: inline;
+  }
+
+  #babeng-submit {
+      height: 35px;
+  }
+  </style>
   @yield('csshere')
 </head>
 
