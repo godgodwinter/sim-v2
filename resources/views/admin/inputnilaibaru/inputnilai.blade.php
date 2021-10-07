@@ -6,6 +6,7 @@ Input Nilai {{$pelajaran_nama}} - Kelas {{$kelas_nama}}
 <div class="breadcrumb-item">Input nilai</div>
 @endsection
 @section('csshere')
+
 @endsection
 
 @section('jshere')
