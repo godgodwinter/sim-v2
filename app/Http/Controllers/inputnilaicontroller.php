@@ -396,7 +396,16 @@ $("#chkCheckAll'.$data->nis.'").click(function(){
         $alldatas=$request->ids;
         // $output.=$request->nilai.$request->nis.$request->dm;
         // dd($request);
-        $nilai=$request->nilai;
+        $nilai=0;
+        if($request->nilai>100){
+            $nilai=100;
+        }elseif($request->nilai<0){
+            $nilai=0;
+        }elseif(($request->nilai==null)AND($request->nilai=='')){
+
+        }else{
+            $nilai=$request->nilai;
+        }
         $nis=$request->nis;
         $dm=$request->dm;
 

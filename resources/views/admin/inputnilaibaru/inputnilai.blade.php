@@ -347,7 +347,11 @@ $message=session('status');
                                                         // inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
                                                     });
 
-
+                                                        //reqex untuk number only
+                                                    inputnilai{{$data->nis}}{{ $dm->id }}.inputFilter(function(value) {
+                                                        return /^\d*$/.test(value);    // Allow digits only, using a RegExp
+                                                    });
+                                                        //fungsi kirim data
                                                     function fetch_customer_data(query = '',nis='',dm='') {
                                                         console.log(query);
                                                             $.ajax({
