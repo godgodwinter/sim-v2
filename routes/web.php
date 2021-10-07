@@ -302,6 +302,7 @@ Route::post('admin/datainputnilai/{id}', 'App\Http\Controllers\inputnilaicontrol
 // Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@index')->name('kompetensidasar.materipokok.inputnilai.index');
 // Route::post('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}/materipokok/inputnilai/{materipokok_nama}/{kompetensidasar_kode}/{kompetensidasar_tipe}', 'App\Http\Controllers\inputnilaicontroller@store')->name('kompetensidasar.materipokok.inputnilai.index');
 Route::get('api/inputnilai/multiinput', 'App\Http\Controllers\inputnilaicontroller@apimultistore')->name('api.inputnilai.multiinput');
+Route::get('api/inputnilai/singleinput', 'App\Http\Controllers\inputnilaicontroller@apisinglestore')->name('api.inputnilai.singleinput');
 
 //moodle-generatesoal
 Route::get('admin/moodle/generate2', 'App\Http\Controllers\banksoalcontroller@generateDocx')->name('moodle.generateDocx');

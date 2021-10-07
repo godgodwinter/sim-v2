@@ -386,4 +386,84 @@ $("#chkCheckAll'.$data->nis.'").click(function(){
 
 
     }
+
+    public function apisinglestore (Request $request){
+        $output='';
+        $datas='';
+        $warna='';
+        $first='';
+        $cek='';
+        $alldatas=$request->ids;
+        // $output.=$request->nilai.$request->nis.$request->dm;
+        // dd($request);
+        $nilai=$request->nilai;
+        $nis=$request->nis;
+        $dm=$request->dm;
+
+        $ambildatadm=DB::table('materipokok')
+        ->where('id',$dm)
+        ->first();
+
+
+        $ambildatasiswa=DB::table('siswa')
+        ->where('nis',$nis)
+        ->first();
+        $siswa_nama=$ambildatasiswa->nama;
+
+        $cek=DB::table('nilaipelajaran')
+        ->where('siswa_nis',$nis)
+        ->where('materipokok_nama',$ambildatadm->nama)
+        ->where('kompetensidasar_kode',$ambildatadm->kompetensidasar_kode)
+        ->where('kompetensidasar_tipe',$ambildatadm->kompetensidasar_tipe)
+        ->where('pelajaran_nama',$ambildatadm->pelajaran_nama)
+        ->where('kelas_nama',$ambildatadm->kelas_nama)
+        ->where('tapel_nama',$ambildatadm->tapel_nama)
+        ->count();
+        // dd($request,$cek);
+        // jika belum maka insert
+        if($cek<1){
+            DB::table('nilaipelajaran')->insert(
+             array(
+                    'siswa_nama'     =>   $siswa_nama,
+                    'siswa_nis'     =>   $nis,
+                    'nilai'     =>   $nilai,
+                    'materipokok_nama'     =>   $ambildatadm->nama,
+                    'kompetensidasar_kode'     =>   $ambildatadm->kompetensidasar_kode,
+                    'kompetensidasar_tipe'     =>   $ambildatadm->kompetensidasar_tipe,
+                    'pelajaran_nama'     =>   $ambildatadm->pelajaran_nama,
+                    'kelas_nama'     =>   $ambildatadm->kelas_nama,
+                    'tapel_nama'     =>   $ambildatadm->tapel_nama,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+             ));
+
+        }else{
+            // jika sudah maka update
+
+            nilaipelajaran::where('siswa_nis',$nis)
+                ->where('siswa_nis',$nis)
+                ->where('materipokok_nama',$ambildatadm->nama)
+                ->where('kompetensidasar_kode',$ambildatadm->kompetensidasar_kode)
+                ->where('kompetensidasar_tipe',$ambildatadm->kompetensidasar_tipe)
+                ->where('pelajaran_nama',$ambildatadm->pelajaran_nama)
+                ->where('kelas_nama',$ambildatadm->kelas_nama)
+                ->where('tapel_nama',$ambildatadm->tapel_nama)
+                ->update([
+                    'nilai'     =>   $nilai,
+                ]);
+
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => 'berhasildi upadate',
+            // 'status' => $data->status,
+            'warna' => $warna,
+            'datas' => $cek,
+            'first' => $first
+        ], 200);
+
+
+    }
 }

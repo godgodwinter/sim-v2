@@ -51,11 +51,11 @@ $message=session('status');
 <div class="section-body">
 
 
-    <a href="" id="scroll" >
+    {{-- <a href="" id="scroll" >
         <div class="rounded-circle" id="scrollTop" data-toggle="tooltip" data-placement="top"    title="Simpan Terpilih!">
             <i class="fas fa-share-square" id="arrow" ></i>
         </div>
-   </a>
+   </a> --}}
 <i class="fa fa-arrow-up" aria-hidden="true" style="color: black;" id="arrow" ></i>
 
 {{-- <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a> --}}
@@ -112,14 +112,14 @@ $message=session('status');
             <div class="card ">
                         <div class="form-group offset-md-8 col-md-4 col-12 mt-1  ">
                                 <div class="row">
-                                    <div class="col-md-4 col-12 mt-2 text-right">
+                                    {{-- <div class="col-md-4 col-12 mt-2 text-right">
                                         <label for="nilaimulti">Nilai :</label>
 
                                     </div>
 
                                     <div class="col-md-8 col-12">
                                         <input type="number" name="nilaimulti" id="nilaimulti" value="75" min="1" max="100" class="form-control btn btn-outline-primary">
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal"
@@ -151,6 +151,9 @@ $message=session('status');
                                 ->where('kelas_nama',$kelas_nama)
                                 ->where('tapel_nama',$tapel_nama)
                                 ->where('pelajaran_nama',$pelajaran_nama)
+                                            ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_nama',$dkd->nama)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                 ->orderBy('created_at','asc')
                                 // ->orderBy('tipe','desc')
                                 ->count();
@@ -173,11 +176,13 @@ $message=session('status');
                             <tr >
                                 @foreach ($datakd as $dkd)
                                         @php
-
-                                            $jmldatamateri=DB::table('materipokok')
+                                         $jmldatamateri=DB::table('materipokok')
                                             ->where('kelas_nama',$kelas_nama)
                                             ->where('tapel_nama',$tapel_nama)
                                             ->where('pelajaran_nama',$pelajaran_nama)
+                                            ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_nama',$dkd->nama)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
 
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
@@ -187,6 +192,9 @@ $message=session('status');
                                             ->where('kelas_nama',$kelas_nama)
                                             ->where('tapel_nama',$tapel_nama)
                                             ->where('pelajaran_nama',$pelajaran_nama)
+                                            ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_nama',$dkd->nama)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
 
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
@@ -242,6 +250,10 @@ $message=session('status');
                                             ->where('kelas_nama',$kelas_nama)
                                             ->where('tapel_nama',$tapel_nama)
                                             ->where('pelajaran_nama',$pelajaran_nama)
+                                            ->where('pelajaran_nama',$pelajaran_nama)
+                                            ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_nama',$dkd->nama)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
                                             ->count();
@@ -250,6 +262,9 @@ $message=session('status');
                                             ->where('kelas_nama',$kelas_nama)
                                             ->where('tapel_nama',$tapel_nama)
                                             ->where('pelajaran_nama',$pelajaran_nama)
+                                            ->where('kompetensidasar_kode',$dkd->kode)
+                                            ->where('kompetensidasar_nama',$dkd->nama)
+                                            ->where('kompetensidasar_tipe',$dkd->tipe)
                                             ->orderBy('created_at','asc')
                                             // ->orderBy('tipe','desc')
                                             ->get();
@@ -270,6 +285,9 @@ $message=session('status');
                                                     ->where('pelajaran_nama',$pelajaran_nama)
                                                     ->where('kelas_nama',$kelas_nama)
                                                     ->where('tapel_nama',$tapel_nama)
+                                                    ->where('kompetensidasar_kode',$dkd->kode)
+                                                    ->where('kompetensidasar_tipe',$dkd->tipe)
+                                                    ->where('materipokok_nama',$dm->nama)
                                                     ->count();
 
                                                 $tampilkan='0';
@@ -280,13 +298,21 @@ $message=session('status');
                                                             ->where('pelajaran_nama',$pelajaran_nama)
                                                             ->where('kelas_nama',$kelas_nama)
                                                             ->where('tapel_nama',$tapel_nama)
+                                                            ->where('kompetensidasar_kode',$dkd->kode)
+                                                            ->where('kompetensidasar_tipe',$dkd->tipe)
+                                                            ->where('materipokok_nama',$dm->nama)
                                                             ->first();
                                                     $tampilkan=$ambil->nilai;
                                                 }
                                             @endphp
                                             <script>
                                                 $(document).ready(function () {
-                                                    var inputnilai{{$data->nis}}{{ $dm->id }}=$("#inputnilai{{$data->nis}}-{{$kodeprefix}}-{{$dkd->kode}}-{{$loop->index+1}}");
+                                                        var nilai=0;
+                                                        var nis=0;
+                                                        var dm=0;
+                                                    var inputnilai{{$data->nis}}{{ $dm->id }}=$("#inputnilai{{$data->nis}}-{{$dm->id}}");
+                                                    var nis{{$data->nis}}{{$dm->id}}=$("#nis{{$data->nis}}-{{$dm->id}}");
+                                                    var dm{{$data->nis}}{{$dm->id}}=$("#dm{{$data->nis}}-{{$dm->id}}");
 
                                                     inputnilai{{$data->nis}}{{ $dm->id }}.click(function (e) {
                                                         e.preventDefault(e);
@@ -299,6 +325,8 @@ $message=session('status');
                                                     inputnilai{{$data->nis}}{{ $dm->id }}.focusout(function (e) {
                                                         // e.preventDefault(e);
                                                         // inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
+                                                             fetch_customer_data(inputnilai{{$data->nis}}{{ $dm->id }}.val(),nis{{$data->nis}}{{ $dm->id }}.val(),dm{{$data->nis}}{{ $dm->id }}.val());
+                                                            console.log(inputnilai{{$data->nis}}{{ $dm->id }}.val());
                                                         console.log('kirim update');
                                                         inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
                                                     });
@@ -307,6 +335,10 @@ $message=session('status');
                                                     inputnilai{{$data->nis}}{{ $dm->id }}.keypress(function (e) {
                                                         // e.preventDefault(e);
                                                         if (e.which == 13) {
+                                                             fetch_customer_data(inputnilai{{$data->nis}}{{ $dm->id }}.val(),nis{{$data->nis}}{{ $dm->id }}.val(),dm{{$data->nis}}{{ $dm->id }}.val());
+                                                            // console.log(inputnilai{{$data->nis}}{{ $dm->id }}.val());
+                                                            // console.log(nis{{$data->nis}}{{ $dm->id }}.val());
+                                                            // console.log(dm{{$data->nis}}{{ $dm->id }}.val());
                                                             console.log('kirim update');
                                                         inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
                                                             return false;    //<---- Add this line
@@ -314,16 +346,50 @@ $message=session('status');
                                                         // inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
                                                     });
 
+
+                                                    function fetch_customer_data(query = '',nis='',dm='') {
+                                                        console.log(query);
+                                                            $.ajax({
+                                                                url: "{{ route('api.inputnilai.singleinput') }}",
+                                                                method: 'GET',
+                                                                data: {
+                                                                    "_token": "{{ csrf_token() }}",
+                                                                nilai:query,
+                                                                nis:nis,
+                                                                dm:dm,
+                                                                },
+                                                                dataType: 'json',
+                                                                success: function (data) {
+                                                                    console.log(query);
+                                                                    // console.log(data.output);
+                                                                    // $("#datasiswa").html(data.output);
+                                                                    // console.log(data.output);
+                                                                    // console.log(data.datas);
+                                                                }
+                                                            })
+                                                        }
+
+
+
+
+                                                        //Documen Ready
                                                 });
+
 
                                             </script>
                                             <td class="text-center"  style="vertical-align: middle;" >
-                                                <input  class="babeng text-center text-info mb-2" id="inputnilai{{$data->nis}}-{{$kodeprefix}}-{{$dkd->kode}}-{{$loop->index+1}}" value="{{$tampilkan}}" readonly type="number">
+                                                <input  class="babeng text-center text-info mb-2" id="inputnilai{{$data->nis}}-{{$dm->id}}" value="{{$tampilkan}}" readonly type="number">
+
+                                                <input  class="babeng text-center text-info mb-2" id="nis{{$data->nis}}-{{$dm->id}}" value="{{$data->nis}}" readonly type="hidden">
+
+                                                <input  class="babeng text-center text-info mb-2" id="dm{{$data->nis}}-{{$dm->id}}" value="{{$dm->id}}" readonly type="hidden">
                                             </td>
                                             @endforeach
 
                                         @else
-                                            <td class="text-center"> -asda </td>
+                                            <td class="text-center"> -
+                                                {{-- asda --}}
+                                             </td>
                                         @endif
                                 @endforeach
 
