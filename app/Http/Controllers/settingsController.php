@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Fungsi;
+use App\Models\kelas;
+use App\Models\siswa;
 use App\Models\tapel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 
 class settingsController extends Controller
 {
@@ -43,7 +49,7 @@ class settingsController extends Controller
             }
             $belumlunas=$counttagihansiswa-$lunas;
             // dd($gettagihansiswa);
-        
+
 
             $ttlpemasukan = DB::table('pemasukan')
             // ->where('tagihansiswa_id', '=', $ts->id)
@@ -75,7 +81,7 @@ class settingsController extends Controller
             ->where('prefix', '=', 'semester')
             ->get();
 
-        return view('admin.settings',compact('pages'
+        return view('admin.settings.index',compact('pages'
         ,'pemasukan'
         ,'kelas'
         ,'tapel'
@@ -102,5 +108,74 @@ class settingsController extends Controller
         ,'minimalpembayaranujian'
         ,'semester'
     ));
+    }
+
+    public function resetsiswa(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        #WAJIB
+        $pages='siswa';
+        $jmldata='0';
+        $datas='0';
+
+
+        $datas=DB::table('siswa')
+        ->paginate($this->paginationjml());
+
+        $tapel=tapel::all();
+        $kelas=kelas::all();
+        $jmldata = DB::table('siswa')->count();
+
+        return view('admin.settings.resetsiswa',compact('pages','jmldata','datas','tapel','kelas','request'));
+        // return view('admin.beranda');
+    }
+
+
+    public function resetsemua(Request $request)
+    {
+        $datas=DB::table('siswa')->get();
+            foreach($datas as $siswa)
+            {
+                User::where('nomerinduk',$siswa->nis)
+                ->update([
+                    'password' => Hash::make(Fungsi::passdefaultsiswa()),
+                   'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+            }
+            return redirect()->back()->with('status','Data berhasil direset!')->with('tipe','success')->with('icon','fas fa-edit');
+    }
+    public function resetsiswacari(Request $request)
+    {
+        // dd($request);
+        $cari=$request->cari;
+        $tapel_nama=$request->tapel_nama;
+        $kelas_nama=$request->kelas_nama;
+
+        #WAJIB
+        $pages='siswa';
+        $jmldata='0';
+        $datas='0';
+
+
+    $datas=DB::table('siswa')
+    // ->where('nis','like',"%".$cari."%")
+    ->where('nama','like',"%".$cari."%")
+    ->where('tapel_nama','like',"%".$tapel_nama."%")
+    ->where('kelas_nama','like',"%".$kelas_nama."%")
+    ->orWhere('nis','like',"%".$cari."%")
+    ->where('tapel_nama','like',"%".$tapel_nama."%")
+    ->where('kelas_nama','like',"%".$kelas_nama."%")
+    ->paginate($this->paginationjml());
+
+        // $kategori=kategori::all();
+        $tapel=tapel::all();
+        $kelas=kelas::all();
+        $jmldata = DB::table('siswa')->count();
+
+
+        return view('admin.settings.resetsiswa',compact('pages','jmldata','datas','tapel','kelas','request'));
     }
 }

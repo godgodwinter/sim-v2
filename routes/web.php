@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 Route::get('/home', 'App\Http\Controllers\adminberandaController@index');
 Route::get('/dashboard', 'App\Http\Controllers\adminberandaController@index')->name('dashboard');
 Route::get('/admin/settings', 'App\Http\Controllers\settingsController@index')->name('settings');
+Route::get('/admin/settings/resetsiswa', 'App\Http\Controllers\settingsController@resetsiswa')->name('settings.resetsiswa');
+Route::get('/admin/settings/resetsiswa/cari', 'App\Http\Controllers\settingsController@resetsiswacari')->name('settings.resetsiswa.cari');
+Route::get('/admin/settings/resetsemua', 'App\Http\Controllers\settingsController@resetsemua')->name('settings.resetsemua');
 Route::get('/admin/passwordujian', 'App\Http\Controllers\pagesController@passwordujian')->name('passwordujian');
 Route::post('/admin/passwordujian/generate', 'App\Http\Controllers\pagesController@passwordujian_generate')->name('passwordujian.generate');
 Route::post('admin/settings/{settings}', 'App\Http\Controllers\adminberandaController@settingsstore')->name('settings.store');
@@ -162,6 +165,7 @@ Route::get('admin/datatagihansiswa/export', 'App\Http\Controllers\prosesControll
 Route::post('admin/datatagihansiswa/import', 'App\Http\Controllers\prosesController@importtagihansiswa')->name('tagihansiswa.import');
 Route::get('admin/datatagihansiswadetail/export', 'App\Http\Controllers\prosesController@exporttagihansiswadetail')->name('tagihansiswadetail.export');
 Route::post('admin/datatagihansiswadetail/import', 'App\Http\Controllers\prosesController@importtagihansiswadetail')->name('tagihansiswadetail.import');
+Route::get('admin/datapasswordujian/export', 'App\Http\Controllers\prosesController@exportsiswa')->name('passwordujian.export');
 
 
 

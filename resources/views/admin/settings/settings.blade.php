@@ -1,4 +1,4 @@
-@extends('layouts.layoutadminv3')
+
 
 @section('title','Pengaturan')
 @section('halaman')

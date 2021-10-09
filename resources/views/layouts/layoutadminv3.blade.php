@@ -205,7 +205,7 @@ crossorigin="anonymous"></script>
                             <li @if ($pages==='siswa')
                                 class="active"
                                 @endif >
-                                <a href="{{ route('siswa') }}" class="nav-link"><i class="fas fa-retweet"></i><span>Reset Password</span></a>
+                                <a href="{{ route('settings.resetsiswa') }}" class="nav-link"><i class="fas fa-retweet"></i><span>Reset Password</span></a>
                             </li>
 
                             <li @if ($pages==='siakadguru')
