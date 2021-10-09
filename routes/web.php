@@ -271,6 +271,9 @@ Route::get('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmind
 Route::put('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@siakad_update')->name('siakaddataajar.update');
 Route::delete('admin/siakaddataajar/{dataajar}', 'App\Http\Controllers\siakadadmindataajarcontroller@destroy')->name('siakaddataajar.delete');
 
+
+Route::get('admin/penilaian', 'App\Http\Controllers\siakadadmindataajarcontroller@penilaian')->name('penilaian');
+
 // SIAKAD-MENU-kompetensidasar
 Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');
 Route::delete('admin/kompetensidasar/hapus/{id}', 'App\Http\Controllers\kompetensidasarcontroller@destroy')->name('kompetensidasar.materipokok.delete');

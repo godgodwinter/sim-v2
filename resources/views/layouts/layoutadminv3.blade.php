@@ -302,10 +302,10 @@ crossorigin="anonymous"></script>
                             <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="fas fa-microchip"></i><span>Silabus</span></a>
                         </li>
 
-                        <li @if ($pages==='siakaddataajar')
+                        <li @if ($pages==='penilaian')
                             class="active"
                             @endif >
-                            <a href="{{ route('siakaddataajar') }}" class="nav-link"><i class="far fa-star"></i><span>Penilaian</span></a>
+                            <a href="{{ route('penilaian') }}" class="nav-link"><i class="far fa-star"></i><span>Penilaian</span></a>
                         </li>
 
                         {{-- <li @if ($pages==='siakadkepribadian')

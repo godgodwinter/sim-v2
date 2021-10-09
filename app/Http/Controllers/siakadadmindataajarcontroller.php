@@ -29,6 +29,26 @@ class siakadadmindataajarcontroller extends Controller
         $dataguru=DB::table('guru')->get();
         return view('siakad.admin.dataajar.index',compact('datas','pages','request','kelas','pelajaran','dataguru'));
     }
+    public function penilaian(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        #WAJIB
+        $pages='siakaddataajar';
+        $jmldata='0';
+        $datas='0';
+
+        $datas=DB::table('dataajar')
+        ->orderBy('kelas_nama','asc')
+        // ->orderBy('pelajaran_jurusan','desc')
+        ->paginate($this->paginationjml());
+
+        $kelas=DB::table('kelas')->get();
+        $pelajaran=DB::table('pelajaran')->get();
+        $dataguru=DB::table('guru')->get();
+        return view('siakad.admin.dataajar.indexpenilaian',compact('datas','pages','request','kelas','pelajaran','dataguru'));
+    }
     public function siakad_index_cari (Request $request)
     {
         if($this->checkauth('admin')==='404'){

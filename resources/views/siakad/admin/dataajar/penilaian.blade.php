@@ -1,5 +1,5 @@
 
-@section('title','Silabus')
+@section('title','Penilaian')
 @section('halaman')
 <div class="breadcrumb-item"><a href="{{route('siakaddataajar')}}"> Data Ajar</a></div>
 <div class="breadcrumb-item"> Index</div>
@@ -118,18 +118,9 @@
       $href='href='.$link2;
       $warna='info';
     @endphp
-    <a {{ $href }} type="button" class="btn btn-outline-{{ $warna }} btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
-        <i class="fas fa-inbox"></i>
-        {{-- <i class="fas fa-user-graduate" {{ $disabled }}></i> --}}
-    </a>
-
-    <a href="/admin/databanksoal/{{$data->id}}"
-    class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-        class="far fa-file-archive"></i> </a>
-
-    {{-- <a href="/admin/datainputnilai/{{$data->id}}"
+    <a href="/admin/datainputnilai/{{$data->id}}"
     class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Nilai Siswa!"> <i
-        class="fas fa-user-graduate"></i> </a> --}}
+        class="fas fa-user-graduate"></i> </a>
 
   </td>
 @endforeach
