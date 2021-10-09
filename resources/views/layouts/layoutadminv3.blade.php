@@ -329,16 +329,16 @@ crossorigin="anonymous"></script>
               <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a>
                 <ul class="dropdown-menu">
-                        <li @if ($pages==='tagihanatur')
+                        <li @if ($pages==='absensi')
                         class="active"
                         @endif >
-                        <a href="{{ route('tagihanatur') }}" class="nav-link"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a>
+                        <a href="{{ route('absensi') }}" class="nav-link"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a>
                         </li>
 
-                        <li @if ($pages==='tagihansiswa')
+                        <li @if ($pages==='absensi')
                         class="active"
                         @endif >
-                        <a href="{{ route('tagihansiswa') }}" class="nav-link"><i class="fas fa-times-circle"></i><span>Pelanggaran </span></a>
+                        <a href="{{ route('absensi') }}" class="nav-link"><i class="fas fa-times-circle"></i><span>Pelanggaran </span></a>
                         </li>
                 </ul>
               </li>
