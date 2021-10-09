@@ -14,10 +14,10 @@
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Custom style -->
-    
+
     <!-- Poppins font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       .loading {
         position: fixed;
@@ -127,7 +127,7 @@
             </a>
 
             <!-- Navigation links -->
-            <ul class="items-center hidden space-x-6 md:flex" x-data="navbarLinksState"> 
+            <ul class="items-center hidden space-x-6 md:flex" x-data="navbarLinksState">
               <template x-for="link in navigationLinks">
                 <li>
                   <a
@@ -212,7 +212,7 @@
 
                 <!-- CTA buttons -->
                 <div class="relative z-10 flex items-center justify-center w-full space-x-6">
-                  <a href="https://www.smkkromengan.sch.id/"
+                  <a href="#"
                     class="relative inline-block overflow-hidden border-2 border-purple-500 rounded-md  group focus:outline-none focus:ring focus:ring-purple-500 focus:ring-offset-1 dark:focus:ring-offset-gray-800"
                   >
                     <div class="absolute inset-0 flex items-center">
@@ -262,7 +262,7 @@
           >
             <a
               href="#"
-            
+
               class="transition-all hover:-rotate-12 hover:scale-105 hover:text-gray-800 dark:hover:text-gray-100"
             >
               <span class="sr-only">Source code on github</span>
@@ -306,6 +306,6 @@
         </footer>
       </div>
     </div>
-    
+
   </body>
 </html>
