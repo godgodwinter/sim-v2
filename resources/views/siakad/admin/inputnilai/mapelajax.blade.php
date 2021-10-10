@@ -227,7 +227,7 @@ data{{ $pages }}
 
                     <div class="card-body -mt-5">
                         <div class="table-responsive">
-                          <table class="table table-striped table-hover table-md" border="1">
+                          <table class="table table-striped  table-sm" >
                                 @yield('headtable')
 
                                 @yield('bodytable')

@@ -11,6 +11,123 @@ class Fungsi {
     // }
 
 
+
+    public static function tanggalgaringcreated($data){
+        $data2=explode(" ",$data);
+
+        $inputan=$data2[0];
+        $bulanindo='Januari';
+        $str=explode("-",$inputan);
+        return $str[2]."/".$str[1]."/".$str[0];
+    }
+    public static function tanggalgaring($inputan){
+        $bulanindo='Januari';
+        $str=explode("-",$inputan);
+        return $str[2]."/".$str[1]."/".$str[0];
+    }
+
+    public static function tanggalindocreated($data){
+        $data2=explode(" ",$data);
+
+        $inputan=$data2[0];
+
+        $bulanindo='Januari';
+        $str=explode("-",$inputan);
+                if($str[1]=='01'){
+                    $bulanindo='Januari';
+                }elseif($str[1]=='02'){
+                    $bulanindo='Februari';
+                }elseif($str[1]=='03'){
+                    $bulanindo='Maret';
+                }elseif($str[1]=='04'){
+                    $bulanindo='April';
+                }elseif($str[1]=='05'){
+                    $bulanindo='Mei';
+                }elseif($str[1]=='06'){
+                    $bulanindo='Juni';
+                }elseif($str[1]=='07'){
+                    $bulanindo='Juli';
+                }elseif($str[1]=='08'){
+                    $bulanindo='Agustus';
+                }elseif($str[1]=='09'){
+                    $bulanindo='September';
+                }elseif($str[1]=='10'){
+                    $bulanindo='Oktober';
+                }elseif($str[1]=='11'){
+                    $bulanindo='November';
+                }else{
+                    $bulanindo='Desember';
+                }
+
+        return $str[2]." ".$bulanindo." " .$str[0];
+    }
+    public static function tanggalindobln($inputan){
+        $bulanindo='Januari';
+        $str=explode("-",$inputan);
+                if($str[1]=='01'){
+                    $bulanindo='Januari';
+                }elseif($str[1]=='02'){
+                    $bulanindo='Februari';
+                }elseif($str[1]=='03'){
+                    $bulanindo='Maret';
+                }elseif($str[1]=='04'){
+                    $bulanindo='April';
+                }elseif($str[1]=='05'){
+                    $bulanindo='Mei';
+                }elseif($str[1]=='06'){
+                    $bulanindo='Juni';
+                }elseif($str[1]=='07'){
+                    $bulanindo='Juli';
+                }elseif($str[1]=='08'){
+                    $bulanindo='Agustus';
+                }elseif($str[1]=='09'){
+                    $bulanindo='September';
+                }elseif($str[1]=='10'){
+                    $bulanindo='Oktober';
+                }elseif($str[1]=='11'){
+                    $bulanindo='November';
+                }else{
+                    $bulanindo='Desember';
+                }
+
+        return $bulanindo." " .$str[0];
+    }
+    public static function tanggalindo($inputan){
+        $bulanindo='Januari';
+        $str=explode("-",$inputan);
+                if($str[1]=='01'){
+                    $bulanindo='Januari';
+                }elseif($str[1]=='02'){
+                    $bulanindo='Februari';
+                }elseif($str[1]=='03'){
+                    $bulanindo='Maret';
+                }elseif($str[1]=='04'){
+                    $bulanindo='April';
+                }elseif($str[1]=='05'){
+                    $bulanindo='Mei';
+                }elseif($str[1]=='06'){
+                    $bulanindo='Juni';
+                }elseif($str[1]=='07'){
+                    $bulanindo='Juli';
+                }elseif($str[1]=='08'){
+                    $bulanindo='Agustus';
+                }elseif($str[1]=='09'){
+                    $bulanindo='September';
+                }elseif($str[1]=='10'){
+                    $bulanindo='Oktober';
+                }elseif($str[1]=='11'){
+                    $bulanindo='November';
+                }else{
+                    $bulanindo='Desember';
+                }
+
+        return $str[2]." ".$bulanindo." " .$str[0];
+    }
+    public static function manipulasiTanggal($tgl,$jumlah=1,$format='days'){
+        $currentDate = $tgl;
+        return date('Y-m-d', strtotime($jumlah.' '.$format, strtotime($currentDate)));
+    }
+
     public static function kompetensidasargeneratekode($tapel_nama,$kelas_nama,$pelajaran_nama,$tipe='Pengetahuan'){
         $id=0;
         // $datas=Fungsi::periksakompetensidasar($id);

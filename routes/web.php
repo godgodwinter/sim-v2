@@ -276,6 +276,7 @@ Route::get('admin/penilaian', 'App\Http\Controllers\siakadadmindataajarcontrolle
 
 //ABSENSI-MENU
 Route::get('admin/absensi', 'App\Http\Controllers\absensicontroller@index')->name('absensi');
+Route::get('admin/absensi/detail/{id}', 'App\Http\Controllers\absensicontroller@detail')->name('absensi.detail');
 
 // SIAKAD-MENU-kompetensidasar
 Route::get('admin/kompetensidasar/{pelajaran_nama}/{kelas_nama}/{tapel_nama}', 'App\Http\Controllers\kompetensidasarcontroller@index')->name('kompetensidasar.index');

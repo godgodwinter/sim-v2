@@ -220,7 +220,7 @@ data{{ $pages }}
 
                   <div class="card-body -mt-5">
                       <div class="table-responsive">
-                          <table class="table table-bordered table-md">
+                          <table class="table table-striped  table-sm">
                           <tr>
                               @yield('headtable')
                           </tr>
