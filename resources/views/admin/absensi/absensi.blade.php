@@ -48,8 +48,7 @@ data{{ $pages }}
 
 {{-- DATATABLE --}}
 @section('headtable')
-  <th width="10%" class="text-center" style="vertical-align: middle;">
-    <input type="checkbox" id="chkCheckAll"> <label for="chkCheckAll"> All</label></th>
+  <th width="10%" class="text-center" style="vertical-align: middle;"> No </th>
   <th  style="vertical-align: middle;"> Nama kelas </th>
   <th style="vertical-align: middle;"> Walikelas kelas </th>
   <th width="200px" class="text-center" style="vertical-align: middle;">Aksi</th>
@@ -93,7 +92,8 @@ data{{ $pages }}
 </script>
 @foreach ($datas as $data)
 <tr id="sid{{ $data->id }}">
-    <td class="text-center">  <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">  {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+    <td class="text-center">
+         {{ ((($loop->index)+1)) }}</td>
     <td>{{ $data->nama }}</td>
     <td>{{ $data->guru_nomerinduk }} - {{ $data->guru_nama }}</td>
 
@@ -129,7 +129,39 @@ data{{ $pages }}
     <div class="row mt-sm-4">
 
       <div class="col-12 col-md-12 col-lg-12">
-        <x-layout-table2 pages="{{ $pages }}" pagination="{{ $datas->perPage() }}"/>
+
+
+                <div class="card ">
+                    <div class="form-group col-md-12 col-12 text-right mt-2">
+                    <button type="button" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                        Import
+                    </button>
+                    <a href="/admin/@yield('linkpages')/export" type="submit" value="Import" class="btn btn-icon btn-primary btn-sm"><span
+                            class="pcoded-micon"> <i class="fas fa-download"></i> Export </span></a>
+                </div>
+                {{-- @yield('datatable') --}}
+                {{-- {{ dd($datas) }} --}}
+
+                <div class="card-body">
+                <div class="table-responsive">
+
+                    <table class="table table-striped  table-sm">
+                    <tr>
+                        @yield('headtable')
+                    </tr>
+                        @yield('bodytable')
+
+                    </table>
+
+                </div>
+                <div class="card-footer text-right">
+                        @yield('foottable')
+                </div>
+                </div>
+
+                </div>
+
+
 
       </div>
 
