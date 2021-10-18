@@ -308,6 +308,20 @@ $message=session('status');
                                             @endphp
                                             <script>
                                                 $(document).ready(function () {
+
+                                                        function changeHandler(val)
+                                                        {
+                                                            if (Number(val) > 100)
+                                                            {
+                                                            val = 100
+                                                            }
+
+                                                            if (Number(val) < 0){
+                                                                val = 0
+                                                            }
+                                                            return val;
+                                                        }
+
                                                         var nilai=0;
                                                         var nis=0;
                                                         var dm=0;
@@ -317,6 +331,7 @@ $message=session('status');
 
                                                     inputnilai{{$data->nis}}{{ $dm->id }}.click(function (e) {
                                                         e.preventDefault(e);
+
                                                         inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',false);
                                                         // alert(inputnilai{{$data->nis}}{{ $dm->id }}.val());
                                                         console.log('klik inputan');
@@ -326,9 +341,12 @@ $message=session('status');
                                                     inputnilai{{$data->nis}}{{ $dm->id }}.focusout(function (e) {
                                                         // e.preventDefault(e);
                                                         // inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
+                                                        let nilai=0;
+                                                        nilai=changeHandler(inputnilai{{$data->nis}}{{ $dm->id }}.val());
                                                              fetch_customer_data(inputnilai{{$data->nis}}{{ $dm->id }}.val(),nis{{$data->nis}}{{ $dm->id }}.val(),dm{{$data->nis}}{{ $dm->id }}.val());
                                                             console.log(inputnilai{{$data->nis}}{{ $dm->id }}.val());
                                                         console.log('kirim update');
+                                                        inputnilai{{$data->nis}}{{ $dm->id }}.val(nilai);
                                                         inputnilai{{$data->nis}}{{ $dm->id }}.prop('readonly',true);
                                                     });
 
