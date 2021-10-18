@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\absensi;
 use App\Models\kelas;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -71,5 +72,45 @@ $dates = $period->toArray();
         ->paginate($this->paginationjml());
 
         return view('admin.absensi.detail',compact('datas','pages','request','kelas','dates'));
+    }
+    public function store(Request $request,kelas $id)
+    {
+        // dd($request,$id);
+        $ambildata=DB::table('absensi')
+            ->where('siswa_nama',$request->siswa_nama)
+            ->where('siswa_nis',$request->siswa_nis)
+            ->where('kelas_nama',$id->nama)
+            ->where('tanggal_masuk',$request->tanggal_masuk)
+            ->count();
+        if($ambildata>0){
+
+            absensi::where('siswa_nama',$request->siswa_nama)
+            ->where('siswa_nis',$request->siswa_nis)
+            ->where('kelas_nama',$id->nama)
+            ->where('tanggal_masuk',$request->tanggal_masuk)
+                ->update([
+                    'ket'=>$request->ket,
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+        }else{
+            DB::table('absensi')->insert(
+                array(
+                    'siswa_nama'     =>   $request->siswa_nama,
+                    'siswa_nis'     =>   $request->siswa_nis,
+                    'kelas_nama'     =>   $id->nama,
+                    // 'tapel_nama'     =>   $kategorisoal_nama,
+                    'tanggal_masuk'     =>   $request->tanggal_masuk,
+                    'ket'     =>   $request->ket,
+                    // 'guru_nomerinduk'     =>   $kodegenerate,
+                    // 'guru_nama'     =>   $kodegenerate,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+        }
+
+        return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+
     }
 }

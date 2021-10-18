@@ -115,7 +115,35 @@ data{{ $pages }}
                     $tgl=$dates[$i]->format('Y-m-d');
                 @endphp
                 {{-- {{$tgl}} --}}
-                <label for=""  data-toggle="modal" data-target="#modal{{$data->nis}}-{{$tgl}}">-</label>
+                @php
+                $cek=DB::table('absensi')
+                            ->where('siswa_nis',$data->nis)
+                            ->where('siswa_nama',$data->nama)
+                            ->where('kelas_nama',$kelas->nama)
+                            ->where('tanggal_masuk',$tgl)
+                            ->count();
+
+                $tampilkan='-';
+                            if($cek>0){
+                $ambildata=DB::table('absensi')
+                            ->where('siswa_nis',$data->nis)
+                            ->where('siswa_nama',$data->nama)
+                            ->where('kelas_nama',$kelas->nama)
+                            ->where('tanggal_masuk',$tgl)
+                            ->first();
+                if($ambildata->ket=='Tanpa Keterangan'){
+                    $tampilkan='T';
+                }elseif($ambildata->ket=='Ijin'){
+                    $tampilkan='I';
+                }elseif($ambildata->ket=='Sakit'){
+                    $tampilkan='S';
+                }else{
+                    $tampilkan='-';
+                }
+
+                            }
+                @endphp
+                <label for=""  data-toggle="modal" data-target="#modal{{$data->nis}}-{{$tgl}}">{{$tampilkan}}</label>
 
             </td>
     @endforeach
@@ -246,9 +274,12 @@ data{{ $pages }}
 
                         <div class="form-group col-md-12 col-12 mt-0">
                             <label for="nama">Pilih Absensi </label>
-
-                        <select class="form-control form-control-sm" name="guru_nomerinduk">
-                            <option selected>Ijin</option>
+                        <input type="hidden" name="siswa_nis" value="{{$data->nis}}">
+                        <input type="hidden" name="siswa_nama" value="{{$data->nama}}">
+                        <input type="hidden" name="tanggal_masuk" value="{{$tgl}}">
+                        <select class="form-control form-control-sm" name="ket">
+                            <option selected>-</option>
+                            <option>Ijin</option>
                             <option>Sakit</option>
                             <option>Tanpa Keterangan</option>
 
