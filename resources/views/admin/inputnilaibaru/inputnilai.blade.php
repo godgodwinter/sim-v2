@@ -142,7 +142,7 @@ $message=session('status');
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered" >
 
-                            <tr>
+                            <tr style="background-color: #f9f9f9">
                                 <th width="10px" class="text-center" rowspan="2" style="vertical-align: middle;"> No  </th>
                                 <th  class="text-center" rowspan="2" style="vertical-align: middle;"> Nama </th>
                                 @foreach ($datakd as $dkd)
@@ -210,7 +210,7 @@ $message=session('status');
                                         @endphp
                                         @if ($jmldatamateri>0)
                                             @foreach ($datamateri as $dm)
-                                            <td class="text-center" width="10%">
+                                            <td class="text-center" width="10%" style="background-color: #f9f9f9">
 
                                     {{-- <input type="checkbox" id="chkCheckAllmateri{{$dm->id}}"> <label for="chkCheckAllmateri{{$dm->id}}">  {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}} </label> --}}
                                     {{$kodeprefix}}.{{$dkd->kode}}.{{$loop->index+1}}
@@ -224,7 +224,7 @@ $message=session('status');
                                              </td>
                                             @endforeach
                                         @else
-                                            <td class="text-center" width="10%"> - </td>
+                                            <td class="text-center" width="10%" style="background-color: #f9f9f9"> - </td>
                                         @endif
                                 @endforeach
                             </tr>
@@ -232,7 +232,7 @@ $message=session('status');
                             @foreach ($datasiswa as $data)
                                  <tr>
                                 <td  style="vertical-align: middle;" class="text-center">{{$loop->index+1}}</td>
-                                <td class="text-capitalize">
+                                <td class="text-capitalize" >
                                     {{-- <input type="checkbox" id="chkCheckAll{{$data->nis}}"> <label for="chkCheckAll{{$data->nis}}">  {{$data->nama}}</label> --}}
                                     {{$data->nama}}
                                 </td>

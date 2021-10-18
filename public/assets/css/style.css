@@ -936,7 +936,7 @@ select.form-control:not([size]):not([multiple]) {
     padding: 10px 15px; }
   .table.table-bordered td,
   .table.table-bordered th {
-    border-color: #cecbcb; }
+    border-color: #f0ebeb; }
 
 .table-links {
   color: #34395e;
