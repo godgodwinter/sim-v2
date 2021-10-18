@@ -115,7 +115,6 @@ class kompetensidasarcontroller extends Controller
 
         $request->validate([
             'nama'=>'required',
-            'link'=>'required'
         ],
         [
             'nama.required'=>'Nama harus diisi'
@@ -123,13 +122,69 @@ class kompetensidasarcontroller extends Controller
 
         ]);
 
-            // dd($id);
+
+        $files = $request->file('link');
+        $namafileku=null;
+        if($files!=null){
+
+        $request->validate([
+            'nama'=>'required',
+            'link' => 'max:10000|mimes:pdf,png,jpeg,xml,ppt,pptx,doc,docx,xls,xlsx', //10MB
+        ],
+        [
+            'nama.required'=>'Nama Harus diisi',
+
+        ]);
+            // dd(!Input::hasFile('files'));
+            // dd($files,'aaa');
+            $namafilebaru=date('YmdHis');
+
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('link');
+                      // nama file
+            echo 'File Name: '.$file->getClientOriginalName();
+            echo '<br>';
+
+                      // ekstensi file
+            echo 'File Extension: '.$file->getClientOriginalExtension();
+            // dd()
+            echo '<br>';
+
+                      // real path
+            echo 'File Real Path: '.$file->getRealPath();
+            echo '<br>';
+
+                      // ukuran file
+            echo 'File Size: '.$file->getSize();
+            echo '<br>';
+
+                      // tipe mime
+            echo 'File Mime Type: '.$file->getMimeType();
+
+                      // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'materi/';
+
+                    // upload file
+            $file->move($tujuan_upload,"materi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
+                $namafileku="materi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
+
+
         materipokok::where('id',$id->id)
         ->update([
             'nama'=>$request->nama,
-            'link'=>$request->link,
+            'link'=>$namafileku,
             'updated_at'=>date("Y-m-d H:i:s")
         ]);
+            }else{
+            materipokok::where('id',$id->id)
+            ->update([
+                'nama'=>$request->nama,
+                'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+            }
+
+
     }
     public function materipokokupdate(Request $request, materipokok $id)
     {
@@ -205,6 +260,17 @@ class kompetensidasarcontroller extends Controller
     }
 
     public function materistore(Request $request,$pelajaran_nama,$kelas_nama,$tapel_nama){
+        // dd($request);
+
+        $request->validate([
+            'nama'=>'required',
+            'link' => 'max:10000|mimes:pdf,png,jpeg,xml,ppt,pptx,doc,docx,xls,xlsx', //10MB
+        ],
+        [
+            'nama.required'=>'Nama Harus diisi',
+
+        ]);
+
         $p_nama=base64_decode($pelajaran_nama);
         $k_nama=base64_decode($kelas_nama);
         $t_nama=base64_decode($tapel_nama);
@@ -212,6 +278,43 @@ class kompetensidasarcontroller extends Controller
         $ambildatakompetensidasar=DB::table('kompetensidasar')->where('id',$request->kompetensidasar_id)->first();
         // dd($request,$ambildatakompetensidasar);
 
+        $files = $request->file('link');
+
+        $namafileku=null;
+        if($files!=null){
+            // dd(!Input::hasFile('files'));
+            // dd($files,'aaa');
+            $namafilebaru=date('YmdHis');
+
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('link');
+                      // nama file
+            echo 'File Name: '.$file->getClientOriginalName();
+            echo '<br>';
+
+                      // ekstensi file
+            echo 'File Extension: '.$file->getClientOriginalExtension();
+            // dd()
+            echo '<br>';
+
+                      // real path
+            echo 'File Real Path: '.$file->getRealPath();
+            echo '<br>';
+
+                      // ukuran file
+            echo 'File Size: '.$file->getSize();
+            echo '<br>';
+
+                      // tipe mime
+            echo 'File Mime Type: '.$file->getMimeType();
+
+                      // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'materi/';
+
+                    // upload file
+            $file->move($tujuan_upload,"materi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
+                $namafileku="materi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
+            }
 
 
         $cekdatas=DB::table('materipokok')->where('pelajaran_nama',$p_nama)
@@ -231,7 +334,8 @@ class kompetensidasarcontroller extends Controller
        DB::table('materipokok')->insert(
         array(
                'nama'     =>   $request->nama,
-               'link'     =>   $request->link,
+               'link' => $namafileku,
+            //    'link'     =>   $request->link,
                'kompetensidasar_tipe'     =>   $ambildatakompetensidasar->tipe,
                'kompetensidasar_nama'     =>   $ambildatakompetensidasar->nama,
                'kompetensidasar_kode'     =>   $ambildatakompetensidasar->kode,

@@ -73,7 +73,7 @@ $message=session('status');
 
         <div class="col-12 col-md-12 col-lg-4">
             <div class="card">
-                <form action="/admin/materipokok/edit/{{$datas->id}}" method="post">
+                <form action="/admin/materipokok/edit/{{$datas->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <span class="btn btn-icon btn-light"><i class="fas fa-feather"></i> EDIT</span>
@@ -103,9 +103,9 @@ $message=session('status');
 
                             <div class="form-group col-md-12 col-12">
                                 <label for="link">Link Materi</label>
-                                <input type="link" name="link" id="link"
-                                    class="form-control @error('link') is-invalid @enderror" value="{{$datas->link}}"
-                                    required>
+                                <input type="file" name="link" id="link"
+                                    class="form-control @error('link') is-invalid @enderror" value="{{old('link')}}"
+                                    >
                                 @error('link')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
                             </div>

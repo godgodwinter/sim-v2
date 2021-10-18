@@ -28,7 +28,7 @@ class pemasukanController extends Controller
         $year=date('Y');
 
 
-        
+
 
         $datas=DB::table('pemasukan')
         ->whereMonth('tglbayar', '=', $month)
@@ -117,7 +117,7 @@ if($yearmonth!==null){
             // dd($request);
         pemasukan::create($request->all());
         return redirect()->back()->with('status','Data berhasil di tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
-   
+
     }
 
     /**
@@ -137,7 +137,7 @@ if($yearmonth!==null){
         $year=date('Y');
 
 
-        
+
 
         $datas=DB::table('pemasukan')
         ->whereMonth('tglbayar', '=', $month)
@@ -203,12 +203,12 @@ if($yearmonth!==null){
     {
         pemasukan::destroy($pemasukan->id);
         return redirect(URL::to('/').'/admin/pemasukan')->with('status','Data berhasil dihapus!')->with('tipe','danger')->with('icon','fas fa-trash');
-    
+
     }
 
     public function deletechecked(Request $request)
     {
-        
+
         $ids=$request->ids;
 
         // $datasiswa = DB::table('siswa')->where('id',$ids)->get();
@@ -221,9 +221,9 @@ if($yearmonth!==null){
         // DB::table('tagihansiswa')->where('siswa_nis', $ids)->where('tapel_nama',$this->tapelaktif())->delete();
         pemasukan::whereIn('id',$ids)->delete();
 
-        
+
         // load ulang
-     
+
         #WAJIB
         $pages='pemasukan';
         $jmldata='0';
@@ -232,7 +232,7 @@ if($yearmonth!==null){
         $year=date('Y');
 
 
-        
+
 
         $datas=DB::table('pemasukan')
         ->whereMonth('tglbayar', '=', $month)

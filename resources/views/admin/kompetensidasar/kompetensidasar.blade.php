@@ -171,7 +171,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
             $kompetensidasar_kode=base64_encode($dkd->kode);
             $kompetensidasar_tipe=base64_encode($dkd->tipe);
             @endphp
-            <a href="{{$materi->link}}" target="_blank" class="btn btn-info btn-sm" data-toggle="tooltip"
+            <a href="{{asset('/').$materi->link}}" target="_blank" class="btn btn-info btn-sm" data-toggle="tooltip"
                 data-placement="top" title="Materi untuk Siswa!"> Link Materi
                 {{ $kodetampil.$dkd->kode }}.{{$loop->index+1}} </a>
 
@@ -462,7 +462,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form action="/admin/kompetensidasar/{{$pelajaran_nama}}/{{$kelas_nama}}/{{$tapel_nama}}/materi"
-            method="post">
+            method="post" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Materi</h5>
@@ -519,7 +519,7 @@ $totalrow=$jmlkd+$jmlmateriperkd+1;
 
                             <div class="form-group col-md-12 col-12">
                                 <label for="link">Link Materi</label>
-                                <input type="link" name="link" id="link"
+                                <input type="file" name="link" id="link"
                                     class="form-control @error('link') is-invalid @enderror" value="{{old('link')}}"
                                     required>
                                 @error('link')<div class="invalid-feedback"> {{$message}}</div>

@@ -16,7 +16,7 @@ class CreateMateripokokTable extends Migration
         Schema::create('materipokok', function (Blueprint $table) {
             $table->id();
             $table->longText('nama')->nullable();
-            $table->string('link')->nullable();
+            $table->longText('link')->nullable();
             $table->string('tapel_nama')->nullable();
             $table->string('kelas_nama')->nullable();
             $table->string('pelajaran_nama')->nullable();
