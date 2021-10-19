@@ -14,7 +14,7 @@ class CreatePagawaiTable extends Migration
     public function up()
     {
         Schema::create('pegawai', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('nig')->nullable();
             $table->string('kategori_id')->nullable(); //kepsek/admin

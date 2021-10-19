@@ -14,7 +14,7 @@ class CreateArsipKelasTable extends Migration
     public function up()
     {
         Schema::create('arsip_kelas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('arsipkode')->nullable();
             $table->timestamps();

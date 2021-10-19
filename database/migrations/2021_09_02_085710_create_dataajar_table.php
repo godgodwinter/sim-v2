@@ -14,7 +14,7 @@ class CreateDataajarTable extends Migration
     public function up()
     {
         Schema::create('dataajar', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('pelajaran_nama')->nullable();
             $table->string('pelajaran_tipepelajaran')->nullable();
             $table->string('pelajaran_jurusan')->nullable();

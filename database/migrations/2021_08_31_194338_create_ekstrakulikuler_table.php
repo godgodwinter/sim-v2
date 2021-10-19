@@ -14,7 +14,7 @@ class CreateEkstrakulikulerTable extends Migration
     public function up()
     {
         Schema::create('ekstrakulikuler', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('tapel_nama')->nullable();
             $table->timestamps();

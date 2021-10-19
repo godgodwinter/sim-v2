@@ -14,7 +14,7 @@ class CreateArsipUsersTable extends Migration
     public function up()
     {
         Schema::create('arsip_users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('email_verified_at')->nullable();

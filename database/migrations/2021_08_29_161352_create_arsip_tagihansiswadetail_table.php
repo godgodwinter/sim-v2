@@ -14,7 +14,7 @@ class CreateArsipTagihansiswadetailTable extends Migration
     public function up()
     {
         Schema::create('arsip_tagihansiswadetail', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('siswa_nama')->nullable();
             $table->string('siswa_nis')->nullable();
             $table->string('tapel_nama')->nullable();

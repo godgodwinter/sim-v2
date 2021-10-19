@@ -14,7 +14,7 @@ class CreateNilaiekstrakulikulerTable extends Migration
     public function up()
     {
         Schema::create('nilaiekstrakulikuler', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('siswa_nama')->nullable();
             $table->string('siswa_nis')->nullable();
             $table->string('guru_nomerinduk')->nullable();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Fungsi;
+use App\Http\Controllers\adminpelanggarancontroller;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -360,6 +361,20 @@ Route::delete('admin/siakadekstrakulikuler/{ekstrakulikuler}', 'App\Http\Control
 Route::get('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel')->name('siakad.inputnilai.mapel');
 Route::post('admin/inputnilai/mapelajax/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel_store_ajax')->name('siakad.inputnilai.mapelajaxstore');
 Route::post('admin/inputnilai/mapel/{dataajar}', 'App\Http\Controllers\siakadadmininputnilaicontroller@mapel_store')->name('siakad.inputnilai.mapel.store');
+
+
+    //pelanggaran
+    Route::get('/admin/pelanggaran', [adminpelanggarancontroller::class, 'index'])->name('pelanggaran');
+    Route::get('/admin/pelanggaran/{id}', [adminpelanggarancontroller::class, 'edit'])->name('pelanggaran.edit');
+    Route::put('/admin/pelanggaran/{id}', [adminpelanggarancontroller::class, 'update'])->name('pelanggaran.update');
+    Route::delete('/admin/pelanggaran/{id}', [adminpelanggarancontroller::class, 'destroy'])->name('pelanggaran.destroy');
+    Route::get('/admin/datapelanggaran/cari', [adminpelanggarancontroller::class, 'cari'])->name('pelanggaran.cari');
+    Route::get('/admin/datapelanggaran/create', [adminpelanggarancontroller::class, 'create'])->name('pelanggaran.create');
+    Route::post('/admin/datapelanggaran', [adminpelanggarancontroller::class, 'store'])->name('pelanggaran.store');
+    Route::delete('/admin/datapelanggaran/multidel', [adminpelanggarancontroller::class, 'multidel'])->name('pelanggaran.multidel');
+
+
+    Route::get('/admin/pelanggaran2', [adminpelanggarancontroller::class, 'index'])->name('pelanggarandetail');
 
 // Route::get('admin/inputnilai/kelas/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@inputnilai')->name('siakad.inputnilai.kelas');
 Route::get('admin/inputnilai/kelas/{kelas}', 'App\Http\Controllers\siakadadmininputnilaicontroller@inputnilaiajax')->name('siakad.inputnilaiajax.kelas');

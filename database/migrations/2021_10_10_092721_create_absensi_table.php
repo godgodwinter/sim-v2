@@ -14,7 +14,7 @@ class CreateAbsensiTable extends Migration
     public function up()
     {
         Schema::create('absensi', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('siswa_nama')->nullable();
             $table->string('siswa_nis')->nullable();
             $table->string('kelas_nama')->nullable();

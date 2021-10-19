@@ -14,7 +14,7 @@ class CreateMateripokokTable extends Migration
     public function up()
     {
         Schema::create('materipokok', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->longText('nama')->nullable();
             $table->longText('link')->nullable();
             $table->string('tapel_nama')->nullable();

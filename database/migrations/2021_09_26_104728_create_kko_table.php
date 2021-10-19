@@ -14,7 +14,7 @@ class CreateKkoTable extends Migration
     public function up()
     {
         Schema::create('kko', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable(); // kata-kata
             $table->string('tipe')->nullable();  // c1,c2= mudah ,, ,c3,c4 sedang ,, c5,c6 = sulit
             $table->string('keterangan')->nullable();  //sulit , sedang, mudah

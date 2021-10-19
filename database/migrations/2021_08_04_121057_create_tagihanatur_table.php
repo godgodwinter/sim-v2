@@ -14,7 +14,7 @@ class CreateTagihanaturTable extends Migration
     public function up()
     {
         Schema::create('tagihanatur', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('kelas_nama')->nullable();
             $table->string('tapel_nama')->nullable();
             $table->string('nominaltagihan')->nullable();

@@ -14,7 +14,7 @@ class CreateArsipSiswaTable extends Migration
     public function up()
     {
         Schema::create('arsip_siswa', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('nis')->nullable();
             $table->string('agama')->nullable();

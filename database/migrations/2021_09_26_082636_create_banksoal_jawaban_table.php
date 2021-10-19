@@ -14,7 +14,7 @@ class CreateBanksoalJawabanTable extends Migration
     public function up()
     {
         Schema::create('banksoal_jawaban', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->longText('jawaban')->nullable();
             $table->string('nilai')->nullable();
             $table->string('kodegenerate')->nullable();

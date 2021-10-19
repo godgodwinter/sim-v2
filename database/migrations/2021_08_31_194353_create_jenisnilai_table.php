@@ -14,7 +14,7 @@ class CreateJenisnilaiTable extends Migration
     public function up()
     {
         Schema::create('jenisnilai', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('tapel_nama')->nullable();
             $table->timestamps();

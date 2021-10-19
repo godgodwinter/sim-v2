@@ -253,6 +253,11 @@ crossorigin="anonymous"></script>
                         @endif >
                         <a href="{{ route('siakadpelajaran') }}" class="nav-link"><i class="fab fa-monero"></i><span>Mata Pelajaran</span></a>
                         </li>
+                        <li @if ($pages==='pelanggaran')
+                        class="active"
+                        @endif >
+                        <a href="{{ route('pelanggaran') }}" class="nav-link"><i class="fas fa-times-circle"></i><span>Pelanggaran </span></a>
+                        </li>
                 </ul>
               </li>
 
@@ -335,10 +340,10 @@ crossorigin="anonymous"></script>
                         <a href="{{ route('absensi') }}" class="nav-link"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a>
                         </li>
 
-                        <li @if ($pages==='absensi')
+                        <li @if ($pages==='pelanggarandetail')
                         class="active"
                         @endif >
-                        <a href="{{ route('absensi') }}" class="nav-link"><i class="fas fa-times-circle"></i><span>Pelanggaran </span></a>
+                        <a href="{{ route('pelanggarandetail') }}" class="nav-link"><i class="fas fa-times-circle"></i><span>Pelanggaran </span></a>
                         </li>
                 </ul>
               </li>

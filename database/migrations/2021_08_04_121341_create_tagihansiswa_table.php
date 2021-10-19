@@ -14,7 +14,7 @@ class CreateTagihansiswaTable extends Migration
     public function up()
     {
         Schema::create('tagihansiswa', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('siswa_nama')->nullable();
             $table->string('siswa_nis')->nullable();
             $table->string('tapel_nama')->nullable();

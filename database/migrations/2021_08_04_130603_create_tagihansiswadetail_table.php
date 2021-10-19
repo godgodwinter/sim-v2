@@ -14,7 +14,7 @@ class CreateTagihansiswadetailTable extends Migration
     public function up()
     {
         Schema::create('tagihansiswadetail', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('tagihansiswa_id')->nullable();
             $table->string('nominal')->nullable();
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreatePemasukanTable extends Migration
     public function up()
     {
         Schema::create('pemasukan', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('nominal')->nullable();
             $table->string('kategori_id')->nullable();
