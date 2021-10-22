@@ -307,37 +307,22 @@ class Fungsi {
 
     }
 
-    public static function sekolahnama(){
+    public static function app_nama(){
 
         $settings = DB::table('settings')->first();
-        $data=$settings->sekolahnama;
+        $data=$settings->app_nama;
         return $data;
 
     }
 
-    public static function sekolahalamat(){
+    public static function app_namapendek(){
 
         $settings = DB::table('settings')->first();
-        $data=$settings->sekolahalamat;
+        $data=$settings->app_namapendek;
         return $data;
 
     }
 
-    public static function sekolahtelp(){
-
-        $settings = DB::table('settings')->first();
-        $data=$settings->sekolahtelp;
-        return $data;
-
-    }
-
-    public static function aplikasijudul(){
-
-        $settings = DB::table('settings')->first();
-        $data=$settings->aplikasijudul;
-        return $data;
-
-    }
 
     public static function tapelaktif(){
 
@@ -347,13 +332,6 @@ class Fungsi {
 
     }
 
-    public static function aplikasijudulsingkat(){
-
-        $settings = DB::table('settings')->first();
-        $data=$settings->aplikasijudulsingkat;
-        return $data;
-
-    }
     public static function nominaltagihandefault(){
 
         $settings = DB::table('settings')->first();

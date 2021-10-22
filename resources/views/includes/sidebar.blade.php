@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{route('dashboard')}}">app_nama</a>
+            <a href="{{route('dashboard')}}">{{Fungsi::app_nama()}}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{route('dashboard')}}">app_namapendek</a>
+            <a href="{{route('dashboard')}}">{{Fungsi::app_namapendek()}}</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Layout v4.0</li>
@@ -16,7 +16,7 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Pengaturan</span></a>
                 <ul class="dropdown-menu">
 
-                    <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-cog"></i> <span>Aplikasi</span></a></li>
+                    <li {{$pages=='settings' ? 'class=active' : ''}}><a class="nav-link" href="{{route('settings')}}"><i class="fas fa-cog"></i> <span>Aplikasi</span></a></li>
                     <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-retweet"></i> <span>Reset Password</span></a></li>
                     <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-key"></i><span>Password Ujian</span></a></li>
                 </ul>

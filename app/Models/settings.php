@@ -12,14 +12,16 @@ class settings extends Model
     use HasFactory;
 
     protected $fillable = [
+        'app_nama',
+        'app_namapendek',
         'paginationjml',
-        'tapelaktif',
-        'sekolahnama',
-        'sekolahalamat',
-        'sekolahtelp',
-        'aplikasijudul',
-        'aplikasijudulsingkat',
-        'nominaltagihandefault',
+        'lembaga_nama',
+        'lembaga_jalan',
+        'lembaga_telp',
+        'lembaga_kota',
+        'lembaga_logo',
+        'moodleuser',
+        'moodlepass',
         'passdefaultsiswa',
         'passdefaultpegawai',
         'passdefaultortu',
@@ -27,6 +29,6 @@ class settings extends Model
         'sekolahttd',
         'sekolahttd2',
         'minimalpembayaranujian',
-        'semesterakatif',
+        'semesteraktif',
     ];
 }
