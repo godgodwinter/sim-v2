@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admingurucontroller;
+use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
@@ -57,6 +58,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/dataguru/create', [admingurucontroller::class, 'create'])->name('guru.create');
     Route::post('/admin/dataguru', [admingurucontroller::class, 'store'])->name('guru.store');
     Route::delete('/admin/dataguru/multidel', [admingurucontroller::class, 'multidel'])->name('guru.multidel');
+
+
+    //kelas
+    Route::get('/admin/kelas', [adminkelascontroller::class, 'index'])->name('kelas');
+    Route::get('/admin/kelas/{id}', [adminkelascontroller::class, 'edit'])->name('kelas.edit');
+    Route::put('/admin/kelas/{id}', [adminkelascontroller::class, 'update'])->name('kelas.update');
+    Route::delete('/admin/kelas/{id}', [adminkelascontroller::class, 'destroy'])->name('kelas.destroy');
+    Route::get('/admin/datakelas/cari', [adminkelascontroller::class, 'cari'])->name('kelas.cari');
+    Route::get('/admin/datakelas/create', [adminkelascontroller::class, 'create'])->name('kelas.create');
+    Route::post('/admin/datakelas', [adminkelascontroller::class, 'store'])->name('kelas.store');
+    Route::delete('/admin/datakelas/multidel', [adminkelascontroller::class, 'multidel'])->name('kelas.multidel');
 
     //Seeder
     Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');

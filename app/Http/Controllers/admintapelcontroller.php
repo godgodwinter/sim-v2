@@ -113,26 +113,11 @@ class admintapelcontroller extends Controller
         ]);
 
 
-        if($request->password!=null OR $request->password!=''){
-
-        $request->validate([
-
-        ],
-        [
+        tapel::where('id',$id->id)
+        ->update([
+            'nama'     =>   $request->nama,
+           'updated_at'=>date("Y-m-d H:i:s")
         ]);
-            tapel::where('id',$id->id)
-            ->update([
-                'nama'     =>   $request->nama,
-               'updated_at'=>date("Y-m-d H:i:s")
-            ]);
-        }else{
-            tapel::where('id',$id->id)
-            ->update([
-                'nama'     =>   $request->nama,
-               'updated_at'=>date("Y-m-d H:i:s")
-            ]);
-
-        }
 
 
     return redirect()->route('tapel')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
