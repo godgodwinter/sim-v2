@@ -46,9 +46,8 @@ class adminmapelcontroller extends Controller
         $pages='mapel';
 
         $tipepelajaran=DB::table('kategori')->where('prefix','tipepelajaran')->get();
-        $jurusan=DB::table('kategori')->where('prefix','jurusan')->get();
 
-        return view('pages.admin.mapel.create',compact('pages','tipepelajaran','jurusan'));
+        return view('pages.admin.mapel.create',compact('pages','tipepelajaran'));
     }
 
     public function store(Request $request)
@@ -69,31 +68,28 @@ class adminmapelcontroller extends Controller
             $request->validate([
                 'nama'=>'required',
                 'kkm' => 'required|min:1|max:100',
-                'tipepelajaran' => 'required',
+                'tipe' => 'required',
 
             ],
             [
                 'nama.nama'=>'Nama harus diisi',
             ]);
 
-            if(($request->tipepelajaran!='C2. Dasar Program Keahlian')&&($request->tipepelajaran!='C3. Kompetensi Keahlian')){
-                $jurusan='semua';
-            }else{
-                $jurusan=$request->jurusan;
-            }
             DB::table('mapel')->insert(
                 array(
                         'nama'     =>   $request->nama,
-                        'tipepelajaran'     =>   $request->tipepelajaran,
-                        'jurusan'     =>   $jurusan,
+                        'tipe'     =>   $request->tipe,
+                        'tingkatan'     =>   $request->tingkatan,
+                        'jurusan'     =>   $request->jurusan,
                         'kkm'     =>   $request->kkm,
+                        'semester'     =>   $request->semester,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
 
 
 
-    return redirect()->route('mapel')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+                return redirect()->route('sync.mapeltodataajar')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 
@@ -101,7 +97,8 @@ class adminmapelcontroller extends Controller
     {
         $pages='mapel';
 
-        return view('pages.admin.mapel.edit',compact('pages','id'));
+        $tipepelajaran=DB::table('kategori')->where('prefix','tipepelajaran')->get();
+        return view('pages.admin.mapel.edit',compact('pages','id','tipepelajaran'));
     }
     public function update(mapel $id,Request $request)
     {
@@ -126,11 +123,16 @@ class adminmapelcontroller extends Controller
         mapel::where('id',$id->id)
         ->update([
             'nama'     =>   $request->nama,
+            'tipe'     =>   $request->tipe,
+            'tingkatan'     =>   $request->tingkatan,
+            'jurusan'     =>   $request->jurusan,
+            'kkm'     =>   $request->kkm,
+            'semester'     =>   $request->semester,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 
 
-    return redirect()->route('mapel')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('sync.mapeltodataajar')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(mapel $id){
 

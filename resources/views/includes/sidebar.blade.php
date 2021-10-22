@@ -33,20 +33,20 @@
                     <li {{$pages=='mapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('mapel')}}"><i class="fab fa-monero"></i><span>Mata Pelajaran</span></a></li>
                 </ul>
             </li>
-            <li class="nav-item dropdown ">
+            {{-- <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-money-check-alt"></i>  <span>Pembiayaan</span></a>
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-fire"></i> <span>Atur Tagihan</span></a></li>
                     <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-graduation-cap"></i> <span>Tagihan Pembelajaran</span></a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>   <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
 
-                    <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fab fa-monero"></i> <span>Mata Pelajaran</span></a></li>
-                    <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-microchip"></i> <span>Silabus</span></a></li>
+                    <li {{$pages=='mapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('mapel')}}"><i class="fab fa-monero"></i> <span>Mata Pelajaran</span></a></li>
+                    <li {{$pages=='silabus' ? 'class=active' : ''}}><a class="nav-link" href="{{route('silabus')}}"><i class="fas fa-microchip"></i> <span>Silabus</span></a></li>
                     <li {{$pages=='kelas' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="far fa-star"></i><span>Penilaian</span></a></li>
                 </ul>
             </li>

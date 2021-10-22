@@ -7,7 +7,9 @@ use App\Http\Controllers\adminmapelcontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
+use App\Http\Controllers\adminsilabuscontroller;
 use App\Http\Controllers\adminsiswacontroller;
+use App\Http\Controllers\adminsynccontroller;
 use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
 use Illuminate\Support\Facades\Route;
@@ -99,6 +101,20 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datamapel/create', [adminmapelcontroller::class, 'create'])->name('mapel.create');
     Route::post('/admin/datamapel', [adminmapelcontroller::class, 'store'])->name('mapel.store');
     Route::delete('/admin/datamapel/multidel', [adminmapelcontroller::class, 'multidel'])->name('mapel.multidel');
+
+
+    //silabus
+    Route::get('/admin/silabus', [adminsilabuscontroller::class, 'index'])->name('silabus');
+    Route::get('/admin/silabus/{id}', [adminsilabuscontroller::class, 'edit'])->name('silabus.edit');
+    Route::put('/admin/silabus/{id}', [adminsilabuscontroller::class, 'update'])->name('silabus.update');
+    Route::delete('/admin/silabus/{id}', [adminsilabuscontroller::class, 'destroy'])->name('silabus.destroy');
+    Route::get('/admin/datasilabus/cari', [adminsilabuscontroller::class, 'cari'])->name('silabus.cari');
+    Route::get('/admin/datasilabus/create', [adminsilabuscontroller::class, 'create'])->name('silabus.create');
+    Route::post('/admin/datasilabus', [adminsilabuscontroller::class, 'store'])->name('silabus.store');
+    Route::delete('/admin/datasilabus/multidel', [adminsilabuscontroller::class, 'multidel'])->name('silabus.multidel');
+
+    //sync
+    Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');
 
     //Seeder
     Route::post('/admin/seeder/kelas', [adminseedercontroller::class, 'kelas'])->name('seeder.kelas');

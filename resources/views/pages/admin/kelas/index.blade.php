@@ -56,7 +56,7 @@ Kelas
                     <thead>
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama</th>
+                            <th >Nama Kelas</th>
                             <th >Walikelas</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
@@ -68,7 +68,7 @@ Kelas
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{Str::limit($data->nama,25,' ...')}}
+                                    {{$data->tingkatan.' '.$data->jurusan.' '.$data->suffix}}
                                 </td>
                                 <td>
                                     {{$data->guru!=null ? $data->guru->nama : 'Data tidak ditemukan'}}

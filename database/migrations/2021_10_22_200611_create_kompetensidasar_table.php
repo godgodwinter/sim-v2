@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMapelTable extends Migration
+class CreateKompetensidasarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateMapelTable extends Migration
      */
     public function up()
     {
-        Schema::create('mapel', function (Blueprint $table) {
+        Schema::create('kompetensidasar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
+            $table->longText('nama')->nullable();
+            $table->string('kode')->nullable();
             $table->string('tipe')->nullable();
-            $table->string('kkm')->nullable();
-            $table->string('tingkatan')->nullable();
-            $table->string('jurusan')->nullable();
-            $table->string('semester')->nullable();
             $table->string('tapel_id')->nullable();
+            $table->string('kelas_id')->nullable();
+            $table->string('mapel_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ class CreateMapelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mapel');
+        Schema::dropIfExists('kompetensidasar');
     }
 }

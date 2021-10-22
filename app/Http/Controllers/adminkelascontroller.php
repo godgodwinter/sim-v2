@@ -52,30 +52,33 @@ class adminkelascontroller extends Controller
 
     public function store(Request $request)
     {
-        $cek=DB::table('kelas')
-        ->where('nama',$request->nama)
-        ->count();
-            if($cek>0){
-                    $request->validate([
-                    'nama'=>'required|unique:kelas,nama',
-                    ],
-                    [
-                        'nama.unique'=>'nama sudah digunakan',
-                    ]);
+        // $cek=DB::table('kelas')
+        // ->where('nama',$request->nama)
+        // ->count();
+        //     if($cek>0){
+        //             $request->validate([
+        //             'nama'=>'required|unique:kelas,nama',
+        //             ],
+        //             [
+        //                 'nama.unique'=>'nama sudah digunakan',
+        //             ]);
 
-            }
+        //     }
 
             $request->validate([
-                'nama'=>'required',
+                'tingkatan'=>'required',
+                'jurusan'=>'required',
 
             ],
             [
-                'nama.nama'=>'Nama harus diisi',
+                'tingkatan.nama'=>'tingkatan harus diisi',
             ]);
 
             DB::table('kelas')->insert(
                 array(
-                       'nama'     =>   $request->nama,
+                       'tingkatan'     =>   $request->tingkatan,
+                       'jurusan'     =>   $request->jurusan,
+                       'suffix'     =>   $request->suffix,
                        'guru_id'     =>   $request->guru_id,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
@@ -106,17 +109,21 @@ class adminkelascontroller extends Controller
             ]);
         }
 
+
         $request->validate([
-            'nama'=>'required',
+            'tingkatan'=>'required',
+            'jurusan'=>'required',
+
         ],
         [
-            'nama.required'=>'nama harus diisi',
+            'tingkatan.nama'=>'tingkatan harus diisi',
         ]);
 
 
         kelas::where('id',$id->id)
         ->update([
-            'nama'     =>   $request->nama,
+            'tingkatan'     =>   $request->tingkatan,
+            'jurusan'     =>   $request->jurusan,
             'guru_id'     =>   $request->guru_id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
