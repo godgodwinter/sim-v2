@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Tahun Pelajaran
+Mata Pelajaran
 @endsection
 
 @push('before-script')

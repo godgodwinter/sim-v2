@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminbanksoalcontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admingurucontroller;
 use App\Http\Controllers\adminkelascontroller;
@@ -105,13 +106,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     //silabus
     Route::get('/admin/silabus', [adminsilabuscontroller::class, 'index'])->name('silabus');
-    Route::get('/admin/silabus/{id}', [adminsilabuscontroller::class, 'edit'])->name('silabus.edit');
-    Route::put('/admin/silabus/{id}', [adminsilabuscontroller::class, 'update'])->name('silabus.update');
-    Route::delete('/admin/silabus/{id}', [adminsilabuscontroller::class, 'destroy'])->name('silabus.destroy');
     Route::get('/admin/datasilabus/cari', [adminsilabuscontroller::class, 'cari'])->name('silabus.cari');
-    Route::get('/admin/datasilabus/create', [adminsilabuscontroller::class, 'create'])->name('silabus.create');
-    Route::post('/admin/datasilabus', [adminsilabuscontroller::class, 'store'])->name('silabus.store');
-    Route::delete('/admin/datasilabus/multidel', [adminsilabuscontroller::class, 'multidel'])->name('silabus.multidel');
+
+
+    //banksoal
+    Route::get('/admin/dataajar/{dataajar}/banksoal', [adminbanksoalcontroller::class, 'index'])->name('dataajar.banksoal');
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');

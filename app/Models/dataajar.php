@@ -19,4 +19,16 @@ class dataajar extends Model
             'kelas_id',
             'mapel_id',
         ];
+        public function guru()
+        {
+            return $this->belongsTo('App\Models\guru');
+        }
+        public function kelas()
+        {
+            return $this->belongsTo('App\Models\kelas');
+        }
+        public function mapel()
+        {
+            return $this->belongsTo('App\Models\mapel');
+        }
 }

@@ -18,9 +18,7 @@ class CreateKompetensidasarTable extends Migration
             $table->longText('nama')->nullable();
             $table->string('kode')->nullable();
             $table->string('tipe')->nullable();
-            $table->string('tapel_id')->nullable();
-            $table->string('kelas_id')->nullable();
-            $table->string('mapel_id')->nullable();
+            $table->string('dataajar_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

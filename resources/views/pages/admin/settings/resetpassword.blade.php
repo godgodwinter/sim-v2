@@ -84,7 +84,7 @@ Reset Password Siswa
 
 
                                 <td class="text-center">
-                                    <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
+                                    <x-button-reset-pass link="{{ route('siswa.reset',$data->id)}}" />
                                 </td>
                             </tr>
                         @empty

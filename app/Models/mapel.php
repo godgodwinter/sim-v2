@@ -22,4 +22,5 @@ class mapel extends Model
             'semester',
             'tapel_id',
         ];
+
 }

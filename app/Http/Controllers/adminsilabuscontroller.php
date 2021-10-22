@@ -23,8 +23,21 @@ class adminsilabuscontroller extends Controller
     public function index(Request $request)
     {
         #WAJIB
-        $pages='mapel';
-        $datas=dataajar::paginate(Fungsi::paginationjml());
+        $pages='silabus';
+        $datas=dataajar::with('guru')->with('kelas')->with('mapel')
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.admin.silabus.index',compact('datas','request','pages'));
+    }
+    public function cari(Request $request)
+    {
+
+        $cari=$request->cari;
+        #WAJIB
+        $pages='silabus';
+        $datas=dataajar::with('guru')->with('kelas')->with('mapel')
+        ->where('nama','like',"%".$cari."%")
+        ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.silabus.index',compact('datas','request','pages'));
     }

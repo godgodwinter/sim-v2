@@ -31,17 +31,14 @@ Silabus
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('mapel.cari') }}" method="GET">
+                        <form action="{{ route('silabus.cari') }}" method="GET">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-
-                            <a href="{{route('mapel.create')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah </span></a> </form>
+</form>
 
                     </div>
                 </div>
@@ -56,13 +53,10 @@ Silabus
                     <thead>
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama</th>
-                            <th >KKM</th>
-                            <th >Tipe</th>
-                            <th >Tingkatan</th>
-                            <th >Jurusan</th>
-                            <th >Semester</th>
-                            <th width="10%" class="text-center">Aksi</th>
+                            <th >Mapel</th>
+                            <th >Kelas</th>
+                            <th >Guru Pengajar</th>
+                            <th >Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,30 +66,25 @@ Silabus
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{Str::limit($data->nama,25,' ...')}}
+                                    {{$data->mapel!=null ? $data->mapel->nama : 'Data tidak ditemukan' }}
                                 </td>
                                 <td>
-                                    {{$data->kkm}}
+                                    {{$data->kelas!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
                                 </td>
 
                                 <td>
-                                    {{$data->tipe}}
+                                    {{$data->guru!=null ? $data->guru->nama : '-'}}
                                 </td>
 
-                                <td>
-                                    {{$data->tingkatan}}
-                                </td>
-                                <td>
-                                    {{$data->jurusan}}
-                                </td>
-                                <td>
-                                    {{$data->semester}}
-                                </td>
 
                                 <td class="text-center">
-                                    {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                    <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
-                                    <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
+
+                                    <a href="#" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
+                                        <i class="fas fa-inbox"></i>
+                                    </a>
+                                    <a href="{{route('dataajar.banksoal',$data->id)}}"
+                                        class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
+                                            class="far fa-file-archive"></i> </a>
                                 </td>
                             </tr>
                         @empty
