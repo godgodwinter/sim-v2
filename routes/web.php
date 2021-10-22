@@ -6,6 +6,7 @@ use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
+use App\Http\Controllers\adminsiswacontroller;
 use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datakelas/create', [adminkelascontroller::class, 'create'])->name('kelas.create');
     Route::post('/admin/datakelas', [adminkelascontroller::class, 'store'])->name('kelas.store');
     Route::delete('/admin/datakelas/multidel', [adminkelascontroller::class, 'multidel'])->name('kelas.multidel');
+
+
+    //siswa
+    Route::get('/admin/siswa', [adminsiswacontroller::class, 'index'])->name('siswa');
+    Route::get('/admin/siswa/{id}', [adminsiswacontroller::class, 'edit'])->name('siswa.edit');
+    Route::put('/admin/siswa/{id}', [adminsiswacontroller::class, 'update'])->name('siswa.update');
+    Route::delete('/admin/siswa/{id}', [adminsiswacontroller::class, 'destroy'])->name('siswa.destroy');
+    Route::get('/admin/datasiswa/cari', [adminsiswacontroller::class, 'cari'])->name('siswa.cari');
+    Route::get('/admin/datasiswa/create', [adminsiswacontroller::class, 'create'])->name('siswa.create');
+    Route::post('/admin/datasiswa', [adminsiswacontroller::class, 'store'])->name('siswa.store');
+    Route::delete('/admin/datasiswa/multidel', [adminsiswacontroller::class, 'multidel'])->name('siswa.multidel');
 
     //Seeder
     Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');

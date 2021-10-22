@@ -18,6 +18,7 @@ class siswa extends Model
             'nomerinduk',
             'agama',
             'tempatlahir',
+            'tgllahir',
             'alamat',
             'jk',
             'kelas_id',
@@ -25,6 +26,7 @@ class siswa extends Model
             'moodleuser',
             'moodlepass',
             'nomerinduk',
+            'users_id',
         ];
 
         public function kelas()
@@ -35,5 +37,9 @@ class siswa extends Model
         public function tapel()
         {
             return $this->belongsTo('App\Models\tapel');
+        }
+        public function users()
+        {
+            return $this->belongsTo('App\Models\User');
         }
 }

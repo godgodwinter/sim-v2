@@ -43,16 +43,16 @@ Kelas
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="status">Pilih Walikelas <code></code></label>
+                        <label for="guru_id">Pilih Walikelas <code></code></label>
 
-                        <select class="form-control  @error('status') is-invalid @enderror" name="guru_id" required>
+                        <select class="form-control  @error('guru_id') is-invalid @enderror" name="guru_id" required>
                             @forelse ($walikelas as $d)
                                 <option value="{{$d->id}}">{{$d->nomerinduk}} -  {{$d->nama}}</option>
                             @empty
                                 <option value=""> Data belum tersedia</option>
                             @endforelse
                         </select>
-                        @error('status')<div class="invalid-feedback"> {{$message}}</div>
+                        @error('guru_id')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                     </div>
 

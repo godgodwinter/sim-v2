@@ -43,7 +43,7 @@ Administrator
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="alamat">Username<code></code></label>
+                        <label for="username">Username<code></code></label>
 
                         <input type="text" class="form-control  @error('username') is-invalid @enderror" name="username" required  value="{{old('username')}}">
 
@@ -52,7 +52,7 @@ Administrator
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="alamat">Email<code></code></label>
+                        <label for="email">Email<code></code></label>
 
                         <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email" required  value="{{old('email')}}">
 
@@ -61,7 +61,7 @@ Administrator
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="alamat">Password<code></code></label>
+                        <label for="password">Password<code></code></label>
 
 
                         <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required>
@@ -71,7 +71,7 @@ Administrator
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="alamat">Konfirmasi Password<code></code></label>
+                        <label for="password">Konfirmasi Password<code></code></label>
 
 
                         <input type="password" class="form-control  @error('password2') is-invalid @enderror" name="password2" required>
