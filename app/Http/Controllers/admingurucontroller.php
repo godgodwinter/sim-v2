@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\guru;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -65,6 +66,8 @@ class admingurucontroller extends Controller
         ],
         [
             'nomerinduk.unique'=>'nomerinduk sudah digunakan',
+            'email' =>'email sudah digunakan',
+            // 'username' =>'username sudah digunakan',
             'password.same'=>'Password dan Konfirmasi Password berbeda',
 
         ]);
@@ -74,7 +77,7 @@ class admingurucontroller extends Controller
         array(
                'nomerinduk'     =>   $request->nomerinduk,
                'name'     =>   $request->nama,
-               'username'     =>   date('YmdHis'),
+               'username'     =>   date("Y-m-d H:i:s"),//$request->username,
                'password' => Hash::make($request->password),
                'tipeuser'     =>   'guru',
                'email'     =>   $request->email,
@@ -110,41 +113,66 @@ class admingurucontroller extends Controller
     public function update(guru $id,Request $request)
     {
 
-        if($request->nama!==$id->nama){
+        if($request->nomorinduk==$id->nomorinduk){
 
             $request->validate([
-                'nama' => "required",
+                'nama'=>'required',
+                'nomerinduk' => 'required|unique:users',
+                'email' => 'required|email|unique:users',
             ],
             [
+                'nama.required'=>'nama harus diisi',
+                'nomerinduk.unique'=>'nomerinduk sudah digunakan',
+
             ]);
         }
 
-        $request->validate([
-            'nama'=>'required',
-        ],
-        [
-            'nama.required'=>'nama harus diisi',
-        ]);
+
 
 
         if($request->password!=null OR $request->password!=''){
 
         $request->validate([
-
+            'password' => 'min:8|required_with:password2|same:password2',
+            'password2' => 'min:8',
         ],
         [
+            'nama.required'=>'nama harus diisi',
         ]);
-            guru::where('id',$id->id)
+        guru::where('id',$id->id)
             ->update([
-                'nama'     =>   $request->nama,
-               'updated_at'=>date("Y-m-d H:i:s")
+                'nomerinduk'     =>   $request->nomerinduk,
+                        'nama'     =>   $request->nama,
+                        'alamat'     =>   $request->alamat,
+                        'telp'     =>   $request->telp,
+                       'updated_at'=>date("Y-m-d H:i:s")
             ]);
-        }else{
-            guru::where('id',$id->id)
+            User::where('id',$id->users_id)
             ->update([
-                'nama'     =>   $request->nama,
-               'updated_at'=>date("Y-m-d H:i:s")
+                'nomerinduk'     =>   $request->nomerinduk,
+                'password' => Hash::make($request->password),
+                'updated_at'=>date("Y-m-d H:i:s")
             ]);
+                }else{
+                    guru::where('id',$id->id)
+        ->update([
+            'nomerinduk'     =>   $request->nomerinduk,
+                    'nama'     =>   $request->nama,
+                    'alamat'     =>   $request->alamat,
+                    'telp'     =>   $request->telp,
+                   'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+        User::where('id',$id->users_id)
+        ->update([
+            'nomerinduk'     =>   $request->nomerinduk,
+            'name'     =>   $request->nama,
+            'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+
 
         }
 

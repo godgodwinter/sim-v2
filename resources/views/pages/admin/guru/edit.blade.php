@@ -79,7 +79,7 @@ Tahun Pelajaran
                             <label for="alamat">Password<code></code></label>
 
 
-                            <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required>
+                            <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password" >
 
                             @error('password')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -89,7 +89,7 @@ Tahun Pelajaran
                             <label for="alamat">Konfirmasi Password<code></code></label>
 
 
-                            <input type="password" class="form-control  @error('password2') is-invalid @enderror" name="password2" required>
+                            <input type="password" class="form-control  @error('password2') is-invalid @enderror" name="password2" >
 
                             @error('password2')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
