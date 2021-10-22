@@ -3,6 +3,7 @@
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admingurucontroller;
 use App\Http\Controllers\adminkelascontroller;
+use App\Http\Controllers\adminmapelcontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
@@ -81,6 +82,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datasiswa/create', [adminsiswacontroller::class, 'create'])->name('siswa.create');
     Route::post('/admin/datasiswa', [adminsiswacontroller::class, 'store'])->name('siswa.store');
     Route::delete('/admin/datasiswa/multidel', [adminsiswacontroller::class, 'multidel'])->name('siswa.multidel');
+
+
+    //mapel
+    Route::get('/admin/mapel', [adminmapelcontroller::class, 'index'])->name('mapel');
+    Route::get('/admin/mapel/{id}', [adminmapelcontroller::class, 'edit'])->name('mapel.edit');
+    Route::put('/admin/mapel/{id}', [adminmapelcontroller::class, 'update'])->name('mapel.update');
+    Route::delete('/admin/mapel/{id}', [adminmapelcontroller::class, 'destroy'])->name('mapel.destroy');
+    Route::get('/admin/datamapel/cari', [adminmapelcontroller::class, 'cari'])->name('mapel.cari');
+    Route::get('/admin/datamapel/create', [adminmapelcontroller::class, 'create'])->name('mapel.create');
+    Route::post('/admin/datamapel', [adminmapelcontroller::class, 'store'])->name('mapel.store');
+    Route::delete('/admin/datamapel/multidel', [adminmapelcontroller::class, 'multidel'])->name('mapel.multidel');
 
     //Seeder
     Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');

@@ -85,107 +85,118 @@ class oneseeder extends Seeder
 
 
 
-        // //KATEGORI SEEDER
-        // //pegawai
-        // DB::table('kategori')->insert([
-        //     'nama' => 'Kepala Sekolah',
-        //     'prefix' => 'pegawai',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+        //KATEGORI SEEDER
+        //pegawai
+        DB::table('kategori')->insert([
+            'nama' => 'Kepala Sekolah',
+            'prefix' => 'pegawai',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
 
-        // DB::table('kategori')->insert([
-        //     'nama' => 'Administrator/Bendahara',
-        //     'prefix' => 'pegawai',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+        DB::table('kategori')->insert([
+            'nama' => 'Administrator/Bendahara',
+            'prefix' => 'pegawai',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-        //  //pemasukan
-        // DB::table('kategori')->insert([
-        //     'nama' => 'Dana Bos',
-        //     'prefix' => 'pemasukan',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
-
-
-        // DB::table('kategori')->insert([
-        //     'nama' => 'Lain-lain',
-        //     'prefix' => 'pemasukan',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+         //pemasukan
+        DB::table('kategori')->insert([
+            'nama' => 'Dana Bos',
+            'prefix' => 'pemasukan',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
 
-        //  //pengeluaran
-        // DB::table('kategori')->insert([
-        //     'nama' => 'Dana Bulanan',
-        //     'prefix' => 'pengeluaran',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
-
-        //  //pengeluaran
-        // DB::table('kategori')->insert([
-        //     'nama' => 'Lain-lain',
-        //     'prefix' => 'pengeluaran',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
-
-        //  //TAPEL SEEDER
-        // DB::table('tapel')->insert([
-        //     'nama' => '2021/2022',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+        DB::table('kategori')->insert([
+            'nama' => 'Lain-lain',
+            'prefix' => 'pemasukan',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
 
-        //  //KELAS SEEDER
-        // DB::table('kelas')->insert([
-        //     'nama' => 'X OTO 1',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+         //pengeluaran
+        DB::table('kategori')->insert([
+            'nama' => 'Dana Bulanan',
+            'prefix' => 'pengeluaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         //pengeluaran
+        DB::table('kategori')->insert([
+            'nama' => 'Lain-lain',
+            'prefix' => 'pengeluaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         //TAPEL SEEDER
+        DB::table('tapel')->insert([
+            'nama' => '2021/2022',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
 
-        //  //KELAS SEEDER
-        // DB::table('kelas')->insert([
-        //     'nama' => 'X TKJ 1',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+         //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'X OTO 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-        //  //KELAS SEEDER
-        // DB::table('kelas')->insert([
-        //     'nama' => 'XI OTO 1',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
 
-        //  //KELAS SEEDER
-        // DB::table('kelas')->insert([
-        //     'nama' => 'XI TKJ 1',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+         //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'X TKJ 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-        //       //KELAS SEEDER
-        // DB::table('kelas')->insert([
-        //     'nama' => 'XII OTO 1',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+         //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'XI OTO 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-        //       //KELAS SEEDER
-        // DB::table('kelas')->insert([
-        //     'nama' => 'XII TKJ 1',
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        //  ]);
+         //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'XI TKJ 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
+              //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'XII OTO 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+              //KELAS SEEDER
+        DB::table('kelas')->insert([
+            'nama' => 'XII TKJ 1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+           //tapel SEEDER
+        DB::table('tapel')->insert([
+            'nama' => '2020/2021',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+         DB::table('tapel')->insert([
+             'nama' => '2021/2022',
+             'created_at' => Carbon::now(),
+             'updated_at' => Carbon::now()
+          ]);
 
         //  //KELAS SEEDER
         // DB::table('pegawai')->insert([
