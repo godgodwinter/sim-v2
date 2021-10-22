@@ -25,7 +25,7 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-dumpster"></i>  <span>Mastering</span></a>
                 <ul class="dropdown-menu">
 
-                    <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-building"></i> <span>User</span></a></li>
+                    <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('users')}}"><i class="fas fa-building"></i> <span>User</span></a></li>
                     <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-passport"></i> <span>Tahun Pelajaran</span></a></li>
                     <li {{$pages=='kelas' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-school"></i><span>Kelas</span></a></li>
                     <li {{$pages=='siswa' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-user-graduate"></i><span>Siswa</span></a></li>
