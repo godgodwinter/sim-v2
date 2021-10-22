@@ -331,6 +331,13 @@ class Fungsi {
         return $data;
 
     }
+    public static function semesteraktif(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->semesteraktif;
+        return $data;
+
+    }
 
     public static function nominaltagihandefault(){
 

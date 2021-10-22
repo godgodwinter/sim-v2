@@ -15,21 +15,11 @@ class mapel extends Model
 
         protected $fillable = [
             'nama',
-            'jurusan',
+            'tipe',
             'kkm',
+            'tingkatan',
+            'jurusan',
+            'semester',
             'tapel_id',
-            'kelas_id',
-            'semester_nama',
         ];
-
-        public function tapel()
-        {
-            return $this->belongsTo('App\Models\tapel');
-        }
-
-        public function kelas()
-        {
-            return $this->belongsTo('App\Models\kelas');
-        }
-
 }

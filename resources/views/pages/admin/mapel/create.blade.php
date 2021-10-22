@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Tahun Pelajaran
+Mata Pelajaran
 @endsection
 
 @push('before-script')
@@ -36,43 +36,90 @@ Tahun Pelajaran
                     <div class="row">
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="nama">Nama  <code>*)</code></label>
+                        <label for="nama">Nama Mata Pelajaran <code>*)</code></label>
                         <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}" required>
                         @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="kkm">KKM  <code>*)</code></label>
-                        <input type="number" name="kkm" min="1" max="100" id="kkm" class="form-control @error('kkm') is-invalid @enderror" value="{{ old('kkm') ? old('kkm') : '75'}}" required>
-                        @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                    </div>
-
-
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
                         <label>Tipe <code>*)</code></label>
-                        <select class="form-control form-control-lg" required name="tipepelajaran">
-                              @if (old('tipepelajaran'))
-                              <option>{{old('tipepelajaran')}}</option>
+                        <select class="form-control form-control-lg" required name="tipe">
+                              @if (old('tipe'))
+                              <option>{{old('tipe')}}</option>
                               @endif
                           @foreach ($tipepelajaran as $t)
                               <option>{{ $t->nama }}</option>
                           @endforeach
                         </select>
                       </div>
+                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label for="kkm">KKM  <code>*)</code></label>
+                        <input type="number" name="kkm" min="1" max="100" id="kkm" class="form-control @error('kkm') is-invalid @enderror" value="{{ old('kkm') ? old('kkm') : '75'}}" required>
+                        @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                    </div>
 
-                      <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label>jurusan <code>//jika tipe bukan jurusan maka otomatis akan berisi umum</code></label>
-                        <select class="form-control form-control-lg" required name="jurusan">
-                              @if (old('jurusan'))
-                              <option>{{old('jurusan')}}</option>
-                              @endif
-                          @foreach ($jurusan as $t)
-                              <option value="{{ $t->kode }}"> {{ $t->kode }}  - {{ $t->nama }}</option>
-                          @endforeach
-                        </select>
+                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Tingkatan</label>
+                        <div class="selectgroup w-100">
+                        <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="Semua" class="selectgroup-input" checked="">
+                            <span class="selectgroup-button">Semua</span>
+                        </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="X" class="selectgroup-input" >
+                            <span class="selectgroup-button">X</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="XI" class="selectgroup-input">
+                            <span class="selectgroup-button">XI</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="XII" class="selectgroup-input">
+                            <span class="selectgroup-button">XII</span>
+                          </label>
+
+                        </div>
                       </div>
+                      <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Jurusan</label>
+                        <div class="selectgroup w-100">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="Semua" class="selectgroup-input" checked="">
+                            <span class="selectgroup-button">Semua</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="OTO" class="selectgroup-input" >
+                            <span class="selectgroup-button">OTO</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="TKJ" class="selectgroup-input">
+                            <span class="selectgroup-button">TKJ</span>
+                          </label>
+
+                        </div>
+                      </div>
+                      <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Semester</label>
+                        <div class="selectgroup w-100">
+                          {{-- <label class="selectgroup-item">
+                            <input type="radio" name="semester" value="Semua" class="selectgroup-input" >
+                            <span class="selectgroup-button">Semua</span>
+                          </label> --}}
+                          <label class="selectgroup-item">
+                            <input type="radio" name="semester" value="1" class="selectgroup-input" {{Fungsi::semesteraktif()==1 ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">1</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="semester" value="2" class="selectgroup-input" {{Fungsi::semesteraktif()==2 ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">2</span>
+                          </label>
+
+                        </div>
+                      </div>
+
+
 
 
                     </div>

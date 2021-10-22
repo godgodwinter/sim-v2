@@ -7,7 +7,9 @@ use App\Http\Controllers\adminmapelcontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
+use App\Http\Controllers\adminsilabuscontroller;
 use App\Http\Controllers\adminsiswacontroller;
+use App\Http\Controllers\adminsynccontroller;
 use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //settings
     Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
     Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
+    Route::get('/admin/settings/resetpassword', [adminsettingscontroller::class, 'resetpassword'])->name('settings.resetpassword');
+    Route::get('/admin/settings/resetpassword/cari', [adminsettingscontroller::class, 'resetpasswordcari'])->name('settings.resetpassword.cari');
+    Route::get('/admin/settings/resetpassword/resetsemua', [adminsettingscontroller::class, 'resetsemua'])->name('settings.resetpassword.resetsemua');
+    Route::get('/admin/settings/passwordujian', [adminsettingscontroller::class, 'passwordujian'])->name('settings.passwordujian');
+    Route::post('/admin/settings/passwordujian/generate', [adminsettingscontroller::class, 'passwordujiangenerate'])->name('settings.passwordujian.generate');
 
     //MASTERING
     //USER
@@ -76,6 +83,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //siswa
     Route::get('/admin/siswa', [adminsiswacontroller::class, 'index'])->name('siswa');
     Route::get('/admin/siswa/{id}', [adminsiswacontroller::class, 'edit'])->name('siswa.edit');
+    Route::post('/admin/siswa/{id}/reset', [adminsiswacontroller::class, 'reset'])->name('siswa.reset');
     Route::put('/admin/siswa/{id}', [adminsiswacontroller::class, 'update'])->name('siswa.update');
     Route::delete('/admin/siswa/{id}', [adminsiswacontroller::class, 'destroy'])->name('siswa.destroy');
     Route::get('/admin/datasiswa/cari', [adminsiswacontroller::class, 'cari'])->name('siswa.cari');
@@ -93,6 +101,20 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datamapel/create', [adminmapelcontroller::class, 'create'])->name('mapel.create');
     Route::post('/admin/datamapel', [adminmapelcontroller::class, 'store'])->name('mapel.store');
     Route::delete('/admin/datamapel/multidel', [adminmapelcontroller::class, 'multidel'])->name('mapel.multidel');
+
+
+    //silabus
+    Route::get('/admin/silabus', [adminsilabuscontroller::class, 'index'])->name('silabus');
+    Route::get('/admin/silabus/{id}', [adminsilabuscontroller::class, 'edit'])->name('silabus.edit');
+    Route::put('/admin/silabus/{id}', [adminsilabuscontroller::class, 'update'])->name('silabus.update');
+    Route::delete('/admin/silabus/{id}', [adminsilabuscontroller::class, 'destroy'])->name('silabus.destroy');
+    Route::get('/admin/datasilabus/cari', [adminsilabuscontroller::class, 'cari'])->name('silabus.cari');
+    Route::get('/admin/datasilabus/create', [adminsilabuscontroller::class, 'create'])->name('silabus.create');
+    Route::post('/admin/datasilabus', [adminsilabuscontroller::class, 'store'])->name('silabus.store');
+    Route::delete('/admin/datasilabus/multidel', [adminsilabuscontroller::class, 'multidel'])->name('silabus.multidel');
+
+    //sync
+    Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');
 
     //Seeder
     Route::post('/admin/seeder/kelas', [adminseedercontroller::class, 'kelas'])->name('seeder.kelas');

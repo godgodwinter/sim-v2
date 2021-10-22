@@ -59,7 +59,9 @@ Mata Pelajaran
                             <th >Nama</th>
                             <th >KKM</th>
                             <th >Tipe</th>
+                            <th >Tingkatan</th>
                             <th >Jurusan</th>
+                            <th >Semester</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -77,11 +79,17 @@ Mata Pelajaran
                                 </td>
 
                                 <td>
-                                    {{$data->tipepelajaran}}
+                                    {{$data->tipe}}
                                 </td>
 
                                 <td>
+                                    {{$data->tingkatan}}
+                                </td>
+                                <td>
                                     {{$data->jurusan}}
+                                </td>
+                                <td>
+                                    {{$data->semester}}
                                 </td>
 
                                 <td class="text-center">

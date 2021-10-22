@@ -36,12 +36,45 @@ Kelas
 
                     <div class="row">
 
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                            <label for="nama">Nama Tahun Pelajaran <code>*)</code></label>
-                            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama') ? old('nama') : $id->nama}}" required>
-                            @error('nama')<div class="invalid-feedback"> {{$message}}</div>
-                            @enderror
+
+                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Tingkatan</label>
+                        <div class="selectgroup w-100">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="X" class="selectgroup-input" {{$id->tingkatan=='X' ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">X</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="XI" class="selectgroup-input"  {{$id->tingkatan=='XI' ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">XI</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="XII" class="selectgroup-input"  {{$id->tingkatan=='XII' ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">XII</span>
+                          </label>
+
                         </div>
+                      </div>
+                      <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Jurusan</label>
+                        <div class="selectgroup w-100">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="OTO" class="selectgroup-input" {{$id->jurusan=='OTO' ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">OTO</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="TKJ" class="selectgroup-input" {{$id->jurusan=='TKJ' ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">TKJ</span>
+                          </label>
+
+                        </div>
+                      </div>
+                          <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                          <label for="nama">Suffix <code>*)</code></label>
+                          <input type="text" name="suffix" id="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{old('suffix') ? old('suffix') : $id->suffix}}" required>
+                          @error('suffix')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+                      </div>
 
                         <div class="form-group col-md-5 col-5 mt-0 ml-5">
                             <label for="guru_id">Pilih Walikelas <code></code></label>

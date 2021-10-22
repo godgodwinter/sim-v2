@@ -13,7 +13,9 @@ class kelas extends Model
         use HasFactory;
 
         protected $fillable = [
-            'nama',
+            'tingkatan',
+            'jurusan',
+            'suffix',
             'guru_id',
         ];
 

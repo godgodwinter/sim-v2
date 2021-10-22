@@ -17,36 +17,91 @@ class adminseedercontroller extends Controller
 {
     public function kelas(Request $request){
         kelas::truncate();
+
+         //KELAS SEEDER
          DB::table('kelas')->insert([
-            'nama' => 'X OTO 1',
+            'tingkatan' => 'X',
+            'jurusan' => 'OTO',
+            'suffix' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+
+
+         //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'X TKJ 1',
+            'tingkatan' => 'X',
+            'jurusan' => 'TKJ',
+            'suffix' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+
+         //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XI OTO 1',
+            'tingkatan' => 'XI',
+            'jurusan' => 'OTO',
+            'suffix' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+
+         //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XI TKJ 1',
+            'tingkatan' => 'XI',
+            'jurusan' => 'TKJ',
+            'suffix' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+
+              //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XII OTO 1',
+            'tingkatan' => 'XII',
+            'jurusan' => 'OTO',
+            'suffix' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+
+              //KELAS SEEDER
         DB::table('kelas')->insert([
-            'nama' => 'XII TKJ 1',
+            'tingkatan' => 'XII',
+            'jurusan' => 'TKJ',
+            'suffix' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+        //  DB::table('kelas')->insert([
+        //     'nama' => 'X OTO 1',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
+        // DB::table('kelas')->insert([
+        //     'nama' => 'X TKJ 1',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
+        // DB::table('kelas')->insert([
+        //     'nama' => 'XI OTO 1',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
+        // DB::table('kelas')->insert([
+        //     'nama' => 'XI TKJ 1',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
+        // DB::table('kelas')->insert([
+        //     'nama' => 'XII OTO 1',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
+        // DB::table('kelas')->insert([
+        //     'nama' => 'XII TKJ 1',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
     return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 

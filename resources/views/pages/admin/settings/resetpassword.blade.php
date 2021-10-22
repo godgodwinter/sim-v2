@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Kelas
+Reset Password Siswa
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Kelas
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('kelas.cari') }}" method="GET">
+                        <form action="{{ route('settings.resetpassword.cari') }}" method="GET">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                             <span>
@@ -39,14 +39,14 @@ Kelas
                                     value="Cari">
                             </span>
 
-                            <a href="{{route('kelas.create')}}" type="submit" value="Import"
+                            <a href="{{route('settings.resetpassword.resetsemua')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah </span></a> </form>
+                                        class="fas fa-download"></i> Reset Semua </span></a> </form>
 
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('kelas.multidel')}}" />
+                <x-jsmultidel link="{{route('siswa.multidel')}}" />
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>
@@ -56,8 +56,10 @@ Kelas
                     <thead>
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama Kelas</th>
-                            <th >Walikelas</th>
+                            <th >Nama</th>
+                            <th >Kelas</th>
+                            <th >Email</th>
+                            <th >Photo</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -68,17 +70,21 @@ Kelas
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{$data->tingkatan.' '.$data->jurusan.' '.$data->suffix}}
+                                    {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td>
-                                    {{$data->guru!=null ? $data->guru->nama : 'Data tidak ditemukan'}}
+                                    {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan'}}
+                                </td>
+                                <td>
+                                    {{ $data->users!=null ? $data->users->email : 'Data tidak ditemukan'}}
+                                </td>
+                                <td>
+                                    <img alt="image" src="https://ui-avatars.com/api/?name={{ $data->nama }}&color=7F9CF5&background=EBF4FF" class="rounded mx-auto d-block" width="50px" height="50px">
                                 </td>
 
 
                                 <td class="text-center">
-                                    {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                    <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
-                                    <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
+                                    <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
                                 </td>
                             </tr>
                         @empty
