@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\admindashboardcontroller;
+use App\Http\Controllers\admingurucontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
+use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -34,6 +36,27 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datausers/create', [adminuserscontroller::class, 'create'])->name('users.create');
     Route::post('/admin/datausers', [adminuserscontroller::class, 'store'])->name('users.store');
     Route::delete('/admin/datausers/multidel', [adminuserscontroller::class, 'multidel'])->name('users.multidel');
+
+    //tapel
+    Route::get('/admin/tapel', [admintapelcontroller::class, 'index'])->name('tapel');
+    Route::get('/admin/tapel/{id}', [admintapelcontroller::class, 'edit'])->name('tapel.edit');
+    Route::put('/admin/tapel/{id}', [admintapelcontroller::class, 'update'])->name('tapel.update');
+    Route::delete('/admin/tapel/{id}', [admintapelcontroller::class, 'destroy'])->name('tapel.destroy');
+    Route::get('/admin/datatapel/cari', [admintapelcontroller::class, 'cari'])->name('tapel.cari');
+    Route::get('/admin/datatapel/create', [admintapelcontroller::class, 'create'])->name('tapel.create');
+    Route::post('/admin/datatapel', [admintapelcontroller::class, 'store'])->name('tapel.store');
+    Route::delete('/admin/datatapel/multidel', [admintapelcontroller::class, 'multidel'])->name('tapel.multidel');
+
+
+    //guru
+    Route::get('/admin/guru', [admingurucontroller::class, 'index'])->name('guru');
+    Route::get('/admin/guru/{id}', [admingurucontroller::class, 'edit'])->name('guru.edit');
+    Route::put('/admin/guru/{id}', [admingurucontroller::class, 'update'])->name('guru.update');
+    Route::delete('/admin/guru/{id}', [admingurucontroller::class, 'destroy'])->name('guru.destroy');
+    Route::get('/admin/dataguru/cari', [admingurucontroller::class, 'cari'])->name('guru.cari');
+    Route::get('/admin/dataguru/create', [admingurucontroller::class, 'create'])->name('guru.create');
+    Route::post('/admin/dataguru', [admingurucontroller::class, 'store'])->name('guru.store');
+    Route::delete('/admin/dataguru/multidel', [admingurucontroller::class, 'multidel'])->name('guru.multidel');
 
     //Seeder
     Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');

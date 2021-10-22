@@ -26,11 +26,11 @@
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('users')}}"><i class="fas fa-building"></i> <span>User</span></a></li>
-                    <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-passport"></i> <span>Tahun Pelajaran</span></a></li>
+                    <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('tapel')}}"><i class="fas fa-passport"></i> <span>Tahun Pelajaran</span></a></li>
                     <li {{$pages=='kelas' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-school"></i><span>Kelas</span></a></li>
                     <li {{$pages=='siswa' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-user-graduate"></i><span>Siswa</span></a></li>
-                    <li {{$pages=='guru' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-chalkboard-teacher"></i><span>Guru</span></a></li>
-                    <li {{$pages=='guru' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fab fa-monero"></i><span>Mata Pelajaran</span></a></li>
+                    <li {{$pages=='guru' ? 'class=active' : ''}}><a class="nav-link" href="{{route('guru')}}"><i class="fas fa-chalkboard-teacher"></i><span>Guru</span></a></li>
+                    <li {{$pages=='mapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('guru')}}"><i class="fab fa-monero"></i><span>Mata Pelajaran</span></a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown ">
