@@ -22,6 +22,7 @@ class CreateSettingsTable extends Migration
             $table->string('lembaga_jalan')->nullable();
             $table->string('lembaga_telp')->nullable();
             $table->string('lembaga_kota')->nullable();
+
             $table->string('lembaga_logo')->nullable();
             $table->string('tapelaktif')->nullable();
             $table->string('nominaltagihandefault')->nullable();
