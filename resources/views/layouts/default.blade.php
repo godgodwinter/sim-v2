@@ -85,7 +85,7 @@
         $versi=$commitDate->format('Ymd.H.i.s');
     @endphp
         <div class="footer-right">
-          v0. {{ $versi }}
+          v1. {{ $versi }}
         </div>
       </footer>
     </div>

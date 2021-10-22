@@ -222,208 +222,208 @@ class oneseeder extends Seeder
 
 
 
-    //      //kategori jurusan
-    //     DB::table('kategori')->insert([
-    //      'nama' => 'Otomotif',
-    //      'kode' => 'OTO',
-    //      'prefix' => 'jurusan',
-    //      'created_at' => Carbon::now(),
-    //      'updated_at' => Carbon::now()
-    //   ]);
+         //kategori jurusan
+        DB::table('kategori')->insert([
+         'nama' => 'Otomotif',
+         'kode' => 'OTO',
+         'prefix' => 'jurusan',
+         'created_at' => Carbon::now(),
+         'updated_at' => Carbon::now()
+      ]);
 
-    //      //kategori semester
-    //      DB::table('kategori')->insert([
-    //         'nama' => '1',
-    //         'kode' => 'SATU',
-    //         'prefix' => 'semester',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         //kategori semester
+         DB::table('kategori')->insert([
+            'nama' => '1',
+            'kode' => 'SATU',
+            'prefix' => 'semester',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //      //kategori semester
-    //      DB::table('kategori')->insert([
-    //         'nama' => '2',
-    //         'kode' => 'DUA',
-    //         'prefix' => 'semester',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         //kategori semester
+         DB::table('kategori')->insert([
+            'nama' => '2',
+            'kode' => 'DUA',
+            'prefix' => 'semester',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //   DB::table('kategori')->insert([
-    //      'nama' => 'Teknik Jaringan dan Komputer',
-    //      'kode' => 'TKJ',
-    //      'prefix' => 'jurusan',
-    //      'created_at' => Carbon::now(),
-    //      'updated_at' => Carbon::now()
-    //   ]);
+      DB::table('kategori')->insert([
+         'nama' => 'Teknik Jaringan dan Komputer',
+         'kode' => 'TKJ',
+         'prefix' => 'jurusan',
+         'created_at' => Carbon::now(),
+         'updated_at' => Carbon::now()
+      ]);
 
-    //      //kategori tipepelajaran
-    //      DB::table('kategori')->insert([
-    //         'nama' => 'A. Muatan Nasional',
-    //         'kode' => 'A',
-    //         'prefix' => 'tipepelajaran',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         //kategori tipepelajaran
+         DB::table('kategori')->insert([
+            'nama' => 'A. Muatan Nasional',
+            'kode' => 'A',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //      DB::table('kategori')->insert([
-    //         'nama' => 'B. Muatan kewilayahan',
-    //         'kode' => 'B',
-    //         'prefix' => 'tipepelajaran',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         DB::table('kategori')->insert([
+            'nama' => 'B. Muatan kewilayahan',
+            'kode' => 'B',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //      DB::table('kategori')->insert([
-    //         'nama' => 'C1. Dasar Bidang Keahlian',
-    //         'kode' => 'C1',
-    //         'prefix' => 'tipepelajaran',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         DB::table('kategori')->insert([
+            'nama' => 'C1. Dasar Bidang Keahlian',
+            'kode' => 'C1',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //      DB::table('kategori')->insert([
-    //         'nama' => 'C2. Dasar Program Keahlian',
-    //         'kode' => 'C2',
-    //         'prefix' => 'tipepelajaran',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         DB::table('kategori')->insert([
+            'nama' => 'C2. Dasar Program Keahlian',
+            'kode' => 'C2',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //      DB::table('kategori')->insert([
-    //         'nama' => 'C3. Kompetensi Keahlian',
-    //         'kode' => 'C3',
-    //         'prefix' => 'tipepelajaran',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-
-
-    //     //kko
-    //     DB::table('kko')->insert([
-    //         'nama' => 'pengetahuan',
-    //         'tipe' => 'C1',
-    //         'tipe' => 'mudah',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'mengutip',
-    //         'tipe' => 'C1',
-    //         'tipe' => 'mudah',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menyebutkan',
-    //         'tipe' => 'C1',
-    //         'tipe' => 'mudah',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menjalaskan',
-    //         'tipe' => 'C1',
-    //         'tipe' => 'mudah',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menggambar',
-    //         'tipe' => 'C1',
-    //         'tipe' => 'mudah',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-
-    //     //kko
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menugaskan',
-    //         'tipe' => 'C3',
-    //         'tipe' => 'sedang',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'mengurutkan',
-    //         'tipe' => 'C3',
-    //         'tipe' => 'sedang',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menentukan',
-    //         'tipe' => 'C3',
-    //         'tipe' => 'sedang',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menerapkan',
-    //         'tipe' => 'C3',
-    //         'tipe' => 'sedang',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
-
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menyesuaikan',
-    //         'tipe' => 'C3',
-    //         'tipe' => 'sedang',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+         DB::table('kategori')->insert([
+            'nama' => 'C3. Kompetensi Keahlian',
+            'kode' => 'C3',
+            'prefix' => 'tipepelajaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
 
 
-    //     //kko
-    //     DB::table('kko')->insert([
-    //         'nama' => 'mengatur',
-    //         'tipe' => 'C5',
-    //         'tipe' => 'sulit',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+        //kko
+        DB::table('kko')->insert([
+            'nama' => 'pengetahuan',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //     DB::table('kko')->insert([
-    //         'nama' => 'mengabstraksi',
-    //         'tipe' => 'C5',
-    //         'tipe' => 'sulit',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+        DB::table('kko')->insert([
+            'nama' => 'mengutip',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //     DB::table('kko')->insert([
-    //         'nama' => 'menganimasikan',
-    //         'tipe' => 'C5',
-    //         'tipe' => 'sulit',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+        DB::table('kko')->insert([
+            'nama' => 'menyebutkan',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //     DB::table('kko')->insert([
-    //         'nama' => 'mengumpulkan',
-    //         'tipe' => 'C5',
-    //         'tipe' => 'sulit',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+        DB::table('kko')->insert([
+            'nama' => 'menjalaskan',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
-    //     DB::table('kko')->insert([
-    //         'nama' => 'mengkategorikan',
-    //         'tipe' => 'C5',
-    //         'tipe' => 'sulit',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //      ]);
+        DB::table('kko')->insert([
+            'nama' => 'menggambar',
+            'tipe' => 'C1',
+            'tipe' => 'mudah',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+
+        //kko
+        DB::table('kko')->insert([
+            'nama' => 'menugaskan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengurutkan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menentukan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menerapkan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menyesuaikan',
+            'tipe' => 'C3',
+            'tipe' => 'sedang',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+
+
+        //kko
+        DB::table('kko')->insert([
+            'nama' => 'mengatur',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengabstraksi',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'menganimasikan',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengumpulkan',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+        DB::table('kko')->insert([
+            'nama' => 'mengkategorikan',
+            'tipe' => 'C5',
+            'tipe' => 'sulit',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
     }
 }

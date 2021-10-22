@@ -141,24 +141,24 @@ Pengaturan
                 </div>
                 <div class="card-body">
 
-                    <form action="#" method="post" class="d-inline">
+                    <form action="{{route('seeder.kelas')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Data Kelas</button>
                     </form>
 
-                    <form action="#" method="post" class="d-inline">
+                    <form action="{{route('seeder.siswa')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Data Siswa</button>
                     </form>
 
 
-                    <form action="#" method="post" class="d-inline">
+                    <form action="{{route('seeder.guru')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Data Guru</button>
                     </form>
 
 
-                    <form action="#" method="post" class="d-inline">
+                    <form action="{{route('seeder.mapel')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Data Mapel</button>
                     </form>

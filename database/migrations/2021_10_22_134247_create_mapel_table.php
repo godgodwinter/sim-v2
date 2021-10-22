@@ -16,6 +16,7 @@ class CreateMapelTable extends Migration
         Schema::create('mapel', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
+            $table->string('tipepelajaran')->nullable();
             $table->string('jurusan')->nullable();
             $table->string('kkm')->nullable();
             $table->string('tapel_id')->nullable();

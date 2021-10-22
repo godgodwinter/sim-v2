@@ -25,8 +25,7 @@ class adminmapelcontroller extends Controller
     {
         #WAJIB
         $pages='mapel';
-        $datas=DB::table('mapel')
-        ->paginate(Fungsi::paginationjml());
+        $datas=mapel::paginate(Fungsi::paginationjml());
 
         return view('pages.admin.mapel.index',compact('datas','request','pages'));
     }
@@ -46,7 +45,10 @@ class adminmapelcontroller extends Controller
     {
         $pages='mapel';
 
-        return view('pages.admin.mapel.create',compact('pages'));
+        $tipepelajaran=DB::table('kategori')->where('prefix','tipepelajaran')->get();
+        $jurusan=DB::table('kategori')->where('prefix','jurusan')->get();
+
+        return view('pages.admin.mapel.create',compact('pages','tipepelajaran','jurusan'));
     }
 
     public function store(Request $request)
@@ -66,15 +68,25 @@ class adminmapelcontroller extends Controller
 
             $request->validate([
                 'nama'=>'required',
+                'kkm' => 'required|min:1|max:100',
+                'tipepelajaran' => 'required',
 
             ],
             [
                 'nama.nama'=>'Nama harus diisi',
             ]);
 
+            if(($request->tipepelajaran!='C2. Dasar Program Keahlian')&&($request->tipepelajaran!='C3. Kompetensi Keahlian')){
+                $jurusan='semua';
+            }else{
+                $jurusan=$request->jurusan;
+            }
             DB::table('mapel')->insert(
                 array(
-                       'nama'     =>   $request->nama,
+                        'nama'     =>   $request->nama,
+                        'tipepelajaran'     =>   $request->tipepelajaran,
+                        'jurusan'     =>   $jurusan,
+                        'kkm'     =>   $request->kkm,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
@@ -136,8 +148,7 @@ class adminmapelcontroller extends Controller
         // load ulang
         #WAJIB
         $pages='mapel';
-        $datas=DB::table('mapel')
-        ->paginate(Fungsi::paginationjml());
+        $datas=mapel::paginate(Fungsi::paginationjml());
 
         return view('pages.admin.mapel.index',compact('datas','request','pages'));
 

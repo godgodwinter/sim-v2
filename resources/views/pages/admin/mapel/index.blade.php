@@ -72,7 +72,17 @@ Mata Pelajaran
                                 <td>
                                     {{Str::limit($data->nama,25,' ...')}}
                                 </td>
+                                <td>
+                                    {{$data->kkm}}
+                                </td>
 
+                                <td>
+                                    {{$data->tipepelajaran}}
+                                </td>
+
+                                <td>
+                                    {{$data->jurusan}}
+                                </td>
 
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
