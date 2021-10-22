@@ -64,6 +64,15 @@ Tahun Pelajaran
                         @enderror
                     </div>
 
+                    {{-- <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <label for="username">Username<code></code></label>
+
+                        <input type="text" class="form-control  @error('username') is-invalid @enderror" name="username" required  value="{{old('username')}}">
+
+                        @error('username')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                    </div> --}}
+
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
                         <label for="alamat">Email<code></code></label>
@@ -73,6 +82,7 @@ Tahun Pelajaran
                         @error('email')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                     </div>
+
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
                         <label for="alamat">Password<code></code></label>
