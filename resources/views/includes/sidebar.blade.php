@@ -17,8 +17,8 @@
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='settings' ? 'class=active' : ''}}><a class="nav-link" href="{{route('settings')}}"><i class="fas fa-cog"></i> <span>Aplikasi</span></a></li>
-                    <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-retweet"></i> <span>Reset Password</span></a></li>
-                    <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-key"></i><span>Password Ujian</span></a></li>
+                    <li {{$pages=='resetpassword' ? 'class=active' : ''}}><a class="nav-link" href="{{route('settings.resetpassword')}}"><i class="fas fa-retweet"></i> <span>Reset Password</span></a></li>
+                    <li {{$pages=='passwordujian' ? 'class=active' : ''}}><a class="nav-link" href="{{route('settings.passwordujian')}}"><i class="fas fa-key"></i><span>Password Ujian</span></a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown ">

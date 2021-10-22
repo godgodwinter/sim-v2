@@ -28,6 +28,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //settings
     Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
     Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
+    Route::get('/admin/settings/resetpassword', [adminsettingscontroller::class, 'resetpassword'])->name('settings.resetpassword');
+    Route::get('/admin/settings/resetpassword/cari', [adminsettingscontroller::class, 'resetpasswordcari'])->name('settings.resetpassword.cari');
+    Route::get('/admin/settings/resetpassword/resetsemua', [adminsettingscontroller::class, 'resetsemua'])->name('settings.resetpassword.resetsemua');
+    Route::get('/admin/settings/passwordujian', [adminsettingscontroller::class, 'passwordujian'])->name('settings.passwordujian');
+    Route::post('/admin/settings/passwordujian/generate', [adminsettingscontroller::class, 'passwordujiangenerate'])->name('settings.passwordujian.generate');
 
     //MASTERING
     //USER
@@ -76,6 +81,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //siswa
     Route::get('/admin/siswa', [adminsiswacontroller::class, 'index'])->name('siswa');
     Route::get('/admin/siswa/{id}', [adminsiswacontroller::class, 'edit'])->name('siswa.edit');
+    Route::post('/admin/siswa/{id}/reset', [adminsiswacontroller::class, 'reset'])->name('siswa.reset');
     Route::put('/admin/siswa/{id}', [adminsiswacontroller::class, 'update'])->name('siswa.update');
     Route::delete('/admin/siswa/{id}', [adminsiswacontroller::class, 'destroy'])->name('siswa.destroy');
     Route::get('/admin/datasiswa/cari', [adminsiswacontroller::class, 'cari'])->name('siswa.cari');

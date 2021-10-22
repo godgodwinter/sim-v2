@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,19 @@ class adminsiswacontroller extends Controller
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.siswa.index',compact('datas','request','pages'));
+    }
+
+    public function reset(siswa $id)
+    {
+        // dd($siswa);
+
+        User::where('nomerinduk',$id->nis)
+        ->update([
+            'password' => Hash::make(Fungsi::passdefaultsiswa()),
+        'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+        return redirect()->back()->with('status','Reset berhasil! Password baru : '.Fungsi::passdefaultsiswa().'')->with('tipe','success')->with('icon','fas fa-edit');
     }
     public function create()
     {
