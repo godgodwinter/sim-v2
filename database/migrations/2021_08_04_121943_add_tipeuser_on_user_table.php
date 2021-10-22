@@ -18,6 +18,7 @@ class AddTipeuserOnUserTable extends Migration
         Schema::table('users', function($table) {
             $table->string('tipeuser')->nullable();
             $table->string('nomerinduk')->nullable();
+            $table->string('username')->nullable();
         });
     }
 

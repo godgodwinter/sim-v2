@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class oneseeder extends Seeder
 {
@@ -21,9 +22,10 @@ class oneseeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => '$2y$10$oOhE/tcF8MC9crGCw/Zv5.zFMGu0JLm591undChCaHJM6YrnGjgCu',
+            'password' => Hash::make('admin'),
             'tipeuser' => 'admin',
             'nomerinduk' => '123',
+            'username' => 'admin',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -33,8 +35,9 @@ class oneseeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Kepsek',
             'email' => 'kepsek@gmail.com',
-            'password' => '$2y$10$oOhE/tcF8MC9crGCw/Zv5.zFMGu0JLm591undChCaHJM6YrnGjgCu',
+            'password' => Hash::make('kepsek'),
             'tipeuser' => 'kepsek',
+            'username' => 'kepsek',
             'nomerinduk' => '111',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -45,8 +48,9 @@ class oneseeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Paijo',
             'email' => 'siswa@gmail.com',
-            'password' => '$2y$10$oOhE/tcF8MC9crGCw/Zv5.zFMGu0JLm591undChCaHJM6YrnGjgCu',
+            'password' => Hash::make('siswa123'),
             'tipeuser' => 'siswa',
+            'username' => 'siswa',
             'nomerinduk' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -80,19 +84,6 @@ class oneseeder extends Seeder
             'updated_at' => Carbon::now()
          ]);
 
-         // DB::table('kategori')->insert([
-         //     'nama' => 'pelajaran',
-         //     'prefix' => 'pelajaran',
-         //     'created_at' => Carbon::now(),
-         //     'updated_at' => Carbon::now()
-         //  ]);
-
-         //  DB::table('kategori')->insert([
-         //      'nama' => 'mulok',
-         //      'prefix' => 'pelajaran',
-         //      'created_at' => Carbon::now(),
-         //      'updated_at' => Carbon::now()
-         //   ]);
 
         DB::table('kategori')->insert([
             'nama' => 'Administrator/Bendahara',

@@ -16,6 +16,6 @@ class dataseeder extends Seeder
      */
     public function run()
     {
-        //
+        $this->call(oneseeder::class);
     }
 }
