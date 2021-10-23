@@ -221,19 +221,20 @@ Pengaturan
 
                                 <div class="form-group row mb-4 mt-3">
 
-                                    <div class="profile-widget-header">
+                                    <div class="col-sm-6 col-md-6">
+                                        <center>
                                         @php
                                         $sekolah_logo=asset('/storage/').'/'.$datas->lembaga_logo;
                                         $randomimg='https://ui-avatars.com/api/?name='.$datas->lembaga_nama.'&color=7F9CF5&background=EBF4FF';
                                         // dd($sekolah_logo)
                                         @endphp
                                       <img alt="image" src="{{$datas->lembaga_logo!=null ? $sekolah_logo : $randomimg}}" class="rounded-circle profile-widget-picture" style="object-fit:cover;"  width="200" height="200">
-
+                                        </center>
                                     </div>
 
                                     <div class="col-sm-4 col-md-4">
                                       <div id="image-preview" class="image-preview">
-                                        <label for="image-upload" id="image-label2">Logo Sekolah</label>
+                                        <label for="image-upload" id="image-label2">Ganti Logo Sekolah</label>
                                         <input type="file" name="lembaga_logo" id="image-upload" class="@error('lembaga_logo')
                                         is_invalid
                                     @enderror"  accept="image/png, image/gif, image/jpeg" />
@@ -242,7 +243,7 @@ Pengaturan
                                     @enderror
                                       </div>
                                     </div>
-                                  </div>
+                                </div>
                         <div class="card-footer text-right mr-5">
                             <button class="btn btn-primary">Simpan</button>
                         </div>
