@@ -42,6 +42,7 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')
         ->where('nama','like',"%".$cari."%")
+        ->orWhere('nomerinduk','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.siswa.index',compact('datas','request','pages'));

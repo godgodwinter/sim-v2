@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Siswa
+Kata Kalimat Objek
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Siswa
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('siswa.cari') }}" method="GET">
+                        <form action="{{ route('kko.cari') }}" method="GET">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                             <span>
@@ -39,14 +39,14 @@ Siswa
                                     value="Cari">
                             </span>
 
-                            <a href="{{route('siswa.create')}}" type="submit" value="Import"
+                            <a href="{{route('kko.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a> </form>
 
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('siswa.multidel')}}" />
+                <x-jsmultidel link="{{route('kko.multidel')}}" />
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>
@@ -57,9 +57,6 @@ Siswa
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
-                            <th >Kelas</th>
-                            <th >Email</th>
-                            <th >Photo</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -70,22 +67,7 @@ Siswa
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{$data->nomerinduk.'-'.Str::limit($data->nama,25,' ...')}}
-                                </td>
-                                <td>
-
-                                    {{ $data->kelas_id!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
-
-
-                                </td>
-                                <td>
-                                    {{ $data->users!=null ? $data->users->email : 'Data tidak ditemukan'}}
-                                </td>
-                                <td>
-                                    @php
-                                    $siswa=asset('/storage/').'/'.$data->siswafoto;
-                                    @endphp
-                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : 'https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="{{$data->nama}}" width="60px" height="60px" style="object-fit:cover;">
+                                    {{Str::limit($data->nama,25,' ...')}}
                                 </td>
 
 
