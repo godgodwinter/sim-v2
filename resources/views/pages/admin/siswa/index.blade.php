@@ -73,13 +73,19 @@ Siswa
                                     {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td>
-                                    {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan'}}
+
+                                    {{ $data->kelas_id!=null ? $data->kelas_id : 'Data tidak ditemukan'}}
+
+
                                 </td>
                                 <td>
                                     {{ $data->users!=null ? $data->users->email : 'Data tidak ditemukan'}}
                                 </td>
                                 <td>
-                                    <img alt="image" src="https://ui-avatars.com/api/?name={{ $data->nama }}&color=7F9CF5&background=EBF4FF" class="rounded mx-auto d-block" width="50px" height="50px">
+                                    @php
+                                    $siswa=asset('/storage/').'/'.$data->siswafoto;
+                                    @endphp
+                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="150px" height="150px" style="object-fit:cover;">
                                 </td>
 
 

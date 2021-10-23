@@ -27,6 +27,7 @@ class CreateSiswaTable extends Migration
             $table->string('moodleuser')->nullable();
             $table->string('moodlepass')->nullable();
             $table->string('users_id')->nullable();
+            $table->string('siswafoto')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

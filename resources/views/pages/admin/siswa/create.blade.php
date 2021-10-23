@@ -30,7 +30,7 @@ Tahun Pelajaran
             </div>
             <div class="card-body">
 
-                <form action="{{route('siswa.store')}}" method="post">
+                <form action="{{route('siswa.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -120,7 +120,7 @@ Tahun Pelajaran
 
                         <select class="form-control  @error('kelas_id') is-invalid @enderror" name="kelas_id" required>
                             @forelse ($kelas as $d)
-                                <option value="{{$d->id}}">{{$d->nama}}</option>
+                                <option value="{{$d->id}}">{{$d->tingkatan.' '.$d->jurusan}}</option>
                             @empty
                                 <option value=""> Data belum tersedia</option>
                             @endforelse
@@ -177,6 +177,34 @@ Tahun Pelajaran
 
                         @error('moodlepass')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
+                    </div>
+                    @push('after-script')
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                          $.uploadPreview({
+                            input_field: "#image-upload",   // Default: .image-upload
+                            preview_box: "#image-preview",  // Default: .image-preview
+                            label_field: "#image-label",    // Default: .image-label
+                            label_default: "Logo Sekolah",   // Default: Choose File
+                            label_selected: "Ganti Logo Sekolah",  // Default: Change File
+                            no_label: false                 // Default: false
+                          });
+
+
+
+                        });
+                        </script>
+                    @endpush
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                      <div id="image-preview" class="image-preview">
+                        <label for="image-upload" id="image-label2">UPLOAD FOTO</label>
+                        <input type="file" name="siswafoto" id="image-upload" class="@error('siswafoto')
+                        is_invalid
+                    @enderror"  accept="image/png, image/gif, image/jpeg" />
+
+                    @error('siswafoto')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+                      </div>
                     </div>
 
 

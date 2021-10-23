@@ -29,6 +29,9 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')
         ->paginate(Fungsi::paginationjml());
+
+
+
         return view('pages.admin.siswa.index',compact('datas','request','pages'));
     }
     public function cari(Request $request)
@@ -61,7 +64,9 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
 
         $tapel=DB::table('tapel')->get();
+
         $kelas=DB::table('kelas')->get();
+
         return view('pages.admin.siswa.create',compact('pages','tapel','kelas'));
     }
 
@@ -84,6 +89,7 @@ class adminsiswacontroller extends Controller
 
         ]);
 
+
         //insert users
        DB::table('users')->insert(
         array(
@@ -98,6 +104,11 @@ class adminsiswacontroller extends Controller
         ));
 
         $users=DB::table('users')->orderBy('id','desc')->first();
+        $namafilebaru=$request->nomerinduk.'_'.$request->nama;
+        $file = $request->file('siswafoto');
+        $tujuan_upload = 'storage/siswa';
+                // upload file
+        $file->move($tujuan_upload,"siswa/".$namafilebaru.".jpg");
         $users_id=$users->id;
             DB::table('siswa')->insert(
                 array(
@@ -110,6 +121,7 @@ class adminsiswacontroller extends Controller
                         'jk'     =>   $request->jk,
                         'kelas_id'     =>   $request->kelas_id,
                         'tapel_id'     =>   $request->tapel_id,
+                        'siswafoto' =>   "siswa/".$namafilebaru.".jpg",
                         'moodleuser'     =>   $request->moodleuser,
                         'moodlepass'     =>   $request->moodlepass,
                         'users_id'     =>   $users_id,
@@ -127,10 +139,21 @@ class adminsiswacontroller extends Controller
     {
         $pages='siswa';
 
-        return view('pages.admin.siswa.edit',compact('pages','id'));
+
+            $u=DB::table('users')->where('id',$id->users_id)->get();
+
+
+        $tapel=DB::table('tapel')->get();
+        $kelas=DB::table('kelas')->get();
+
+        $t1=DB::table('tapel')->where('id',$id->tapel_id)->get();
+        $k1=DB::table('kelas')->where('id',$id->kelas_id)->get();
+
+        return view('pages.admin.siswa.edit',compact('pages','id','tapel','kelas','t1','k1','u'));
     }
     public function update(siswa $id,Request $request)
     {
+
 
         if($request->nama!==$id->nama){
 
@@ -149,23 +172,87 @@ class adminsiswacontroller extends Controller
         ]);
 
 
+        $files = $request->file('sekolah_logo');
+
+        $imagesDir=public_path().'/storage';
+
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->siswafoto)AND($id->siswafoto!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->siswafoto;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->sekolah_logo);
+            $namafilebaru=$request->nomerinduk.'_'.$request->nama;
+            $file = $request->file('siswafoto');
+            $tujuan_upload = 'storage/siswa';
+                    // upload file
+            $file->move($tujuan_upload,"siswa/".$namafilebaru.".jpg");
+            siswa::where('id',$id->id)
+            ->update([
+                'siswafoto' => "siswa/".$namafilebaru.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+        }
+
         if($request->password!=null OR $request->password!=''){
 
         $request->validate([
-
+            'password' => 'min:8|required_with:password2|same:password2',
+            'password2' => 'min:8'
         ],
         [
         ]);
             siswa::where('id',$id->id)
             ->update([
-                'nama'     =>   $request->nama,
-               'updated_at'=>date("Y-m-d H:i:s")
+                'nomerinduk'     =>   $request->nomerinduk,
+                        'nama'     =>   $request->nama,
+                        'agama'     =>   $request->agama,
+                        'tempatlahir'     =>   $request->tempatlahir,
+                        'tgllahir'     =>   $request->tgllahir,
+                        'alamat'     =>   $request->alamat,
+                        'jk'     =>   $request->jk,
+                        'kelas_id'     =>   $request->kelas_id,
+                        'tapel_id'     =>   $request->tapel_id,
+
+                        'moodleuser'     =>   $request->moodleuser,
+                        'moodlepass'     =>   $request->moodlepass,
+                       'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+            user::where('id',$id->users_id)
+            ->update([
+                'nomerinduk'     =>   $request->nomerinduk,
+                'name'     =>   $request->nama,
+                //'username'     =>   date('YmdHis'),
+                'password' => Hash::make($request->password),
+                'email'     =>   $request->email,
+                'updated_at'=>date("Y-m-d H:i:s")
             ]);
         }else{
             siswa::where('id',$id->id)
             ->update([
-                'nama'     =>   $request->nama,
-               'updated_at'=>date("Y-m-d H:i:s")
+                'nomerinduk'     =>   $request->nomerinduk,
+                        'nama'     =>   $request->nama,
+                        'agama'     =>   $request->agama,
+                        'tempatlahir'     =>   $request->tempatlahir,
+                        'tgllahir'     =>   $request->tgllahir,
+                        'alamat'     =>   $request->alamat,
+                        'jk'     =>   $request->jk,
+                        'kelas_id'     =>   $request->kelas_id,
+                        'tapel_id'     =>   $request->tapel_id,
+
+                        'moodleuser'     =>   $request->moodleuser,
+                        'moodlepass'     =>   $request->moodlepass,
+                       'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+            user::where('id',$id->users_id)
+            ->update([
+                'nomerinduk'     =>   $request->nomerinduk,
+                'name'     =>   $request->nama,
+
+                'email'     =>   $request->email,
+                'updated_at'=>date("Y-m-d H:i:s")
             ]);
 
         }
