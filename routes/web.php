@@ -111,6 +111,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     //banksoal
     Route::get('/admin/dataajar/{dataajar}/banksoal', [adminbanksoalcontroller::class, 'index'])->name('dataajar.banksoal');
+    Route::get('/admin/dataajar/{dataajar}/banksoal/create', [adminbanksoalcontroller::class, 'create'])->name('dataajar.banksoal.create');
+    Route::get('/admin/dataajar/{dataajar}/banksoal/store', [adminbanksoalcontroller::class, 'store'])->name('dataajar.banksoal.store');
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');
