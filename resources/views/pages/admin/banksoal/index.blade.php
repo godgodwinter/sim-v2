@@ -74,22 +74,27 @@ Bank Soal
                                     {!! $data->pertanyaan!=null ? $data->pertanyaan : 'Data tidak ditemukan' !!}
                                 </td>
                                 <td>
-                                    {{$data->kelas!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
+                                    {{$data->banksoaljawaban!=null ? $data->banksoaljawaban->count() : 'Data tidak ditemukan'}}
                                 </td>
 
-                                <td>
-                                    {{$data->guru!=null ? $data->guru->nama : '-'}}
-                                </td>
+                                    @php
+                                    $kategorisoal_nama='TIdak diketahui';
+                                        if($data->kategorisoal_nama==1){
+                                            $kategorisoal_nama='Pilihan ganda';
+                                        }elseif($data->kategorisoal_nama==2){
+                                            $kategorisoal_nama='Pilihan ganda kompleks';
+                                        }else{
+                                            $kategorisoal_nama='True/False';
+                                        }
+                                    @endphp
+                                <td class="text-capitalize">{{$kategorisoal_nama}}</td>
+                                <td class="text-capitalize">{{$data->tingkatkesulitan}}</td>
 
 
                                 <td class="text-center">
+                                    <x-button-edit link="{{route('dataajar.banksoal.edit',[$dataajar->id,$data->id])}}" />
+                                    <x-button-delete link="{{route('dataajar.banksoal.delete',[$dataajar->id,$data->id])}}" />
 
-                                    <a href="#" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
-                                        <i class="fas fa-inbox"></i>
-                                    </a>
-                                    <a href="{{route('dataajar.banksoal',$data->id)}}"
-                                        class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-                                            class="far fa-file-archive"></i> </a>
                                 </td>
                             </tr>
                         @empty

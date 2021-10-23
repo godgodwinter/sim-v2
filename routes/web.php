@@ -112,7 +112,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //banksoal
     Route::get('/admin/dataajar/{dataajar}/banksoal', [adminbanksoalcontroller::class, 'index'])->name('dataajar.banksoal');
     Route::get('/admin/dataajar/{dataajar}/banksoal/create', [adminbanksoalcontroller::class, 'create'])->name('dataajar.banksoal.create');
+    Route::get('/admin/dataajar/{dataajar}/banksoal/cari', [adminbanksoalcontroller::class, 'cari'])->name('dataajar.banksoal.cari');
     Route::post('/admin/dataajar/{dataajar}/banksoal/store', [adminbanksoalcontroller::class, 'store'])->name('dataajar.banksoal.store');
+    Route::get('/admin/dataajar/{dataajar}/banksoal/edit/{id}', [adminbanksoalcontroller::class, 'edit'])->name('dataajar.banksoal.edit');
+    Route::post('/admin/dataajar/{dataajar}/banksoal/update/{id}', [adminbanksoalcontroller::class, 'update'])->name('dataajar.banksoal.update');
+    Route::delete('/admin/dataajar/{dataajar}/banksoal/delete/{id}', [adminbanksoalcontroller::class, 'destroy'])->name('dataajar.banksoal.delete');
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');

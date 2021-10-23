@@ -30,10 +30,10 @@ class adminbanksoalcontroller extends Controller
         // dd($dataajar);
         #WAJIB
         $pages='banksoal';
-        $datas=banksoal::with('dataajar')
+        $datas=banksoal::with('dataajar')->with('banksoaljawaban')
         ->where('dataajar_id',$dataajar->id)
         ->paginate(Fungsi::paginationjml());
-
+// dd($datas);
         return view('pages.admin.banksoal.index',compact('datas','request','pages','dataajar'));
     }
     public function create(dataajar $dataajar, Request $request)
