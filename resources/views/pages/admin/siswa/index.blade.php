@@ -85,7 +85,11 @@ Siswa
                                     @php
                                     $siswa=asset('/storage/').'/'.$data->siswafoto;
                                     @endphp
+<<<<<<< HEAD
                                 <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : 'https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="60px" height="60px" style="object-fit:cover;">
+=======
+                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : ''}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="150px" height="150px" style="object-fit:cover;">
+>>>>>>> ea2551cd41c8045fa365e3d635c4b0c9598cdc9d
                                 </td>
 
 
