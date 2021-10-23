@@ -41,7 +41,7 @@ class adminkkocontroller extends Controller
         $pages='kko';
         $datas=DB::table('kko')
         ->where('nama','like',"%".$cari."%")
-        ->orWhere('nomerinduk','like',"%".$cari."%")
+
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.kko.index',compact('datas','request','pages'));
