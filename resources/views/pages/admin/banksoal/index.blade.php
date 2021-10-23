@@ -18,6 +18,7 @@ Bank Soal
         <h1>@yield('title')</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
             <div class="breadcrumb-item"><a href="{{route('silabus')}}">{{$dataajar->mapel->nama}}</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
         </div>
@@ -70,7 +71,7 @@ Bank Soal
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{$data->mapel!=null ? $data->mapel->nama : 'Data tidak ditemukan' }}
+                                    {!! $data->pertanyaan!=null ? $data->pertanyaan : 'Data tidak ditemukan' !!}
                                 </td>
                                 <td>
                                     {{$data->kelas!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}

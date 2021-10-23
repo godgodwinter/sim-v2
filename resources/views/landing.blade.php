@@ -203,12 +203,12 @@
                 <h2
                   class="text-4xl font-extrabold leading-snug text-center text-transparent  md:text-6xl lg:text-7xl bg-gradient-to-tr from-pink-500 to-indigo-600 via-blue-600-300 bg-clip-text"
                 >
-                 SISTEM INFORMASI MANAJEMEN <br />
-                  {{ Fungsi::sekolahnama() }}
+                 {{-- SISTEM INFORMASI MANAJEMEN <br /> --}}
+                  {{ Fungsi::app_nama() }}
                 </h2>
-                <p class="max-w-xl text-xl font-medium text-center text-gray-600 md:text-2xl">
-                    {{ Fungsi::sekolahalamat() }}
-                </p>
+                {{-- <p class="max-w-xl text-xl font-medium text-center text-gray-600 md:text-2xl">
+                    {{ Fungsi::lembaga_alamat() }}
+                </p> --}}
 
                 <!-- CTA buttons -->
                 <div class="relative z-10 flex items-center justify-center w-full space-x-6">

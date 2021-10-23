@@ -216,8 +216,8 @@ Pengaturan
 
 
                                     });
-                                    </script>
-                                @endpush
+                                </script>
+                        @endpush
 
                                 <div class="form-group row mb-4 mt-3">
 

@@ -213,7 +213,7 @@ Tahun Pelajaran
                         @php
                         $siswa=asset('/storage/').'/'.$id->siswafoto;
                         @endphp
-                    <img alt="image" src="{{$id->siswafoto!=null  ? $siswa : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="{{$id->nama}}" width="250px" height="300px" style="object-fit:cover;">
+                    <img alt="image" src="{{$id->siswafoto!=null  ? $siswa : 'https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="{{$id->nama}}" width="250px" height="300px" style="object-fit:cover;">
                     </div>
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
                         <div id="image-preview" class="image-preview">

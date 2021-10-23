@@ -74,7 +74,7 @@ Siswa
                                 </td>
                                 <td>
 
-                                    {{ $data->kelas_id!=null ? $data->kelas_id : 'Data tidak ditemukan'}}
+                                    {{ $data->kelas_id!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
 
 
                                 </td>
@@ -85,7 +85,7 @@ Siswa
                                     @php
                                     $siswa=asset('/storage/').'/'.$data->siswafoto;
                                     @endphp
-                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="150px" height="150px" style="object-fit:cover;">
+                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : 'https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="60px" height="60px" style="object-fit:cover;">
                                 </td>
 
 

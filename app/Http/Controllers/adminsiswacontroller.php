@@ -27,10 +27,10 @@ class adminsiswacontroller extends Controller
     {
         #WAJIB
         $pages='siswa';
-        $datas=siswa::with('users')
+        $datas=siswa::with('users')->with('kelas')
         ->paginate(Fungsi::paginationjml());
 
-
+        // dd($datas);
 
         return view('pages.admin.siswa.index',compact('datas','request','pages'));
     }
