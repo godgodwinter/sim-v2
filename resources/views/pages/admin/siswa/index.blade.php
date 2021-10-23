@@ -85,7 +85,7 @@ Siswa
                                     @php
                                     $siswa=asset('/storage/').'/'.$data->siswafoto;
                                     @endphp
-                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="150px" height="150px" style="object-fit:cover;">
+                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : ''}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="150px" height="150px" style="object-fit:cover;">
                                 </td>
 
 
