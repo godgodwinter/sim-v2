@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Silabus
+Penilaian
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Silabus
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('silabus.cari') }}" method="GET">
+                        <form action="{{ route('penilaian.cari') }}" method="GET">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                             <span>
@@ -79,12 +79,10 @@ Silabus
 
                                 <td class="text-center">
 
-                                    <a href="{{route('dataajar.kompetensidasar',$data->id)}}" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
-                                        <i class="fas fa-inbox"></i>
+                                    <a href="{{route('penilaian.inputnilai',$data->id)}}" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Input Nilai Siswa!" >
+                                        <i class="far fa-star"></i>
                                     </a>
-                                    <a href="{{route('dataajar.banksoal',$data->id)}}"
-                                        class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-                                            class="far fa-file-archive"></i> </a>
+
                                 </td>
                             </tr>
                         @empty

@@ -4,7 +4,10 @@ use App\Http\Controllers\adminbanksoalcontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admingurucontroller;
 use App\Http\Controllers\adminkelascontroller;
+use App\Http\Controllers\adminkompetensidasarcontroller;
 use App\Http\Controllers\adminmapelcontroller;
+use App\Http\Controllers\adminmateripokokcontroller;
+use App\Http\Controllers\adminpenilaiancontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsettingscontroller;
@@ -117,6 +120,29 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/dataajar/{dataajar}/banksoal/edit/{id}', [adminbanksoalcontroller::class, 'edit'])->name('dataajar.banksoal.edit');
     Route::post('/admin/dataajar/{dataajar}/banksoal/update/{id}', [adminbanksoalcontroller::class, 'update'])->name('dataajar.banksoal.update');
     Route::delete('/admin/dataajar/{dataajar}/banksoal/delete/{id}', [adminbanksoalcontroller::class, 'destroy'])->name('dataajar.banksoal.delete');
+
+
+    //kompetensidasar
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar', [adminkompetensidasarcontroller::class, 'index'])->name('dataajar.kompetensidasar');
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar/create', [adminkompetensidasarcontroller::class, 'create'])->name('dataajar.kompetensidasar.create');
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar/cari', [adminkompetensidasarcontroller::class, 'cari'])->name('dataajar.kompetensidasar.cari');
+    Route::post('/admin/dataajar/{dataajar}/kompetensidasar/store', [adminkompetensidasarcontroller::class, 'store'])->name('dataajar.kompetensidasar.store');
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar/edit/{id}', [adminkompetensidasarcontroller::class, 'edit'])->name('dataajar.kompetensidasar.edit');
+    Route::post('/admin/dataajar/{dataajar}/kompetensidasar/update/{id}', [adminkompetensidasarcontroller::class, 'update'])->name('dataajar.kompetensidasar.update');
+    Route::delete('/admin/dataajar/{dataajar}/kompetensidasar/delete/{id}', [adminkompetensidasarcontroller::class, 'destroy'])->name('dataajar.kompetensidasar.delete');
+
+    //materipokok
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}', [adminmateripokokcontroller::class, 'index'])->name('dataajar.kompetensidasar.materipokok.index');
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/create', [adminmateripokokcontroller::class, 'create'])->name('dataajar.kompetensidasar.materipokok.create');
+    Route::post('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/store', [adminmateripokokcontroller::class, 'store'])->name('dataajar.kompetensidasar.materipokok.store');
+
+
+
+    //penilaian
+    Route::get('/admin/penilaian', [adminpenilaiancontroller::class, 'index'])->name('penilaian');
+    Route::get('/admin/datapenilaian/cari', [adminpenilaiancontroller::class, 'cari'])->name('penilaian.cari');
+    //inputnilai
+    Route::get('/admin/datapenilaian/inputnilai/{dataajar}', [adminpenilaiancontroller::class, 'inputnilai'])->name('penilaian.inputnilai');
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');

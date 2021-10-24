@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Silabus
+Kompetensi Dasar
 @endsection
 
 @push('before-script')
@@ -18,7 +18,7 @@ Silabus
         <h1>@yield('title')</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
-            {{-- <div class="breadcrumb-item"><a href="#">Layout</a></div> --}}
+            <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
         </div>
     </div>
@@ -31,13 +31,20 @@ Silabus
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('silabus.cari') }}" method="GET">
+                        <form action="{{ route('silabus.cari') }}" method="GET" class=" d-inline">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
+                            <a href="{{route('dataajar.kompetensidasar.create',$dataajar->id)}}" type="submit" value="Import"
+                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Tambah  KD</span></a>
+                            {{-- <a href="{{route('dataajar.kompetensidasar.create',$dataajar->id)}}" type="submit" value="Import"
+                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Tambah  Materi</span></a> --}}
+                                     </form>
 </form>
 
                     </div>
@@ -53,39 +60,39 @@ Silabus
                     <thead>
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Mapel</th>
-                            <th >Kelas</th>
-                            <th >Guru Pengajar</th>
-                            <th >Detail</th>
+                            <th width="8%" class="text-center py-2">Kode</th>
+                            <th >Kompetensi Dasar</th>
+                            <th  width="8%" class="text-center ">Jumlah Materi</th>
+                            <th width="15%" class="text-center ">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($datas as $data)
                         <tr id="sid{{ $data->id }}">
-                                <td class="text-center">
-                                    <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
-                                    {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td>
-                                    {{$data->mapel!=null ? $data->mapel->nama : 'Data tidak ditemukan' }}
-                                </td>
-                                <td>
-                                    {{$data->kelas!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
-                                </td>
-
-                                <td>
-                                    {{$data->guru!=null ? $data->guru->nama : '-'}}
-                                </td>
-
+                            <td class="text-center">
+                                <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
+                                {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
 
                                 <td class="text-center">
-
-                                    <a href="{{route('dataajar.kompetensidasar',$data->id)}}" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
-                                        <i class="fas fa-inbox"></i>
-                                    </a>
-                                    <a href="{{route('dataajar.banksoal',$data->id)}}"
-                                        class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-                                            class="far fa-file-archive"></i> </a>
+                                    @php
+                                        if($data->tipe==1 ? $preffix='3.' : $preffix='4.')
+                                    @endphp
+                                    {!! $data->kode!=null ? $preffix.$data->kode : 'Data tidak ditemukan' !!}
                                 </td>
+                                <td>
+                                    {{$data->nama!=null ? $data->nama : 'Data tidak ditemukan'}}
+
+
+                                </td>
+                                <td class="text-center">   {{$data->materipokok!=null ? $data->materipokok->count() : '0'}} </td>
+                                <td  class="text-center"> <a href="{{route('dataajar.kompetensidasar.materipokok.index',[$dataajar->id,$data->id])}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Detail Materi!"><i class="fas fa-info-circle"></i></a>
+
+                                    <x-button-edit link="{{route('dataajar.kompetensidasar.edit',[$dataajar->id,$data->id])}}" />
+                                        <x-button-delete link="{{route('dataajar.kompetensidasar.delete',[$dataajar->id,$data->id])}}" />
+                                </td>
+
+
+
                             </tr>
                         @empty
                             <tr>
