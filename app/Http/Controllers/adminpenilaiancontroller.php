@@ -7,6 +7,7 @@ use App\Models\dataajar;
 use App\Models\kompetensidasar;
 use App\Models\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class adminpenilaiancontroller extends Controller
@@ -36,12 +37,30 @@ class adminpenilaiancontroller extends Controller
     {
         #WAJIB
         $pages='silabus';
-        $datas=siswa::where('kelas_id',$dataajar->kelas_id)->paginate(Fungsi::paginationjml());
-
+        $datasiswa=siswa::where('kelas_id',$dataajar->kelas_id)->paginate(Fungsi::paginationjml());
         $datakd=kompetensidasar::with('materipokok')
         ->where('dataajar_id',$dataajar->id)
         ->orderBy('kode','asc')
         ->get();
+        // $datasnilai=new Collection();
+        //     foreach($datasiswa as $siswa){
+        //         $datasnilai->push((object)[
+        //             'id' => $request->id1,
+        //             'nomerinduk'=>$request->nomerinduk,
+        //             'nama'=>$request->nama,
+        //             'kelas_id'=>$request->kelas_id,
+        //             'materipokok_id'=>'1',
+        //             'nilai'=>'90'
+        //         ]);
+        //     }
+        $datas=$datasiswa;
+
+        // $datas = $datasiswa->map(function ($item, $key) {
+        //     return $item * 2;
+        // });
+        // dd($datas);
+
+
         return view('pages.admin.penilaian.inputnilai',compact('datas','request','pages','dataajar','datakd'));
     }
 }

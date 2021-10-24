@@ -84,7 +84,7 @@ Input Nilai
                                 @endforelse
 
                             @empty
-
+                                    <td> - </td>
                             @endforelse
                         </tr>
                     </thead>
@@ -104,15 +104,16 @@ Input Nilai
                                             $preffix='4.';
                                         }
                                     @endphp
-
-                                   @forelse ($dk->materipokok as $dm)
-                                        <td class="text-center">{{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</td>
-                                    @empty
-                                        <td class="text-center"> - </td>
-                                    @endforelse
-
+                                       @forelse ($dk->materipokok as $dm)
+                                       @php
+                                            $datasnilai=DB::table('inputnilai')->whereNull('deleted_at')->where('siswa_id',$data->id)->where('materipokok_id',$dm->id)->first();
+                                        @endphp
+                                            <td class="text-center">{{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}}</td>
+                                        @empty
+                                            <td class="text-center"> - </td>
+                                        @endforelse
                                 @empty
-
+                                        <td> - </td>
                                 @endforelse
                             </tr>
                         @empty
