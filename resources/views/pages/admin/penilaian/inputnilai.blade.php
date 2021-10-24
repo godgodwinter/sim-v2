@@ -108,7 +108,124 @@ Input Nilai
                                        @php
                                             $datasnilai=DB::table('inputnilai')->whereNull('deleted_at')->where('siswa_id',$data->id)->where('materipokok_id',$dm->id)->first();
                                         @endphp
-                                            <td class="text-center">{{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}}</td>
+@push('before-script')
+<script>
+$(document).ready(function () {
+    let td=$('#td_{{$data->id}}_{{$dm->id}}');
+    let datalama='{{$datasnilai!=null? $datasnilai->nilai : '0'}}';
+    let siswa_id='{{$data->id}}';
+    let materipokok_id='{{$dm->id}}';
+
+    td.click(function (e) {
+        e.preventDefault();
+        let inputan=`<input  class="babeng text-center text-info mb-2" id="inputan_{{$data->id}}_{{$dm->id}}" value="{{$datasnilai!=null? $datasnilai->nilai : '0'}}" type="number">`;
+        td.html(inputan);
+        let inputanobj=$('#inputan_{{$data->id}}_{{$dm->id}}');
+        inputanobj.focusTextToEnd();
+        // inputanobj.focus();
+
+
+        inputanobj.focusout(function (e) {
+            $cek=cekperubahan(datalama,inputanobj.val());
+            if($cek=='ok'){
+                nilaiakhir=bulatkan(inputanobj.val());
+                // console.log('kirim update');
+                td.html(nilaiakhir);
+                // switalert('success','Data berhasil diubah!');
+            }else{
+                // console.log('Data tidak berubah');
+            td.html(`{{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}}`);
+            }
+        });
+
+
+        inputanobj.keypress(function (e) {
+                // e.preventDefault(e);
+                // ketika di enter
+                if (e.which == 13) {
+            $cek=cekperubahan(datalama,inputanobj.val());
+            if($cek=='ok'){
+                    nilaiakhir=bulatkan(inputanobj.val());
+                    console.log('kirim update');
+                    fetch_customer_data(nilaiakhir,siswa_id,materipokok_id)
+                    td.html(nilaiakhir);
+                    // switalert('success','Data berhasil diubah!');
+            }else{
+                    //  console.log('Data tidak berubah');
+            }
+
+                }
+        });
+        // alert('ini td');
+
+    });
+
+    function switalert(tipe='success',status='Berhasil!'){
+
+        Swal.fire({
+            icon: tipe,
+            title: status,
+            // text: 'Something went wrong!',
+            showConfirmButton: true,
+            timer: 1000
+        })
+    }
+    // fungsi cek apakah data berubah
+    function cekperubahan(datalama='',databaru='') {
+            hasil='no';
+            if(datalama!=databaru){
+                hasil='ok';
+            }
+        return hasil;
+     }
+
+    function bulatkan(databaru=0){
+        if(databaru>100){
+            hasil=100;
+        }else if(databaru<0){
+            hasil=0;
+        }else if(databaru==null || databaru==''){
+            hasil=0;
+        }else{
+            hasil=databaru;
+        }
+        return hasil;
+    }
+
+    // fungsi kirim data perubahan
+    function fetch_customer_data(query = '',siswa_id='',materipokok_id='') {
+    console.log(query);
+        $.ajax({
+            url: "{{ route('api.admin.inputnilai.store',$dataajar->id) }}",
+            method: 'GET',
+            data: {
+                "_token": "{{ csrf_token() }}",
+            nilai:query,
+            siswa_id:siswa_id,
+            materipokok_id:materipokok_id,
+            },
+            dataType: 'json',
+            success: function (data) {
+                // console.log(query);
+
+                switalert('success',data.output);
+                // console.log(data.output);
+                // $("#datasiswa").html(data.output);
+                // console.log(data.output);
+                // console.log(data.datas);
+            }
+        })
+    }
+
+
+});
+
+
+</script>
+@endpush
+                                            <td class="text-center" id="td_{{$data->id}}_{{$dm->id}}">
+                                                {{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}}
+                                            </td>
                                         @empty
                                             <td class="text-center"> - </td>
                                         @endforelse

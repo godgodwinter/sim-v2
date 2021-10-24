@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminapicontroller;
 use App\Http\Controllers\adminbanksoalcontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admingurucontroller;
@@ -143,6 +144,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datapenilaian/cari', [adminpenilaiancontroller::class, 'cari'])->name('penilaian.cari');
     //inputnilai
     Route::get('/admin/datapenilaian/inputnilai/{dataajar}', [adminpenilaiancontroller::class, 'inputnilai'])->name('penilaian.inputnilai');
+
+
+    // api
+
+    Route::get('/api/admin/inputnilai/store/{dataajar}', [adminapicontroller::class, 'inputnilaistore'])->name('api.admin.inputnilai.store');
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');
