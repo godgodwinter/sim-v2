@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminabsensicontroller;
 use App\Http\Controllers\adminapicontroller;
 use App\Http\Controllers\adminbanksoalcontroller;
 use App\Http\Controllers\admindashboardcontroller;
@@ -145,6 +146,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //inputnilai
     Route::get('/admin/datapenilaian/inputnilai/{dataajar}', [adminpenilaiancontroller::class, 'inputnilai'])->name('penilaian.inputnilai');
 
+
+    //absensi
+    Route::get('/admin/absensi', [adminabsensicontroller::class, 'index'])->name('absensi');
+    Route::get('/admin/absensi/detail/{kelas}', [adminabsensicontroller::class, 'detail'])->name('absensi.detail');
 
     // api
 

@@ -87,6 +87,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+#babengcardDate{
+    overflow-x: scroll;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 0px;
+}
 .babeng-td{
 
     /* position: absolute; */
