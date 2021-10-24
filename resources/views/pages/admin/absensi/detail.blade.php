@@ -39,9 +39,7 @@ Siswa
                                     value="Cari">
                             </span>
 
-                            <a href="{{route('siswa.create')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah </span></a> </form>
+                         </form>
 
                     </div>
                 </div>
@@ -60,11 +58,12 @@ Siswa
                                 No</th>
                             <th >Nama</th>
                             @foreach ($dates as $d)
-                                    <th class="text-center">
-                                        @php
-                                            $i=$loop->index;
-                                            $tgl=$dates[$i]->format('d');
-                                        @endphp
+                        @php
+                            $i=$loop->index;
+                            $tgl=$dates[$i]->format('d');
+                        @endphp
+                                    <th class="text-center" >
+
                                         {{$tgl}}
                                     </th>
                             @endforeach
@@ -79,19 +78,21 @@ Siswa
                                     {{Str::limit($data->nama,25,' ...')}}
                                 </td>
 
-                            @foreach ($dates as $d)
-                            <th class="text-center">
-                                @php
-                                    $i=$loop->index;
-                                    $tgl=$dates[$i]->format('d');
-                                @endphp
-                                -
+                    @foreach ($dates as $d)
+                            @php
+                                $i=$loop->index;
+                                  $tgl=$dates[$i]->format('Y-m-d');
+                                  $tgl2=$dates[$i]->format('d');
+                                  $ket='-';
+                                  $ambildata=DB::table('absensi')->where('siswa_id',$data->id)->where('tgl',$tgl)->first();
+                                  if($ambildata!=null){
+                                      $ket=$ambildata->ket;
+                                  }
+                            @endphp
+                            <th class="text-center" data-toggle="modal" data-target="#modal{{$data->id}}-{{$tgl}}">
+                                {{Str::limit($ket,1,'')}}
                             </th>
                     @endforeach
-
-
-
-
                             </tr>
                         @empty
                             <tr>
@@ -111,4 +112,57 @@ $cari=$request->cari;
         </div>
     </div>
 </section>
+@endsection
+
+
+@section('containermodal')
+              {{-- modal absensi --}}
+              @foreach ($datas as $data)
+                  @foreach ($dates as $d)
+
+                              @php
+                                  $i=$loop->index;
+                                  $tgl=$dates[$i]->format('Y-m-d');
+                                  $tgl2=$dates[$i]->format('d');
+                              @endphp
+
+              <div class="modal fade" id="modal{{$data->id}}-{{$tgl}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{route('absensi.store',$kelas->id)}}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> {{$data->nama}} - {{Fungsi::tanggalindo($tgl)}}</h5>
+                      </div>
+                      <div class="modal-body">
+                        {{ csrf_field() }}
+                        <div class="form-group col-md-12 col-12 mt-0">
+                            <label for="nama">Pilih Absensi </label>
+                        <input type="hidden" name="siswa_id" value="{{$data->id}}">
+                        <input type="hidden" name="tgl" value="{{$tgl}}">
+                        <select class="form-control form-control-sm" name="ket">
+                            <option selected>-</option>
+                            <option>Ijin</option>
+                            <option>Sakit</option>
+                            <option>Tanpa Keterangan</option>
+
+
+                        </select>
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+
+                  @endforeach
+
+              @endforeach
+
 @endsection

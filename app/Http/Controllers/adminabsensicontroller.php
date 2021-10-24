@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\absensi;
 use App\Models\dataajar;
 use App\Models\kelas;
 use App\Models\siswa;
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class adminabsensicontroller extends Controller
 {
@@ -28,7 +30,7 @@ class adminabsensicontroller extends Controller
     {
         #WAJIB
         $pages='absensi';
-        $datas=kelas::with('guru')
+        $datas=kelas::with('guru')->where('kelas_id')
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.absensi.index',compact('datas','request','pages'));
@@ -45,8 +47,37 @@ class adminabsensicontroller extends Controller
         $dates = $period->toArray();
 
         // dd($firstDayofPreviousMonth,$lastDayofPreviousMonth);
-        $datas=siswa::paginate(Fungsi::paginationjml());
+        $datas=siswa::where('kelas_id',$kelas->id)->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.absensi.detail',compact('datas','request','pages','kelas','dates'));
+    }
+    public function store(kelas $kelas,Request $request){
+        $cek=absensi::where('siswa_id',$request->siswa_id)
+        ->where('tgl',$request->tgl)
+        ->count();
+
+        if($cek>0){
+            absensi::where('siswa_id',$request->siswa_id)
+            ->where('tgl',$request->tgl)
+            ->update([
+                'ket'     =>   $request->ket,
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+        }else{
+            DB::table('absensi')->insert(
+                array(
+                        'ket'     =>   $request->ket,
+                        'siswa_id'     =>   $request->siswa_id,
+                        'tgl'     =>   $request->tgl,
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+
+        }
+
+        return redirect()->back()->with('status','Data berhasil update!')->with('tipe','success')->with('icon','fas fa-feather');
+
+
     }
 }

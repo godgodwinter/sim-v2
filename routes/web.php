@@ -150,6 +150,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //absensi
     Route::get('/admin/absensi', [adminabsensicontroller::class, 'index'])->name('absensi');
     Route::get('/admin/absensi/detail/{kelas}', [adminabsensicontroller::class, 'detail'])->name('absensi.detail');
+    Route::post('/admin/absensi/detail/{kelas}/store', [adminabsensicontroller::class, 'store'])->name('absensi.store');
 
     // api
 
