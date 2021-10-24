@@ -159,8 +159,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/pelanggaran/detail/{kelas}/store', [adminpelanggarancontroller::class, 'store'])->name('pelanggaran.store');
 
     // api
-
     Route::get('/api/admin/inputnilai/store/{dataajar}', [adminapicontroller::class, 'inputnilaistore'])->name('api.admin.inputnilai.store');
+    Route::get('/api/admin/siswaperkelas/{kelas}', [adminapicontroller::class, 'siswaperkelas'])->name('api.admin.siswaperkelas');
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');

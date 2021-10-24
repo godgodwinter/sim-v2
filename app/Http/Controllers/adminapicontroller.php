@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\dataajar;
 use App\Models\inputnilai;
+use App\Models\kelas;
+use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -53,6 +55,19 @@ class adminapicontroller extends Controller
             'success' => true,
             'message' => 'success',
             'output' => $output,
+        ], 200);
+    }
+
+    public function siswaperkelas(kelas $kelas, Request $request)
+    {
+        $datas=siswa::with('kelas')->where('kelas_id',$kelas->id)
+        ->get();
+        $output='Data berhasil di ambil';
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => $output,
+            'datas' => $datas,
         ], 200);
     }
 }

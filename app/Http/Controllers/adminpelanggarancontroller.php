@@ -7,6 +7,7 @@ use App\Models\kelas;
 use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class adminpelanggarancontroller extends Controller
 {
@@ -39,5 +40,22 @@ class adminpelanggarancontroller extends Controller
         $datas=siswa::where('kelas_id',$kelas->id)->with('pelanggaran')->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.pelanggaran.detail',compact('datas','request','pages','kelas'));
+    }
+
+    public function store(kelas $kelas, Request $request)
+    {
+
+        DB::table('pelanggaran')->insert(
+            array(
+                    'nama'     =>   $request->nama,
+                    'siswa_id'     =>   $request->siswa_id,
+                    'skor'     =>   $request->skor,
+                    'tgl'     =>   $request->tgl,
+                   'created_at'=>date("Y-m-d H:i:s"),
+                   'updated_at'=>date("Y-m-d H:i:s")
+            ));
+
+    return redirect()->back()->with('status','Data berhasil ditambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+
     }
 }
