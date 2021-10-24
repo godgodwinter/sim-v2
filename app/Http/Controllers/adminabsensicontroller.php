@@ -30,7 +30,7 @@ class adminabsensicontroller extends Controller
     {
         #WAJIB
         $pages='absensi';
-        $datas=kelas::with('guru')->where('kelas_id')
+        $datas=kelas::with('guru')
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.absensi.index',compact('datas','request','pages'));
