@@ -17,6 +17,7 @@ class CreatePelanggaranTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('ket')->nullable();
+            $table->string('skor')->nullable();
             $table->string('tgl')->nullable();
             $table->string('siswa_id')->nullable();
             $table->softDeletes();

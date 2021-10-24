@@ -726,6 +726,8 @@ tr:first-child > td > .fc-day-grid-event {
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   min-height: 42px;
   line-height: 42px;
+  padding-top: 6px;
+  margin-left: 10px;
   padding-left: 20px;
   padding-right: 20px; }
 

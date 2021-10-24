@@ -55,7 +55,7 @@
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='absensi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('absensi')}}"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a></li>
-                    <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-times-circle"></i><span>Pelanggaran</span></a></li>
+                    <li {{$pages=='pelanggaran' ? 'class=active' : ''}}><a class="nav-link" href="{{route('pelanggaran')}}"><i class="fas fa-times-circle"></i><span>Pelanggaran</span></a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown ">

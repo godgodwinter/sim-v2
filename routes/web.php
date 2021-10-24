@@ -9,6 +9,7 @@ use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminkompetensidasarcontroller;
 use App\Http\Controllers\adminmapelcontroller;
 use App\Http\Controllers\adminmateripokokcontroller;
+use App\Http\Controllers\adminpelanggarancontroller;
 use App\Http\Controllers\adminpenilaiancontroller;
 use App\Http\Controllers\adminprosescontroller;
 use App\Http\Controllers\adminseedercontroller;
@@ -151,6 +152,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/absensi', [adminabsensicontroller::class, 'index'])->name('absensi');
     Route::get('/admin/absensi/detail/{kelas}', [adminabsensicontroller::class, 'detail'])->name('absensi.detail');
     Route::post('/admin/absensi/detail/{kelas}/store', [adminabsensicontroller::class, 'store'])->name('absensi.store');
+
+    //pelanggaran
+    Route::get('/admin/pelanggaran', [adminpelanggarancontroller::class, 'index'])->name('pelanggaran');
+    Route::get('/admin/pelanggaran/detail/{kelas}', [adminpelanggarancontroller::class, 'detail'])->name('pelanggaran.detail');
+    Route::post('/admin/pelanggaran/detail/{kelas}/store', [adminpelanggarancontroller::class, 'store'])->name('pelanggaran.store');
 
     // api
 
