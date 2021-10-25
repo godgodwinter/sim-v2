@@ -20,8 +20,8 @@ class generatebanksoal_jawaban extends Model
             'generatebanksoal_detail_id',
             'generatebanksoal_id',
         ];
-        public function dataajar()
+        public function banksoaljawaban()
         {
-            return $this->belongsTo('App\Models\dataajar');
+            return $this->belongsTo('App\Models\banksoaljawaban');
         }
 }

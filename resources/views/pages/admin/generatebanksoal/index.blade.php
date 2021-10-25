@@ -29,6 +29,11 @@ Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} 
 
                 <x-button-create link="{{route('dataajar.generatebanksoal.create',$dataajar->id)}}"></x-button-create>
 
+
+                <a href="{{route('dataajar.banksoal',[$dataajar->id])}}"
+                    class="btn btn-success btn-sm py-1" data-toggle="tooltip" data-placement="top" title="Lihat Bank Soal"> <i
+                    class="far fa-file-archive"></i> Bank Soal</a>
+
                 <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
 
                 @if($datas->count()>0)
@@ -67,11 +72,11 @@ Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} 
                                 <td class="text-center">
 
                                     <a href="{{route('dataajar.generatebanksoal.xml',[$dataajar->id,$data->id])}}"
-                                        class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Export XML / Moodle Format"> <i class="fas fa-puzzle-piece"></i></a>
+                                        class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Export XML / Moodle Format"> <i class="fas fa-puzzle-piece" target="_blank"></i></a>
                                     <a href="{{route('dataajar.generatebanksoal.pdfsoal',[$dataajar->id,$data->id])}}"
-                                            class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Cetak Soal / .pdf"> <i class="fas fa-file-word"></i> </a>
+                                            class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Cetak Soal / .pdf" target="_blank"> <i class="fas fa-file-word"></i> </a>
                                     <a href="{{route('dataajar.generatebanksoal.pdfkunci',[$dataajar->id,$data->id])}}"
-                                                    class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Cetak Kunci Jawaban / .pdf"> <i class="far fa-file-word"></i> </a>
+                                                    class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Cetak Kunci Jawaban / .pdf" target="_blank"> <i class="far fa-file-word"></i> </a>
                                   <x-button-delete link="{{route('dataajar.generatebanksoal.delete',[$dataajar->id,$data->id])}}" />
 
                                 </td>

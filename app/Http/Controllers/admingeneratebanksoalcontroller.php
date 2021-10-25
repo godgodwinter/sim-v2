@@ -10,8 +10,10 @@ use App\Models\generatebanksoal;
 use App\Models\generatebanksoal_detail;
 use App\Models\generatebanksoal_jawaban;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class admingeneratebanksoalcontroller extends Controller
 {
@@ -47,13 +49,21 @@ class admingeneratebanksoalcontroller extends Controller
 
     public function store(dataajar $dataajar,Request $request){
 
+        $periksajmlsoal=banksoal::where('dataajar_id',$dataajar->id)->count();
+        if($periksajmlsoal<$request->jml){
+            $jmlsoal=$periksajmlsoal;
+        }else{
+            $jmlsoal=$request->jml;
+        }
+
+
         $soalacak=$request->soal;
         $jawabanacak=$request->jawaban;
         // $nomer=4;
         //     dd(Fungsi::periksaabc($nomer));
         $generatebanksoal_id=generatebanksoal::insertGetId(
             array(
-                   'jml'     =>   $request->jml,
+                   'jml'     =>   $jmlsoal,
                    'soal'     =>   $request->soal,
                    'jawaban'     =>   $request->jawaban,
                    'tgl'     =>   $request->tgl,
@@ -136,6 +146,40 @@ class admingeneratebanksoalcontroller extends Controller
         generatebanksoal_jawaban::where('generatebanksoal_id',$id->id)->delete();
 
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
+    public function pdfsoal(dataajar $dataajar,generatebanksoal $id){
+
+        $datas=generatebanksoal_detail::where('generatebanksoal_id',$id->id)
+        ->with('banksoal')
+        ->get();
+        // dd($databanksoaldetail,1%5);
+
+        // $collection = new Collection();
+
+        // foreach($databanksoaldetail as $dbs){
+
+        //     $ambiljawaban=generatebanksoal_jawaban::with('banksoaljawaban')->whereNull('deleted_at')
+        //     ->where('generatebanksoal_detail_id',$dbs->id)
+        //     ->get();
+
+
+        //     dd($ambiljawaban,1%5);
+        // }
+
+        // dd($collection);
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.generatebanksoal.pdfsoal',compact('datas','dataajar','id'))->setPaper('a4', 'potrait');
+        return $pdf->download('soalujian'.$tgl.'-pdf');
+
+    }
+    public function pdfkunci(dataajar $dataajar,generatebanksoal $id){
+
+        $datas=generatebanksoal_detail::where('generatebanksoal_id',$id->id)->get();
+        // dd($dataajar,$id,$datas,1%5);
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.generatebanksoal.pdfkunci',compact('datas','dataajar','id'))->setPaper('a4', 'potrait');
+        return $pdf->download('soalujian'.$tgl.'-pdf');
 
     }
 }

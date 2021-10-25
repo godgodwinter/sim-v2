@@ -338,6 +338,30 @@ class Fungsi {
         return $data;
 
     }
+    public static function lembaga_nama(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_nama;
+        return $data;
+    }
+    public static function lembaga_jalan(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_jalan;
+        return $data;
+    }
+    public static function lembaga_telp(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_telp;
+        return $data;
+    }
+    public static function lembaga_kota(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_kota;
+        return $data;
+    }
 
 
     public static function tapelaktif(){

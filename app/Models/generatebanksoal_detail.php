@@ -17,8 +17,8 @@ class generatebanksoal_detail extends Model
             'generatebanksoal_id',
             'banksoal_id',
         ];
-        public function dataajar()
+        public function banksoal()
         {
-            return $this->belongsTo('App\Models\dataajar');
+            return $this->belongsTo('App\Models\banksoal');
         }
 }
