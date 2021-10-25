@@ -47,6 +47,7 @@ Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} 
                             <th >Jumlah Soal</th>
                             <th >Acak Soal</th>
                             <th >Acak Jawaban</th>
+                            <th >Tanggal Generate</th>
                             <th >Aksi</th>
                         </tr>
                     </thead>
@@ -66,6 +67,9 @@ Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} 
                                     {{$data->jawaban!=null ? $data->jawaban : 'Data tidak ditemukan'}}
                                 </td>
 
+                                <td>
+                                    {{$data->jawaban!=null ? Fungsi::tanggalindo($data->tgl) : 'Data tidak ditemukan'}}
+                                </td>
 
 
 

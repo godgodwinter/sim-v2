@@ -182,4 +182,23 @@ class admingeneratebanksoalcontroller extends Controller
         return $pdf->download('soalujian'.$tgl.'-pdf');
 
     }
+
+    public function xml(dataajar $dataajar,generatebanksoal $id){
+        // dd('xml');
+
+        $datas=generatebanksoal_detail::where('generatebanksoal_id',$id->id)
+        ->with('banksoal')
+        ->get();
+
+        return response()->view('pages.admin.generatebanksoal.xml',compact(
+            'datas','dataajar','id'
+        ))->header('Content-Type', 'application/xml; charset=utf-8')
+        ->header('Content-Type', 'application/force-download')
+        ->header('Content-Type', 'application/download')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Disposition', 'attachment; filename="banksoal-'.date('YmdHis').'.xml"')
+        ->header('Expires', '0')
+        ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+        ->header('Pragma', 'public');
+    }
 }
