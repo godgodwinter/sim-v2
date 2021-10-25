@@ -27,24 +27,41 @@ Reset Password Siswa
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
-
-                    <div id="babeng-row ">
-
                         <form action="{{ route('settings.resetpassword.cari') }}" method="GET">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
-                            <span>
-                                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
-                            </span>
+                            <div class="row mt-0">
 
-                            <a href="{{route('settings.resetpassword.resetsemua')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Reset Semua </span></a> </form>
+                                <div class="col-4 col-md-2">
+                                    <input type="text" class="form-control form-control-sm" name="cari" placeholder="Cari . . ." autocomplete="off" value="{{$request->cari!=null ? $request->cari : '' }}">
+                                </div>
+                                <div class="col-4 col-md-2">
 
-                    </div>
-                </div>
+                                    <select class="js-example-basic-single py-0  @error('kelas_id')
+                                    is-invalid
+                                @enderror" name="kelas_id"  style="width: 100%" >
+
+                                    <option disabled selected value=""> Pilih Kelas</option>
+                                    @foreach ($kelas as $t)
+                                        <option value="{{ $t->id }}"> {{ $t->tingkatan }} {{ $t->jurusan }} {{ $t->suffix }} </option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                        <button class="btn btn-info ml-0 mt-0 mt-sm-0 px-4 py-1 " type="submit"
+                                            value="Cari"> <span class="pcoded-micon"><i class="fas fa-search"></i> Cari </button>
+
+
+                                </div>
+                                <div class="col-12 col-md-6 mt-2 mt-md-0 text-right">
+                                    <a href="{{route('settings.resetpassword.resetsemua')}}" type="submit" value="Import"
+                                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                            class="fas fa-download"></i> Reset Semua </span></a>
+
+                                </div>
+
+                        </div>
+
+                          </form>
 
                 <x-jsmultidel link="{{route('siswa.multidel')}}" />
 
@@ -73,7 +90,7 @@ Reset Password Siswa
                                     {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td>
-                                    {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan'}}
+                                    {{ $data->kelas_id!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
                                 </td>
                                 <td>
                                     {{ $data->users!=null ? $data->users->email : 'Data tidak ditemukan'}}

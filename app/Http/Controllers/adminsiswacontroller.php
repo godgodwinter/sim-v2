@@ -43,9 +43,11 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')
         ->where('nama','like',"%".$cari."%")
+        ->where('kelas_id','like',"%".$request->kelas_id."%")
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.siswa.index',compact('datas','request','pages'));
+        $kelas=kelas::get();
+        return view('pages.admin.siswa.index',compact('datas','request','pages','kelas'));
     }
 
     public function reset(siswa $id)

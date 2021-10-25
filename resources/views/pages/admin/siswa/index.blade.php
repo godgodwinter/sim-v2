@@ -27,33 +27,37 @@ Siswa
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <form action="{{ route('siswa.cari') }}" method="GET" class="d-inline">
+                <div class="row mt-0">
 
-                    <div id="babeng-row ">
+                        <div class="col-4 col-md-2">
+                            <input type="text" class="form-control form-control-sm" name="cari" placeholder="Cari . . ." autocomplete="off" value="{{$request->cari!=null ? $request->cari : '' }}">
+                        </div>
+                        <div class="col-4 col-md-2">
 
-                        <form action="{{ route('siswa.cari') }}" method="GET">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
-
-                            <select class="js-example-basic-single babeng babeng-select @error('kelas')
+                            <select class="js-example-basic-single py-0  @error('kelas_id')
                             is-invalid
-                        @enderror" name="kelas"  style="width: 100%" >
+                        @enderror" name="kelas_id"  style="width: 100%" >
 
                             <option disabled selected value=""> Pilih Kelas</option>
                             @foreach ($kelas as $t)
                                 <option value="{{ $t->id }}"> {{ $t->tingkatan }} {{ $t->jurusan }} {{ $t->suffix }} </option>
                             @endforeach
                             </select>
-                            <span>
-                                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
-                            </span>
+                        </div>
+                        <div class="col-4 col-md-2">
+                                <button class="btn btn-info ml-0 mt-0 mt-sm-0 px-4 py-1 " type="submit"
+                                    value="Cari"> <span class="pcoded-micon"><i class="fas fa-search"></i> Cari </button>
 
-                            <a href="{{route('siswa.create')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah </span></a> </form>
 
-                    </div>
+                        </div>
+                        <div class="col-12 col-md-6 mt-2 mt-md-0 text-right">
+                            <x-button-create link="{{route('siswa.create')}}"/>
+
+                        </div>
+
                 </div>
+            </form>
 
                 <x-jsmultidel link="{{route('siswa.multidel')}}" />
 
@@ -68,7 +72,7 @@ Siswa
                             <th >Nama</th>
                             <th >Kelas</th>
                             <th >Email</th>
-                            <th >Photo</th>
+                            <th class="text-center">Photo</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -90,11 +94,12 @@ Siswa
                                 <td>
                                     {{ $data->users!=null ? $data->users->email : 'Data tidak ditemukan'}}
                                 </td>
-                                <td>
+                                <td  class="text-center">
                                     @php
                                     $siswa=asset('/storage/').'/'.$data->siswafoto;
+                                    $randomimg='https://ui-avatars.com/api/?name='.$data->nama.'&color=7F9CF5&background=EBF4FF';
                                     @endphp
-                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : 'https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="{{$data->nama}}" width="60px" height="60px" style="object-fit:cover;">
+                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : $randomimg }}" class="img-thumbnail" data-toggle="tooltip" title="{{$data->nama}}" width="60px" height="60px" style="object-fit:cover;">
                                 </td>
 
 

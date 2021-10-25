@@ -48,6 +48,10 @@ input[readonly]{
   border: 0;
   font-size: 1em;
 }
+.babeng-select2{
+  width: 200px;
+  height: 200px;
+}
 .babeng-select{
   position: relative;
   width: 200px;

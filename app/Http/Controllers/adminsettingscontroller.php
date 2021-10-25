@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\kelas;
 use App\Models\settings;
 use App\Models\siswa;
 use App\Models\User;
@@ -91,7 +92,8 @@ class adminsettingscontroller extends Controller
         $pages='settings';
         $datas=siswa::with('users')
         ->paginate(Fungsi::paginationjml());
-        return view('pages.admin.settings.resetpassword',compact('datas','request','pages'));
+        $kelas=kelas::get();
+        return view('pages.admin.settings.resetpassword',compact('datas','request','pages','kelas'));
     }
     public function passwordujian(Request $request)
     {
@@ -107,9 +109,11 @@ class adminsettingscontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')
         ->where('nama','like',"%".$cari."%")
+        ->where('kelas_id','like',"%".$request->kelas_id."%")
         ->paginate(Fungsi::paginationjml());
+        $kelas=kelas::get();
 
-        return view('pages.admin.settings.resetpassword',compact('datas','request','pages'));
+        return view('pages.admin.settings.resetpassword',compact('datas','request','pages','kelas'));
     }
 
     public function resetsemua(Request $request)

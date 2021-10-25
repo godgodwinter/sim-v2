@@ -683,7 +683,8 @@ tr:first-child > td > .fc-day-grid-event {
 
 /* 1.18 Select2 */
 .select2 {
-  width: 100% !important; }
+  width: 100% !important;
+}
 
 .select2-container--default .select2-search--dropdown .select2-search__field:focus {
   outline: none;
@@ -693,7 +694,7 @@ tr:first-child > td > .fc-day-grid-event {
   box-sizing: border-box;
   cursor: pointer;
   display: block;
-  min-height: 42px;
+  min-height: 32px;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -726,7 +727,7 @@ tr:first-child > td > .fc-day-grid-event {
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   min-height: 42px;
   line-height: 42px;
-  padding-top: 6px;
+  padding-top: 2px;
   margin-left: 10px;
   padding-left: 20px;
   padding-right: 20px; }
