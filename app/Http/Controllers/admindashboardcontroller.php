@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\mapel;
+use App\Models\siswa;
 use Illuminate\Http\Request;
 
 class admindashboardcontroller extends Controller
@@ -11,6 +12,9 @@ class admindashboardcontroller extends Controller
 
         $pages='dashboard';
         $mapel=mapel::get();
-        return view('pages.admin.dashboard.index',compact('pages','mapel'));
+        $laki=siswa::where('jk','Laki-laki')->count();
+        $perempuan=siswa::where('jk','!=','Laki-laki')->count();
+        // dd($laki,$perempuan);
+        return view('pages.admin.dashboard.index',compact('pages','mapel','laki','perempuan'));
     }
 }

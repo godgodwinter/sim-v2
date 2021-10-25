@@ -61,10 +61,17 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                         @php
                             $i=$loop->index;
                             $tgl=$dates[$i]->format('d');
+                            $tgl2=$dates[$i]->format('Y-m-d');
+                            $isWeekend=Fungsi::isWeekend($tgl2);
+                            if($isWeekend!==false){
+                                $warna='danger';
+                            }else{
+                                $warna='dark';
+                            }
                         @endphp
-                                    <th class="text-center" >
 
-                                        {{$tgl}}
+                                    <th class="text-center text-{{$warna}}" >
+                                       {{$tgl}}
                                     </th>
                             @endforeach
                         </tr>
@@ -82,14 +89,25 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                             @php
                                 $i=$loop->index;
                                   $tgl=$dates[$i]->format('Y-m-d');
+
                                   $tgl2=$dates[$i]->format('d');
+                                  $isWeekend=Fungsi::isWeekend($tgl);
+                                //   dd(Fungsi::isWeekend($tgl));
                                   $ket='-';
                                   $ambildata=DB::table('absensi')->where('siswa_id',$data->id)->where('tgl',$tgl)->first();
                                   if($ambildata!=null){
                                       $ket=$ambildata->ket;
                                   }
+
+                            if($isWeekend!==false){
+                                $warna='danger';
+                                $target='#';
+                            }else{
+                                $warna='dark';
+                                $target='modal';
+                            }
                             @endphp
-                            <th class="text-center" data-toggle="modal" data-target="#modal{{$data->id}}-{{$tgl}}">
+                            <th class="text-center text-{{$warna}}" data-toggle="{{$target}}" data-target="#modal{{$data->id}}-{{$tgl}}">
                                 {{Str::limit($ket,1,'')}}
                             </th>
                     @endforeach

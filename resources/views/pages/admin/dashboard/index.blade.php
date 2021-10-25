@@ -155,6 +155,70 @@ Beranda
                 This is card footer
                 </div>
             </div> --}}
+
+
+              <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4>Jumlah Siswa : {{$laki+$perempuan}}</h4>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="myChart3"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
             </div>
         </section>
+
+
+@push('after-style')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script>
+
+
+  $(document).ready(function() {
+    //doughnut
+    var ctx = document.getElementById('myChart3').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Siswa Laki-laki', 'Siswa Perempuan'],
+      datasets: [{
+        label: '# of Votes',
+        data: [{{$laki}}, {{$perempuan}}],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+
+
+});
+
+    </script>
+@endpush
 @endsection
