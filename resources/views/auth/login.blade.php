@@ -27,7 +27,7 @@
               <img src="../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
-            
+
 
             <div class="card card-primary">
               <div class="card-header text-center"><h4>SISTEM INFOMASI MANAJEMEN SEKOLAH</h4>
@@ -40,21 +40,21 @@
                   <div class="form-group">
                     <label for="identity">Email / NIS / NIG / Username</label>
                     <input id="identity" type="text" class="form-control" name="identity" tabindex="1" required autofocus>
-                  
+
                     @error('identity')
                     <div class="invalid-feedback">
                         {{ $message }}
-                    </div>    
+                    </div>
                 @enderror
 
   @if($errors->any())
   @foreach ($errors->all() as $error)
     <div class="text-danger">
     {{ $error }}
-    </div>    
+    </div>
   @endforeach
 @endif
-                
+
                   </div>
 
                   <div class="form-group">
@@ -67,11 +67,11 @@
                       </div> --}}
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                   
+
                     @error('password')
                     <div class="invalid-feedback">
                         {{ $message }}
-                    </div>    
+                    </div>
                 @enderror
                   </div>
 
@@ -89,7 +89,12 @@
                   </div>
                 </form>
                 <br>
-              
+
+    <div class="float-left">
+        <h3>Demo</h3>
+        <p>Username : admin</p>
+        <p>Password : admin</p>
+    </div>
     <div class="float-right">
                         <a href="./" class="btn btn-info text-small">
                           <i class="fas fa-home"></i> Beranda

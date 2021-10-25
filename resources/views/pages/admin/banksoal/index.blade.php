@@ -27,24 +27,10 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
-
-                    <div id="babeng-row ">
-
-                        <form action="{{ route('silabus.cari') }}" method="GET" class=" d-inline">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
-
-                            <span>
-                                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
-                            </span>
-                            <a href="{{route('dataajar.banksoal.create',$dataajar->id)}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah Soal </span></a> </form>
-</form>
-
-                    </div>
-                </div>
+                <x-button-create link="{{route('dataajar.banksoal.create',$dataajar->id)}}"></x-button-create>
+                <a href="{{route('dataajar.banksoal.create',$dataajar->id)}}" type="submit" value="Import"
+                    class="btn btn-icon btn-success  ml-0"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Generate Ujian </span></a>
 
                 <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
 
