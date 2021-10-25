@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\kelas;
 use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,10 +30,10 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')->with('kelas')
         ->paginate(Fungsi::paginationjml());
-
+        $kelas=kelas::get();
         // dd($datas);
 
-        return view('pages.admin.siswa.index',compact('datas','request','pages'));
+        return view('pages.admin.siswa.index',compact('datas','request','pages','kelas'));
     }
     public function cari(Request $request)
     {

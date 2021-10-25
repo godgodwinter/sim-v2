@@ -34,6 +34,15 @@ Siswa
                         <form action="{{ route('siswa.cari') }}" method="GET">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
+                            <select class="js-example-basic-single babeng babeng-select @error('kelas')
+                            is-invalid
+                        @enderror" name="kelas"  style="width: 100%" >
+
+                            <option disabled selected value=""> Pilih Kelas</option>
+                            @foreach ($kelas as $t)
+                                <option value="{{ $t->id }}"> {{ $t->tingkatan }} {{ $t->jurusan }} {{ $t->suffix }} </option>
+                            @endforeach
+                            </select>
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
