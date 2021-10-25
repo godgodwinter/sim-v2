@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\dataajar;
+use App\Models\guru;
 use App\Models\kompetensidasar;
 use App\Models\siswa;
 use Illuminate\Http\Request;
@@ -29,8 +30,9 @@ class adminpenilaiancontroller extends Controller
         $pages='silabus';
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')
         ->paginate(Fungsi::paginationjml());
+        $guru=guru::get();
 
-        return view('pages.admin.penilaian.index',compact('datas','request','pages'));
+        return view('pages.admin.penilaian.index',compact('datas','request','pages','guru'));
     }
 
     public function inputnilai(dataajar $dataajar,Request $request)

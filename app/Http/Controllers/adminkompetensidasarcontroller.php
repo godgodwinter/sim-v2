@@ -64,4 +64,42 @@ class adminkompetensidasarcontroller extends Controller
         }
 
     }
+    public function edit(dataajar $dataajar,kompetensidasar $id, Request $request)
+    {
+        #WAJIB
+        $pages='kompetensidasar';
+
+        return view('pages.admin.kompetensidasar.edit',compact('request','pages','dataajar','id'));
+    }
+    public function update(dataajar $dataajar,kompetensidasar $id,Request $request)
+    {
+
+        if($request->nama!==$id->nama){
+
+            $request->validate([
+                'nama' => "required",
+            ],
+            [
+            ]);
+        }
+
+
+
+        kompetensidasar::where('id',$id->id)
+        ->update([
+            'nama'     =>   $request->nama,
+            'tipe'     =>   $request->tipe,
+            'kode'     =>   $request->kode,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+    return redirect()->route('dataajar.kompetensidasar',$dataajar->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    }
+    public function destroy(dataajar $dataajar,kompetensidasar $id){
+
+        kompetensidasar::destroy($id->id);
+        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
 }
