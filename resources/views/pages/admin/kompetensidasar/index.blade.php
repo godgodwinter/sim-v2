@@ -50,7 +50,7 @@ Kompetensi Dasar
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('mapel.multidel')}}" />
+                <x-jsmultidel link="{{route('dataajar.kompetensidasar.multidel',$dataajar->id)}}" />
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>

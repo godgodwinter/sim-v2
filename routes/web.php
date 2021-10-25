@@ -136,11 +136,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/dataajar/{dataajar}/kompetensidasar/edit/{id}', [adminkompetensidasarcontroller::class, 'edit'])->name('dataajar.kompetensidasar.edit');
     Route::post('/admin/dataajar/{dataajar}/kompetensidasar/update/{id}', [adminkompetensidasarcontroller::class, 'update'])->name('dataajar.kompetensidasar.update');
     Route::delete('/admin/dataajar/{dataajar}/kompetensidasar/delete/{id}', [adminkompetensidasarcontroller::class, 'destroy'])->name('dataajar.kompetensidasar.delete');
+    Route::delete('/admin/multidel/dataajar/{dataajar}/kompetensidasar', [adminkompetensidasarcontroller::class, 'multidel'])->name('dataajar.kompetensidasar.multidel');
 
     //materipokok
     Route::get('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}', [adminmateripokokcontroller::class, 'index'])->name('dataajar.kompetensidasar.materipokok.index');
     Route::get('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/create', [adminmateripokokcontroller::class, 'create'])->name('dataajar.kompetensidasar.materipokok.create');
     Route::post('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/store', [adminmateripokokcontroller::class, 'store'])->name('dataajar.kompetensidasar.materipokok.store');
+    Route::get('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/edit/{id}', [adminmateripokokcontroller::class, 'edit'])->name('dataajar.kompetensidasar.materipokok.edit');
+    Route::post('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/update/{id}', [adminmateripokokcontroller::class, 'update'])->name('dataajar.kompetensidasar.materipokok.update');
+    Route::delete('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/delete/{id}', [adminmateripokokcontroller::class, 'destroy'])->name('dataajar.kompetensidasar.materipokok.delete');
+    Route::delete('/admin/multidel/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}', [adminmateripokokcontroller::class, 'multidel'])->name('dataajar.kompetensidasar.materipokok.multidel');
 
 
 

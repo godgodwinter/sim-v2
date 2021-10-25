@@ -77,4 +77,70 @@ class adminmateripokokcontroller extends Controller
         return redirect()->route('dataajar.kompetensidasar.materipokok.index',[$dataajar->id,$kd->id])->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
+    public function edit(dataajar $dataajar,kompetensidasar $kd,materipokok $id, Request $request)
+    {
+        #WAJIB
+        $pages='banksoal';
+        return view('pages.admin.materipokok.edit',compact('request','pages','kd','dataajar','id'));
+    }
+    public function update(dataajar $dataajar,kompetensidasar $kd,materipokok $id,Request $request)
+    {
+
+        if($request->nama!==$id->nama){
+
+            $request->validate([
+                'nama' => "required",
+            ],
+            [
+            ]);
+        }
+
+        $namafilebaru=date('YmdHis');
+        $file = $request->file('link');
+        if($file!=null){
+            $tujuan_upload = 'materi';
+                    // upload file
+            $file->move($tujuan_upload,"materi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
+            $namafileku="materi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
+
+            materipokok::where('id',$id->id)
+            ->update([
+                'link'     =>   $namafileku,
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+        materipokok::where('id',$id->id)
+        ->update([
+            'nama'     =>   $request->nama,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+    return redirect()->route('dataajar.kompetensidasar.materipokok.index',[$dataajar->id,$kd->id])->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    }
+    public function destroy(dataajar $dataajar,kompetensidasar $kd,materipokok $id){
+
+        materipokok::destroy($id->id);
+        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
+    public function multidel(dataajar $dataajar,kompetensidasar $kd,Request $request)
+    {
+
+        $ids=$request->ids;
+        materipokok::whereIn('id',$ids)->delete();
+
+        // load ulang
+        #WAJIB
+        $pages='banksoal';
+        $datas=materipokok::with('kompetensidasar')
+        ->where('kompetensidasar_id',$kd->id)
+        ->orderBy('id','asc')
+        ->paginate(Fungsi::paginationjml());
+        // dd($datas);
+        return view('pages.admin.materipokok.index',compact('datas','request','pages','kd','dataajar'));
+
+    }
 }

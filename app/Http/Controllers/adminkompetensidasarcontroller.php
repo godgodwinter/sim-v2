@@ -102,4 +102,21 @@ class adminkompetensidasarcontroller extends Controller
         return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
+    public function multidel(dataajar $dataajar, Request $request)
+    {
+
+        $ids=$request->ids;
+        kompetensidasar::whereIn('id',$ids)->delete();
+
+        // load ulang
+        #WAJIB
+        $pages='banksoal';
+        $datas=kompetensidasar::with('dataajar')->with('materipokok')
+        ->where('dataajar_id',$dataajar->id)
+        ->orderBy('kode','asc')
+        ->paginate(Fungsi::paginationjml());
+        // dd($datas);
+        return view('pages.admin.kompetensidasar.index',compact('datas','request','pages','dataajar'));
+
+    }
 }

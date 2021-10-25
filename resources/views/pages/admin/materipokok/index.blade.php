@@ -47,7 +47,7 @@ Materi Pokok
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('mapel.multidel')}}" />
+                <x-jsmultidel link="{{route('dataajar.kompetensidasar.materipokok.multidel',[$dataajar->id,$kd->id])}}" />
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>
@@ -80,8 +80,8 @@ Materi Pokok
                                 </td>
                                 <td  class="text-center">
 
-                                    <x-button-edit link="{{route('dataajar.kompetensidasar.edit',[$dataajar->id,$data->id])}}" />
-                                        <x-button-delete link="{{route('dataajar.kompetensidasar.delete',[$dataajar->id,$data->id])}}" />
+                                    <x-button-edit link="{{route('dataajar.kompetensidasar.materipokok.edit',[$dataajar->id,$kd->id,$data->id])}}" />
+                                        <x-button-delete link="{{route('dataajar.kompetensidasar.materipokok.delete',[$dataajar->id,$kd->id,$data->id])}}" />
                                 </td>
 
 
