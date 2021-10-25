@@ -102,6 +102,8 @@ Silabus
                                     <a href="{{route('dataajar.banksoal',$data->id)}}"
                                         class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
                                             class="far fa-file-archive"></i> </a>
+                                    <a href="{{route('dataajar.generatebanksoal',$data->id)}}"
+                                        class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Generate Soal Ujian!"> <i class="fas fa-file-export"></i> </a>
                                 </td>
                             </tr>
                         @empty

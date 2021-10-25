@@ -11,6 +11,22 @@ class Fungsi {
     // }
 
 
+    public static function periksaabc($data){
+        $hasil='A';
+        if($data=='1'){
+            $hasil='A';
+        }elseif($data=='2'){
+            $hasil='B';
+        }elseif($data=='3'){
+            $hasil='C';
+        }elseif($data=='4'){
+            $hasil='D';
+        }else{
+            $hasil='E';
+        }
+        // dd($data,$hasil);
+        return $hasil;
+    }
 
     public static function tanggalgaringcreated($data){
         $data2=explode(" ",$data);

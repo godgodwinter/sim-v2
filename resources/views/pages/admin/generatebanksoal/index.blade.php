@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
+Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')
@@ -27,10 +27,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
         <div class="card">
             <div class="card-body">
 
-                <x-button-create link="{{route('dataajar.banksoal.create',$dataajar->id)}}"></x-button-create>
-                <a href="{{route('dataajar.generatebanksoal',$dataajar->id)}}" type="submit" value="Import"
-                    class="btn btn-icon btn-success  ml-0"><span class="pcoded-micon"> <i
-                            class="fas fa-download"></i> Generate Soal Ujian </span></a>
+                <x-button-create link="{{route('dataajar.generatebanksoal.create',$dataajar->id)}}"></x-button-create>
 
                 <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
 
@@ -42,10 +39,9 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                     <thead>
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Pertanyaan</th>
-                            <th >Jumlah Pilihan</th>
-                            <th >Jenis Soal</th>
-                            <th >Tingkat kesulitan</th>
+                            <th >Jumlah Soal</th>
+                            <th >Acak Soal</th>
+                            <th >Acak Jawaban</th>
                             <th >Aksi</th>
                         </tr>
                     </thead>
@@ -56,29 +52,27 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {!! $data->pertanyaan!=null ? $data->pertanyaan : 'Data tidak ditemukan' !!}
+                                    {!! $data->jml!=null ? $data->jml : 'Data tidak ditemukan' !!} Soal
                                 </td>
                                 <td>
-                                    {{$data->banksoaljawaban!=null ? $data->banksoaljawaban->count() : 'Data tidak ditemukan'}}
+                                    {{$data->soal!=null ? $data->soal : 'Data tidak ditemukan'}}
+                                </td>
+                                <td>
+                                    {{$data->jawaban!=null ? $data->jawaban : 'Data tidak ditemukan'}}
                                 </td>
 
-                                    @php
-                                    $kategorisoal_nama='TIdak diketahui';
-                                        if($data->kategorisoal_nama==1){
-                                            $kategorisoal_nama='Pilihan ganda';
-                                        }elseif($data->kategorisoal_nama==2){
-                                            $kategorisoal_nama='Pilihan ganda kompleks';
-                                        }else{
-                                            $kategorisoal_nama='True/False';
-                                        }
-                                    @endphp
-                                <td class="text-capitalize">{{$kategorisoal_nama}}</td>
-                                <td class="text-capitalize">{{$data->tingkatkesulitan}}</td>
+
 
 
                                 <td class="text-center">
-                                    <x-button-edit link="{{route('dataajar.banksoal.edit',[$dataajar->id,$data->id])}}" />
-                                    <x-button-delete link="{{route('dataajar.generatebanksoal.delete',[$dataajar->id,$data->id])}}" />
+
+                                    <a href="{{route('dataajar.generatebanksoal.xml',[$dataajar->id,$data->id])}}"
+                                        class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Export XML / Moodle Format"> <i class="fas fa-puzzle-piece"></i></a>
+                                    <a href="{{route('dataajar.generatebanksoal.pdfsoal',[$dataajar->id,$data->id])}}"
+                                            class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Cetak Soal / .pdf"> <i class="fas fa-file-word"></i> </a>
+                                    <a href="{{route('dataajar.generatebanksoal.pdfkunci',[$dataajar->id,$data->id])}}"
+                                                    class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Cetak Kunci Jawaban / .pdf"> <i class="far fa-file-word"></i> </a>
+                                  <x-button-delete link="{{route('dataajar.generatebanksoal.delete',[$dataajar->id,$data->id])}}" />
 
                                 </td>
                             </tr>

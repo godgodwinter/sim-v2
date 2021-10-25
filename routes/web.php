@@ -4,6 +4,7 @@ use App\Http\Controllers\adminabsensicontroller;
 use App\Http\Controllers\adminapicontroller;
 use App\Http\Controllers\adminbanksoalcontroller;
 use App\Http\Controllers\admindashboardcontroller;
+use App\Http\Controllers\admingeneratebanksoalcontroller;
 use App\Http\Controllers\admingurucontroller;
 use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminkompetensidasarcontroller;
@@ -128,6 +129,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/dataajar/{dataajar}/banksoal/delete/{id}', [adminbanksoalcontroller::class, 'destroy'])->name('dataajar.banksoal.delete');
     Route::delete('/admin/multidel/dataajar/{dataajar}/banksoal', [adminbanksoalcontroller::class, 'multidel'])->name('dataajar.banksoal.multidel');
 
+    //generatebanksoal
+    Route::get('/admin/dataajar/{dataajar}/generatebanksoal', [admingeneratebanksoalcontroller::class, 'index'])->name('dataajar.generatebanksoal');
+    Route::get('/admin/dataajar/{dataajar}/generatebanksoal/create', [admingeneratebanksoalcontroller::class, 'create'])->name('dataajar.generatebanksoal.create');
+    Route::post('/admin/dataajar/{dataajar}/generatebanksoal/store', [admingeneratebanksoalcontroller::class, 'store'])->name('dataajar.generatebanksoal.store');
+    Route::delete('/admin/dataajar/{dataajar}/generatebanksoal/delete/{id}', [admingeneratebanksoalcontroller::class, 'destroy'])->name('dataajar.generatebanksoal.delete');
+    //export dan cetak soal
+    Route::get('/admin/dataajar/{dataajar}/generatebanksoal/{id}/pdfsoal', [admingeneratebanksoalcontroller::class, 'pdfsoal'])->name('dataajar.generatebanksoal.pdfsoal');
+    Route::get('/admin/dataajar/{dataajar}/generatebanksoal/{id}/pdfkunci', [admingeneratebanksoalcontroller::class, 'pdfkunci'])->name('dataajar.generatebanksoal.pdfkunci');
+    Route::get('/admin/dataajar/{dataajar}/generatebanksoal/{id}/xml', [admingeneratebanksoalcontroller::class, 'xml'])->name('dataajar.generatebanksoal.xml');
 
     //kompetensidasar
     Route::get('/admin/dataajar/{dataajar}/kompetensidasar', [adminkompetensidasarcontroller::class, 'index'])->name('dataajar.kompetensidasar');
