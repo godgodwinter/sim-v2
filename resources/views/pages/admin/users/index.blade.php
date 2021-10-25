@@ -27,7 +27,7 @@ Administrator
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <div id="babeng-bar" class="text-left mt-2">
 
                     <div id="babeng-row ">
 

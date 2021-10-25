@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-pelanggaran
+Pelanggaran
 @endsection
 
 @push('before-script')
