@@ -28,7 +28,7 @@ class adminpenilaiancontroller extends Controller
     public function index(Request $request)
     {
         #WAJIB
-        $pages='silabus';
+        $pages='penilaian';
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')
         ->paginate(Fungsi::paginationjml());
         $guru=guru::get();

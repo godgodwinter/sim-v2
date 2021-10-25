@@ -92,11 +92,19 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.babeng-min-row{
+    width: 1%;
+    white-space: nowrap;
+}
+
 #babengcardDate{
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
+    overflow-x: auto;
     padding-left: 10px;
     padding-right: 10px;
     margin-right: 0px;
+    /* background-color: red; */
+    /* width: auto; */
 }
 .babeng-td{
 

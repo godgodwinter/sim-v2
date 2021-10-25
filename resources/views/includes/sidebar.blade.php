@@ -21,7 +21,7 @@
                     <li {{$pages=='passwordujian' ? 'class=active' : ''}}><a class="nav-link" href="{{route('settings.passwordujian')}}"><i class="fas fa-key"></i><span>Password Ujian</span></a></li>
                 </ul>
             </li>
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown {{$pages=='users' || $pages=='tapel' || $pages=='siswa' || $pages=='guru'|| $pages=='kelas' || $pages=='guru' || $pages=='mapel' ? 'active' : ''}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-dumpster"></i>  <span>Mastering</span></a>
                 <ul class="dropdown-menu">
 
@@ -41,7 +41,8 @@
                     <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-graduation-cap"></i> <span>Tagihan Pembelajaran</span></a></li>
                 </ul>
             </li> --}}
-            <li class="nav-item dropdown ">
+
+            <li class="nav-item dropdown {{$pages=='mapel' || $pages=='silabus' || $pages=='penilaian' ? 'active' : ''}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>   <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
 
@@ -51,7 +52,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown ">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-id-card-alt"></i>  <span>Absensi</span></a>
+                <a href="#" class="nav-link has-dropdown {{$pages=='absensi' || $pages=='pelanggaran'  ? 'active' : ''}}" data-toggle="dropdown"><i class="fas fa-id-card-alt"></i>  <span>Absensi</span></a>
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='absensi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('absensi')}}"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a></li>

@@ -124,7 +124,9 @@ Beranda
                             }
                         @endphp
                         <div class="col text-center col-6 col-md-3 mt-2">
-                            <div class="browser browser-chrome"></div>
+
+                            <img alt="image" src="https://ui-avatars.com/api/?name={{$m->nama}}&color=7F9CF5&background=EBF4FF&length=3" class="img-thumbnail" data-toggle="tooltip" title="{{$m->nama}}" width="100px" height="100px" style="object-fit:cover;">
+
                             <div class="mt-2 font-weight-bold">{{$m->nama}}</div>
                             <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> {{$totalkd}} Silabus </div>
                             <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> {{$totalsoal}} Soal </div>
@@ -158,7 +160,7 @@ Beranda
 
 
               <div class="row">
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12 col-md-12 col-lg-12">
                   <div class="card">
                     <div class="card-header">
                       <h4>Jumlah Siswa : {{$laki+$perempuan}}</h4>

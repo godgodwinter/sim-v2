@@ -28,14 +28,14 @@ Siswa
             <div class="card-body">
 
                 <form action="{{ route('siswa.cari') }}" method="GET" class="d-inline">
-                <div class="row mt-0">
+                <div class="d-flex bd-highlight mb-3 align-items-center">
 
-                        <div class="col-4 col-md-2">
+                        <div class="p-2 bd-highlight">
                             <input type="text" class="form-control form-control-sm" name="cari" placeholder="Cari . . ." autocomplete="off" value="{{$request->cari!=null ? $request->cari : '' }}">
                         </div>
-                        <div class="col-4 col-md-2">
+                        <div class="p-2 bd-highlight px-2">
 
-                            <select class="js-example-basic-single py-0  @error('kelas_id')
+                            <select class="js-example-basic-single py-4  @error('kelas_id')
                             is-invalid
                         @enderror" name="kelas_id"  style="width: 100%" >
 
@@ -45,13 +45,13 @@ Siswa
                             @endforeach
                             </select>
                         </div>
-                        <div class="col-4 col-md-2">
-                                <button class="btn btn-info ml-0 mt-0 mt-sm-0 px-4 py-1 " type="submit"
+                        <div class="p-2 bd-highlight">
+                                <button class="btn btn-info px-4 " type="submit"
                                     value="Cari"> <span class="pcoded-micon"><i class="fas fa-search"></i> Cari </button>
 
 
                         </div>
-                        <div class="col-12 col-md-6 mt-2 mt-md-0 text-right">
+                        <div class="ml-auto p-2 bd-highlight">
                             <x-button-create link="{{route('siswa.create')}}"/>
 
                         </div>
@@ -68,12 +68,12 @@ Siswa
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th  class="text-center py-2 babeng-min-row" > <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
                             <th >Kelas</th>
                             <th >Email</th>
                             <th class="text-center">Photo</th>
-                            <th width="10%" class="text-center">Aksi</th>
+                            <th  class="text-center" >Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -103,7 +103,7 @@ Siswa
                                 </td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
                                     <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
@@ -116,16 +116,23 @@ Siswa
                         @endforelse
                     </tbody>
                 </table>
+            <div class="d-flex justify-content-between flex-row-reverse mt-3">
+                <div >
+                    @php
+                    $cari=$request->cari;
+                    @endphp
+                    {{ $datas->onEachSide(1)
+                      ->links() }}
 
-@php
-$cari=$request->cari;
-@endphp
-{{ $datas->onEachSide(1)
-  ->links() }}
-<a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
-            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
-            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
+                </div>
+                <div >
+                    <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+                                onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
+                                <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
+                            </a>
+                </div>
+
+            </div>
             </div>
         </div>
     </div>

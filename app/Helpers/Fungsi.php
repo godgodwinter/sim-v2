@@ -11,7 +11,7 @@ class Fungsi {
     // }
     public static  function isWeekend($date) {
         $weekDay = date('w', strtotime($date));
-        return ($weekDay == 0 || $weekDay == 6);
+        return ($weekDay == 0 || $weekDay == 6 );
     }
 
     public static function periksaabc($data){

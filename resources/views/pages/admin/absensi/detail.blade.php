@@ -32,7 +32,7 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                     <div id="babeng-row ">
 
                         <form action="{{ route('siswa.cari') }}" method="GET">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                            <input type="text" class="babeng babeng-select  ml-0" name="cari" autocomplete="off">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
@@ -48,7 +48,25 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                     <x-jsmultidel link="{{route('siswa.multidel')}}" />
 
                 @if($datas->count()>0)
-                    <x-jsdatatable/>
+                    {{-- <x-jsdatatable/> --}}
+                    <script>
+                        $(document).ready(function() {
+                            $('#example').DataTable({
+                                paging: false,
+                                info: false,
+                                searching: false,
+                                columnDefs: [
+                                    { orderable: false, targets: [
+                                    @foreach ($dates as $d)
+                                        {{$loop->index+2}},
+                                    @endforeach
+                                    ]
+                                 }
+                                ]
+                            });
+                        } );
+                    </script>
+
                 @endif
 
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%" >
@@ -70,7 +88,7 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                             }
                         @endphp
 
-                                    <th class="text-center text-{{$warna}}" >
+                                    <th class="text-center text-{{$warna}} px-2" >
                                        {{$tgl}}
                                     </th>
                             @endforeach
@@ -101,15 +119,21 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
 
                             if($isWeekend!==false){
                                 $warna='danger';
+                                $style="background-color: rgba(210, 77, 87, 0.8)";
                                 $target='#';
                             }else{
                                 $warna='dark';
                                 $target='modal';
+                                $style='';
                             }
                             @endphp
-                            <th class="text-center text-{{$warna}}" data-toggle="{{$target}}" data-target="#modal{{$data->id}}-{{$tgl}}">
-                                {{Str::limit($ket,1,'')}}
-                            </th>
+                            <td class="text-center text-{{$warna}}" data-toggle="{{$target}}" data-target="#modal{{$data->id}}-{{$tgl}}" style="{{$style}}">
+                               @if ($isWeekend==false)
+                                    {{Str::limit($ket,1,'')}}
+                                    @else
+
+                               @endif
+                            </td>
                     @endforeach
                             </tr>
                         @empty
@@ -121,12 +145,24 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                 </table>
 
             </div>
-@php
-$cari=$request->cari;
-@endphp
-{{ $datas->onEachSide(1)
-  ->links() }}
+            <div class="d-flex justify-content-between mt-3">
+                <div>
+                    @php
+                    $cari=$request->cari;
+                    @endphp
+                    {{ $datas->onEachSide(1)
+                      ->links() }}
+                </div>
+
+              <div>
+                <p>N.B : <i>Warna merah hari sabtu dan minggu</i>.</p>
+              </div>
+                                </div>
+
             </div>
+
+
+
         </div>
     </div>
 </section>
