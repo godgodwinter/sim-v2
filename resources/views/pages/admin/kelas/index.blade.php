@@ -70,8 +70,8 @@ Kelas
                                 <td>
                                     {{$data->tingkatan.' '.$data->jurusan.' '.$data->suffix}}
                                 </td>
-                                <td>
-                                    {{$data->guru!=null ? $data->guru->nama : 'Data tidak ditemukan'}}
+                                <td  data-toggle="modal" data-target="#pilihwalikelas{{$data->id}}">
+                                    <label for="" class="text-{{$data->guru!=null ? 'dark' : 'danger'}}">{{$data->guru!=null ? $data->guru->nama : 'Data tidak ditemukan'}}</label>
                                 </td>
 
 
@@ -102,4 +102,51 @@ $cari=$request->cari;
         </div>
     </div>
 </section>
+@endsection
+
+
+@section('containermodal')
+        @forelse ($datas as $data)
+              <div class="modal fade" id="pilihwalikelas{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{route('store.walikelas',$data->id)}}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pilih Walikelas {{ $data->tingkatan}} {{$data->jurusan}} {{$data->suffix}}</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <select class="js-example-basic-single form-control-sm @error('guru_id')
+                            is-invalid
+                        @enderror" name="guru_id"  style="width: 75%" required>
+                            @if($data->guru!=null)
+                            <option value="{{ $data->guru->id }}" selected> {{ $data->guru->nama }}</option>
+                            @else
+                            <option disabled selected value=""> Pilih Walikelas</option>
+                            @endif
+                            @foreach ($guru as $t)
+                                <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+              @empty
+
+              @endforelse
+
+
 @endsection

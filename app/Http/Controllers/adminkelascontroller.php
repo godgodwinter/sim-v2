@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\guru;
 use App\Models\kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,9 @@ class adminkelascontroller extends Controller
         $datas=kelas::with('guru')
         ->paginate(Fungsi::paginationjml());
         // dd($datas);
+        $guru=guru::get();
 
-        return view('pages.admin.kelas.index',compact('datas','request','pages'));
+        return view('pages.admin.kelas.index',compact('datas','request','pages','guru'));
     }
     public function cari(Request $request)
     {
@@ -152,6 +154,29 @@ class adminkelascontroller extends Controller
         // dd($datas);
 
         return view('pages.admin.kelas.index',compact('datas','request','pages'));
+
+    }
+
+    public function walikelasstore(kelas $id,Request $request)
+    {
+            $request->validate([
+                'guru_id'=>'required',
+
+            ],
+            [
+                'guru_id.nama'=>'tingkatan harus diisi',
+            ]);
+
+
+        kelas::where('id',$id->id)
+        ->update([
+            'guru_id'     =>   $request->guru_id,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+
+    return redirect()->route('kelas')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 }

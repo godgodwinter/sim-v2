@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datakelas/create', [adminkelascontroller::class, 'create'])->name('kelas.create');
     Route::post('/admin/datakelas', [adminkelascontroller::class, 'store'])->name('kelas.store');
     Route::delete('/admin/datakelas/multidel', [adminkelascontroller::class, 'multidel'])->name('kelas.multidel');
+//walikelas
+    Route::post('/admin/store/walikelas/{id}', [adminkelascontroller::class, 'walikelasstore'])->name('store.walikelas');
 
 
     //siswa
