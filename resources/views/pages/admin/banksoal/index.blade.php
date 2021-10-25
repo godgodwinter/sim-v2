@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Bank Soal
+Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')
@@ -19,7 +19,6 @@ Bank Soal
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
-            <div class="breadcrumb-item"><a href="{{route('silabus')}}">{{$dataajar->mapel->nama}}</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
         </div>
     </div>
@@ -47,7 +46,7 @@ Bank Soal
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('mapel.multidel')}}" />
+                <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>

@@ -20,18 +20,18 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
             <div class="breadcrumb-item"><a href="{{route('dataajar.banksoal',$dataajar->id)}}">@yield('title')</a></div>
-            <div class="breadcrumb-item">Tambah</div>
+            <div class="breadcrumb-item">Edit</div>
         </div>
     </div>
 
     <div class="section-body">
         <div class="card">
             <div class="card-header">
-                <h5>Tambah</h5>
+                <h5>Edit</h5>
             </div>
             <div class="card-body">
 
-                <form action="{{route('dataajar.banksoal.store',$dataajar->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('dataajar.banksoal.update',[$dataajar->id,$id->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -39,15 +39,15 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                             <label class="form-label">Jenis Soal</label>
                             <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                                <input type="radio" name="kategorisoal_nama" value="1" class="selectgroup-input" checked="">
+                                <input type="radio" name="kategorisoal_nama" value="1" class="selectgroup-input" {{$id->kategorisoal_nama =='1' ? 'checked=""' : 'disabled'}}  >
                                 <span class="selectgroup-button">Pilihan Ganda</span>
                             </label>
                               <label class="selectgroup-item">
-                                <input type="radio" name="kategorisoal_nama" value="2" class="selectgroup-input" >
+                                <input type="radio" name="kategorisoal_nama" value="2" class="selectgroup-input" {{$id->kategorisoal_nama =='2' ? 'checked=""' : 'disabled'}}  >
                                 <span class="selectgroup-button">Pilihan Ganda Kompleks</span>
                               </label>
                               <label class="selectgroup-item">
-                                <input type="radio" name="kategorisoal_nama" value="3" class="selectgroup-input">
+                                <input type="radio" name="kategorisoal_nama" value="3" class="selectgroup-input"  {{$id->kategorisoal_nama =='3' ? 'checked=""' : 'disabled'}} >
                                 <span class="selectgroup-button">True/False</span>
                               </label>
 
@@ -203,11 +203,11 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                                 });
                                 function periksa(jenissoal) {
                                     if(jenissoal==1){
-                                         $('#formjawaban').html(formtipe1);
+                                        //  $('#formjawaban').html(formtipe1);
                                     }else if(jenissoal==2){
-                                         $('#formjawaban').html(formtipe1);
+                                        //  $('#formjawaban').html(formtipe1);
                                     }else{
-                                         $('#formjawaban').html(formtipe3);
+                                        //  $('#formjawaban').html(formtipe3);
                                     }
 
                                 }
@@ -237,7 +237,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                           <div class="form-group col-md-6 col-12 ml-5">
                             <label for="nama">Pertanyaan</label> :
                             <textarea class="form-control summernote-simple" style="min-width: 100%;height:100%;" name="pertanyaan"
-                                id="pertanyaan"  ></textarea>
+                                id="pertanyaan"  >{{$id->pertanyaan}}</textarea>
                         </div>
                         @push('after-script')
                         <script>
@@ -274,6 +274,92 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
 
                     </div>
                     <div class="row" id="formjawaban">
+                        @if ($id->kategorisoal_nama==1 OR $id->kategorisoal_nama==2)
+
+
+                        @forelse ($id->banksoaljawaban as $j)
+                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                            <label for="jawaban{{$loop->index+1}}">Pilihan Jawaban {{$loop->index+1}} <code>*)</code></label>
+                            <input type="text" name="jawaban{{$loop->index+1}}" id="jawaban1" class="form-control @error('jawaban1') is-invalid @enderror" value="{{$j->jawaban}}" required>
+                            @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-2 col-2 mt-0 ml-5">
+                            <label class="form-label">Hasil Jawaban {{$loop->index+1}}</label>
+                            <div class="selectgroup w-100">
+                            <label class="selectgroup-item">
+                                <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Benar" class="selectgroup-input" {{$j->hasil=='Benar' ? 'checked=""' : ''}}>
+                                <span class="selectgroup-button">Benar</span>
+                            </label>
+                              <label class="selectgroup-item">
+                                <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Salah" class="selectgroup-input" {{$j->hasil=='Salah' ? 'checked=""' : ''}}>
+                                <span class="selectgroup-button">Salah</span>
+                              </label>
+
+                            </div>
+                          </div>
+
+                                  @empty
+
+                                  @endforelse
+                                  @if($id->banksoaljawaban->count()<5)
+                                        @php
+                                            $datalama=$id->banksoaljawaban->count();
+                                            $jml=5-($id->banksoaljawaban->count());
+                                        @endphp
+                                        @for ($i = 0; $i < $jml; $i++)
+
+                                <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                                    <label for="jawaban{{$i+1+$datalama}}">Pilihan Jawaban {{$i+1+$datalama}} <code>*)</code></label>
+                                    <input type="text" name="jawaban{{$i+1+$datalama}}" id="jawaban{{$i+1+$datalama}}" class="form-control @error('jawaban5') is-invalid @enderror" value="{{old('jawaban5')}}" >
+                                    @error('jawaban5')<div class="invalid-feedback"> {{$message}}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-2 col-2 mt-0 ml-5">
+                                    <label class="form-label">Hasil Jawaban {{$i+1+$datalama}}</label>
+                                    <div class="selectgroup w-100">
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="jawaban_hasil{{$i+1+$datalama}}" value="Benar" class="selectgroup-input" >
+                                        <span class="selectgroup-button">Benar</span>
+                                    </label>
+                                      <label class="selectgroup-item">
+                                        <input type="radio" name="jawaban_hasil{{$i+1+$datalama}}" value="Salah" class="selectgroup-input" checked="">
+                                        <span class="selectgroup-button">Salah</span>
+                                      </label>
+
+                                    </div>
+                                  </div>
+
+
+                                        @endfor
+
+                                  @endif
+
+
+                        @else
+                            @forelse ($id->banksoaljawaban as $j)
+                            <div class="form-group col-md-2 col-2 mt-0 ml-5">
+                                <label class="form-label"> Jawaban {{$loop->index+1}}</label>
+                                <div class="selectgroup w-100">
+                                <label class="selectgroup-item">
+                                    <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Benar" class="selectgroup-input" {{$j->hasil=='Benar' ? 'checked=""' : ''}}>
+                                    <span class="selectgroup-button">Benar</span>
+                                </label>
+                                  <label class="selectgroup-item">
+                                    <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Salah" class="selectgroup-input"  {{$j->hasil=='Salah' ? 'checked=""' : ''}}>
+                                    <span class="selectgroup-button">Salah</span>
+                                  </label>
+
+                                </div>
+                              </div>
+
+                            @empty
+
+                            @endforelse
+
+
+
+                        @endif
                     </div>
 
                     <div class="card-footer text-right mr-5">

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Input Nilai
+Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')
@@ -18,7 +18,7 @@ Input Nilai
         <h1>@yield('title')</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
-            {{-- <div class="breadcrumb-item"><a href="#">Layout</a></div> --}}
+            <div class="breadcrumb-item"><a href="{{route('penilaian')}}">Penilaian</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
         </div>
     </div>

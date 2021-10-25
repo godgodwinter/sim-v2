@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Kompetensi Dasar
+Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')

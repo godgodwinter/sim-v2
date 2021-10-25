@@ -126,6 +126,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/dataajar/{dataajar}/banksoal/edit/{id}', [adminbanksoalcontroller::class, 'edit'])->name('dataajar.banksoal.edit');
     Route::post('/admin/dataajar/{dataajar}/banksoal/update/{id}', [adminbanksoalcontroller::class, 'update'])->name('dataajar.banksoal.update');
     Route::delete('/admin/dataajar/{dataajar}/banksoal/delete/{id}', [adminbanksoalcontroller::class, 'destroy'])->name('dataajar.banksoal.delete');
+    Route::delete('/admin/multidel/dataajar/{dataajar}/banksoal', [adminbanksoalcontroller::class, 'multidel'])->name('dataajar.banksoal.multidel');
 
 
     //kompetensidasar

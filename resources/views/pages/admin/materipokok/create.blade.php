@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Materi Pokok
+Materi Pokok {{$kd->nama}}
 @endsection
 
 @push('before-script')
@@ -19,7 +19,7 @@ Materi Pokok
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
-            <div class="breadcrumb-item"><a href="{{route('dataajar.banksoal',$dataajar->id)}}">{{$dataajar->nama}}</a></div>
+            <div class="breadcrumb-item"><a href="{{route('dataajar.kompetensidasar',$dataajar->id)}}"> KD {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}</a></div>
             <div class="breadcrumb-item"><a href="{{route('dataajar.kompetensidasar.materipokok.index',[$dataajar->id,$kd->id])}}">@yield('title')</a></div>
             <div class="breadcrumb-item">Tambah</div>
         </div>

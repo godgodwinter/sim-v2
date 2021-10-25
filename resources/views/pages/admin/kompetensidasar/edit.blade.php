@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Kompetensi Dasar {{$dataajar->mapel->nama}}
+Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')
@@ -19,7 +19,7 @@ Kompetensi Dasar {{$dataajar->mapel->nama}}
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
-            <div class="breadcrumb-item"><a href="{{route('dataajar.banksoal',$dataajar->id)}}">@yield('title')</a></div>
+            <div class="breadcrumb-item"><a href="{{route('dataajar.kompetensidasar',$dataajar->id)}}">@yield('title')</a></div>
             <div class="breadcrumb-item">Edit</div>
         </div>
     </div>
