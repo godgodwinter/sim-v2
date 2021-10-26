@@ -14,7 +14,7 @@ class adminpelanggarancontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin'){
+            if(Auth::user()->tipeuser!='admin' AND Auth::user()->tipeuser!='guru'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 

@@ -20,6 +20,13 @@ use App\Http\Controllers\adminsiswacontroller;
 use App\Http\Controllers\adminsynccontroller;
 use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
+use App\Http\Controllers\guruabsensicontroller;
+use App\Http\Controllers\gurukelascontroller;
+use App\Http\Controllers\gurukompetensidasarcontroller;
+use App\Http\Controllers\gurumateripokokcontroller;
+use App\Http\Controllers\gurupelanggarancontroller;
+use App\Http\Controllers\gurupenilaiancontroller;
+use App\Http\Controllers\gurusilabuscontroller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -171,6 +178,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     //absensi
     Route::get('/admin/absensi', [adminabsensicontroller::class, 'index'])->name('absensi');
+    Route::get('/admin/dataabsensi/cari', [adminabsensicontroller::class, 'cari'])->name('absensi.cari');
     Route::get('/admin/absensi/detail/{kelas}', [adminabsensicontroller::class, 'detail'])->name('absensi.detail');
     Route::post('/admin/absensi/detail/{kelas}/store', [adminabsensicontroller::class, 'store'])->name('absensi.store');
 
@@ -195,4 +203,33 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     //proseslainlain
     Route::post('/admin/proses/cleartemp', [adminprosescontroller::class, 'cleartemp'])->name('cleartemp');
+
+
+    // hakakses guru
+    //kelas
+    Route::get('/guru/kelas', [gurukelascontroller::class, 'index'])->name('guru.kelas');
+    Route::get('/guru/datakelas/cari', [gurukelascontroller::class, 'cari'])->name('guru.kelas.cari');
+    //silabus
+    Route::get('/guru/silabus', [gurusilabuscontroller::class, 'index'])->name('guru.silabus');
+    Route::get('/guru/datasilabus/cari', [gurusilabuscontroller::class, 'cari'])->name('guru.silabus.cari');
+
+
+    //penilaian
+    Route::get('/guru/penilaian', [gurupenilaiancontroller::class, 'index'])->name('guru.penilaian');
+    Route::get('/guru/datapenilaian/cari', [gurupenilaiancontroller::class, 'cari'])->name('guru.penilaian.cari');
+    //inputnilai
+    Route::get('/guru/datapenilaian/inputnilai/{dataajar}', [gurupenilaiancontroller::class, 'inputnilai'])->name('guru.penilaian.inputnilai');
+
+    //absensi
+    Route::get('/guru/absensi', [guruabsensicontroller::class, 'index'])->name('guru.absensi');
+    Route::get('/guru/dataabsensi/cari', [guruabsensicontroller::class, 'cari'])->name('guru.absensi.cari');
+    Route::get('/guru/absensi/detail/{kelas}', [guruabsensicontroller::class, 'detail'])->name('guru.absensi.detail');
+    Route::post('/guru/absensi/detail/{kelas}/store', [guruabsensicontroller::class, 'store'])->name('guru.absensi.store');
+
+    //pelanggaran
+    Route::get('/guru/pelanggaran', [gurupelanggarancontroller::class, 'index'])->name('guru.pelanggaran');
+    Route::get('/guru/pelanggaran/detail/{kelas}', [gurupelanggarancontroller::class, 'detail'])->name('guru.pelanggaran.detail');
+    Route::post('/guru/pelanggaran/detail/{kelas}/store', [gurupelanggarancontroller::class, 'store'])->name('guru.pelanggaran.store');
+
+
 });

@@ -28,9 +28,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
             <div class="card-body">
 
                 <x-button-create link="{{route('dataajar.banksoal.create',$dataajar->id)}}"></x-button-create>
+                @if (Auth::user()->tipeuser=='admin')
                 <a href="{{route('dataajar.generatebanksoal',$dataajar->id)}}" type="submit" value="Import"
                     class="btn btn-icon btn-success  ml-0"><span class="pcoded-micon"> <i
                             class="fas fa-download"></i> Generate Soal Ujian </span></a>
+
+                @endif
+
 
                 <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
 

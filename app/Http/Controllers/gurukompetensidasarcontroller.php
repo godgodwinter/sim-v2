@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\dataajar;
+use App\Models\guru;
 use App\Models\kompetensidasar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class adminkompetensidasarcontroller extends Controller
+class gurukompetensidasarcontroller extends Controller
 {
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin' AND Auth::user()->tipeuser!='guru'){
+            if(Auth::user()->tipeuser!='guru'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
@@ -24,6 +25,7 @@ class adminkompetensidasarcontroller extends Controller
     }
     public function index(dataajar $dataajar, Request $request)
     {
+        $guru_id=guru::where('nomerinduk',Auth::user()->nomerinduk)->pluck('id');
         #WAJIB
         $pages='silabus';
         $datas=kompetensidasar::with('dataajar')->with('materipokok')
