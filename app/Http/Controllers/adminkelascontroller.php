@@ -39,11 +39,13 @@ class adminkelascontroller extends Controller
         $cari=$request->cari;
         #WAJIB
         $pages='kelas';
-        $datas=DB::table('kelas')
-        ->where('nama','like',"%".$cari."%")
+        $datas=kelas::with('guru')
+        ->where('tingkatan','like',"%".$cari."%")
+        ->orWhere('jurusan','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
+        $guru=guru::get();
 
-        return view('pages.admin.kelas.index',compact('datas','request','pages'));
+        return view('pages.admin.kelas.index',compact('datas','request','pages','guru'));
     }
     public function create()
     {
