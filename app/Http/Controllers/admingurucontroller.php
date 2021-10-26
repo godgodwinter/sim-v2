@@ -37,7 +37,7 @@ class admingurucontroller extends Controller
         $cari=$request->cari;
         #WAJIB
         $pages='guru';
-        $datas=DB::table('guru')
+        $datas=guru::with("users")
         ->where('nama','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
