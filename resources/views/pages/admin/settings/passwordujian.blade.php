@@ -32,6 +32,7 @@ Reset Password Siswa
                     <div id="babeng-row ">
 
                         <form action="{{ route('settings.passwordujian.generate') }}" method="POST">
+                            @csrf
                             <input type="text" class="babeng babeng-select  ml-0" name="jml" value="6" class="form-control " max="25" min="2">
 
                             <span>

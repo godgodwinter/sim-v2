@@ -172,7 +172,7 @@ Tahun Pelajaran
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        {{-- <div class="form-group col-md-5 col-5 mt-0 ml-5">
                             <label for="moodleuser">User Ujian<code></code></label>
 
 
@@ -180,7 +180,7 @@ Tahun Pelajaran
 
                             @error('moodleuser')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col-md-5 col-5 mt-0 ml-5">
                             <label for="moodlepass">Password Ujian<code></code></label>
