@@ -72,12 +72,12 @@ Reset Password Siswa
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
                             <th >Kelas</th>
                             <th >Email</th>
                             <th >Photo</th>
-                            <th width="10%" class="text-center">Aksi</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,7 +100,7 @@ Reset Password Siswa
                                 </td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     <x-button-reset-pass link="{{ route('siswa.reset',$data->id)}}" />
                                 </td>
                             </tr>

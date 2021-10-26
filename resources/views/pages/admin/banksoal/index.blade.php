@@ -41,7 +41,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Pertanyaan</th>
                             <th >Jumlah Pilihan</th>
                             <th >Jenis Soal</th>
@@ -76,7 +76,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                                 <td class="text-capitalize">{{$data->tingkatkesulitan}}</td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     <x-button-edit link="{{route('dataajar.banksoal.edit',[$dataajar->id,$data->id])}}" />
                                     <x-button-delete link="{{route('dataajar.generatebanksoal.delete',[$dataajar->id,$data->id])}}" />
 

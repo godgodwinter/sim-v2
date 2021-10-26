@@ -55,7 +55,7 @@ Guru
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
                             <th >Email</th>
                             <th width="10%" class="text-center">Aksi</th>
@@ -75,7 +75,7 @@ Guru
                                 </td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
                                     <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />

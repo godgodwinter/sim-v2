@@ -43,7 +43,7 @@ Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} 
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Jumlah Soal</th>
                             <th >Acak Soal</th>
                             <th >Acak Jawaban</th>
@@ -73,7 +73,7 @@ Generate Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} 
 
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
 
                                     <a href="{{route('dataajar.generatebanksoal.xml',[$dataajar->id,$data->id])}}"
                                         class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Export XML / Moodle Format"> <i class="fas fa-puzzle-piece" target="_blank"></i></a>

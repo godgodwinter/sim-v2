@@ -110,8 +110,12 @@ class adminsiswacontroller extends Controller
         $namafilebaru=$request->nomerinduk.'_'.$request->nama;
         $file = $request->file('siswafoto');
         $tujuan_upload = 'storage/siswa';
-                // upload file
-        $file->move($tujuan_upload,"siswa/".$namafilebaru.".jpg");
+        $photoku="";
+        if($file!=null){
+            // upload file
+            $file->move($tujuan_upload,"siswa/".$namafilebaru.".jpg");
+            $photoku="siswa/".$namafilebaru.".jpg";
+        }
         $users_id=$users->id;
             DB::table('siswa')->insert(
                 array(
@@ -124,7 +128,7 @@ class adminsiswacontroller extends Controller
                         'jk'     =>   $request->jk,
                         'kelas_id'     =>   $request->kelas_id,
                         'tapel_id'     =>   $request->tapel_id,
-                        'siswafoto' =>   "siswa/".$namafilebaru.".jpg",
+                        'siswafoto' =>   $photoku,
                         'moodleuser'     =>   $request->moodleuser,
                         'moodlepass'     =>   $request->moodlepass,
                         'users_id'     =>   $users_id,

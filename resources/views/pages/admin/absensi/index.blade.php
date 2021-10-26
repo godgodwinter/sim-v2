@@ -52,7 +52,7 @@ Absensi
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama Kelas</th>
                             <th >Walikelas</th>
                             <th >Detail</th>
@@ -72,7 +72,7 @@ Absensi
                                 </td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     <a href="{{route('absensi.detail',$data->id)}}" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Input Absensi Siswa!" >
                                     <i class="fas fa-id-card-alt"></i>
                                 </a>

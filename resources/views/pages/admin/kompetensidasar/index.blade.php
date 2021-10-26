@@ -59,11 +59,11 @@ Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th width="8%" class="text-center py-2">Kode</th>
+                            <th  class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th  class="text-center py-2 babeng-min-row">Kode</th>
                             <th >Kompetensi Dasar</th>
-                            <th  width="8%" class="text-center ">Jumlah Materi</th>
-                            <th width="15%" class="text-center ">Aksi</th>
+                            <th   class="text-center babeng-min-row">Jumlah Materi</th>
+                            <th class="text-center ">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,7 @@ Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{
 
                                 </td>
                                 <td class="text-center">   {{$data->materipokok!=null ? $data->materipokok->count() : '0'}} </td>
-                                <td  class="text-center"> <a href="{{route('dataajar.kompetensidasar.materipokok.index',[$dataajar->id,$data->id])}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Detail Materi!"><i class="fas fa-info-circle"></i></a>
+                                <td  class="text-center babeng-min-row"> <a href="{{route('dataajar.kompetensidasar.materipokok.index',[$dataajar->id,$data->id])}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Detail Materi!"><i class="fas fa-info-circle"></i></a>
 
                                     <x-button-edit link="{{route('dataajar.kompetensidasar.edit',[$dataajar->id,$data->id])}}" />
                                         <x-button-delete link="{{route('dataajar.kompetensidasar.delete',[$dataajar->id,$data->id])}}" />

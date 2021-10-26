@@ -67,7 +67,7 @@ Penilaian
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Mapel</th>
                             <th >Kelas</th>
                             <th >Guru Pengajar</th>
@@ -92,7 +92,7 @@ Penilaian
                                 </td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
 
                                     <a href="{{route('penilaian.inputnilai',$data->id)}}" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Input Nilai Siswa!" >
                                         <i class="far fa-star"></i>
