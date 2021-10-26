@@ -12,7 +12,7 @@
 
 @if((Auth::user()->tipeuser)=='admin')
             <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown {{$pages=='settings' || $pages=='resetpassword' || $pages=='passwordujian'  ? 'active' : ''}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Pengaturan</span></a>
                 <ul class="dropdown-menu">
 
@@ -51,8 +51,8 @@
                     <li {{$pages=='penilaian' ? 'class=active' : ''}}><a class="nav-link" href="{{route('penilaian')}}"><i class="far fa-star"></i><span>Penilaian</span></a></li>
                 </ul>
             </li>
-            <li class="nav-item dropdown ">
-                <a href="#" class="nav-link has-dropdown {{$pages=='absensi' || $pages=='pelanggaran'  ? 'active' : ''}}" data-toggle="dropdown"><i class="fas fa-id-card-alt"></i>  <span>Absensi</span></a>
+            <li class="nav-item dropdown  {{$pages=='absensi' || $pages=='pelanggaran'  ? 'active' : ''}}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-id-card-alt"></i>  <span>Absensi</span></a>
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='absensi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('absensi')}}"><i class="fas fa-id-card-alt"></i><span>Absensi</span></a></li>

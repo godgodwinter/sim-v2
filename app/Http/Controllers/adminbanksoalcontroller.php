@@ -30,7 +30,7 @@ class adminbanksoalcontroller extends Controller
     {
         // dd($dataajar);
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
         $datas=banksoal::with('dataajar')->with('banksoaljawaban')
         ->where('dataajar_id',$dataajar->id)
         ->paginate(Fungsi::paginationjml());
@@ -40,7 +40,7 @@ class adminbanksoalcontroller extends Controller
     public function create(dataajar $dataajar, Request $request)
     {
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
 
         return view('pages.admin.banksoal.create',compact('request','pages','dataajar'));
     }
@@ -154,7 +154,7 @@ return redirect()->route('dataajar.banksoal',$dataajar->id)->with('status','Soal
     public function edit(dataajar $dataajar,banksoal $id, Request $request)
     {
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
 
         return view('pages.admin.banksoal.edit',compact('request','pages','dataajar','id'));
     }

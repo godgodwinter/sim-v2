@@ -32,7 +32,7 @@ class admingeneratebanksoalcontroller extends Controller
     {
     // dd($dataajar);
     #WAJIB
-    $pages='banksoal';
+    $pages='silabus';
     $datas=generatebanksoal::with('dataajar')
     ->where('dataajar_id',$dataajar->id)
     ->paginate(Fungsi::paginationjml());
@@ -42,7 +42,7 @@ class admingeneratebanksoalcontroller extends Controller
     public function create(dataajar $dataajar, Request $request)
     {
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
 
         return view('pages.admin.generatebanksoal.create',compact('request','pages','dataajar'));
     }

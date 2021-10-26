@@ -25,7 +25,7 @@ class adminkompetensidasarcontroller extends Controller
     public function index(dataajar $dataajar, Request $request)
     {
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
         $datas=kompetensidasar::with('dataajar')->with('materipokok')
         ->where('dataajar_id',$dataajar->id)
         ->orderBy('kode','asc')
@@ -36,7 +36,7 @@ class adminkompetensidasarcontroller extends Controller
     public function create(dataajar $dataajar, Request $request)
     {
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
 
         return view('pages.admin.kompetensidasar.create',compact('request','pages','dataajar'));
     }
@@ -67,7 +67,7 @@ class adminkompetensidasarcontroller extends Controller
     public function edit(dataajar $dataajar,kompetensidasar $id, Request $request)
     {
         #WAJIB
-        $pages='kompetensidasar';
+        $pages='silabus';
 
         return view('pages.admin.kompetensidasar.edit',compact('request','pages','dataajar','id'));
     }
@@ -110,7 +110,7 @@ class adminkompetensidasarcontroller extends Controller
 
         // load ulang
         #WAJIB
-        $pages='banksoal';
+        $pages='silabus';
         $datas=kompetensidasar::with('dataajar')->with('materipokok')
         ->where('dataajar_id',$dataajar->id)
         ->orderBy('kode','asc')

@@ -89,7 +89,7 @@ class adminsettingscontroller extends Controller
     public function resetpassword(Request $request)
     {
         #WAJIB
-        $pages='settings';
+        $pages='resetpassword';
         $datas=siswa::with('users')
         ->paginate(Fungsi::paginationjml());
         $kelas=kelas::get();
@@ -98,7 +98,7 @@ class adminsettingscontroller extends Controller
     public function passwordujian(Request $request)
     {
         #WAJIB
-        $pages='settings';
+        $pages='passwordujian';
         return view('pages.admin.settings.passwordujian',compact('pages','request'));
     }
     public function resetpasswordcari(Request $request)
@@ -130,7 +130,7 @@ class adminsettingscontroller extends Controller
             return redirect()->back()->with('status','Data berhasil direset!')->with('tipe','success')->with('icon','fas fa-edit');
     }
     public function passwordujiangenerate(Request $request){
-        dd($request);
+        // dd($request);
         $jml=6;
         if(($request->jml!=null)AND($request->jml!='')){
             $jml=$request->jml;

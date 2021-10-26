@@ -41,7 +41,7 @@ class adminpenilaiancontroller extends Controller
 
         $cari=$request->cari;
         #WAJIB
-        $pages='silabus';
+        $pages='penilaian';
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')
         ->where('nama','like',"%".$cari."%")
         ->where('kelas_id','like',"%".$request->kelas_id."%")
@@ -55,7 +55,7 @@ class adminpenilaiancontroller extends Controller
     public function inputnilai(dataajar $dataajar,Request $request)
     {
         #WAJIB
-        $pages='silabus';
+        $pages='penilaian';
         $datasiswa=siswa::where('kelas_id',$dataajar->kelas_id)->paginate(Fungsi::paginationjml());
         $datakd=kompetensidasar::with('materipokok')
         ->where('dataajar_id',$dataajar->id)
