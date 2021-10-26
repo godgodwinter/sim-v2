@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/settings/resetpassword/resetsemua', [adminsettingscontroller::class, 'resetsemua'])->name('settings.resetpassword.resetsemua');
     Route::get('/admin/settings/passwordujian', [adminsettingscontroller::class, 'passwordujian'])->name('settings.passwordujian');
     Route::post('/admin/settings/passwordujian/generate', [adminsettingscontroller::class, 'passwordujiangenerate'])->name('settings.passwordujian.generate');
+//export
+    Route::get('/admin/settings/passwordujian/export', [adminsettingscontroller::class, 'passwordujianexport'])->name('settings.passwordujian.export');
 
     //MASTERING
     //USER

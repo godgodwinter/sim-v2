@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportdataujian;
 use App\Helpers\Fungsi;
 use App\Models\kelas;
 use App\Models\settings;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Faker\Factory as Faker;
 
 class adminsettingscontroller extends Controller
@@ -160,5 +162,9 @@ class adminsettingscontroller extends Controller
         // 3. update data
         return redirect()->back()->with('status','Generate Berhasil !')->with('tipe','success')->with('icon','fas fa-feather');
 
+    }
+    public function passwordujianexport(Request $request){
+        $tgl=date("YmdHis");
+		return Excel::download(new exportdataujian, 'sim-dataujian-'.$tgl.'.xlsx');
     }
 }
