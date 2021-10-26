@@ -31,4 +31,12 @@ class dataajar extends Model
         {
             return $this->belongsTo('App\Models\mapel');
         }
+        public function banksoal()
+        {
+            return $this->hasMany('App\Models\banksoal');
+        }
+        public function kompetensidasar()
+        {
+            return $this->hasMany('App\Models\kompetensidasar');
+        }
 }
