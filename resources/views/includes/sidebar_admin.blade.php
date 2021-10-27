@@ -35,7 +35,7 @@
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='mapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('mapel')}}"><i class="fab fa-monero"></i> <span>Mata Pelajaran</span></a></li>
-                    <li {{$pages=='silabus' ? 'class=active' : ''}}><a class="nav-link" href="{{route('silabus')}}"><i class="fas fa-microchip"></i> <span>Silabus</span></a></li>
+                    <li {{$pages=='silabus' ? 'class=active' : ''}}><a class="nav-link" href="{{route('silabus')}}"><i class="fas fa-microchip"></i> <span>KD - Mapel</span></a></li>
                     <li {{$pages=='penilaian' ? 'class=active' : ''}}><a class="nav-link" href="{{route('penilaian')}}"><i class="far fa-star"></i><span>Penilaian</span></a></li>
                 </ul>
             </li>

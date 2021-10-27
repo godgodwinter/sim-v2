@@ -62,7 +62,7 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                         $preffix='4.';
                                     }
                                 @endphp
-                            <th colspan="{{$dk->materipokok!=null?$dk->materipokok->count():1}}"  class="text-center">{{$dk->kode!=null? $preffix.$dk->kode : ' - '}}</th>
+                            <th colspan="{{$dk->materipokok!=null?$dk->materipokok->count()+1:1}}"  class="text-center">KD {{$dk->kode!=null? $preffix.$dk->kode : ' - '}}</th>
                             @empty
                             <th>-</th>
                             @endforelse
@@ -76,9 +76,13 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                         $preffix='4.';
                                     }
                                 @endphp
-
                                @forelse ($dk->materipokok as $dm)
+                               {{-- {{dd($dk->materipokok->count())}} --}}
                                     <td class="text-center">{{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</td>
+                                    @if($loop->index+1==$dk->materipokok->count())
+                                    <td  class="text-center">KD {{$preffix.$dk->kode}}</td>
+                                    @endif
+
                                 @empty
                                     <td class="text-center"> - </td>
                                 @endforelse
@@ -98,6 +102,11 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                 </td>
                                 @forelse ($datakd as $dk)
                                     @php
+                                    $jmlnilai=0;
+                                    $jml=0;
+                                    $avg=0;
+                                    // dd($dk->materipokok->avg('nilai'));
+                                    // $avg=$dk->materipokok->avg('nilai');
                                         if($dk->tipe==1){
                                             $preffix='3.';
                                         }else{
@@ -107,6 +116,12 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                        @forelse ($dk->materipokok as $dm)
                                        @php
                                             $datasnilai=DB::table('inputnilai')->whereNull('deleted_at')->where('siswa_id',$data->id)->where('materipokok_id',$dm->id)->first();
+                                            // dd($datasnilai->nilai);
+                                            if($datasnilai!=null){
+                                                $jml+=1;
+                                                $jmlnilai+=$datasnilai->nilai;
+                                                $avg=number_format(($jmlnilai/$jml),2);
+                                            }
                                         @endphp
 @push('before-script')
 <script>
@@ -226,6 +241,14 @@ $(document).ready(function () {
                                             <td class="text-center" id="td_{{$data->id}}_{{$dm->id}}">
                                                 {{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}}
                                             </td>
+                                            @if($loop->index+1==$dk->materipokok->count())
+                                            <td class="text-center">
+                                                {{-- 0 --}}
+                                            {{-- {{$dk->id}} --}}
+                                            {{$avg}}
+                                            </td>
+                                            @endif
+
                                         @empty
                                             <td class="text-center"> - </td>
                                         @endforelse

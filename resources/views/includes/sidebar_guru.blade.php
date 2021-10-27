@@ -3,7 +3,7 @@
 
 <li {{$pages=='kelas' ? 'class=active' : ''}}><a class="nav-link" href="{{route('guru.kelas')}}"><i class="fas fa-school"></i> <span>Kelas</span></a></li>
 
-<li {{$pages=='silabus' ? 'class=active' : ''}}><a class="nav-link" href="{{route('guru.silabus')}}"><i class="fas fa-microchip"></i> <span>Silabus</span></a></li>
+<li {{$pages=='silabus' ? 'class=active' : ''}}><a class="nav-link" href="{{route('guru.silabus')}}"><i class="fas fa-microchip"></i> <span>KD - Mapel</span></a></li>
 
 <li {{$pages=='penilaian' ? 'class=active' : ''}}><a class="nav-link" href="{{route('guru.penilaian')}}"><i class="far fa-star"></i> <span>Penilaian</span></a></li>
 
