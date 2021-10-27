@@ -34,20 +34,24 @@ Mata Pelajaran
                     @csrf
 
                     <div class="row">
+                    <div class="row col-12">
 
                     <div class="form-group col-md-3 col-3 mt-0 ml-5">
                         <label for="nama">Nama Mata Pelajaran <code>*)</code></label>
                     </div>
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                    <div class="form-group  col-md-5 col-5 mt-0 ml-5">
                         <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}" required placeholder="Nama Mata Pelajaran">
                         @error('nama')<div class="invalid-feedback" > {{$message}}</div>
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                 </div>
+
+                 <div class="row col-12">
+                    <div class="form-group col-3 col-md-3 col-3 mt-0 ml-5">
                         <label>Tipe <code>*)</code></label>
                     </div>
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                    <div class="form-group col-9 col-md-5 col-5 mt-0 ml-5">
                         <select class="form-control form-control-lg" required name="tipe">
                               @if (old('tipe'))
                               <option>{{old('tipe')}}</option>
@@ -57,16 +61,22 @@ Mata Pelajaran
                           @endforeach
                         </select>
                       </div>
-                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                    </div>
+
+                <div class="row col-12">
+                    <div class="form-group col-3 col-md-3 col-3 mt-0 ml-5">
                         <label for="kkm">KKM  <code>*)</code></label>
                     </div>
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                    <div class="form-group col-9 col-md-5 col-5 mt-0 ml-5">
                         <input type="number" name="kkm" min="1" max="100" id="kkm" class="form-control @error('kkm') is-invalid @enderror" value="{{ old('kkm') ? old('kkm') : '75'}}" required>
                         @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                     </div>
+                </div>
 
-                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                <div class="row col-12">
+
+                    <div class="form-group col-3 col-md-3 col-3 mt-0 ml-5">
                         <label class="form-label">Pilih Tingkatan</label>
                     </div>
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
@@ -90,6 +100,9 @@ Mata Pelajaran
 
                         </div>
                       </div>
+                    </div>
+
+                    <div class="row col-12">
                       <div class="form-group col-md-3 col-3 mt-0 ml-5">
                         <label class="form-label">Pilih Jurusan</label>
                       </div>
@@ -110,6 +123,9 @@ Mata Pelajaran
 
                         </div>
                       </div>
+                    </div>
+
+                    <div class="row col-12">
                       <div class="form-group col-md-3 col-3 mt-0 ml-5">
                         <label class="form-label">Pilih Semester</label>
                       </div>
@@ -130,6 +146,7 @@ Mata Pelajaran
 
                         </div>
                       </div>
+                    </div>
 
 
 
