@@ -24,7 +24,7 @@ class oneseeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'),
             'tipeuser' => 'admin',
-            'nomerinduk' => '123',
+            'nomerinduk' => '1',
             'username' => 'admin',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -38,7 +38,7 @@ class oneseeder extends Seeder
             'password' => Hash::make('kepsek'),
             'tipeuser' => 'kepsek',
             'username' => 'kepsek',
-            'nomerinduk' => '111',
+            'nomerinduk' => '2',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -46,16 +46,45 @@ class oneseeder extends Seeder
 
         //Siswa SEEDER
         DB::table('users')->insert([
+            'id' => '2001',
             'name' => 'Paijo',
             'email' => 'siswa@gmail.com',
             'password' => Hash::make('siswa123'),
             'tipeuser' => 'siswa',
             'username' => 'siswa',
-            'nomerinduk' => '1',
+            'nomerinduk' => '123',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
 
+         DB::table('siswa')->insert([
+            'nama' => 'Paijo',
+            'nomerinduk' => '123',
+            'kelas_id' => '1',
+            'users_id' => '2001',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+        //Siswa SEEDER
+        DB::table('users')->insert([
+            'id' => '2000',
+            'name' => 'Sri',
+            'email' => 'guru@gmail.com',
+            'password' => Hash::make('guru'),
+            'tipeuser' => 'guru',
+            'username' => 'guru',
+            'nomerinduk' => '3',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
+         DB::table('guru')->insert([
+            'nama' => 'Sri',
+            'nomerinduk' => '3',
+            'users_id' => '2000',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
 
           //settings SEEDER
