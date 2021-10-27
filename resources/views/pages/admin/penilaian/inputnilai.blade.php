@@ -80,7 +80,7 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                {{-- {{dd($dk->materipokok->count())}} --}}
                                     <td class="text-center">{{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</td>
                                     @if($loop->index+1==$dk->materipokok->count())
-                                    <td  class="text-center">KD {{$preffix.$dk->kode}}</td>
+                                    <td  class="text-center text-warning"><b>Avg {{$preffix.$dk->kode}}</b></td>
                                     @endif
 
                                 @empty
