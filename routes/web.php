@@ -27,6 +27,7 @@ use App\Http\Controllers\gurumateripokokcontroller;
 use App\Http\Controllers\gurupelanggarancontroller;
 use App\Http\Controllers\gurupenilaiancontroller;
 use App\Http\Controllers\gurusilabuscontroller;
+use App\Http\Controllers\siswadataajarcontroller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -231,5 +232,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/guru/pelanggaran/detail/{kelas}', [gurupelanggarancontroller::class, 'detail'])->name('guru.pelanggaran.detail');
     Route::post('/guru/pelanggaran/detail/{kelas}/store', [gurupelanggarancontroller::class, 'store'])->name('guru.pelanggaran.store');
 
+    //menusiswa
+
+    Route::put('/menusiswa/siswa/{id}', [admindashboardcontroller::class, 'siswaupdate'])->name('siswa.siswa.update');
+
+    Route::get('/menusiswa/dataajar', [siswadataajarcontroller::class, 'index'])->name('menusiswa.dataajar');
+    Route::get('/gumenusiswaru/dataajar/cari', [siswadataajarcontroller::class, 'cari'])->name('menusiswa.dataajar.cari');
+
+    Route::get('/menusiswa/materi/{dataajar}', [siswadataajarcontroller::class, 'materi'])->name('menusiswa.materi');
+    Route::get('/menusiswa/materi/{dataajar}/detail/{kd}', [siswadataajarcontroller::class, 'materidetail'])->name('menusiswa.materi.detail');
 
 });

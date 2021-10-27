@@ -20,6 +20,7 @@ Beranda
 @include('pages.admin.dashboard.dashboard_guru')
 
 @elseif((Auth::user()->tipeuser)=='siswa')
+@include('pages.admin.dashboard.dashboard_siswa')
 
 @else
 @endif
