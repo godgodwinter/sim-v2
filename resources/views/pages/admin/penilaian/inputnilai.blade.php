@@ -27,20 +27,22 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
-
-                    <div id="babeng-row ">
+                <div class="d-flex bd-highlight mb-0 align-items-center">
+                    <div class="p-2 bd-highlight">
 
                         <form action="{{ route('penilaian.cari') }}" method="GET">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                        </div>
+
+                    <div class="p-2 bd-highlight">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
+                    </div>
 </form>
 
-                    </div>
                 </div>
 
                 <x-jsmultidel link="{{route('mapel.multidel')}}" />
@@ -267,8 +269,14 @@ $(document).ready(function () {
 @php
 $cari=$request->cari;
 @endphp
+<div class="d-flex justify-content-between flex-row-reverse mt-3">
+    <div >
 {{ $datas->onEachSide(1)
   ->links() }}
+    </div>
+    <div>
+
+    </div>
 
             </div>
         </div>

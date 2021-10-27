@@ -28,7 +28,7 @@ Siswa
             <div class="card-body">
 
                 <form action="{{ route('siswa.cari') }}" method="GET" class="d-inline">
-                <div class="d-flex bd-highlight mb-3 align-items-center">
+                <div class="d-flex bd-highlight mb-0 align-items-center">
 
                         <div class="p-2 bd-highlight">
                             <input type="text" class="form-control form-control-sm" name="cari" placeholder="Cari . . ." autocomplete="off" value="{{$request->cari!=null ? $request->cari : '' }}">
@@ -65,7 +65,7 @@ Siswa
                     <x-jsdatatable/>
                 @endif
 
-                <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
+                <table id="example" class="table table-striped table-bordered mt-0 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
                             <th  class="text-center py-2 babeng-min-row" > <input type="checkbox" id="chkCheckAll"> All</th>

@@ -28,20 +28,24 @@ Materi Pokok {{$kd->nama}}
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <div class="d-flex bd-highlight mb-0 align-items-center">
 
-                    <div id="babeng-row ">
+                    <div class="p-2 bd-highlight">
 
                         <form action="{{ route('silabus.cari') }}" method="GET" class=" d-inline">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                        </div>
+
+                    <div class="p-2 bd-highlight">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-                            <a href="{{route('dataajar.kompetensidasar.materipokok.create',[$dataajar->id,$kd->id])}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah  KD</span></a>
+                    </div>
+
+                    <div class="ml-auto p-2 bd-highlight">
+                        <x-button-create link="{{route('dataajar.kompetensidasar.materipokok.create',[$dataajar->id,$kd->id])}}"></x-button-create>
                                      </form>
 </form>
 
@@ -99,12 +103,16 @@ Materi Pokok {{$kd->nama}}
 @php
 $cari=$request->cari;
 @endphp
+<div class="d-flex justify-content-between flex-row-reverse mt-3">
+    <div >
 {{ $datas->onEachSide(1)
   ->links() }}
+    </div>
+    <div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
+        </a></div></div>
             </div>
         </div>
     </div>

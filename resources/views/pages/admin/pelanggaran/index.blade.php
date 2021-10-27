@@ -89,12 +89,16 @@ Pelanggaran
 @php
 $cari=$request->cari;
 @endphp
+<div class="d-flex justify-content-between flex-row-reverse mt-3">
+    <div >
 {{ $datas->onEachSide(1)
   ->links() }}
+    </div>
+    <div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
+        </a></div></div>
             </div>
         </div>
     </div>

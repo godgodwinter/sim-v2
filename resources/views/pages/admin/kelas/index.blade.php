@@ -27,21 +27,23 @@ Kelas
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-left mt-2">
-
-                    <div id="babeng-row ">
-
                         <form action="{{ route('kelas.cari') }}" method="GET">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
+
+                <div class="d-flex bd-highlight mb-3 align-items-center">
+
+                    <div class="p-2 bd-highlight">
+                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                    </div>
+                    <div class="p-2 bd-highlight">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
+                    </div>
 
-                            <a href="{{route('kelas.create')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah </span></a> </form>
+                    <div class="ml-auto p-2 bd-highlight">
+                            <x-button-create link="{{route('kelas.create')}}"></x-button-create> </form>
 
                     </div>
                 </div>
@@ -92,12 +94,16 @@ Kelas
 @php
 $cari=$request->cari;
 @endphp
+<div class="d-flex justify-content-between flex-row-reverse mt-3">
+    <div >
 {{ $datas->onEachSide(1)
   ->links() }}
+    </div>
+    <div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
+        </a></div></div>
             </div>
         </div>
     </div>

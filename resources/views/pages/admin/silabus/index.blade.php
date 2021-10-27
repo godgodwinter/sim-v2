@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Silabus
+KD - Mapel
 @endsection
 
 @push('before-script')
@@ -30,12 +30,11 @@ Silabus
 
 
                 <form action="{{ route('silabus.cari') }}" method="GET" class="d-inline">
-                    <div class="row mt-0">
-
-                            <div class="col-4 col-md-2">
+                    <div class="d-flex bd-highlight mb-0 align-items-center">
+                        <div class="p-2 bd-highlight">
                                 <input type="text" class="form-control form-control-sm" name="cari" placeholder="Cari . . ." autocomplete="off" value="{{$request->cari!=null ? $request->cari : '' }}">
                             </div>
-                            <div class="col-4 col-md-2">
+                            <div class="p-2 bd-highlight">
 
                                 <select class="js-example-basic-single py-0  @error('kelas_id')
                                 is-invalid
@@ -47,13 +46,10 @@ Silabus
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="col-4 col-md-2">
+                            <div class="p-2 bd-highlight">
                                     <button class="btn btn-info ml-0 mt-0 mt-sm-0 px-4 py-1 " type="submit"
                                         value="Cari"> <span class="pcoded-micon"><i class="fas fa-search"></i> Cari </button>
 
-
-                            </div>
-                            <div class="col-12 col-md-6 mt-2 mt-md-0 text-right">
 
                             </div>
 
@@ -117,12 +113,16 @@ Silabus
 @php
 $cari=$request->cari;
 @endphp
+<div class="d-flex justify-content-between flex-row-reverse mt-3">
+    <div >
 {{ $datas->onEachSide(1)
   ->links() }}
+    </div><div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
+        </a></div></div>
+
             </div>
         </div>
     </div>
