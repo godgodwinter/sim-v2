@@ -20,6 +20,9 @@ use App\Http\Controllers\adminsiswacontroller;
 use App\Http\Controllers\adminsynccontroller;
 use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
+
+use App\Http\Controllers\adminkkocontroller;
+
 use App\Http\Controllers\guruabsensicontroller;
 use App\Http\Controllers\gurukelascontroller;
 use App\Http\Controllers\gurukompetensidasarcontroller;
@@ -28,6 +31,7 @@ use App\Http\Controllers\gurupelanggarancontroller;
 use App\Http\Controllers\gurupenilaiancontroller;
 use App\Http\Controllers\gurusilabuscontroller;
 use App\Http\Controllers\siswadataajarcontroller;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -123,6 +127,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/datamapel', [adminmapelcontroller::class, 'store'])->name('mapel.store');
     Route::delete('/admin/datamapel/multidel', [adminmapelcontroller::class, 'multidel'])->name('mapel.multidel');
 
+
+    //kko
+    Route::get('/admin/kko', [adminkkocontroller::class, 'index'])->name('kko');
+    Route::get('/admin/kko/{id}', [adminkkocontroller::class, 'edit'])->name('kko.edit');
+    Route::put('/admin/kko/{id}', [adminkkocontroller::class, 'update'])->name('kko.update');
+    Route::delete('/admin/kko/{id}', [adminkkocontroller::class, 'destroy'])->name('kko.destroy');
+    Route::get('/admin/datakko/cari', [adminkkocontroller::class, 'cari'])->name('kko.cari');
+    Route::get('/admin/datakko/create', [adminkkocontroller::class, 'create'])->name('kko.create');
+    Route::post('/admin/datakko', [adminkkocontroller::class, 'store'])->name('kko.store');
+    Route::delete('/admin/datakko/multidel', [adminkkocontroller::class, 'multidel'])->name('kko.multidel');
 
     //silabus
     Route::get('/admin/silabus', [adminsilabuscontroller::class, 'index'])->name('silabus');

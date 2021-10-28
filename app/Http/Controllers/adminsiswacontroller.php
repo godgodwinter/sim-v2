@@ -43,7 +43,7 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')
         ->where('nama','like',"%".$cari."%")
-        ->where('kelas_id','like',"%".$request->kelas_id."%")
+        ->orWhere('nomerinduk','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
         $kelas=kelas::get();

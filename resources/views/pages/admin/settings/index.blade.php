@@ -280,7 +280,7 @@ Pengaturan
                     </form> --}}
 
 
-                    <form action="#" method="post" class="d-inline">
+                    <form action="{{route('kko')}}" method="get" class="d-inline">
                         @csrf
                         <button class="btn btn-success">Fungsi KKO</button>
                     </form>

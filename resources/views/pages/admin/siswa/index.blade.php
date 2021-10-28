@@ -83,7 +83,7 @@ Siswa
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{Str::limit($data->nama,25,' ...')}}
+                                    {{$data->nomerinduk.'-'.Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td>
 
@@ -99,7 +99,8 @@ Siswa
                                     $siswa=asset('/storage/').'/'.$data->siswafoto;
                                     $randomimg='https://ui-avatars.com/api/?name='.$data->nama.'&color=7F9CF5&background=EBF4FF';
                                     @endphp
-                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : $randomimg }}" class="img-thumbnail" data-toggle="tooltip" title="{{$data->nama}}" width="60px" height="60px" style="object-fit:cover;">
+                                <img alt="image" src="{{$data->siswafoto!=null  ? $siswa : 'https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="{{$data->nama}}" width="60px" height="60px" style="object-fit:cover;">
+
                                 </td>
 
 
