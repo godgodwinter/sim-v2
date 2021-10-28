@@ -45,7 +45,21 @@
                                         <div class="ticket-info">
                                             <div class="font-weight-600">{{$datasiswa->kelas!=null?$datasiswa->kelas->tingkatan.' '.$datasiswa->kelas->jurusan.' '.$datasiswa->kelas->suffix : ' Kelas tidak ditemukan'}}</div>
                                             <div class="bullet"></div>
-                                            <div class="text-primary font-weight-600">Walikelas : {{$datasiswa->kelas!=null?$datasiswa->kelas->guru->nama:' - '}}</div>
+                                            <div class="text-primary font-weight-600">Walikelas :
+                                                @php
+                                                    if($datasiswa->kelas!=null){
+                                                        if($datasiswa->kelas->guru!=null){
+                                                            $namawali=$datasiswa->kelas->guru->nama;
+                                                        }else{
+                                                            $namawali='';
+                                                        }
+                                                    }else{
+                                                        $namawali='';
+                                                    }
+                                                @endphp
+                                                {{$namawali}}
+                                                {{-- {{$datasiswa->kelas!=null?$datasiswa->kelas->guru->nama:' - '}} --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

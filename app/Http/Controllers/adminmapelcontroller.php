@@ -47,7 +47,7 @@ class adminmapelcontroller extends Controller
 
         $tipepelajaran=DB::table('kategori')->where('prefix','tipepelajaran')->get();
 
-        return view('pages.admin.mapel.createv2',compact('pages','tipepelajaran'));
+        return view('pages.admin.mapel.create',compact('pages','tipepelajaran'));
     }
 
     public function store(Request $request)

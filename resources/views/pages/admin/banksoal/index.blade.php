@@ -27,13 +27,29 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
         <div class="card">
             <div class="card-body">
 
+                <div class="d-flex bd-highlight mb-3 align-items-center">
+
+                    <div class="p-2 bd-highlight">
+                    </div>
+
+
+                    <div class="ml-auto p-2 bd-highlight">
                 <x-button-create link="{{route('dataajar.banksoal.create',$dataajar->id)}}"></x-button-create>
+                <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                    data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                    Import
+                </button>
+                <a href="/admin/users/export" type="submit" value="Import"
+                    class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Export </span></a>
                 @if (Auth::user()->tipeuser=='admin')
                 <a href="{{route('dataajar.generatebanksoal',$dataajar->id)}}" type="submit" value="Import"
-                    class="btn btn-icon btn-success  ml-0"><span class="pcoded-micon"> <i
+                    class="btn btn-icon btn-success  ml-0 btn-sm"><span class="pcoded-micon"> <i
                             class="fas fa-download"></i> Generate Soal Ujian </span></a>
 
                 @endif
+            </div>
+        </div>
 
 
                 <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
