@@ -1,0 +1,114 @@
+@extends('layouts.default')
+
+@section('title')
+Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
+@endsection
+
+@push('before-script')
+
+@if (session('status'))
+<x-sweetalertsession tipe="{{session('tipe')}}" status="{{session('status')}}"/>
+@endif
+@endpush
+
+
+@section('content')
+<section class="section">
+    <div class="section-header">
+        <h1>@yield('title')</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
+            <div class="breadcrumb-item"><a href="{{route('dataajar.kompetensidasar',$dataajar->id)}}">@yield('title')</a></div>
+            <div class="breadcrumb-item">Edit</div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <div class="card">
+            <div class="card-header">
+                <h5>Edit</h5>
+            </div>
+            <div class="card-body">
+
+                <form action="{{route('dataajar.kompetensidasar.update',[$dataajar->id,$id->id])}}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-6 mt-0 ml-5">
+                            <label class="form-label">Tipe</label>
+                            <div class="selectgroup w-100">
+                            <label class="selectgroup-item">
+                                <input type="radio" name="tipe" value="1" class="selectgroup-input" {{$id->tipe=='1'? 'checked=""' : ''}}>
+                                <span class="selectgroup-button">Pengetahuan</span>
+                            </label>
+                              <label class="selectgroup-item">
+                                <input type="radio" name="tipe" value="2" class="selectgroup-input" {{$id->tipe=='2'? 'checked=""' : ''}} >
+                                <span class="selectgroup-button">Ketrampilan</span>
+                              </label>
+
+                            </div>
+                          </div>
+                          @push('before-script')
+                          <script>
+                    $(document).ready(function() {
+
+
+                            });
+
+
+                          </script>
+
+                          @endpush
+
+
+                        <div class="form-group col-md-2 col-2 mt-0 ml-5">
+                            <label class="form-label">Kode</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" id="kodeprefix">
+                                        <b>{{$id->tipe=='1'? '3' : '4'}}.</b>
+                                    </div>
+                                </div>
+                                <input type="number" min="1" name="kode" id="kodegenerate"
+                                    class="form-control @error('kode') is-invalid @enderror" value="{{old('kode')!=null ? old('kode') : $id->kode}}" required>
+                                @error('kode')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                            </div>
+                          </div>
+@push('after-style')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="{{ asset("assets/") }}/stisla/summernote-bs4.js"></script>
+@endpush
+                        <div class="form-group col-md-6 col-12 ml-5">
+                        <label for="nama">Judul</label> :
+                        <textarea class="form-control " style="min-width: 100%;height:100%;" name="nama"
+                            id="nama"  >{{old('nama')!=null? old('nama') : $id->nama}}</textarea>
+                        </div>
+                        @push('after-script')
+                        <script>
+
+                            $(document).ready(function() {
+                                // $('#pertanyaan').summernote({focus: true});
+                            });
+                        </script>
+
+                @endpush
+
+
+
+                    </div>
+                    <div class="row" id="formjawaban">
+                    </div>
+
+                    <div class="card-footer text-right mr-5">
+                        <button class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

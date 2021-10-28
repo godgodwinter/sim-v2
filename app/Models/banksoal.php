@@ -25,4 +25,8 @@ class banksoal extends Model
         {
             return $this->belongsTo('App\Models\dataajar');
         }
+        public function banksoaljawaban()
+        {
+            return $this->hasMany('App\Models\banksoaljawaban');
+        }
 }

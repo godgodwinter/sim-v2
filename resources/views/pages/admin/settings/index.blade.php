@@ -274,10 +274,10 @@ Pengaturan
                     </form>
 
 
-                    <form action="{{route('seeder.mapel')}}" method="post" class="d-inline">
+                    {{-- <form action="{{route('seeder.mapel')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Data Mapel</button>
-                    </form>
+                    </form> --}}
 
 
                     <form action="{{route('kko')}}" method="get" class="d-inline">

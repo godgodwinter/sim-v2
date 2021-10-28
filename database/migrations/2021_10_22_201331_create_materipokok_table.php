@@ -15,6 +15,9 @@ class CreateMateripokokTable extends Migration
     {
         Schema::create('materipokok', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->longText('nama')->nullable();
+            $table->longText('link')->nullable();
+            $table->string('kompetensidasar_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

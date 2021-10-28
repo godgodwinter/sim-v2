@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportdataujian;
 use App\Helpers\Fungsi;
+use App\Models\kelas;
 use App\Models\settings;
 use App\Models\siswa;
 use App\Models\User;
@@ -10,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Faker\Factory as Faker;
 
 class adminsettingscontroller extends Controller
@@ -88,15 +91,16 @@ class adminsettingscontroller extends Controller
     public function resetpassword(Request $request)
     {
         #WAJIB
-        $pages='settings';
+        $pages='resetpassword';
         $datas=siswa::with('users')
         ->paginate(Fungsi::paginationjml());
-        return view('pages.admin.settings.resetpassword',compact('datas','request','pages'));
+        $kelas=kelas::get();
+        return view('pages.admin.settings.resetpassword',compact('datas','request','pages','kelas'));
     }
     public function passwordujian(Request $request)
     {
         #WAJIB
-        $pages='settings';
+        $pages='passwordujian';
         return view('pages.admin.settings.passwordujian',compact('pages','request'));
     }
     public function resetpasswordcari(Request $request)
@@ -107,9 +111,11 @@ class adminsettingscontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')
         ->where('nama','like',"%".$cari."%")
+        ->where('kelas_id','like',"%".$request->kelas_id."%")
         ->paginate(Fungsi::paginationjml());
+        $kelas=kelas::get();
 
-        return view('pages.admin.settings.resetpassword',compact('datas','request','pages'));
+        return view('pages.admin.settings.resetpassword',compact('datas','request','pages','kelas'));
     }
 
     public function resetsemua(Request $request)
@@ -126,7 +132,7 @@ class adminsettingscontroller extends Controller
             return redirect()->back()->with('status','Data berhasil direset!')->with('tipe','success')->with('icon','fas fa-edit');
     }
     public function passwordujiangenerate(Request $request){
-        dd($request);
+        // dd($request);
         $jml=6;
         if(($request->jml!=null)AND($request->jml!='')){
             $jml=$request->jml;
@@ -156,5 +162,9 @@ class adminsettingscontroller extends Controller
         // 3. update data
         return redirect()->back()->with('status','Generate Berhasil !')->with('tipe','success')->with('icon','fas fa-feather');
 
+    }
+    public function passwordujianexport(Request $request){
+        $tgl=date("YmdHis");
+		return Excel::download(new exportdataujian, 'sim-dataujian-'.$tgl.'.xlsx');
     }
 }

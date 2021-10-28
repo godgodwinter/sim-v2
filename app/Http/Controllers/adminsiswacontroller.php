@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\kelas;
 use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,10 +30,10 @@ class adminsiswacontroller extends Controller
         $pages='siswa';
         $datas=siswa::with('users')->with('kelas')
         ->paginate(Fungsi::paginationjml());
-
+        $kelas=kelas::get();
         // dd($datas);
 
-        return view('pages.admin.siswa.index',compact('datas','request','pages'));
+        return view('pages.admin.siswa.index',compact('datas','request','pages','kelas'));
     }
     public function cari(Request $request)
     {
@@ -45,7 +46,8 @@ class adminsiswacontroller extends Controller
         ->orWhere('nomerinduk','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.siswa.index',compact('datas','request','pages'));
+        $kelas=kelas::get();
+        return view('pages.admin.siswa.index',compact('datas','request','pages','kelas'));
     }
 
     public function reset(siswa $id)
@@ -108,8 +110,12 @@ class adminsiswacontroller extends Controller
         $namafilebaru=$request->nomerinduk.'_'.$request->nama;
         $file = $request->file('siswafoto');
         $tujuan_upload = 'storage/siswa';
-                // upload file
-        $file->move($tujuan_upload,"siswa/".$namafilebaru.".jpg");
+        $photoku="";
+        if($file!=null){
+            // upload file
+            $file->move($tujuan_upload,"siswa/".$namafilebaru.".jpg");
+            $photoku="siswa/".$namafilebaru.".jpg";
+        }
         $users_id=$users->id;
             DB::table('siswa')->insert(
                 array(
@@ -122,7 +128,7 @@ class adminsiswacontroller extends Controller
                         'jk'     =>   $request->jk,
                         'kelas_id'     =>   $request->kelas_id,
                         'tapel_id'     =>   $request->tapel_id,
-                        'siswafoto' =>   "siswa/".$namafilebaru.".jpg",
+                        'siswafoto' =>   $photoku,
                         'moodleuser'     =>   $request->moodleuser,
                         'moodlepass'     =>   $request->moodlepass,
                         'users_id'     =>   $users_id,

@@ -37,7 +37,7 @@ class admingurucontroller extends Controller
         $cari=$request->cari;
         #WAJIB
         $pages='guru';
-        $datas=DB::table('guru')
+        $datas=guru::with("users")
         ->where('nama','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
@@ -113,26 +113,33 @@ class admingurucontroller extends Controller
     public function update(guru $id,Request $request)
     {
 
-        if($request->nomorinduk==$id->nomorinduk){
+        if($request->nomorinduk!=$id->nomorinduk){
 
             $request->validate([
-                'nama'=>'required',
                 'nomerinduk' => 'required|unique:users',
+            ],
+            [
+                'nomerinduk.unique'=>'nomerinduk sudah digunakan',
+
+            ]);
+        }
+        // dd($request->email,$id->users->email);
+        if($request->email!=$id->users->email){
+
+            $request->validate([
                 'email' => 'required|email|unique:users',
             ],
             [
-                'nama.required'=>'nama harus diisi',
-                'nomerinduk.unique'=>'nomerinduk sudah digunakan',
 
             ]);
         }
 
 
 
-
         if($request->password!=null OR $request->password!=''){
 
         $request->validate([
+            'nama'=>'required',
             'password' => 'min:8|required_with:password2|same:password2',
             'password2' => 'min:8',
         ],
@@ -147,25 +154,20 @@ class admingurucontroller extends Controller
                         'telp'     =>   $request->telp,
                        'updated_at'=>date("Y-m-d H:i:s")
             ]);
+
             User::where('id',$id->users_id)
             ->update([
+                'email'     =>   $request->email,
                 'nomerinduk'     =>   $request->nomerinduk,
                 'password' => Hash::make($request->password),
                 'updated_at'=>date("Y-m-d H:i:s")
             ]);
                 }else{
-                    guru::where('id',$id->id)
-        ->update([
-            'nomerinduk'     =>   $request->nomerinduk,
-                    'nama'     =>   $request->nama,
-                    'alamat'     =>   $request->alamat,
-                    'telp'     =>   $request->telp,
-                   'updated_at'=>date("Y-m-d H:i:s")
-        ]);
 
 
         User::where('id',$id->users_id)
         ->update([
+            'email'     =>   $request->email,
             'nomerinduk'     =>   $request->nomerinduk,
             'name'     =>   $request->nama,
             'updated_at'=>date("Y-m-d H:i:s")

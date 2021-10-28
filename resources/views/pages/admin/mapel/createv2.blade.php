@@ -1,0 +1,166 @@
+@extends('layouts.default')
+
+@section('title')
+Mata Pelajaran
+@endsection
+
+@push('before-script')
+
+@if (session('status'))
+<x-sweetalertsession tipe="{{session('tipe')}}" status="{{session('status')}}"/>
+@endif
+@endpush
+
+
+@section('content')
+<section class="section">
+    <div class="section-header">
+        <h1>@yield('title')</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="{{route('mapel')}}">@yield('title')</a></div>
+            <div class="breadcrumb-item">Tambah</div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <div class="card">
+            <div class="card-header">
+                <h5>Tambah</h5>
+            </div>
+            <div class="card-body">
+
+                <form action="{{route('mapel.store')}}" method="post">
+                    @csrf
+
+                    <div class="row">
+                    <div class="row col-12">
+
+                    <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label for="nama">Nama Mata Pelajaran <code>*)</code></label>
+                    </div>
+                    <div class="form-group  col-md-5 col-5 mt-0 ml-5">
+                        <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}" required placeholder="Nama Mata Pelajaran">
+                        @error('nama')<div class="invalid-feedback" > {{$message}}</div>
+                        @enderror
+                    </div>
+
+                 </div>
+
+                 <div class="row col-12">
+                    <div class="form-group col-3 col-md-3 col-3 mt-0 ml-5">
+                        <label>Tipe <code>*)</code></label>
+                    </div>
+                    <div class="form-group col-9 col-md-5 col-5 mt-0 ml-5">
+                        <select class="form-control form-control-lg" required name="tipe">
+                              @if (old('tipe'))
+                              <option>{{old('tipe')}}</option>
+                              @endif
+                          @foreach ($tipepelajaran as $t)
+                              <option>{{ $t->nama }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+
+                <div class="row col-12">
+                    <div class="form-group col-3 col-md-3 col-3 mt-0 ml-5">
+                        <label for="kkm">KKM  <code>*)</code></label>
+                    </div>
+                    <div class="form-group col-9 col-md-5 col-5 mt-0 ml-5">
+                        <input type="number" name="kkm" min="1" max="100" id="kkm" class="form-control @error('kkm') is-invalid @enderror" value="{{ old('kkm') ? old('kkm') : '75'}}" required>
+                        @error('kkm')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row col-12">
+
+                    <div class="form-group col-3 col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Tingkatan</label>
+                    </div>
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <div class="selectgroup w-100">
+                        <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="Semua" class="selectgroup-input" checked="">
+                            <span class="selectgroup-button">Semua</span>
+                        </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="X" class="selectgroup-input" >
+                            <span class="selectgroup-button">X</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="XI" class="selectgroup-input">
+                            <span class="selectgroup-button">XI</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="tingkatan" value="XII" class="selectgroup-input">
+                            <span class="selectgroup-button">XII</span>
+                          </label>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row col-12">
+                      <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Jurusan</label>
+                      </div>
+                      <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <div class="selectgroup w-100">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="Semua" class="selectgroup-input" checked="">
+                            <span class="selectgroup-button">Semua</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="OTO" class="selectgroup-input" >
+                            <span class="selectgroup-button">OTO</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="jurusan" value="TKJ" class="selectgroup-input">
+                            <span class="selectgroup-button">TKJ</span>
+                          </label>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row col-12">
+                      <div class="form-group col-md-3 col-3 mt-0 ml-5">
+                        <label class="form-label">Pilih Semester</label>
+                      </div>
+                      <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <div class="selectgroup w-100">
+                          {{-- <label class="selectgroup-item">
+                            <input type="radio" name="semester" value="Semua" class="selectgroup-input" >
+                            <span class="selectgroup-button">Semua</span>
+                          </label> --}}
+                          <label class="selectgroup-item">
+                            <input type="radio" name="semester" value="1" class="selectgroup-input" {{Fungsi::semesteraktif()==1 ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">1</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="semester" value="2" class="selectgroup-input" {{Fungsi::semesteraktif()==2 ? 'checked=""' : ''}}>
+                            <span class="selectgroup-button">2</span>
+                          </label>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    </div>
+
+                    <div class="card-footer text-right mr-5">
+                        <button class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

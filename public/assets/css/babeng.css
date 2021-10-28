@@ -48,6 +48,10 @@ input[readonly]{
   border: 0;
   font-size: 1em;
 }
+.babeng-select2{
+  width: 200px;
+  height: 200px;
+}
 .babeng-select{
   position: relative;
   width: 200px;
@@ -86,6 +90,21 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.babeng-min-row{
+    width: 1%;
+    white-space: nowrap;
+}
+
+#babengcardDate{
+    /* overflow-x: scroll; */
+    overflow-x: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 0px;
+    /* background-color: red; */
+    /* width: auto; */
 }
 .babeng-td{
 

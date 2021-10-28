@@ -27,7 +27,7 @@
               <img src="../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
-            
+
 
             <div class="card card-primary">
               <div class="card-header text-center"><h4>SISTEM INFOMASI MANAJEMEN SEKOLAH</h4>
@@ -40,21 +40,21 @@
                   <div class="form-group">
                     <label for="identity">Email / NIS / NIG / Username</label>
                     <input id="identity" type="text" class="form-control" name="identity" tabindex="1" required autofocus>
-                  
+
                     @error('identity')
                     <div class="invalid-feedback">
                         {{ $message }}
-                    </div>    
+                    </div>
                 @enderror
 
   @if($errors->any())
   @foreach ($errors->all() as $error)
     <div class="text-danger">
     {{ $error }}
-    </div>    
+    </div>
   @endforeach
 @endif
-                
+
                   </div>
 
                   <div class="form-group">
@@ -67,11 +67,11 @@
                       </div> --}}
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                   
+
                     @error('password')
                     <div class="invalid-feedback">
                         {{ $message }}
-                    </div>    
+                    </div>
                 @enderror
                   </div>
 
@@ -89,7 +89,8 @@
                   </div>
                 </form>
                 <br>
-              
+
+
     <div class="float-right">
                         <a href="./" class="btn btn-info text-small">
                           <i class="fas fa-home"></i> Beranda
@@ -97,6 +98,7 @@
                       </div>
               </div>
             </div>
+
             @php
               // exec('git rev-parse --verify HEAD 2> /dev/null', $output);
               // $hash = $output[0];
@@ -111,12 +113,59 @@
               // dd($commitDate->format('Y-m-d H:i:s'));
               $versi=$commitDate->format('Ymd.H.i.s');
           @endphp
+
             <div class="simple-footer">
               Copyright &copy; 2021  v2. {{ $versi }}
             </div>
           </div>
+
+
         </div>
+
+
       </div>
+
+
+      <div class="col-12 offset-1">
+        <div class="row">
+            <div class="card card-primary col-12 col-md-3 ml-4">
+
+
+                <div class="card-body">
+                <div class="float-left">
+                    <h3>Demo Admin</h3>
+                    <p>Username : admin</p>
+                    <p>Password : admin</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="card card-primary col-12 col-md-3 ml-4">
+
+
+                <div class="card-body">
+                <div class="float-left">
+                    <h3>Demo Guru</h3>
+                    <p>Username : guru</p>
+                    <p>Password : guru</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="card card-primary col-12 col-md-3 ml-4">
+
+
+                <div class="card-body">
+                <div class="float-left">
+                    <h3>Demo Siswa</h3>
+                    <p>Username : siswa</p>
+                    <p>Password : siswa123</p>
+                </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
     </section>
   </div>
 

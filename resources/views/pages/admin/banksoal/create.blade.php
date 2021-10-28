@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Bank Soal {{$dataajar->mapel->nama}}
+Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')

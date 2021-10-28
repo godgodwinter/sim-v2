@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Bank Soal
+Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataajar->kelas->jurusan}} {{$dataajar->kelas->suffix}}
 @endsection
 
 @push('before-script')
@@ -19,7 +19,6 @@ Bank Soal
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('silabus')}}">Silabus</a></div>
-            <div class="breadcrumb-item"><a href="{{route('silabus')}}">{{$dataajar->mapel->nama}}</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
         </div>
     </div>
@@ -28,26 +27,32 @@ Bank Soal
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <div class="d-flex bd-highlight mb-3 align-items-center">
 
-                    <div id="babeng-row ">
-
-                        <form action="{{ route('silabus.cari') }}" method="GET" class=" d-inline">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
-
-                            <span>
-                                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
-                            </span>
-                            <a href="{{route('dataajar.banksoal.create',$dataajar->id)}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah Soal </span></a> </form>
-</form>
-
+                    <div class="p-2 bd-highlight">
                     </div>
-                </div>
 
-                <x-jsmultidel link="{{route('mapel.multidel')}}" />
+
+                    <div class="ml-auto p-2 bd-highlight">
+                <x-button-create link="{{route('dataajar.banksoal.create',$dataajar->id)}}"></x-button-create>
+                <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                    data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                    Import
+                </button>
+                <a href="/admin/users/export" type="submit" value="Import"
+                    class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Export </span></a>
+                @if (Auth::user()->tipeuser=='admin')
+                <a href="{{route('dataajar.generatebanksoal',$dataajar->id)}}" type="submit" value="Import"
+                    class="btn btn-icon btn-success  ml-0 btn-sm"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Generate Soal Ujian </span></a>
+
+                @endif
+            </div>
+        </div>
+
+
+                <x-jsmultidel link="{{route('dataajar.banksoal.multidel',$dataajar->id)}}" />
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>
@@ -56,7 +61,7 @@ Bank Soal
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center py-2 babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Pertanyaan</th>
                             <th >Jumlah Pilihan</th>
                             <th >Jenis Soal</th>
@@ -74,22 +79,27 @@ Bank Soal
                                     {!! $data->pertanyaan!=null ? $data->pertanyaan : 'Data tidak ditemukan' !!}
                                 </td>
                                 <td>
-                                    {{$data->kelas!=null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan'}}
+                                    {{$data->banksoaljawaban!=null ? $data->banksoaljawaban->count() : 'Data tidak ditemukan'}}
                                 </td>
 
-                                <td>
-                                    {{$data->guru!=null ? $data->guru->nama : '-'}}
-                                </td>
+                                    @php
+                                    $kategorisoal_nama='TIdak diketahui';
+                                        if($data->kategorisoal_nama==1){
+                                            $kategorisoal_nama='Pilihan ganda';
+                                        }elseif($data->kategorisoal_nama==2){
+                                            $kategorisoal_nama='Pilihan ganda kompleks';
+                                        }else{
+                                            $kategorisoal_nama='True/False';
+                                        }
+                                    @endphp
+                                <td class="text-capitalize">{{$kategorisoal_nama}}</td>
+                                <td class="text-capitalize">{{$data->tingkatkesulitan}}</td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
+                                    <x-button-edit link="{{route('dataajar.banksoal.edit',[$dataajar->id,$data->id])}}" />
+                                    <x-button-delete link="{{route('dataajar.generatebanksoal.delete',[$dataajar->id,$data->id])}}" />
 
-                                    <a href="#" type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail Silabus!" >
-                                        <i class="fas fa-inbox"></i>
-                                    </a>
-                                    <a href="{{route('dataajar.banksoal',$data->id)}}"
-                                        class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="Bank Soal!"> <i
-                                            class="far fa-file-archive"></i> </a>
                                 </td>
                             </tr>
                         @empty

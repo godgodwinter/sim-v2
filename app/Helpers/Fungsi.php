@@ -9,8 +9,27 @@ class Fungsi {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+    public static  function isWeekend($date) {
+        $weekDay = date('w', strtotime($date));
+        return ($weekDay == 0 || $weekDay == 6 );
+    }
 
-
+    public static function periksaabc($data){
+        $hasil='A';
+        if($data=='1'){
+            $hasil='A';
+        }elseif($data=='2'){
+            $hasil='B';
+        }elseif($data=='3'){
+            $hasil='C';
+        }elseif($data=='4'){
+            $hasil='D';
+        }else{
+            $hasil='E';
+        }
+        // dd($data,$hasil);
+        return $hasil;
+    }
 
     public static function tanggalgaringcreated($data){
         $data2=explode(" ",$data);
@@ -321,6 +340,30 @@ class Fungsi {
         $data=$settings->app_namapendek;
         return $data;
 
+    }
+    public static function lembaga_nama(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_nama;
+        return $data;
+    }
+    public static function lembaga_jalan(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_jalan;
+        return $data;
+    }
+    public static function lembaga_telp(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_telp;
+        return $data;
+    }
+    public static function lembaga_kota(){
+
+        $settings = DB::table('settings')->first();
+        $data=$settings->lembaga_kota;
+        return $data;
     }
 
 
