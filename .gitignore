@@ -1,7 +1,9 @@
 /node_modules
 /public/hot
 /public/materi
+/public/file_temp
 /public/storage
+/public/storage/framework/laravel-excel
 /storage/*.key
 /vendor
 .env
