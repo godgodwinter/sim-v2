@@ -70,6 +70,7 @@ class adminabsensicontroller extends Controller
             // dd($this->kelas_id);
                 $query->where('siswa.kelas_id',$this->kelas_id->id);
         })
+        ->orderBy('tgl','desc')
         ->orderBy('created_at','desc')
         ->paginate(Fungsi::paginationjml());
 
