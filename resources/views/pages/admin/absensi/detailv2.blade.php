@@ -31,7 +31,8 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
 
 
                     <div class="p-2 bd-highlight px-2">
-                        <form action="{{ route('siswa.cari') }}" method="GET" class="d-inline">
+                        <form action="{{ route('absensi.storev2',$kelas->id) }}" method="post" class="d-inline">
+                            @csrf
                                 <select class="js-example-basic-single form-control-sm @error('siswa_id')
                                 is-invalid
                             @enderror" name="siswa_id"  style="width: 75%" required>
@@ -42,7 +43,7 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                               </select>
                             </div>
                               <div class="p-2 bd-highlight">
-                                  <input type="date" class="form-control" value="{{date('Y-m-d')}}">
+                                  <input type="date" class="form-control" value="{{date('Y-m-d')}}" name="tgl">
                             </div>
                               <div class="p-2 bd-highlight">
                                 <div class="selectgroup w-100">
@@ -67,7 +68,7 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
 
                             </div>
                             <div class="p-2 bd-highlight">
-                                <input type="text" class="form-control" value="{{old('ket')}}" placeholder="Keterangan">
+                                <input type="text" class="form-control" value="{{old('ket')}}" placeholder="Keterangan" name="ket">
                           </div>
                               <div class="p-2 bd-highlight">
 
@@ -123,13 +124,22 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                                 <td class="text-center">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
-                                    {{Str::limit($data->nama,25,' ...')}}
+                                    {{$data->siswa!=null?Str::limit($data->siswa->nama,25,' ...'):'Data tidak ditemukan'}}
                                 </td>
                                 <td>
-                                    {{ $data->kelas != null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan' }}
+                                    {{ $data->siswa->kelas != null ? $data->siswa->kelas->tingkatan.' '.$data->siswa->kelas->jurusan.' '.$data->siswa->kelas->suffix : 'Data tidak ditemukan' }}
                                 </td>
                                 <td>
-
+                                    {{Fungsi::tanggalindo($data->tgl)}}
+                                </td>
+                                <td>
+                                    {{$data->nilai}}
+                                </td>
+                                <td>
+                                    {{$data->ket!=null AND $data->ket!='' ? Str::limit($data->ket,15) : '-'}}
+                                </td>
+                                <td class="babeng-min-row">
+                                        <x-button-delete link="#"></x-button-delete>
                                 </td>
                             </tr>
                         @empty

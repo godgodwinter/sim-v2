@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class adminabsensicontroller extends Controller
 {
+    private $kelas_id;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -59,18 +60,22 @@ class adminabsensicontroller extends Controller
         // Convert the period to an array of dates
         $dates = $period->toArray();
         // dd($kelas);
-        $kelas_id=$kelas->id;
+        $this->kelas_id=$kelas;
         // dd($firstDayofPreviousMonth,$lastDayofPreviousMonth);
         // $datas=siswa::with('kelas')->where('kelas_id',$kelas->id)->paginate(Fungsi::paginationjml());
-        $datas=absensi::with('siswa')->whereHas('siswa',function($c){
-            global $kelas_id;
-                $c->where('siswa.kelas_id',$kelas_id);
+        $datas=absensi::with('siswa')
+        ->whereHas('siswa',function($query){
+            global $kelas;
+            // global $kelas_id;
+            // dd($this->kelas_id);
+                $query->where('siswa.kelas_id',$this->kelas_id->id);
         })
+        ->orderBy('created_at','desc')
         ->paginate(Fungsi::paginationjml());
 
-        $siswas=siswa::with('kelas')->where('kelas_id',$kelas_id)
+        $siswas=siswa::with('kelas')->where('kelas_id',$this->kelas_id->id)
         ->get();
-        // dd($datas);
+        // dd($datas,$this->kelas_id->id);
         return view('pages.admin.absensi.detailv2',compact('datas','request','pages','kelas','dates','siswas'));
     }
     public function detail_old(kelas $kelas, Request $request)
@@ -107,6 +112,38 @@ class adminabsensicontroller extends Controller
                         'ket'     =>   $request->ket,
                         'siswa_id'     =>   $request->siswa_id,
                         'tgl'     =>   $request->tgl,
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+
+        }
+
+        return redirect()->back()->with('status','Data berhasil update!')->with('tipe','success')->with('icon','fas fa-feather');
+
+
+    }
+    public function storev2(kelas $kelas,Request $request){
+        // dd($request);
+        $cek=absensi::where('siswa_id',$request->siswa_id)
+        ->where('tgl',$request->tgl)
+        ->count();
+
+        if($cek>0){
+            absensi::where('siswa_id',$request->siswa_id)
+            ->where('tgl',$request->tgl)
+            ->update([
+                'nilai'     =>   $request->nilai,
+                'ket'     =>   $request->ket,
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+        }else{
+            DB::table('absensi')->insert(
+                array(
+                        'ket'     =>   $request->ket,
+                        'siswa_id'     =>   $request->siswa_id,
+                        'tgl'     =>   $request->tgl,
+                        'nilai'     =>   $request->nilai,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));

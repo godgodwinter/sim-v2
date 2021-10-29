@@ -16,6 +16,7 @@ class absensi extends Model
         protected $fillable = [
             'ket',
             'tgl',
+            'nilai',
             'siswa_id',
         ];
         public function siswa()
