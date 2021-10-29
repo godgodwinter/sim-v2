@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\exportnilaiperkd;
 use App\Exports\exportnilaipermateri;
 use App\Helpers\Fungsi;
+use App\Imports\importnilaipermateri;
 use App\Models\dataajar;
 use App\Models\guru;
 use App\Models\kelas;
@@ -98,4 +99,23 @@ class adminpenilaiancontroller extends Controller
         $tgl=date("YmdHis");
 		return Excel::download(new exportnilaiperkd($dataajar,$kompetensidasar), 'sim-penilaian-'.$kompetensidasar->id.'-'.$tgl.'.xlsx');
     }
+
+	public function importnilaipermateri(dataajar $dataajar,materipokok $materipokok,Request $request){
+
+		// dd($request,$id->id);
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		$file = $request->file('file');
+
+		$nama_file = rand().$file->getClientOriginalName();
+
+		$file->move('file_temp',$nama_file);
+
+		Excel::import(new importnilaipermateri($dataajar,$materipokok), public_path('/file_temp/'.$nama_file));
+
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+
+	}
 }

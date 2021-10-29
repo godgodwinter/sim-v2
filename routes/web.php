@@ -192,6 +192,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     //export
     Route::get('/admin/datapenilaianexportmateripokok/{dataajar}/materipokok/{materipokok}', [adminpenilaiancontroller::class, 'exportnilaipermateri'])->name('penilaian.inputnilai.exportmateripokok');
     Route::get('/admin/datapenilaianexportkd/{dataajar}/kd/{kompetensidasar}', [adminpenilaiancontroller::class, 'exportnilaiperkd'])->name('penilaian.inputnilai.exportkd');
+    //import
+    Route::post('admin/datapenilaianimportmateri/{dataajar}/materi/{materipokok}',[adminpenilaiancontroller::class, 'importnilaipermateri'])->name('penilaian.inpunilai.importnilaipermateri');
 
 
     //absensi

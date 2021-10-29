@@ -15,6 +15,8 @@ class Fungsi {
     // }
 
     public static  function ambilkdmateripokok($data) {
+
+        $kd_materi=0;
         $datamateri=materipokok::with('kompetensidasar')->where('id',$data)->first();
         $hasil=0;
         if($datamateri->kompetensidasar!=null){
@@ -26,11 +28,19 @@ class Fungsi {
                 $tipe=$datamateri->kompetensidasar->tipe;
                 $preffix='4.';
             }
-            // ambil dataajar id
+
+            //ambil kode kompetensidasar
+            $datakompetensidasar_id=$datamateri->kompetensidasar_id;
+
+            // dd($datakompetensidasar_id,$datamateri);
+
+            // ambil dataajar id untuk mencari kode materi
             $dataajarid=$datamateri->kompetensidasar->dataajar_id;
             $dataajar=dataajar::where('id',$dataajarid)->first();
             //ambil dan masukkan id materi ke dalam array materi
-            $datakd=kompetensidasar::with('materipokok')->where('dataajar_id',$dataajarid)->where('tipe',$tipe)->get();
+            $datakd=kompetensidasar::with('materipokok')->where('id',$datakompetensidasar_id)->where('tipe',$tipe)->get();
+
+            $datamateris=kompetensidasar::with('materipokok')->where('id',$datakompetensidasar_id)->where('tipe',$tipe)->get();
             $collection = new Collection();
             $nomer=1;
             foreach($datakd as $dk){
@@ -46,11 +56,13 @@ class Fungsi {
                     $nomer++;
             }
 
-            // dd($collection->where('dk_id',3)->first(),$datakd,$dk,$dataajar,$dataajarid);
         }
-
-        $hasil=$preffix.$collection->where('dk_id',$data)->first()->kode;
-        // dd($hasil);
+        dd($collection->where('dk_id',$data)->first(),$datakd,$dk,$dataajar,$dataajarid);
+        // if($collection->where('dk_id',$data)->first()!=null){
+            $kd_materi=$collection->where('dk_id',$data)->first()->kode;
+        // }
+        $hasil=$preffix.$kd_materi;
+        // dd($hasil,$collection);
         return $hasil;
     }
     public static  function isWeekend($date) {

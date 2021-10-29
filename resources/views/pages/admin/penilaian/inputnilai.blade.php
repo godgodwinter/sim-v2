@@ -41,6 +41,7 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                     value="Cari">
                             </span>
                     </div>
+                </form>
                     <div class="ml-auto p-2 bd-highlight">
                         <div class="dropdown d-inline">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +57,8 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                         }
                                     @endphp
                                        @forelse ($dk->materipokok as $dm)
-                                            <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> {{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</a>
+                                            <button class="dropdown-item has-icon"
+                                            data-toggle="modal" data-target="#importExcel{{$dk->id}}_{{$dm->id}}"><i class="far fa-heart"></i> {{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</button>
                                         @empty
                                         @endforelse
                                         {{-- <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> KD {{$dk->kode!=null? $preffix.$dk->kode : ' - '}}</a> --}}
@@ -96,7 +98,7 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                 Refresh
                               </button>
                     </div>
-</form>
+
 
                 </div>
 
@@ -372,4 +374,53 @@ $cari=$request->cari;
         </div>
     </div>
 </section>
+@endsection
+
+
+@section('containermodal')
+
+@forelse ($datakd as $dk)
+@php
+    if($dk->tipe==1){
+        $preffix='3.';
+    }else{
+        $preffix='4.';
+    }
+@endphp
+   @forelse ($dk->materipokok as $dm)
+
+    <!-- Import Excel -->
+    <div class="modal fade" id="importExcel{{$dk->id}}_{{$dm->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <form method="post" action="{{ route('penilaian.inpunilai.importnilaipermateri',[$dataajar->id,$dm->id]) }}" enctype="multipart/form-data">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import Nilai Siswa {{Fungsi::ambilkdmateripokok($dm->id)}}</h5>
+              </div>
+              <div class="modal-body">
+
+                {{ csrf_field() }}
+
+                <label>Pilih file excel(.xlsx)</label>
+                <div class="form-group">
+                  <input type="file" name="file" required="required">
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Import</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    @empty
+    @endforelse
+
+@empty
+@endforelse
+
 @endsection
