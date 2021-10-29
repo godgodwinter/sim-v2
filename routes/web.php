@@ -189,6 +189,9 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datapenilaian/cari', [adminpenilaiancontroller::class, 'cari'])->name('penilaian.cari');
     //inputnilai
     Route::get('/admin/datapenilaian/inputnilai/{dataajar}', [adminpenilaiancontroller::class, 'inputnilai'])->name('penilaian.inputnilai');
+    //export
+    Route::get('/admin/datapenilaianexportmateripokok/{dataajar}/materipokok/{materipokok}', [adminpenilaiancontroller::class, 'exportnilaipermateri'])->name('penilaian.inputnilai.exportmateripokok');
+    Route::get('/admin/datapenilaianexportkd/{dataajar}/kd/{kompetensidasar}', [adminpenilaiancontroller::class, 'exportnilaiperkd'])->name('penilaian.inputnilai.exportkd');
 
 
     //absensi

@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportnilaiperkd;
+use App\Exports\exportnilaipermateri;
 use App\Helpers\Fungsi;
 use App\Models\dataajar;
 use App\Models\guru;
 use App\Models\kelas;
 use App\Models\kompetensidasar;
 use App\Models\mapel;
+use App\Models\materipokok;
 use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class adminpenilaiancontroller extends Controller
 {
@@ -83,5 +87,15 @@ class adminpenilaiancontroller extends Controller
         $mapel=mapel::where('id',$dataajar->mapel_id)->first();
 
         return view('pages.admin.penilaian.inputnilai',compact('datas','request','pages','dataajar','datakd','mapel'));
+    }
+    public function exportnilaipermateri(dataajar $dataajar,materipokok $materipokok,Request $request){
+        // dd($dataajar,$materipokok);
+        $tgl=date("YmdHis");
+		return Excel::download(new exportnilaipermateri($dataajar,$materipokok), 'sim-penilaian-'.$materipokok->id.'-'.$tgl.'.xlsx');
+    }
+    public function exportnilaiperkd(dataajar $dataajar,kompetensidasar $kompetensidasar,Request $request){
+        // dd($dataajar,$materipokok);
+        $tgl=date("YmdHis");
+		return Excel::download(new exportnilaiperkd($dataajar,$kompetensidasar), 'sim-penilaian-'.$kompetensidasar->id.'-'.$tgl.'.xlsx');
     }
 }

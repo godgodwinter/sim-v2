@@ -47,9 +47,22 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                               Import
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> 3.1.1</a>
-                              <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> 3.1.1</a>
-                              <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> 3.1.1</a>
+                                @forelse ($datakd as $dk)
+                                    @php
+                                        if($dk->tipe==1){
+                                            $preffix='3.';
+                                        }else{
+                                            $preffix='4.';
+                                        }
+                                    @endphp
+                                       @forelse ($dk->materipokok as $dm)
+                                            <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> {{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</a>
+                                        @empty
+                                        @endforelse
+                                        {{-- <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> KD {{$dk->kode!=null? $preffix.$dk->kode : ' - '}}</a> --}}
+
+                                @empty
+                                @endforelse
                             </div>
                           </div>
                           <div class="dropdown d-inline ">
@@ -57,9 +70,25 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                 Export
                               </button>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> 3.1.1</a>
-                                <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> 3.1.1</a>
-                                <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> 3.1.1</a>
+                            @forelse ($datakd as $dk)
+                                @php
+                                    if($dk->tipe==1){
+                                        $preffix='3.';
+                                    }else{
+                                        $preffix='4.';
+                                    }
+                                    // dd($dataajar->kelas_id);
+                                @endphp
+                                   @forelse ($dk->materipokok as $dm)
+                                        <a class="dropdown-item has-icon" href="{{route('penilaian.inputnilai.exportmateripokok',[$dataajar->id,$dm->id])}}"><i class="far fa-heart"></i> {{$dm->nama!=null? $preffix.$dk->kode.".".$loop->index+1 : ' - '}}</a>
+                                    @empty
+                                    @endforelse
+
+                                    <a class="dropdown-item has-icon" href="{{route('penilaian.inputnilai.exportkd',[$dataajar->id,$dk->id])}}"><i class="far fa-heart"></i> KD {{$dk->kode!=null? $preffix.$dk->kode : ' - '}}</a>
+
+                            @empty
+                            @endforelse
+
                               </div>
                             </div>
 
