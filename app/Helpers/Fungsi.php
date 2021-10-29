@@ -1,6 +1,10 @@
 <?php
 namespace App\Helpers;
 
+use App\Models\dataajar;
+use App\Models\kompetensidasar;
+use App\Models\materipokok;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -9,6 +13,46 @@ class Fungsi {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+
+    public static  function ambilkdmateripokok($data) {
+        $datamateri=materipokok::with('kompetensidasar')->where('id',$data)->first();
+        $hasil=0;
+        if($datamateri->kompetensidasar!=null){
+
+            if($datamateri->kompetensidasar->tipe==1){
+                $tipe=$datamateri->kompetensidasar->tipe;
+                $preffix='3.';
+            }else{
+                $tipe=$datamateri->kompetensidasar->tipe;
+                $preffix='4.';
+            }
+            // ambil dataajar id
+            $dataajarid=$datamateri->kompetensidasar->dataajar_id;
+            $dataajar=dataajar::where('id',$dataajarid)->first();
+            //ambil dan masukkan id materi ke dalam array materi
+            $datakd=kompetensidasar::with('materipokok')->where('dataajar_id',$dataajarid)->where('tipe',$tipe)->get();
+            $collection = new Collection();
+            $nomer=1;
+            foreach($datakd as $dk){
+                $dk_id=$dk->id;
+
+            $collection->push((object)[
+                'dk_id' => $dk_id,
+                'kode' => $nomer,
+            ]);
+                // $arraydua=[$dk_id => $nomer];
+                // $array=array_merge($array,$arraydua);
+            // dd($arraydua,$array,$datakd,$dataajar,$dataajarid);
+                    $nomer++;
+            }
+
+            // dd($collection->where('dk_id',3)->first(),$datakd,$dk,$dataajar,$dataajarid);
+        }
+
+        $hasil=$preffix.$collection->where('dk_id',$data)->first()->kode;
+        // dd($hasil);
+        return $hasil;
+    }
     public static  function isWeekend($date) {
         $weekDay = date('w', strtotime($date));
         return ($weekDay == 0 || $weekDay == 6 );

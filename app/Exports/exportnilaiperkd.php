@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Helpers\Fungsi;
 use App\Http\Resources\dataujianresource;
 use App\Http\Resources\siswaresource;
 use App\Models\inputnilai;
@@ -35,14 +36,14 @@ class exportnilaiperkd implements FromCollection, WithHeadings, ShouldAutoSize
             'nomerinduk',
             'nama',
         ];
-
         $datamateri=materipokok::where('kompetensidasar_id',$this->kompetensidasar->id)->get();
         foreach($datamateri as $dm){
-            $id=$dm->id;
+            // dd(Fungsi::ambilkdmateripokok($dm->id));
+            // $id=$dm->id;
+            $id=Fungsi::ambilkdmateripokok($dm->id);
             $arraydua=[$id];
             $array=array_merge($array,$arraydua);
         }
-
         return $array;
     }
     public function collection()
