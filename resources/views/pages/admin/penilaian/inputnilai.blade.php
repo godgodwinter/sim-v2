@@ -41,6 +41,32 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                     value="Cari">
                             </span>
                     </div>
+                    <div class="ml-auto p-2 bd-highlight">
+                        <div class="dropdown d-inline">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Import
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> 3.1.1</a>
+                              <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> 3.1.1</a>
+                              <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> 3.1.1</a>
+                            </div>
+                          </div>
+                          <div class="dropdown d-inline ">
+                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export
+                              </button>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> 3.1.1</a>
+                                <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> 3.1.1</a>
+                                <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> 3.1.1</a>
+                              </div>
+                            </div>
+
+                            <button class="btn btn-primary" type="button">
+                                Refresh
+                              </button>
+                    </div>
 </form>
 
                 </div>
