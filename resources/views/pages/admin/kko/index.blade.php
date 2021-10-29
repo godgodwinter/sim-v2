@@ -57,6 +57,7 @@ Kata Kalimat Objek
                         <tr style="background-color: #F1F1F1">
                             <th width="8%" class="text-center py-2"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
+                            <th >Kategori</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -68,6 +69,9 @@ Kata Kalimat Objek
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>
                                     {{Str::limit($data->nama,25,' ...')}}
+                                </td>
+                                <td>
+                                    {{$data->tipe}}
                                 </td>
 
 
