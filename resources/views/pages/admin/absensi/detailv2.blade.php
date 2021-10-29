@@ -139,7 +139,7 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                                     {{$data->ket!=null AND $data->ket!='' ? Str::limit($data->ket,15) : '-'}}
                                 </td>
                                 <td class="babeng-min-row">
-                                        <x-button-delete link="#"></x-button-delete>
+                                        <x-button-delete link="{{route('absensi.delete',[$kelas->id,$data->id])}}"></x-button-delete>
                                 </td>
                             </tr>
                         @empty

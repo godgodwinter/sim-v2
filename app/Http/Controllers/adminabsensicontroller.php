@@ -155,4 +155,10 @@ class adminabsensicontroller extends Controller
 
 
     }
+    public function destroy(kelas $kelas,absensi $id){
+
+        absensi::destroy($id->id);
+        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
 }

@@ -197,6 +197,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/absensi/detail/{kelas}', [adminabsensicontroller::class, 'detail'])->name('absensi.detail');
     Route::post('/admin/absensi/detail/{kelas}/store', [adminabsensicontroller::class, 'store'])->name('absensi.store');
     Route::post('/admin/absensi/detail/{kelas}/storev2', [adminabsensicontroller::class, 'storev2'])->name('absensi.storev2');
+    Route::delete('/admin/dataabsensi/{kelas}/data/{id}', [adminabsensicontroller::class, 'destroy'])->name('absensi.delete');
 
     //pelanggaran
     Route::get('/admin/pelanggaran', [adminpelanggarancontroller::class, 'index'])->name('pelanggaran');
