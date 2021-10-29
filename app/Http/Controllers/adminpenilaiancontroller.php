@@ -7,6 +7,7 @@ use App\Models\dataajar;
 use App\Models\guru;
 use App\Models\kelas;
 use App\Models\kompetensidasar;
+use App\Models\mapel;
 use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -79,7 +80,8 @@ class adminpenilaiancontroller extends Controller
         // });
         // dd($datas);
 
+        $mapel=mapel::where('id',$dataajar->mapel_id)->first();
 
-        return view('pages.admin.penilaian.inputnilai',compact('datas','request','pages','dataajar','datakd'));
+        return view('pages.admin.penilaian.inputnilai',compact('datas','request','pages','dataajar','datakd','mapel'));
     }
 }

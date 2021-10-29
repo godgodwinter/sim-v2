@@ -104,6 +104,7 @@ Input Nilai {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$data
                                 </td>
                                 @forelse ($datakd as $dk)
                                     @php
+                                    // dd($mapel->kkm);
                                     $jmlnilai=0;
                                     $jml=0;
                                     $avg=0;
@@ -241,13 +242,47 @@ $(document).ready(function () {
 </script>
 @endpush
                                             <td class="text-center" id="td_{{$data->id}}_{{$dm->id}}">
-                                                {{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}}
+                                                @php
+                                                    if($datasnilai!=null){
+                                                            if($datasnilai->nilai >= $mapel->kkm){
+                                                                $warna='success';
+                                                                $hasil=$datasnilai->nilai;
+                                                                $icon='<i class="far fa-check-circle"></i>';
+                                                            }else{
+                                                                $warna='danger';
+                                                                $hasil=$datasnilai->nilai;
+                                                                $icon='<i class="far fa-times-circle"></i>';
+                                                            }
+                                                    }else{
+                                                        $hasil='Belum diisi ';
+                                                        $warna='dark';
+                                                        $icon='';
+
+                                                    }
+                                                @endphp
+                                                <div class="text-{{$warna}}">
+                                                        {{$hasil}} {!!$icon!!}
+                                                </div>
+                                                {{-- {{$datasnilai!=null? $datasnilai->nilai : ' Belum diisi '}} --}}
                                             </td>
                                             @if($loop->index+1==$dk->materipokok->count())
                                             <td class="text-center">
                                                 {{-- 0 --}}
                                             {{-- {{$dk->id}} --}}
-                                            {{$avg}}
+                                            @php
+                                                    if($avg >= $mapel->kkm){
+                                                        $warna='success';
+                                                        $icon='<i class="far fa-check-circle"></i> Tuntas';
+                                                    }else{
+                                                        $warna='danger';
+                                                        $icon='<i class="far fa-times-circle"></i> Belum Tuntas';
+                                                    }
+
+                                        @endphp
+                                        <div class="text-{{$warna}}">
+                                                {{$avg}} {!!$icon!!}
+                                        </div>
+                                            {{-- {{$avg}} --}}
                                             </td>
                                             @endif
 
