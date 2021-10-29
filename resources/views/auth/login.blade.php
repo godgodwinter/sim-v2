@@ -119,16 +119,15 @@
             </div>
           </div>
 
-
         </div>
 
 
       </div>
 
 
-      <div class="col-12 offset-1">
+      <div class="col-12 offset-md-1">
         <div class="row">
-            <div class="card card-primary col-12 col-md-3 ml-4">
+            <div class="card card-primary col-12 col-md-3 ml-md-4">
 
 
                 <div class="card-body">
@@ -140,7 +139,7 @@
                 </div>
             </div>
 
-            <div class="card card-primary col-12 col-md-3 ml-4">
+            <div class="card card-primary col-12 col-md-3 ml-md-4">
 
 
                 <div class="card-body">
@@ -152,7 +151,7 @@
                 </div>
             </div>
 
-            <div class="card card-primary col-12 col-md-3 ml-4">
+            <div class="card card-primary col-12 col-md-3 ml-md-4">
 
 
                 <div class="card-body">

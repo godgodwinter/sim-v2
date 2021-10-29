@@ -58,6 +58,31 @@ class adminabsensicontroller extends Controller
         $period = CarbonPeriod::create($firstDayofPreviousMonth, $lastDayofPreviousMonth);
         // Convert the period to an array of dates
         $dates = $period->toArray();
+        // dd($kelas);
+        $kelas_id=$kelas->id;
+        // dd($firstDayofPreviousMonth,$lastDayofPreviousMonth);
+        // $datas=siswa::with('kelas')->where('kelas_id',$kelas->id)->paginate(Fungsi::paginationjml());
+        $datas=absensi::with('siswa')->whereHas('siswa',function($c){
+            global $kelas_id;
+                $c->where('siswa.kelas_id',$kelas_id);
+        })
+        ->paginate(Fungsi::paginationjml());
+
+        $siswas=siswa::with('kelas')->where('kelas_id',$kelas_id)
+        ->get();
+        // dd($datas);
+        return view('pages.admin.absensi.detailv2',compact('datas','request','pages','kelas','dates','siswas'));
+    }
+    public function detail_old(kelas $kelas, Request $request)
+    {
+        #WAJIB
+        $pages='absensi';
+
+        $firstDayofPreviousMonth = Carbon::now()->startOfMonth()->toDateString();
+        $lastDayofPreviousMonth = Carbon::now()->endOfMonth()->toDateString();
+        $period = CarbonPeriod::create($firstDayofPreviousMonth, $lastDayofPreviousMonth);
+        // Convert the period to an array of dates
+        $dates = $period->toArray();
 
         // dd($firstDayofPreviousMonth,$lastDayofPreviousMonth);
         $datas=siswa::where('kelas_id',$kelas->id)->paginate(Fungsi::paginationjml());

@@ -15,6 +15,7 @@ class CreateAbsensiTable extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nilai')->nullable();
             $table->string('ket')->nullable();
             $table->string('tgl')->nullable();
             $table->string('siswa_id')->nullable();

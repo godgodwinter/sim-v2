@@ -27,21 +27,56 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
         <div class="card">
             <div class="card-body" >
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <div class="d-flex bd-highlight mb-0 align-items-center">
 
-                    <div id="babeng-row ">
 
-                        <form action="{{ route('siswa.cari') }}" method="GET">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari" autocomplete="off">
+                    <div class="p-2 bd-highlight px-2">
+                        <form action="{{ route('siswa.cari') }}" method="GET" class="d-inline">
+                                <select class="js-example-basic-single form-control-sm @error('siswa_id')
+                                is-invalid
+                            @enderror" name="siswa_id"  style="width: 75%" required>
+                                <option disabled selected value=""> Pilih Siswa</option>
+                                @foreach ($siswas as $t)
+                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                              <div class="p-2 bd-highlight">
+                                  <input type="date" class="form-control" value="{{date('Y-m-d')}}">
+                            </div>
+                              <div class="p-2 bd-highlight">
+                                <div class="selectgroup w-100">
+                                    {{-- <label class="selectgroup-item">
+                                      <input type="radio" name="semester" value="Semua" class="selectgroup-input" >
+                                      <span class="selectgroup-button">Semua</span>
+                                    </label> --}}
+                                    <label class="selectgroup-item">
+                                      <input type="radio" name="nilai" value="Sakit" class="selectgroup-input" checked="">
+                                      <span class="selectgroup-button">S</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                      <input type="radio" name="nilai" value="Ijin" class="selectgroup-input">
+                                      <span class="selectgroup-button">I</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                      <input type="radio" name="nilai" value="Alpha" class="selectgroup-input">
+                                      <span class="selectgroup-button">A</span>
+                                    </label>
 
-                            <span>
+                                  </div>
+
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <input type="text" class="form-control" value="{{old('ket')}}" placeholder="Keterangan">
+                          </div>
+                              <div class="p-2 bd-highlight">
+
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
-                            </span>
+                                    value="Simpan">
 
+                        </div>
                          </form>
 
-                    </div>
                 </div>
                 <div class="row" id="babengcardDate" >
 
@@ -94,7 +129,7 @@ Absensi {{$kelas->tingkatan}} {{$kelas->jurusan}} {{$kelas->suffix}}
                                     {{ $data->kelas != null ? $data->kelas->tingkatan.' '.$data->kelas->jurusan.' '.$data->kelas->suffix : 'Data tidak ditemukan' }}
                                 </td>
                                 <td>
-                                    
+
                                 </td>
                             </tr>
                         @empty
