@@ -31,9 +31,9 @@ class importnilaipermateri implements ToCollection,WithCalculatedFormulas
 
     public function collection(Collection $rows, $calculateFormulas = false)
     {
+        // dd($rows,$this->materipokok->id);
         // $rows->calculate(false);
         ini_set('max_execution_time', 3000);
-        $sekolah_id=$this->id;
         // DB::table('sekolah')->insert(
         //     array(
         //         'nama'     =>  'test123',
@@ -45,15 +45,36 @@ class importnilaipermateri implements ToCollection,WithCalculatedFormulas
     $no=0;
     foreach($rows as $row){
     if($no>0){
-
-    $ceksiswa=siswa::where('nomerinduk',$row[0])->count();
-    if($ceksiswa>0){
-
-    $siswa_id=siswa::where('nomerinduk',$row[0])->get('id');
-    dd($siswa_id);
+        $ceksiswa=siswa::where('nomerinduk',$row[0])->count();
+        if($ceksiswa>0){
+            $ambildatasiswa=siswa::where('nomerinduk',$row[0])->first();
+            $siswa_id=$ambildatasiswa->id;
+            $periksainputnilai=inputnilai::where('siswa_id',$siswa_id)->where('materipokok_id',$this->materipokok->id)->count();
+            // dd($periksainputnilai);
+            if($periksainputnilai>0){
+                //update
+                    inputnilai::where('siswa_id',$siswa_id)
+                    ->where('materipokok_id',$this->materipokok->id)
+                    ->update([
+                        'nilai'     =>   $row[2],
+                    'updated_at'=>date("Y-m-d H:i:s")
+                    ]);
+            }else{
+                // insert
+            DB::table('inputnilai')->insert(
+                array(
+                        'siswa_id'     =>   $siswa_id,
+                        'materipokok_id'     =>   $this->materipokok->id,
+                        'nilai'     =>   $row[2],
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+            }
+            // dd($siswa_id);
+        }
     }
-
-    }
+    // dd($no);
+    $no++;
     }
 }
 }

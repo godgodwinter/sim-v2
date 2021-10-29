@@ -395,7 +395,7 @@ $cari=$request->cari;
           <form method="post" action="{{ route('penilaian.inpunilai.importnilaipermateri',[$dataajar->id,$dm->id]) }}" enctype="multipart/form-data">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Import Nilai Siswa {{Fungsi::ambilkdmateripokok($dm->id)}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Import Nilai Siswa {{Fungsi::ambilkdmateripokok($dm->id,$dataajar->id)}}</h5>
               </div>
               <div class="modal-body">
 

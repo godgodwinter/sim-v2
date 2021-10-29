@@ -40,7 +40,7 @@ class exportnilaiperkd implements FromCollection, WithHeadings, ShouldAutoSize
         foreach($datamateri as $dm){
             // dd(Fungsi::ambilkdmateripokok($dm->id));
             // $id=$dm->id;
-            $id=Fungsi::ambilkdmateripokok($dm->id);
+            $id=Fungsi::ambilkdmateripokok($dm->id,$this->dataajar->id);
             $arraydua=[$id];
             $array=array_merge($array,$arraydua);
         }

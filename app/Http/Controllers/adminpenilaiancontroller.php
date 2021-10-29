@@ -102,7 +102,7 @@ class adminpenilaiancontroller extends Controller
 
 	public function importnilaipermateri(dataajar $dataajar,materipokok $materipokok,Request $request){
 
-		// dd($request,$id->id);
+		// dd($request,$materipokok);
 		$this->validate($request, [
 			'file' => 'required|mimes:csv,xls,xlsx'
 		]);

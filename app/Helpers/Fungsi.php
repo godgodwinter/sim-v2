@@ -14,12 +14,14 @@ class Fungsi {
     //     return (isset($user->username) ? $user->username : '');
     // }
 
-    public static  function ambilkdmateripokok($data) {
+    public static  function ambilkdmateripokok($data,$dataajar_id) {
 
         $kd_materi=0;
+        $kd_kd=0;
         $datamateri=materipokok::with('kompetensidasar')->where('id',$data)->first();
         $hasil=0;
         if($datamateri->kompetensidasar!=null){
+            $kd_kd=$datamateri->kompetensidasar->kode;
 
             if($datamateri->kompetensidasar->tipe==1){
                 $tipe=$datamateri->kompetensidasar->tipe;
@@ -28,40 +30,26 @@ class Fungsi {
                 $tipe=$datamateri->kompetensidasar->tipe;
                 $preffix='4.';
             }
-
             //ambil kode kompetensidasar
-            $datakompetensidasar_id=$datamateri->kompetensidasar_id;
-
-            // dd($datakompetensidasar_id,$datamateri);
-
-            // ambil dataajar id untuk mencari kode materi
-            $dataajarid=$datamateri->kompetensidasar->dataajar_id;
-            $dataajar=dataajar::where('id',$dataajarid)->first();
-            //ambil dan masukkan id materi ke dalam array materi
-            $datakd=kompetensidasar::with('materipokok')->where('id',$datakompetensidasar_id)->where('tipe',$tipe)->get();
-
-            $datamateris=kompetensidasar::with('materipokok')->where('id',$datakompetensidasar_id)->where('tipe',$tipe)->get();
+            $datakompetensidasar=kompetensidasar::where('dataajar_id',$dataajar_id)->get();
+            // dd($datakompetensidasar,$dataajar_id);
             $collection = new Collection();
-            $nomer=1;
-            foreach($datakd as $dk){
-                $dk_id=$dk->id;
+            foreach($datakompetensidasar as $datakd){
+                $nomer=1;
+                $ambildatamateripokok=materipokok::where('kompetensidasar_id',$datakd->id)->get();
+                foreach($ambildatamateripokok as $dm){
+                    $dm_id=$dm->id;
 
-            $collection->push((object)[
-                'dk_id' => $dk_id,
-                'kode' => $nomer,
-            ]);
-                // $arraydua=[$dk_id => $nomer];
-                // $array=array_merge($array,$arraydua);
-            // dd($arraydua,$array,$datakd,$dataajar,$dataajarid);
+                    $collection->push((object)[
+                        'dm_id' => $dm_id,
+                        'kode' => $nomer,
+                    ]);
                     $nomer++;
+                }
             }
-
         }
-        dd($collection->where('dk_id',$data)->first(),$datakd,$dk,$dataajar,$dataajarid);
-        // if($collection->where('dk_id',$data)->first()!=null){
-            $kd_materi=$collection->where('dk_id',$data)->first()->kode;
-        // }
-        $hasil=$preffix.$kd_materi;
+        $kd_materi=$collection->where('dm_id',$data)->first()->kode;
+        $hasil=$preffix.$kd_kd.'.'.$kd_materi;
         // dd($hasil,$collection);
         return $hasil;
     }
