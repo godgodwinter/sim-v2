@@ -47,13 +47,26 @@ class adminbanksoalcontroller extends Controller
     public function store(dataajar $dataajar,Request $request){
             $collection = new Collection();
             if($request->kategorisoal_nama==3){
-                    $collection->push((object)['jawaban' => $request->jawaban1,
-                                               'hasil'=>$request->jawaban_hasil1,
-                    ]);
+                    // dd($request);
+                    if($request->jawaban_hasil1=='Benar'){
+                        $collection->push((object)['jawaban' => 'Benar',
+                                                   'hasil'=> 'Benar',
+                        ]);
 
-                    $collection->push((object)['jawaban' => $request->jawaban2,
-                                               'hasil'=>$request->jawaban_hasil2,
-                    ]);
+                        $collection->push((object)['jawaban' => 'Salah',
+                                                   'hasil'=> 'Salah',
+                        ]);
+
+                    }else{
+                        $collection->push((object)['jawaban' => 'Benar',
+                                                   'hasil'=> 'Salah',
+                        ]);
+
+                        $collection->push((object)['jawaban' => 'Salah',
+                                                   'hasil'=> 'Benar',
+                        ]);
+
+                    }
             }
                 if($request->jawaban1!=null){
                     $collection->push((object)['jawaban' => $request->jawaban1,
@@ -167,13 +180,26 @@ return redirect()->route('dataajar.banksoal',$dataajar->id)->with('status','Soal
 
         $collection = new Collection();
         if($request->kategorisoal_nama==3){
-                $collection->push((object)['jawaban' => $request->jawaban1,
-                                           'hasil'=>$request->jawaban_hasil1,
+            // dd($request);
+            if($request->jawaban_hasil=='Benar'){
+                $collection->push((object)['jawaban' => 'Benar',
+                                           'hasil'=> 'Benar',
                 ]);
 
-                $collection->push((object)['jawaban' => $request->jawaban2,
-                                           'hasil'=>$request->jawaban_hasil2,
+                $collection->push((object)['jawaban' => 'Salah',
+                                           'hasil'=> 'Salah',
                 ]);
+
+            }else{
+                $collection->push((object)['jawaban' => 'Benar',
+                                           'hasil'=> 'Salah',
+                ]);
+
+                $collection->push((object)['jawaban' => 'Salah',
+                                           'hasil'=> 'Benar',
+                ]);
+
+            }
         }
             if($request->jawaban1!=null){
                 $collection->push((object)['jawaban' => $request->jawaban1,

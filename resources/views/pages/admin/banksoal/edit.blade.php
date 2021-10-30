@@ -58,13 +58,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                     $(document).ready(function() {
                     let formtipe1=`
                         <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                            <label for="jawaban1">Pilihan Jawaban 1 <code>*)</code></label>
+                            <label for="jawaban1">Pilihan A <code>*)</code></label>
                             <input type="text" name="jawaban1" id="jawaban1" class="form-control @error('jawaban1') is-invalid @enderror" value="{{old('jawaban1')}}" required>
                             @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                            <label class="form-label">Hasil Jawaban 1</label>
+                            <label class="form-label">Hasil Jawaban A</label>
                             <div class="selectgroup w-100">
                             <label class="selectgroup-item">
                                 <input type="radio" name="jawaban_hasil1" value="Benar" class="selectgroup-input" checked="">
@@ -78,13 +78,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                             </div>
                           </div>
                           <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                              <label for="jawaban2">Pilihan Jawaban 2 <code>*)</code></label>
+                              <label for="jawaban2">Pilihan B <code>*)</code></label>
                               <input type="text" name="jawaban2" id="jawaban2" class="form-control @error('jawaban2') is-invalid @enderror" value="{{old('jawaban2')}}" >
                               @error('jawaban2')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
                           </div>
                           <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                              <label class="form-label">Hasil Jawaban 2</label>
+                              <label class="form-label">Hasil Jawaban B</label>
                               <div class="selectgroup w-100">
                               <label class="selectgroup-item">
                                   <input type="radio" name="jawaban_hasil2" value="Benar" class="selectgroup-input" >
@@ -98,13 +98,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                               </div>
                             </div>
                             <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                                <label for="jawaban3">Pilihan Jawaban 3 <code>*)</code></label>
+                                <label for="jawaban3">Pilihan C <code>*)</code></label>
                                 <input type="text" name="jawaban3" id="jawaban3" class="form-control @error('jawaban1') is-invalid @enderror" value="{{old('jawaban3')}}" >
                                 @error('jawaban3')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                                <label class="form-label">Hasil Jawaban 3</label>
+                                <label class="form-label">Hasil Jawaban C</label>
                                 <div class="selectgroup w-100">
                                 <label class="selectgroup-item">
                                     <input type="radio" name="jawaban_hasil3" value="Benar" class="selectgroup-input" >
@@ -118,13 +118,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                                 </div>
                               </div>
                               <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                                  <label for="jawaban4">Pilihan Jawaban 4 <code>*)</code></label>
+                                  <label for="jawaban4">Pilihan D <code>*)</code></label>
                                   <input type="text" name="jawaban4" id="jawaban4" class="form-control @error('jawaban4') is-invalid @enderror" value="{{old('jawaban4')}}" >
                                   @error('jawaban4')<div class="invalid-feedback"> {{$message}}</div>
                                   @enderror
                               </div>
                               <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                                  <label class="form-label">Hasil Jawaban 4</label>
+                                  <label class="form-label">Hasil Jawaban D</label>
                                   <div class="selectgroup w-100">
                                   <label class="selectgroup-item">
                                       <input type="radio" name="jawaban_hasil4" value="Benar" class="selectgroup-input" >
@@ -138,13 +138,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                                   </div>
                                 </div>
                                 <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                                    <label for="jawaban5">Pilihan Jawaban 5 <code>*)</code></label>
+                                    <label for="jawaban5">Pilihan E <code>*)</code></label>
                                     <input type="text" name="jawaban5" id="jawaban5" class="form-control @error('jawaban5') is-invalid @enderror" value="{{old('jawaban5')}}" >
                                     @error('jawaban5')<div class="invalid-feedback"> {{$message}}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                                    <label class="form-label">Hasil Jawaban 5</label>
+                                    <label class="form-label">Hasil Jawaban E</label>
                                     <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
                                         <input type="radio" name="jawaban_hasil5" value="Benar" class="selectgroup-input" >
@@ -279,13 +279,13 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
 
                         @forelse ($id->banksoaljawaban as $j)
                         <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                            <label for="jawaban{{$loop->index+1}}">Pilihan Jawaban {{$loop->index+1}} <code>*)</code></label>
+                            <label for="jawaban{{$loop->index+1}}">Pilihan  {{Fungsi::periksaabc($loop->index+1)}} <code>*)</code></label>
                             <input type="text" name="jawaban{{$loop->index+1}}" id="jawaban1" class="form-control @error('jawaban1') is-invalid @enderror" value="{{$j->jawaban}}" required>
                             @error('jawaban1')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                            <label class="form-label">Hasil Jawaban {{$loop->index+1}}</label>
+                            <label class="form-label">Hasil Jawaban  {{Fungsi::periksaabc($loop->index+1)}}</label>
                             <div class="selectgroup w-100">
                             <label class="selectgroup-item">
                                 <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Benar" class="selectgroup-input" {{$j->hasil=='Benar' ? 'checked=""' : ''}}>
@@ -337,26 +337,24 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
 
 
                         @else
-                            @forelse ($id->banksoaljawaban as $j)
-                            <div class="form-group col-md-2 col-2 mt-0 ml-5">
-                                <label class="form-label"> Jawaban {{$loop->index+1}}</label>
-                                <div class="selectgroup w-100">
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Benar" class="selectgroup-input" {{$j->hasil=='Benar' ? 'checked=""' : ''}}>
-                                    <span class="selectgroup-button">Benar</span>
-                                </label>
-                                  <label class="selectgroup-item">
-                                    <input type="radio" name="jawaban_hasil{{$loop->index+1}}" value="Salah" class="selectgroup-input"  {{$j->hasil=='Salah' ? 'checked=""' : ''}}>
-                                    <span class="selectgroup-button">Salah</span>
-                                  </label>
 
-                                </div>
-                              </div>
+                        <div class="form-group col-md-2 col-2 mt-0 ml-5">
+                            <label class="form-label"> Jawaban </label>
+                            <div class="selectgroup w-100">
+                            @forelse ($id->banksoaljawaban as $j)
+                                <label class="selectgroup-item">
+                                    <input type="radio" name="jawaban_hasil" value="{{$j->jawaban}}" class="selectgroup-input" {{$j->hasil=='Benar' ? 'checked=""' : ''}}>
+                                    <span class="selectgroup-button">{{$j->jawaban}}</span>
+                                </label>
+
+
 
                             @empty
 
                             @endforelse
 
+                        </div>
+                    </div>
 
 
                         @endif
