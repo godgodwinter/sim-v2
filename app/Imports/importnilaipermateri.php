@@ -26,7 +26,6 @@ class importnilaipermateri implements ToCollection,WithCalculatedFormulas
 
     function __construct($dataajar,$materipokok) {
            $this->dataajar = $dataajar;
-           $this->materipokok = $materipokok;
     }
 
     public function collection(Collection $rows, $calculateFormulas = false)
