@@ -209,7 +209,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                             <label class="form-label">Tingkat Kesulitan</label>
                             <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                                <input type="button" class="form-control btn-info" name="tingkatkesulitan" value="Mudah" disabled id="tk">
+                                <input type="text" class="form-control btn-info" name="tingkatkesulitan" value="Mudah"  id="tk">
                                 {{-- <input type="radio" name="tingkatkesulitan" value="Mudah" class="selectgroup-input" checked="">
                                 <span class="selectgroup-button">Mudah</span> --}}
                             </label>

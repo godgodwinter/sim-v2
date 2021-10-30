@@ -18,7 +18,8 @@ class Fungsi {
     public static function periksatingkatkesulitan($datas) {
         $strex=explode(" ",$datas);
         // dd(count($strex));
-        $hasil='Tidak diketahui';
+        // $hasil='Tidak diketahui';
+        $hasil='Mudah';
         for($i=0;$i<count($strex);$i++){
             $ambilkko=kko::where('nama',$strex[$i])->first();
             if($ambilkko!=null){

@@ -222,10 +222,17 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                         <div class="form-group col-md-3 col-3 mt-0 ml-5">
                             <label class="form-label">Tingkat Kesulitan</label>
                             <div class="selectgroup w-100">
-                            <label class="selectgroup-item">
-                                <input type="radio" name="tingkatkesulitan" value="Mudah" class="selectgroup-input" checked="">
-                                <span class="selectgroup-button">Mudah</span>
-                            </label>
+                                <label class="selectgroup-item">
+                                    @php
+                                        $warna='info';
+                                        if($id->tingkatkesulitan=='sulit'){
+                                            $warna='danger';
+                                        }elseif($id->tingkatkesulitan=='sedang'){
+                                            $warna='warning';
+                                        }
+                                    @endphp
+                                    <input type="text" class="form-control btn-outer-{{ $warna }} text-capitalize" name="tingkatkesulitan" value="{{ $id->tingkatkesulitan }}"  id="tk" >
+                                </label>
 
 
                             </div>
@@ -234,15 +241,48 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="{{ asset("assets/") }}/stisla/summernote-bs4.js"></script>
 @endpush
-                          <div class="form-group col-md-6 col-12 ml-5">
+                          <div class="form-group col-md-6 col-12 ml-5 mb-5">
                             <label for="nama">Pertanyaan</label> :
-                            <textarea class="form-control summernote-simple" style="min-width: 100%;height:100%;" name="pertanyaan"
+                            <textarea  class="form-control" style="min-width: 100%;height:100%;" name="pertanyaan"
                                 id="pertanyaan"  >{{$id->pertanyaan}}</textarea>
                         </div>
                         @push('after-script')
                         <script>
 
                             $(document).ready(function() {
+                                let pertanyaan=$('#pertanyaan');
+
+                            // fungsi kirim data periksa
+                            function kirimkatakata(datapertanyaan = '') {
+                            // console.log(datapertanyaan);
+                                $.ajax({
+                                    url: "{{ route('api.banksoal.periksatingkatkesulitan') }}",
+                                    method: 'GET',
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        pertanyaan:datapertanyaan,
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        // console.log(data.output);
+                                        // console.log(data.datas);
+                                        $('#tk').val(data.output);
+                                        $('#tk').prop('class',data.warna);
+
+                                        // switalert('success',data.output);
+                                        // console.log(data.output);
+                                        // $("#datasiswa").html(data.output);
+                                        // console.log(data.output);
+                                        // console.log(data.datas);
+                                    }
+                                })
+                            }
+
+                                $('#pertanyaan').keyup(function () {
+                                    // console.log(pertanyaan.val());
+                                    kirimkatakata(pertanyaan.val());
+                                });
+
                                 // $('#pertanyaan').summernote({focus: true});
                             });
                         </script>
