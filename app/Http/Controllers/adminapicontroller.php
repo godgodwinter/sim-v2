@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Fungsi;
 use App\Models\dataajar;
 use App\Models\inputnilai;
 use App\Models\kelas;
@@ -67,6 +68,29 @@ class adminapicontroller extends Controller
             'success' => true,
             'message' => 'success',
             'output' => $output,
+            'datas' => $datas,
+        ], 200);
+    }
+    public function periksatingkatkesulitan(Request $request)
+    {
+        $warna='form-control btn-info';
+        $output=Fungsi::periksatingkatkesulitan($request->pertanyaan);
+        // dd($request->pertanyaan,$output);
+        // $output='Data berhasil di ambil';
+        $datas=$request->pertanyaan;
+        if($output=='sulit'){
+            $warna='form-control btn-danger';
+        }else if($output=='sedang'){
+            $warna='form-control btn-warning';
+        }else{
+            $warna='form-control btn-info';
+
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => $output,
+            'warna' => $warna,
             'datas' => $datas,
         ], 200);
     }

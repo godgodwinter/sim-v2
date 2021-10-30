@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Models\dataajar;
+use App\Models\kko;
 use App\Models\kompetensidasar;
 use App\Models\materipokok;
 use Illuminate\Support\Collection;
@@ -13,6 +14,35 @@ class Fungsi {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+
+    public static function periksatingkatkesulitan($datas) {
+        $strex=explode(" ",$datas);
+        // dd(count($strex));
+        $hasil='Tidak diketahui';
+        for($i=0;$i<count($strex);$i++){
+            $ambilkko=kko::where('nama',$strex[$i])->first();
+            if($ambilkko!=null){
+                $tipe=$ambilkko->tipe;
+                if($tipe=='sulit'){
+                    $hasil=$tipe;
+                }
+                if($hasil!='sulit'){
+                    if($tipe=='sedang'){
+                        $hasil=$tipe;
+                    }
+                    //sedang
+                        //mudah
+                        if($hasil!='sedang'){
+                            $hasil=$tipe;
+                        }
+                }
+            }
+        }
+
+
+
+    return (isset($hasil) ? $hasil : '');
+    }
 
     public static  function ambilkdmateripokok($data,$dataajar_id) {
 
