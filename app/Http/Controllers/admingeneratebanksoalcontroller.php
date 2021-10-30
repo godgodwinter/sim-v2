@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportbanksoal;
 use App\Helpers\Fungsi;
 use App\Models\banksoal;
 use App\Models\banksoaljawaban;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class admingeneratebanksoalcontroller extends Controller
@@ -200,5 +202,11 @@ class admingeneratebanksoalcontroller extends Controller
         ->header('Expires', '0')
         ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
         ->header('Pragma', 'public');
+    }
+    public function exportsoal(dataajar $dataajar,Request $request){
+        // $databanksoal=banksoal::where('dataajar_id',$dataajar->id)->get();
+        // dd($databanksoal,$dataajar,'Export');
+        $tgl=date("YmdHis");
+		return Excel::download(new exportbanksoal($dataajar), 'sim-banksoal-'.$dataajar->id.'-'.$tgl.'.xlsx');
     }
 }
