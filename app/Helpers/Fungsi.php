@@ -222,15 +222,13 @@ class Fungsi {
         return date('Y-m-d', strtotime($jumlah.' '.$format, strtotime($currentDate)));
     }
 
-    public static function kompetensidasargeneratekode($tapel_nama,$kelas_nama,$pelajaran_nama,$tipe='Pengetahuan'){
+    public static function kompetensidasargeneratekode($dataajar,$tipe='1'){
         $id=0;
         // $datas=Fungsi::periksakompetensidasar($id);
 
         $datas=DB::table('kompetensidasar')
         ->where('kode',$id)
-        ->where('tapel_nama',$tapel_nama)
-        ->where('kelas_nama',$kelas_nama)
-        ->where('pelajaran_nama',$pelajaran_nama)
+        ->where('dataajar_id',$dataajar->id)
         ->where('tipe',$tipe)
         ->count();
         // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);
@@ -240,9 +238,7 @@ class Fungsi {
 
             $datas=DB::table('kompetensidasar')
             ->where('kode',$id)
-            ->where('tapel_nama',$tapel_nama)
-            ->where('kelas_nama',$kelas_nama)
-            ->where('pelajaran_nama',$pelajaran_nama)
+            ->where('dataajar_id',$dataajar->id)
             ->where('tipe',$tipe)
             ->count();
             // dd($id,$datas,$tapel_nama,$kelas_nama,$pelajaran_nama);

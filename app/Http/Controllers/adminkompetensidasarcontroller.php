@@ -38,7 +38,9 @@ class adminkompetensidasarcontroller extends Controller
         #WAJIB
         $pages='silabus';
 
-        return view('pages.admin.kompetensidasar.create',compact('request','pages','dataajar'));
+        $generatekode=Fungsi::kompetensidasargeneratekode($dataajar,1);
+        // dd($generatekode);
+        return view('pages.admin.kompetensidasar.create',compact('request','pages','dataajar','generatekode'));
     }
     public function store(dataajar $dataajar,Request $request){
         // dd($request,$dataajar);

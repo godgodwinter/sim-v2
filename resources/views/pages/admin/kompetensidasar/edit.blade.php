@@ -39,11 +39,11 @@ Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{
                             <label class="form-label">Tipe</label>
                             <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                                <input type="radio" name="tipe" value="1" class="selectgroup-input" {{$id->tipe=='1'? 'checked=""' : ''}}>
+                                <input type="radio" name="tipe" value="1" class="selectgroup-input tipekd" {{$id->tipe=='1'? 'checked=""' : ''}} id="tipekd">
                                 <span class="selectgroup-button">Pengetahuan</span>
                             </label>
                               <label class="selectgroup-item">
-                                <input type="radio" name="tipe" value="2" class="selectgroup-input" {{$id->tipe=='2'? 'checked=""' : ''}} >
+                                <input type="radio" name="tipe" value="2" class="selectgroup-input tipekd" {{$id->tipe=='2'? 'checked=""' : ''}} id="tipekd">
                                 <span class="selectgroup-button">Ketrampilan</span>
                               </label>
 
@@ -52,6 +52,41 @@ Kompetensi Dasar {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{
                           @push('before-script')
                           <script>
                     $(document).ready(function() {
+                            let tipeisi=1;
+                            // fungsi kirim data periksa
+                            function kirimtipe(tipeisi = '') {
+                            // console.log(datapertanyaan);
+                                $.ajax({
+                                    url: "{{ route('api.banksoal.kompetensidasargeneratekode',$dataajar->id) }}",
+                                    method: 'GET',
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        tipe:tipeisi,
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        // console.log(data.output);
+                                        $('#kodegenerate').val(data.output);
+                                    }
+                                })
+                            }
+
+
+                        let tipe_isi=1;
+                        let tipe=$('input[name=tipe]:checked');
+                                $('.tipekd').click(function () {
+                                    tipe=$('input[name=tipe]:checked');
+                                    //  alert(tipe.val());
+                                        let isiprefix='<b>3.</b>';
+                                    if(tipe.val()=='2'){
+                                         isiprefix='<b>4.</b>';
+                                        $('#kodeprefix').html(isiprefix)
+                                    }else{
+                                         isiprefix='<b>3.</b>';
+                                        $('#kodeprefix').html(isiprefix)
+                                    }
+                                    kirimtipe(tipe.val());
+                                });
 
 
                             });

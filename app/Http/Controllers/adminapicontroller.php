@@ -94,4 +94,15 @@ class adminapicontroller extends Controller
             'datas' => $datas,
         ], 200);
     }
+    public function kompetensidasargeneratekode(dataajar $dataajar, Request $request)
+    {
+        $output=1;
+        $output=Fungsi::kompetensidasargeneratekode($dataajar,$request->tipe);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => $output,
+        ], 200);
+    }
 }
