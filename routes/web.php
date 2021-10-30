@@ -158,10 +158,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/dataajar/{dataajar}/generatebanksoal/create', [admingeneratebanksoalcontroller::class, 'create'])->name('dataajar.generatebanksoal.create');
     Route::post('/admin/dataajar/{dataajar}/generatebanksoal/store', [admingeneratebanksoalcontroller::class, 'store'])->name('dataajar.generatebanksoal.store');
     Route::delete('/admin/dataajar/{dataajar}/generatebanksoal/delete/{id}', [admingeneratebanksoalcontroller::class, 'destroy'])->name('dataajar.generatebanksoal.delete');
-    //export dan cetak soal
+    //generate pdf dan xml cetak soal
     Route::get('/admin/dataajar/{dataajar}/generatebanksoal/{id}/pdfsoal', [admingeneratebanksoalcontroller::class, 'pdfsoal'])->name('dataajar.generatebanksoal.pdfsoal');
     Route::get('/admin/dataajar/{dataajar}/generatebanksoal/{id}/pdfkunci', [admingeneratebanksoalcontroller::class, 'pdfkunci'])->name('dataajar.generatebanksoal.pdfkunci');
     Route::get('/admin/dataajar/{dataajar}/generatebanksoal/{id}/xml', [admingeneratebanksoalcontroller::class, 'xml'])->name('dataajar.generatebanksoal.xml');
+    //export
+    Route::get('/admin/dataajar/{dataajar}/exportmateripokok', [admingeneratebanksoalcontroller::class, 'exportsoal'])->name('dataajar.exportsoaldanjawaban');
+    //import
+    Route::post('admin/dataajar/{dataajar}/importmateripokok',[admingeneratebanksoalcontroller::class, 'importsoal'])->name('dataajar.importsoaldanjawaban');
 
     //kompetensidasar
     Route::get('/admin/dataajar/{dataajar}/kompetensidasar', [adminkompetensidasarcontroller::class, 'index'])->name('dataajar.kompetensidasar');

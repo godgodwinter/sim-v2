@@ -231,7 +231,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                                             $warna='warning';
                                         }
                                     @endphp
-                                    <input type="text" class="form-control btn-outer-{{ $warna }} text-capitalize" name="tingkatkesulitan" value="{{ $id->tingkatkesulitan }}"  id="tk" >
+                                    <input type="text" class="form-control btn-{{ $warna }} text-capitalize" name="tingkatkesulitan" value="{{ $id->tingkatkesulitan }}"  id="tk" >
                                 </label>
 
 

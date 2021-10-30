@@ -39,7 +39,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
                     data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                     Import
                 </button>
-                <a href="/admin/users/export" type="submit" value="Import"
+                <a href="{{ route('dataajar.exportsoaldanjawaban',[$dataajar->id]) }}" type="submit" value="Import"
                     class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
                             class="fas fa-download"></i> Export </span></a>
                 @if (Auth::user()->tipeuser=='admin')
