@@ -45,6 +45,13 @@ Materi Pokok {{$kd->nama}}
                     </div>
 
                     <div class="ml-auto p-2 bd-highlight">
+                        <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                            data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                            Import
+                        </button>
+                        <a href="{{ route('dataajar.kompetensidasar.materipokok.exportmateri',[$kd->id]) }}" type="submit" value="Import"
+                            class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                                    class="fas fa-download"></i> Export </span></a>
                         <x-button-create link="{{route('dataajar.kompetensidasar.materipokok.create',[$dataajar->id,$kd->id])}}"></x-button-create>
                                      </form>
 </form>
@@ -117,4 +124,45 @@ $cari=$request->cari;
         </div>
     </div>
 </section>
+@endsection
+
+@section('containermodal')
+<!-- Import Excel -->
+<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form method="post" action="{{ route('dataajar.kompetensidasar.materipokok.importmateri',[$kd->id]) }}" enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Import KD dan Materi</h5>
+          </div>
+          <div class="modal-body">
+              {{ csrf_field() }}
+            <div class="row">
+                <div class="col-12">
+
+                    <label>Pilih file excel(.xlsx)</label>
+                    <div class="form-group">
+                      <input type="file" name="file" required="required">
+                    </div>
+
+                </div>
+                {{-- <div class="col-12">
+                    <label>Jumlah Materi</label>
+                    <div class="form-group">
+                      <input type="number" class="form-control" name="jml" required="required">
+                    </div>
+
+                </div> --}}
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Import</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 @endsection

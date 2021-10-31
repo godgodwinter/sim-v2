@@ -189,6 +189,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/update/{id}', [adminmateripokokcontroller::class, 'update'])->name('dataajar.kompetensidasar.materipokok.update');
     Route::delete('/admin/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}/delete/{id}', [adminmateripokokcontroller::class, 'destroy'])->name('dataajar.kompetensidasar.materipokok.delete');
     Route::delete('/admin/multidel/dataajar/{dataajar}/kompetensidasar/materipokok/{kd}', [adminmateripokokcontroller::class, 'multidel'])->name('dataajar.kompetensidasar.materipokok.multidel');
+    //export
+    Route::get('/admin/datakd/{kd}/exportmateri', [adminmateripokokcontroller::class, 'exportmateri'])->name('dataajar.kompetensidasar.materipokok.exportmateri');
+    //import
+    Route::post('admin/datakd/{kd}/importmateri',[adminmateripokokcontroller::class, 'importmateri'])->name('dataajar.kompetensidasar.materipokok.importmateri');
 
 
 

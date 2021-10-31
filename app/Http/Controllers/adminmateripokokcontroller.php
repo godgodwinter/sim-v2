@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\exportkd;
+use App\Exports\exportmateri;
 use App\Helpers\Fungsi;
 use App\Imports\importkd;
+use App\Imports\importmateri;
 use App\Models\dataajar;
 use App\Models\kompetensidasar;
 use App\Models\materipokok;
@@ -146,13 +148,13 @@ class adminmateripokokcontroller extends Controller
         return view('pages.admin.materipokok.index',compact('datas','request','pages','kd','dataajar'));
 
     }
-    public function exportkd(dataajar $dataajar,Request $request){
+    public function exportmateri(kompetensidasar $kd,Request $request){
         // $databanksoal=banksoal::where('dataajar_id',$dataajar->id)->get();
         // dd($databanksoal,$dataajar,'Export');
         $tgl=date("YmdHis");
-		return Excel::download(new exportkd($dataajar), 'sim-kd-'.$dataajar->id.'-'.$tgl.'.xlsx');
+		return Excel::download(new exportmateri($kd), 'sim-materi-'.$kd->id.'-'.$tgl.'.xlsx');
     }
-    public function importkd(dataajar $dataajar,Request $request){
+    public function importmateri(kompetensidasar $kd,Request $request){
         // dd('import');
 		$this->validate($request, [
 			'file' => 'required|mimes:csv,xls,xlsx'
@@ -164,7 +166,7 @@ class adminmateripokokcontroller extends Controller
 
 		$file->move('file_temp',$nama_file);
 
-		Excel::import(new importkd($dataajar), public_path('/file_temp/'.$nama_file));
+		Excel::import(new importmateri($kd), public_path('/file_temp/'.$nama_file));
 
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
