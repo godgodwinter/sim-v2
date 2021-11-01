@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Fungsi;
 use App\Models\dataajar;
 use App\Models\guru;
+use App\Models\inputnilai;
 use App\Models\kelas;
 use App\Models\kompetensidasar;
 use App\Models\materipokok;
@@ -34,25 +35,26 @@ class siswadataajarcontroller extends Controller
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')->where('kelas_id',$datasiswa->kelas_id)
         ->paginate(Fungsi::paginationjml());
         $guru=guru::get();
-        $kelas=kelas::get();
+        $caridataajar=dataajar::where('kelas_id',$datasiswa->kelas_id)->get();
 
-        return view('pages.siswa.dataajar.index',compact('datas','request','pages','guru','kelas'));
+        return view('pages.siswa.dataajar.index',compact('datas','request','pages','guru','caridataajar'));
     }
     public function cari(Request $request)
     {
-
+       // dd($request);
         $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
         $cari=$request->cari;
         #WAJIB
         $pages='penilaian';
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')->where('kelas_id',$datasiswa->kelas_id)
-        ->where('nama','like',"%".$cari."%")
-        ->where('kelas_id','like',"%".$request->kelas_id."%")
+        ->where('nama','like',"%".$request->mapel."%")
+
         ->paginate(Fungsi::paginationjml());
         $guru=guru::get();
-        $kelas=kelas::get();
+        // $kelas=kelas::get();
+        $caridataajar=dataajar::where('kelas_id',$datasiswa->kelas_id)->get();
 
-        return view('pages.siswa.dataajar.index',compact('datas','request','pages','guru','kelas'));
+        return view('pages.siswa.dataajar.index',compact('datas','request','pages','guru','caridataajar'));
     }
     public function materi(dataajar $dataajar, Request $request)
     {
@@ -78,5 +80,17 @@ class siswadataajarcontroller extends Controller
         ->paginate(Fungsi::paginationjml());
         // dd($datas);
         return view('pages.siswa.dataajar.materidetail',compact('datas','request','pages','kd','dataajar','datasiswa'));
+    }
+    public function lihatnilai(inputnilai $data, Request $request)
+    {
+        $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
+        #WAJIB
+        $pages='silabus';
+        $datas=inputnilai::with('siswa')->with('materipokok')
+        ->where('siswa_id',$datasiswa->id)
+        ->orderBy('id','asc')
+        ->paginate(Fungsi::paginationjml());
+        // dd($datas);
+        return view('pages.siswa.dataajar.lihatnilai',compact('datas','request','pages','data','datasiswa'));
     }
 }

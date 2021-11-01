@@ -273,6 +273,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/menusiswa/siswa/{id}', [admindashboardcontroller::class, 'siswaupdate'])->name('siswa.siswa.update');
 
     Route::get('/menusiswa/dataajar', [siswadataajarcontroller::class, 'index'])->name('menusiswa.dataajar');
+    Route::get('/menusiswa/lihatnilai', [siswadataajarcontroller::class, 'lihatnilai'])->name('menusiswa.lihatnilai');
     Route::get('/gumenusiswaru/dataajar/cari', [siswadataajarcontroller::class, 'cari'])->name('menusiswa.dataajar.cari');
 
     Route::get('/menusiswa/materi/{dataajar}', [siswadataajarcontroller::class, 'materi'])->name('menusiswa.materi');

@@ -30,4 +30,5 @@ class inputnilai extends Model
             return $this->belongsTo('App\Models\materipokok');
         }
 
+
 }

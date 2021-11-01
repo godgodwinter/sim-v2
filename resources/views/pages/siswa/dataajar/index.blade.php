@@ -30,18 +30,18 @@ Materi Belajar
                 <form action="{{ route('menusiswa.dataajar.cari') }}" method="GET" class="d-inline">
                     <div class="row mt-0">
 
-                            <div class="col-4 col-md-2">
+                            {{-- <div class="col-4 col-md-2">
                                 <input type="text" class="form-control form-control-sm" name="cari" placeholder="Cari . . ." autocomplete="off" value="{{$request->cari!=null ? $request->cari : '' }}">
-                            </div>
+                            </div> --}}
                             <div class="col-4 col-md-2">
 
                                 <select class="js-example-basic-single py-0  @error('kelas_id')
                                 is-invalid
-                            @enderror" name="kelas_id"  style="width: 100%" >
+                            @enderror" name="mapel"  style="width: 100%" >
 
-                                <option disabled selected value=""> Pilih Kelas</option>
-                                @foreach ($kelas as $t)
-                                    <option value="{{ $t->id }}"> {{ $t->tingkatan }} {{ $t->jurusan }} {{ $t->suffix }} </option>
+                                <option disabled selected value=""> Pilih Mapel</option>
+                                @foreach ($caridataajar as $t)
+                                    <option value="{{ $t->nama }}"> {{ $t->nama }} </option>
                                 @endforeach
                                 </select>
                             </div>
