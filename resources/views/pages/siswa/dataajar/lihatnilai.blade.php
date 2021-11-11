@@ -58,11 +58,13 @@
                         <tr style="background-color: #F1F1F1">
                             <th  class="text-center py-2 babeng-min-row">
                                 No</th>
-                            <th  class="text-center py-2 babeng-min-row">Siswa</th>
+                            {{-- <th  class="text-center py-2 babeng-min-row">Siswa</th> --}}
 
-                            <th   class="text-center py-2 babeng-min-row">Materi</th>
-                            <th class="text-center  babeng-min-row">Nilai</th>
-                            <th class="text-center babeng-min-row">Status</th>
+                            <th   class="text-center py-2 babeng-min-row">Mata Pelajaran</th>
+                            {{-- <th   class="text-center py-2 babeng-min-row">Materi</th> --}}
+                            <th   class="text-center py-2 babeng-min-row">Guru Pengampu</th>
+                            <th class="text-center  babeng-min-row">Tuntas/Belum</th>
+                            <th class="text-center  babeng-min-row">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,10 +73,10 @@
                             <td class="text-center">
                                 {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
 
-                                <td class="text-center">
+                                {{-- <td class="text-center">
 
                                     {!! $data->siswa->nama!=null ? $data->siswa->nama : 'Data tidak ditemukan' !!}
-                                </td>
+                                </td> --}}
                                 <td class="text-center">
                                     {{$data->materipokok->nama!=null ? $data->materipokok->nama : 'Data tidak ditemukan'}}
                                 </td>

@@ -31,7 +31,7 @@ class siswadataajarcontroller extends Controller
         $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
 
         #WAJIB
-        $pages='penilaian';
+        $pages='materibelajar';
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')->where('kelas_id',$datasiswa->kelas_id)
         ->paginate(Fungsi::paginationjml());
         $guru=guru::get();
@@ -45,7 +45,7 @@ class siswadataajarcontroller extends Controller
         $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
         $cari=$request->cari;
         #WAJIB
-        $pages='penilaian';
+        $pages='materibelajar';
         $datas=dataajar::with('guru')->with('kelas')->with('mapel')->where('kelas_id',$datasiswa->kelas_id)
         ->where('nama','like',"%".$request->mapel."%")
 
@@ -85,7 +85,7 @@ class siswadataajarcontroller extends Controller
     {
         $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
         #WAJIB
-        $pages='silabus';
+        $pages='penilaian';
         $datas=inputnilai::with('siswa')->with('materipokok')
         ->where('siswa_id',$datasiswa->id)
         ->orderBy('id','asc')
