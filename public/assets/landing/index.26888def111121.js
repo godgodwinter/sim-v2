@@ -56,21 +56,23 @@ i.data("mainState", (() => ({
     }
 })), i.data("navbarLinksState", (() => ({
     navigationLinks: [{
-        label: "ADMIN",
+        label: "LOGIN",
         link: "/dashboard"
-    }, {
-        label: "GURU",
-        link: "/dashboard"
-    }, {
-        label: "KEPSEK",
-        link: "/dashboard"
-    }, {
-        label: "SISWA",
-        link: "/siswa/tagihansiswa"
-    }, {
-        label: "WALI MURID",
-        link: "/dashboard"
-    }],
+    }
+    // , {
+    //     label: "GURU",
+    //     link: "/dashboard"
+    // }, {
+    //     label: "KEPSEK",
+    //     link: "/dashboard"
+    // }, {
+    //     label: "SISWA",
+    //     link: "/siswa/tagihansiswa"
+    // }, {
+    //     label: "WALI MURID",
+    //     link: "/dashboard"
+    // }
+],
     handelMouseEnter: e => {
         n.to(e.querySelector(".underline-link"), {
             opacity: 1,
