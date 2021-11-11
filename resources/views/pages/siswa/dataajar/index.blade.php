@@ -88,7 +88,7 @@ Materi Belajar
                                 </td>
 
                                 <td  data-toggle="modal" data-target="#pilihguru{{$data->id}}">
-                                    <label for="" class="text-{{$data->guru!=null ? 'dark' : 'danger'}}">{{$data->guru!=null ? $data->guru->nama : 'Data tidak ditemukan'}}</label>
+                                   {{$data->guru!=null ? $data->guru->nama : 'Data tidak ditemukan'}}
                                 </td>
 
 
