@@ -19,6 +19,7 @@ class CreatePembayaranTable extends Migration
             $table->string('nominal')->nullable();
             $table->string('tglbayar')->nullable();
             $table->string('nomerinduk')->nullable(); //penginput
+            $table->string('tagihandetail_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
