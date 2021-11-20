@@ -27,4 +27,7 @@ class kompetensidasar extends Model
         {
             return $this->belongsTo('App\Models\dataajar');
         }
+        public function inputnilai(){
+            return $this->hasMany('App\Models\inputnilai');
+        }
 }

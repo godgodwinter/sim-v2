@@ -33,5 +33,9 @@ class guru extends Model
         {
             return $this->belongsTo('App\Models\User');
         }
+        public function dataajar()
+        {
+            return $this->belongsTo('App\Models\dataajar');
+        }
 
 }

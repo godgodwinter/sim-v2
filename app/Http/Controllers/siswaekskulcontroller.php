@@ -11,7 +11,8 @@ use App\Models\kompetensidasar;
 use App\Models\mapel;
 use App\Models\materipokok;
 use App\Models\siswa;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\ekskul;
+use App\Models\ekskuldetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -84,7 +85,7 @@ class siswadataajarcontroller extends Controller
         // dd($datas);
         return view('pages.siswa.dataajar.materidetail',compact('datas','request','pages','kd','dataajar','datasiswa'));
     }
-    public function lihatnilai( Request $request)
+    public function lihatnilai(inputnilai $data, dataajar $d, Request $request)
     {
         $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
         #WAJIB
@@ -107,91 +108,11 @@ class siswadataajarcontroller extends Controller
         //                       INNER JOIN inputnilai inilai on mo.id=inilai.id
         //                       WHERE  inilai.siswa_id=".$datasiswa->id)
         //                       ;
-
-
-        $c= new Collection();
-        $datas=dataajar::with('mapel')->with('kelas')->with('guru')
+        $datas=dataajar::with('guru')
         ->where('kelas_id',$datasiswa->kelas_id)
-        ->orderBy('id','desc')
-        ->get();
-
-        foreach($datas as $d){
-            $c->push($d);
-            $k_dasar=kompetensidasar::where('dataajar_id',$d->id)->get();
-            $ccc= new Collection();
-                foreach($k_dasar as $k){
-
-                    $mk=materipokok::where('kompetensidasar_id',$k->id);
-                    $c->push($mk);
-                        foreach($mk as $m){
-                            $nilais=inputnilai::avg('nilai')->where('materipokok_id',$mk->id)->get();
-                            $ccc->push((object)[
-                                'id'=>$d->id,
-
-                                //'kelas'=>$d->kelas->tingkatan,
-                                //'guru'=>$d->guru->nama,
-                                'nilai'=>$nilais
-                            ]);
-                        }
-            }
-            $c->push((object)[
-                'id'=>$d->id,
-                'nama'=>$d->nama,
-                //'kelas'=>$d->kelas->tingkatan,
-                //'guru'=>$d->guru->nama,
-                'nilai'=>$ccc
-            ]);
-
-        }
-
-
-
-
-        //     $collectionpenilaian = new Collection();
-
-        // foreach($datas as $m){
-
-        //     $collectionmaster = new Collection();
-        //         $k_dasar=kompetensidasar::where('dataajar_id',$m->id)->get();
-
-        //         foreach($k_dasar as $kd){
-        //             $periksadata=DB::table('materipokok')
-        //         ->where('kompetensidasar_id',$k_dasar->id)
-
-        //         ->get();
-
-        //         foreach($periksadata as $p){
-        //             $nilai_=DB::table('inputnilai')
-        //             ->where('materipokok_id',$p->id)->get();
-        //         }
-
-        //         if($nilai_->count()>0){
-        //             $ambildata=$nilai_->first();
-        //             $nilai=$nilai_->first()->avg('nilai');
-        //         }else{
-        //             $nilai=null;
-        //         }
-
-        //     $collectionmaster->push((object)[
-        //         'id'=>$periksadata->id,
-
-        //         'nilai'=>$nilai
-        //     ]);
-
-        //         }
-
-
-
-
-
-        //     $collectionpenilaian->push((object)[
-        //         'id'=>$m->id,
-        //         'nama'=>$m->nama,
-        //         'guru'=>$m->guru->nama,
-        //         'master'=>$collectionmaster
-        //     ]);
-        // }
-         dd($c);
-        return view('pages.siswa.dataajar.lihatnilai',compact('collectionpenilaian','request','pages','datasiswa','datas'));
+        ->orderBy('nama','asc')
+        ->paginate(Fungsi::paginationjml());
+         //dd($dat);
+        return view('pages.siswa.dataajar.lihatnilai',compact('datas','request','pages','data','datasiswa'));
     }
 }

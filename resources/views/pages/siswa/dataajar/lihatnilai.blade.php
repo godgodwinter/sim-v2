@@ -78,12 +78,17 @@
                                     {!! $data->siswa->nama!=null ? $data->siswa->nama : 'Data tidak ditemukan' !!}
                                 </td> --}}
                                 <td class="text-center">
-                                    {{$data->materipokok->nama!=null ? $data->materipokok->nama : 'Data tidak ditemukan'}}
+                                    {{$data->nama!=null ? $data->nama : 'Data tidak ditemukan'}}
+                                </td>
+                                <td class="text-center">
+                                    {{-- {{$data->guru->id!=null ? $data->guru->id : 'Data tidak ditemukan'}} --}}
                                 </td>
 
+                                @foreach ( $dat as $d )
+                                <td class="text-center">{{$d->nil!=null ? $d->nil : 'Data tidak ditemukan'}}</td>
+                                @endforeach
 
-                                <td class="text-center">{{$data->nilai!=null ? $data->nilai : 'Data tidak ditemukan'}}</td>
-                                <td class="text-center">{{$data->status!=null ? $data->status : 'Data tidak ditemukan'}}</td>
+                                <td class="text-center"></td>
 
 
 
