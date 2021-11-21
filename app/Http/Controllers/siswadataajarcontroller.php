@@ -85,6 +85,41 @@ class siswadataajarcontroller extends Controller
         return view('pages.siswa.dataajar.materidetail',compact('datas','request','pages','kd','dataajar','datasiswa'));
     }
 
+    public function detailpenilaian(dataajar $dataajar,Request $request)
+    {
+        // dd($id);
+
+        #WAJIB
+        $pages='penilaian';
+        $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
+        $kelas_id=$datasiswa->kelas_id;
+        $datasiswa=siswa::where('kelas_id',$dataajar->kelas_id)->where('id',$datasiswa->id)->paginate(Fungsi::paginationjml());
+        $datakd=kompetensidasar::with('materipokok')
+        ->where('dataajar_id',$dataajar->id)
+        ->orderBy('kode','asc')
+        ->get();
+        // $datasnilai=new Collection();
+        //     foreach($datasiswa as $siswa){
+        //         $datasnilai->push((object)[
+        //             'id' => $request->id1,
+        //             'nomerinduk'=>$request->nomerinduk,
+        //             'nama'=>$request->nama,
+        //             'kelas_id'=>$request->kelas_id,
+        //             'materipokok_id'=>'1',
+        //             'nilai'=>'90'
+        //         ]);
+        //     }
+        $datas=$datasiswa;
+
+        // $datas = $datasiswa->map(function ($item, $key) {
+        //     return $item * 2;
+        // });
+        // dd($datas);
+
+        $mapel=mapel::where('id',$dataajar->mapel_id)->first();
+
+        return view('pages.siswa.dataajar.detailpenilaian',compact('datas','request','pages','dataajar','datakd','mapel'));
+    }
     public function lihatnilai( Request $request)
     {
         $pages='penilaian';
@@ -136,7 +171,7 @@ class siswadataajarcontroller extends Controller
             //   );
 
               $dataakhir->push((object)[
-                'id' => '1',
+                'id' => $mapel->id,
                 'mapel' => $mapel->nama,
                 'guru_nama' => $guru_nama,
                 'kelas_nama' => $kelas_nama,

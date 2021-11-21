@@ -102,7 +102,7 @@
                                 </td>
 
                                 <td class="text-center babeng-min-row">
-                                    <button class="btn btn-sm btn-info">Detail</button>
+                                    <a class="btn btn-sm btn-info" href="{{route('menusiswa.detailpenilaian',$data->id)}}">Detail</a>
                                 </td>
 
 

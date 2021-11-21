@@ -274,6 +274,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     Route::get('/menusiswa/dataajar', [siswadataajarcontroller::class, 'index'])->name('menusiswa.dataajar');
     Route::get('/menusiswa/penilaian', [siswadataajarcontroller::class, 'lihatnilai'])->name('menusiswa.lihatnilai');
+    Route::get('/menusiswa/detailpenilaian/{dataajar}', [siswadataajarcontroller::class, 'detailpenilaian'])->name('menusiswa.detailpenilaian');
     //Route::get('/menusiswa/eksul', [siswaekskulcontroller::class, 'lihatnilai'])->name('menusiswa.lihatnilai');
     Route::get('/gumenusiswaru/dataajar/cari', [siswadataajarcontroller::class, 'cari'])->name('menusiswa.dataajar.cari');
 
