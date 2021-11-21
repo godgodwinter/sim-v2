@@ -22,4 +22,8 @@ class materipokok extends Model
         {
             return $this->belongsTo('App\Models\kompetensidasar');
         }
+        public function inputnilai()
+        {
+            return $this->hasMany('App\Models\inputnilai');
+        }
 }

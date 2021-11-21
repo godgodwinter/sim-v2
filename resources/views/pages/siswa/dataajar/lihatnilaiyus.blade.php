@@ -56,54 +56,39 @@
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr style="background-color: #F1F1F1">
-                            <th  class="text-center py-2 ">
+                            <th  class="text-center py-2 babeng-min-row">
                                 No</th>
                             {{-- <th  class="text-center py-2 babeng-min-row">Siswa</th> --}}
 
-                            <th   class="text-center py-2 ">Mata Pelajaran</th>
+                            <th   class="text-center py-2 babeng-min-row">Mata Pelajaran</th>
                             {{-- <th   class="text-center py-2 babeng-min-row">Materi</th> --}}
-                            <th   class="text-center py-2">Guru Pengampu</th>
-                            <th class="text-center ">Tuntas/Belum</th>
-                            <th class="text-center">Detail</th>
+                            <th   class="text-center py-2 babeng-min-row">Guru Pengampu</th>
+                            <th class="text-center  babeng-min-row">Tuntas/Belum</th>
+                            <th class="text-center  babeng-min-row">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($datas as $data)
-                        <tr id="sid">
-                            <td class="text-center babeng-min-row">
-                                {{ (($loop->index)+1) }}</td>
+                        <tr id="sid{{ $data->id }}">
+                            <td class="text-center">
+                                {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
 
                                 {{-- <td class="text-center">
 
                                     {!! $data->siswa->nama!=null ? $data->siswa->nama : 'Data tidak ditemukan' !!}
                                 </td> --}}
                                 <td class="text-center">
-                                    {{$data->mapel!=null ? $data->mapel : 'Data tidak ditemukan'}}
+                                    {{$data->nama!=null ? $data->nama : 'Data tidak ditemukan'}}
                                 </td>
                                 <td class="text-center">
-                                    {{$data->guru_nama!=null ? $data->guru_nama : 'Data tidak ditemukan'}}
+                                    {{-- {{$data->guru->id!=null ? $data->guru->id : 'Data tidak ditemukan'}} --}}
                                 </td>
 
-                                {{-- <td class="text-center">
-                                    {{$data->kelas_nama!=null ? $data->kelas_nama : 'Data tidak ditemukan'}}
-                                </td> --}}
+                                @foreach ( $dat as $d )
+                                <td class="text-center">{{$d->nil!=null ? $d->nil : 'Data tidak ditemukan'}}</td>
+                                @endforeach
 
-                                <td class="text-center">
-                                    @php
-                                        $warna='warning';
-                                        $tuntas='Belum tuntas';
-                                        if($data->avg!=null AND $data->avg>=75){
-                                            $warna='success';
-                                        $tuntas='Tuntas';
-                                        }
-                                    @endphp
-                                    {{-- {{$data->avg!=null ? $data->avg : $hasil}} --}}
-                                    <button class="btn btn-sm btn-{{$warna}}">{{$tuntas}}</button>
-                                </td>
-
-                                <td class="text-center babeng-min-row">
-                                    <button class="btn btn-sm btn-info">Detail</button>
-                                </td>
+                                <td class="text-center"></td>
 
 
 
@@ -116,6 +101,12 @@
                     </tbody>
                 </table>
 
+@php
+$cari=$request->cari;
+@endphp
+{{ $datas->onEachSide(1)
+  ->links() }}
+        </a>
             </div>
         </div>
     </div>

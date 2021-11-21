@@ -84,11 +84,79 @@ class siswadataajarcontroller extends Controller
         // dd($datas);
         return view('pages.siswa.dataajar.materidetail',compact('datas','request','pages','kd','dataajar','datasiswa'));
     }
+
     public function lihatnilai( Request $request)
+    {
+        $pages='penilaian';
+        $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
+        $kelas_id=$datasiswa->kelas_id;
+        // 1.buat koleksion baru
+        $dataakhir= new Collection();
+        // 2.isi data kelas,mapel dan siswa
+
+          $mapels=dataajar::with('guru')->with('kelas')->where('kelas_id',$kelas_id)->get();
+
+          foreach($mapels as $mapel){
+              $tuntas='Belum';
+              $guru_nama=$mapel->guru!=null?$mapel->guru->nama:null;
+              $kelas_nama=$mapel->kelas!=null?$mapel->kelas->tingkatan." ".$mapel->kelas->jurusan." ".$mapel->kelas->suffix :null;
+
+        // 3.beriksa detail apakah sudah tuntas / belum
+            $ambikd=kompetensidasar::where('dataajar_id',$mapel->id)->get();
+            // dd($ambikd);
+            $arr=[];
+            foreach($ambikd as $kd){
+                $ambilnilai=null;
+                $ambilmateri=materipokok::where('kompetensidasar_id',$kd->id)->get();
+                foreach($ambilmateri as $materi){
+                    $ambilnilai=inputnilai::where('materipokok_id',$materi->id)->where('siswa_id',$datasiswa->id)->avg('nilai');
+                    if($ambilnilai!=null){
+                        array_push($arr,$ambilnilai);
+                    }
+                    // dd($arr,$ambilnilai);
+                }
+            }
+            // dd($arr,$avg);
+            if(array_sum($arr)<1){
+                $avg=0;
+            }else{
+                $avg=array_sum($arr)/count($arr);
+            }
+
+        // 4. masukkan kedalam koleksion tadi
+            // $ambildata = array(
+            //     (object) [
+            //       'id' => '1',
+            //       'mapel' => $mapel->nama,
+            //       'guru_nama' => $guru_nama,
+            //       'kelas_nama' => $kelas_nama,
+            //       'avg' => $avg,
+
+            //     ]
+            //   );
+
+              $dataakhir->push((object)[
+                'id' => '1',
+                'mapel' => $mapel->nama,
+                'guru_nama' => $guru_nama,
+                'kelas_nama' => $kelas_nama,
+                'avg' => $avg,
+
+              ]);
+              $datas=$dataakhir;
+          }
+
+        // dd('siswa/penilaian',$dataakhir,$mapels);
+        return view('pages.siswa.dataajar.lihatnilai',compact('dataakhir','request','pages','datasiswa','datas'));
+
+    }
+    public function lihatnilai_yus( Request $request)
     {
         $datasiswa=siswa::where('nomerinduk',Auth::user()->nomerinduk)->first();
         #WAJIB
         $pages='penilaian';
+        $collectionpenilaian='';
+        $c= new Collection();
         // $datas=inputnilai::with('siswa')->with('materipokok')
         // ->where('siswa_id',$datasiswa->id)
         // ->orderBy('id','asc')
