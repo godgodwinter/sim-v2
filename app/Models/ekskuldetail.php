@@ -22,4 +22,8 @@ class ekskuldetail extends Model
         {
             return $this->belongsTo('App\Models\ekskul');
         }
+        public function siswa()
+        {
+            return $this->belongsTo('App\Models\siswa');
+        }
 }
