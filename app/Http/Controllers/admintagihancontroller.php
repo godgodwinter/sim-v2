@@ -26,7 +26,7 @@ class admintagihancontroller extends Controller
     {
         #WAJIB
         $pages='tagihan';
-        $datas=tagihan::paginate(Fungsi::paginationjml());
+        $datas=tagihan::orderBy('updated_at','desc')->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.tagihan.index',compact('datas','request','pages'));
     }

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class adminpembayarancontroller extends Controller
 {
     protected $kelasid;
+    protected $requestkelas_id;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -28,11 +29,17 @@ class adminpembayarancontroller extends Controller
     }
     public function index(Request $request)
     {
+
+        // dd($request);
         $datas=new Collection();
 
         #WAJIB
         $pages='pembayaran';
         $kelas=kelas::first();
+        if($request->kelas_id!=null){
+            $kelas=kelas::where('id',$request->kelas_id)->first();
+        }
+
         $getsiswa=siswa::
         where('kelas_id',$kelas->id)
         ->get();
@@ -48,20 +55,25 @@ class adminpembayarancontroller extends Controller
             if($getKurang<0){
                 $getKurang=0;
             }
+            $getPersen=0;
+            if($getPembayaran>0){
+                $getPersen=$getPembayaran/$getNominal*100;
+            }
 
             $datas->push((object)[
                 'siswa'=>$s,
                 'totaltagihan'=>$getNominal,
                 'terbayar'=>$getPembayaran,
                 'kurang'=>$getKurang,
-                'persen'=>$getPembayaran/$getNominal*100,
+                'persen'=>$getPersen,
             ]);
 
         }
+        $getkelas=kelas::get();
 
         // dd($datas);
 
-        return view('pages.admin.pembayaran.index',compact('datas','request','pages','kelas'));
+        return view('pages.admin.pembayaran.index',compact('datas','request','pages','kelas','getkelas'));
     }
     // public function cari(Request $request)
     // {

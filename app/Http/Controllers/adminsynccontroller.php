@@ -169,7 +169,7 @@ foreach($periksaperludihapus as $h){
         }
         //tutup mapel
         // dd($ambildatakelas->where('tingkatan','=','X'));
-    return redirect()->back()->with('status','Data berhasil disinkron ke kelas terpilih!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('tagihan')->with('status','Data berhasil disinkron ke kelas terpilih!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 }

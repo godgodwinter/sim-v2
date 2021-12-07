@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Pembayaran
+Pembayaran kelas {{$kelas->tingkatan}} {{$kelas->jurusan}}
 @endsection
 
 @push('before-script')
@@ -27,27 +27,34 @@ Pembayaran
         <div class="card">
             <div class="card-body">
 
-                {{-- <div class="d-flex bd-highlight mb-3 align-items-center">
+                <div class="row align-items-center">
 
-                    <div class="p-2 bd-highlight">
-                        <form action="{{ route('tagihan.cari') }}" method="GET">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                    <div class="col-12 col-md-3">
+                        <form action="{{ route('pembayaran') }}" method="GET">
+                            <select class="js-example-basic-single py-0  @error('kelas_id')
+                            is-invalid
+                        @enderror" name="kelas_id"  style="width: 100%" >
+
+                            <option disabled selected value=""> Pilih Kelas</option>
+                            @foreach ($getkelas as $t)
+                                <option value="{{ $t->id }}"> {{ $t->tingkatan }} {{ $t->jurusan }} {{ $t->suffix }} </option>
+                            @endforeach
+                            </select>
                         </div>
-                        <div class="p-2 bd-highlight">
+                        <div class="col-12 col-md-4">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
+                                    value="Pilih ">
                             </span>
                         </div>
 
-                        <div class="ml-auto p-2 bd-highlight">
-                            <x-button-create link="{{route('tagihan.create')}}"></x-button-create>
+                        <div class="col-12 col-md-4">
 
                         </form>
 
                     </div>
-                </div> --}}
+                </div>
 
                 <x-jsmultidel link="{{route('tagihan.multidel')}}" />
 
