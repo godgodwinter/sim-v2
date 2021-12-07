@@ -242,6 +242,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     //sync
     Route::get('/admin/sync/mapeltodataajar', [adminsynccontroller::class, 'mapeltodataajar'])->name('sync.mapeltodataajar');
+    Route::get('/admin/sync/tagihantodetail', [adminsynccontroller::class, 'tagihantodetail'])->name('sync.tagihantodetail');
 
     //Seeder
     Route::post('/admin/seeder/kelas', [adminseedercontroller::class, 'kelas'])->name('seeder.kelas');

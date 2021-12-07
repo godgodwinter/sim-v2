@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\tagihan;
+use App\Models\tagihandetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -113,7 +114,7 @@ class admintagihancontroller extends Controller
 
 
 
-        return redirect()->route('tagihan')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect()->route('sync.tagihantodetail')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 
@@ -181,11 +182,12 @@ class admintagihancontroller extends Controller
         ]);
 
 
-    return redirect()->route('tagihan')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('sync.tagihantodetail')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(tagihan $id){
 
         tagihan::destroy($id->id);
+        tagihandetail::where('tagihan_id',$id->id)->delete();
         return redirect()->route('tagihan')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }

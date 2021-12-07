@@ -41,12 +41,12 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown {{$pages=='tagihan' || $pages=='pembayaran'  ? 'active' : ''}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-money-check-alt"></i>  <span>Pembiayaan</span></a>
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='tagihan' ? 'class=active' : ''}}><a class="nav-link" href="{{route('tagihan')}}"><i class="fas fa-fire"></i> <span>Tagihan</span></a></li>
-                    <li {{$pages=='tapel' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-graduation-cap"></i> <span> Pembayaran</span></a></li>
+                    <li {{$pages=='pembayaran' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-graduation-cap"></i> <span> Pembayaran</span></a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown ">
