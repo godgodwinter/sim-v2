@@ -95,27 +95,34 @@ Pembayaran
                     </thead>
                     <tbody>
                         @forelse ($datas as $data)
-                        <tr id="sid{{ $data->id }}">
+                        <tr >
                                 <td class="text-center">
                                     {{ ((($loop->index)+1)) }}</td>
                                 <td class="babeng-min-row">
                                     <button class="btn btn-sm btn-light"><i class="far fa-money-bill-alt"></i></button>
                                 </td>
                                 <td>
-                                    {{Str::limit($data->nama,25,' ...')}}
+                                    {{Str::limit($data->siswa->nama,25,' ...')}}
                                 </td>
 
                                 <td>
-                                    {{$data->tingkatan}}
+                                    {{Fungsi::rupiah($data->totaltagihan)}}
                                 </td>
                                 <td>
-                                    {{$data->jurusan}}
+                                    {{Fungsi::rupiah($data->terbayar)}}
                                 </td>
                                 <td>
-                                    {{Fungsi::rupiah($data->total)}}
+                                    {{Fungsi::rupiah($data->kurang)}}
                                 </td>
 
                                 <td class="text-center babeng-min-row">
+                                    @php
+                                    $warna='light';
+                                        if($data->persen>=75){
+                                            $warna='success';
+                                        }
+                                    @endphp
+                                    <button class="btn btn-sm  btn-{{$warna}}">{{$data->persen}}%</button>
                                 </td>
                             </tr>
                         @empty
