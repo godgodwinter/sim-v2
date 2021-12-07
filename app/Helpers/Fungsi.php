@@ -382,9 +382,14 @@ class Fungsi {
         }
 
     }
+    public static function toangka($angka){
+        $hasil = preg_replace("/[^0-9]/", "", $angka);
+        return $hasil;
+
+    }
     public static function rupiah($angka){
 
-        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+        $hasil_rupiah = "Rp " . number_format($angka,0,',','.');
         return $hasil_rupiah;
 
     }

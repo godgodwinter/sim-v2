@@ -22,7 +22,7 @@ use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
 
 use App\Http\Controllers\adminkkocontroller;
-
+use App\Http\Controllers\admintagihancontroller;
 use App\Http\Controllers\guruabsensicontroller;
 use App\Http\Controllers\gurukelascontroller;
 use App\Http\Controllers\gurukompetensidasarcontroller;
@@ -220,6 +220,18 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/pelanggaran', [adminpelanggarancontroller::class, 'index'])->name('pelanggaran');
     Route::get('/admin/pelanggaran/detail/{kelas}', [adminpelanggarancontroller::class, 'detail'])->name('pelanggaran.detail');
     Route::post('/admin/pelanggaran/detail/{kelas}/store', [adminpelanggarancontroller::class, 'store'])->name('pelanggaran.store');
+
+
+    //tagihan
+    Route::get('/admin/tagihan', [admintagihancontroller::class, 'index'])->name('tagihan');
+    Route::get('/admin/tagihan/{id}', [admintagihancontroller::class, 'edit'])->name('tagihan.edit');
+    Route::put('/admin/tagihan/{id}', [admintagihancontroller::class, 'update'])->name('tagihan.update');
+    Route::delete('/admin/tagihan/{id}', [admintagihancontroller::class, 'destroy'])->name('tagihan.destroy');
+    Route::get('/admin/datatagihan/cari', [admintagihancontroller::class, 'cari'])->name('tagihan.cari');
+    Route::get('/admin/datatagihan/create', [admintagihancontroller::class, 'create'])->name('tagihan.create');
+    Route::post('/admin/datatagihan', [admintagihancontroller::class, 'store'])->name('tagihan.store');
+    Route::delete('/admin/datatagihan/multidel', [admintagihancontroller::class, 'multidel'])->name('tagihan.multidel');
+
 
     // api
     Route::get('/api/admin/inputnilai/store/{dataajar}', [adminapicontroller::class, 'inputnilaistore'])->name('api.admin.inputnilai.store');

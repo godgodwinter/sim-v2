@@ -339,7 +339,25 @@ class oneseeder extends Seeder
             'updated_at' => Carbon::now()
          ]);
 
-
+         //tipetagihan
+         DB::table('kategori')->insert([
+            'nama' => 'Per Bulan',
+            'prefix' => 'tipetagihan',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+         DB::table('kategori')->insert([
+            'nama' => 'Per Semester',
+            'prefix' => 'tipetagihan',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+         DB::table('kategori')->insert([
+            'nama' => 'Sekali',
+            'prefix' => 'tipetagihan',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
 
         //kko
         DB::table('kko')->insert([
