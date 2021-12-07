@@ -22,6 +22,7 @@ use App\Http\Controllers\admintapelcontroller;
 use App\Http\Controllers\adminuserscontroller;
 
 use App\Http\Controllers\adminkkocontroller;
+use App\Http\Controllers\adminpembayarancontroller;
 use App\Http\Controllers\admintagihancontroller;
 use App\Http\Controllers\guruabsensicontroller;
 use App\Http\Controllers\gurukelascontroller;
@@ -231,6 +232,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datatagihan/create', [admintagihancontroller::class, 'create'])->name('tagihan.create');
     Route::post('/admin/datatagihan', [admintagihancontroller::class, 'store'])->name('tagihan.store');
     Route::delete('/admin/datatagihan/multidel', [admintagihancontroller::class, 'multidel'])->name('tagihan.multidel');
+
+
+    //pembayaran
+    Route::get('/admin/pembayaran', [adminpembayarancontroller::class, 'index'])->name('pembayaran');
 
 
     // api

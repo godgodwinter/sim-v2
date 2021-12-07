@@ -46,7 +46,7 @@
                 <ul class="dropdown-menu">
 
                     <li {{$pages=='tagihan' ? 'class=active' : ''}}><a class="nav-link" href="{{route('tagihan')}}"><i class="fas fa-fire"></i> <span>Tagihan</span></a></li>
-                    <li {{$pages=='pembayaran' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-graduation-cap"></i> <span> Pembayaran</span></a></li>
+                    <li {{$pages=='pembayaran' ? 'class=active' : ''}}><a class="nav-link" href="{{route('pembayaran')}}"><i class="fas fa-graduation-cap"></i> <span> Pembayaran</span></a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown ">
