@@ -5,7 +5,7 @@
 /public/file_temp
 /public/storage
 /public/storage/framework/laravel-excel
-/storage/framework/laravel-excel
+/storage/framework/laravel-excel/*.key
 /storage/*.key
 /vendor
 .env
