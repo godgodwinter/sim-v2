@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\exportbanksoal;
 use App\Helpers\Fungsi;
 use App\Imports\importbanksoal;
+use App\Imports\importbanksoalv2;
 use App\Models\banksoal;
 use App\Models\banksoaljawaban;
 use App\Models\dataajar;
@@ -223,7 +224,7 @@ class admingeneratebanksoalcontroller extends Controller
 
 		$file->move('file_temp',$nama_file);
 
-		Excel::import(new importbanksoal($dataajar), public_path('/file_temp/'.$nama_file));
+		Excel::import(new importbanksoalv2($dataajar), public_path('/file_temp/'.$nama_file));
 
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
