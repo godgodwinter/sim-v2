@@ -53,7 +53,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 
 <?php
 // dd(($data));
-if($data){
+if($data->banksoal){
 //mulai soal
     xmlwriter_write_comment($xw, 'question:'.$data->banksoal->id.''); //komentar element pertama
 
