@@ -50,7 +50,10 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 // dd($datas);
 ?>
 @foreach ($datas as $data)
+
 <?php
+// dd(($data));
+if($data){
 //mulai soal
     xmlwriter_write_comment($xw, 'question:'.$data->banksoal->id.''); //komentar element pertama
 
@@ -270,6 +273,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 
 
         xmlwriter_end_element($xw); // question
+    }
 ?>
         @endforeach
 <?php
