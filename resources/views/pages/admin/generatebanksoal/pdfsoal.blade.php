@@ -153,7 +153,7 @@
             $ambiljawaban=\App\Models\generatebanksoal_jawaban::with('banksoaljawaban')->whereNull('deleted_at')
             ->where('generatebanksoal_detail_id',$data->id)
             ->get();
-
+        // dd($ambiljawaban);
         @endphp
 
                         <tr>
@@ -164,8 +164,13 @@
 
                         <tr>
                             @foreach ($ambiljawaban as $jawaban)
+                            @php
+                            $getJawaban=Fungsi::getJawabanSoalTergenerated($jawaban->banksoaljawaban_id);
+                            // dd($getJawaban->id,$getJawaban);
+                            // dd($jawaban->banksoaljawaban_id,$jawaban);
+                            @endphp
                                 <td>
-                                    <b>{{$jawaban->pilihan}}. {{$jawaban->banksoaljawaban->jawaban}}</b>
+                                    <b>{{$jawaban->pilihan}}. {{$getJawaban?$getJawaban->jawaban:'Data tidak ditemukan / Data telah dihapus'}}</b>
 
                             <br>
                             <br>

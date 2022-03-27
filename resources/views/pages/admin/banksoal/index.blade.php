@@ -98,7 +98,7 @@ Bank Soal {{$dataajar->mapel->nama}} - {{$dataajar->kelas->tingkatan}} {{$dataaj
 
                                 <td class="text-center babeng-min-row">
                                     <x-button-edit link="{{route('dataajar.banksoal.edit',[$dataajar->id,$data->id])}}" />
-                                    <x-button-delete link="{{route('dataajar.generatebanksoal.delete',[$dataajar->id,$data->id])}}" />
+                                    <x-button-delete link="{{route('dataajar.banksoal.delete',[$dataajar->id,$data->id])}}" />
 
                                 </td>
                             </tr>

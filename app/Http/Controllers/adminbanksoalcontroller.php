@@ -175,7 +175,7 @@ return redirect()->route('dataajar.banksoal',$dataajar->id)->with('status','Soal
     public function update(dataajar $dataajar,banksoal $id,Request $request){
         // dd($request);
 
-        DB::table('banksoaljawaban')->where('banksoal_id',$id->id)->delete();
+        banksoaljawaban::where('banksoal_id',$id->id)->delete();
 
 
         $collection = new Collection();

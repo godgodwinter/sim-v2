@@ -52,6 +52,7 @@ class admingeneratebanksoalcontroller extends Controller
 
     public function store(dataajar $dataajar,Request $request){
 
+        // dd('tes');
         $periksajmlsoal=banksoal::where('dataajar_id',$dataajar->id)->count();
         if($periksajmlsoal<$request->jml){
             $jmlsoal=$periksajmlsoal;

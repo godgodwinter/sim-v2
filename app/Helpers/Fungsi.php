@@ -14,6 +14,11 @@ class Fungsi {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+    public static function getJawabanSoalTergenerated($id) {
+        //inputan generatebanksoal_id
+        $jawaban = DB::table('banksoaljawaban')->where('id', $id)->first();
+        return $jawaban;
+    }
 
     public static function periksatingkatkesulitan($datas) {
         $strex=explode(" ",$datas);

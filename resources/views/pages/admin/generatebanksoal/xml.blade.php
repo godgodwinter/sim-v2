@@ -50,10 +50,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 // dd($datas);
 ?>
 @foreach ($datas as $data)
-
 <?php
-// dd(($data));
-if($data->banksoal){
 //mulai soal
     xmlwriter_write_comment($xw, 'question:'.$data->banksoal->id.''); //komentar element pertama
 
@@ -235,9 +232,14 @@ if($data->banksoal){
                         $ambilbanksoal_jawaban=\App\Models\generatebanksoal_jawaban::with('banksoaljawaban')->whereNull('deleted_at')
             ->where('generatebanksoal_detail_id',$data->id)
             ->get();
+            // dd($ambilbanksoal_jawaban);
                         if($jmljawaban>0){
                             foreach($ambilbanksoal_jawaban as $ambiljawaban){
 
+                            $getJawaban=Fungsi::getJawabanSoalTergenerated($ambiljawaban->banksoaljawaban_id);
+                            // dd($getJawaban->id,$getJawaban);
+
+                            // dd($ambilbanksoal_jawaban);
                             // Jawaban
                         xmlwriter_start_element($xw, 'answer');
 
@@ -248,12 +250,12 @@ if($data->banksoal){
 
                         // Attribute 'type' for element 'tag1'
                         xmlwriter_start_attribute($xw, 'fraction');
-                        xmlwriter_text($xw, $ambiljawaban->banksoaljawaban->nilai);
+                        xmlwriter_text($xw, $getJawaban->nilai);
                         xmlwriter_end_attribute($xw);
 
                         xmlwriter_start_element($xw, 'text');
                             xmlwriter_start_cdata($xw);
-                            xmlwriter_text($xw, "<p dir=\"ltr\" style=\"text-align:left;\">".$ambiljawaban->banksoaljawaban->jawaban."</p>");
+                            xmlwriter_text($xw, "<p dir=\"ltr\" style=\"text-align:left;\">".$getJawaban->jawaban?$getJawaban->jawaban:'Data tidak ditemukan / Data telah dihapus'."</p>");
                             xmlwriter_end_cdata($xw);
                         xmlwriter_end_element($xw); // text
 
@@ -273,7 +275,6 @@ if($data->banksoal){
 
 
         xmlwriter_end_element($xw); // question
-    }
 ?>
         @endforeach
 <?php

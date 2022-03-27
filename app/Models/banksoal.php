@@ -27,6 +27,7 @@ class banksoal extends Model
         }
         public function banksoaljawaban()
         {
-            return $this->hasMany('App\Models\banksoaljawaban');
+            return $this->hasMany('App\Models\banksoaljawaban')->orderBy('id','asc');
+            // return $this->hasMany('App\Models\banksoaljawaban')->orderBy('id','desc');
         }
 }
