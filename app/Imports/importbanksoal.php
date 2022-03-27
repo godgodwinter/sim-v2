@@ -39,6 +39,7 @@ class importbanksoal implements ToCollection,WithCalculatedFormulas
         }else{
             $data=0;
         }
+        return $data;
     }
 
     public function collection(Collection $rows, $calculateFormulas = false)
@@ -57,6 +58,9 @@ class importbanksoal implements ToCollection,WithCalculatedFormulas
      }else{
          $tipe='3';
      }
+
+    //  $nilai=$this->carinilai($tipe,$row[6]);
+    //  dd($row[6],$nilai);
         $cekbanksoal=banksoal::where('dataajar_id',$this->dataajar->id)
         ->where('pertanyaan',$row[1])
         ->where('kategorisoal_nama',$tipe)
@@ -131,7 +135,7 @@ class importbanksoal implements ToCollection,WithCalculatedFormulas
             }
 
         foreach($collection as $j){
-            $nilai=$this->carinilai($row[2],$j->hasil);
+            $nilai=$this->carinilai($tipe,$j->hasil);
             // dd($nilai);
             DB::table('banksoaljawaban')->insert(
             array(
@@ -147,6 +151,7 @@ class importbanksoal implements ToCollection,WithCalculatedFormulas
 
             // dd($siswa_id);
         }else{
+            $nilai=$this->carinilai($tipe,$row[6]);
             $banksoal_id=banksoal::insertGetId(
                 array(
                         'pertanyaan'     =>   $row[1],
@@ -213,7 +218,7 @@ class importbanksoal implements ToCollection,WithCalculatedFormulas
             }
 
         foreach($collection as $j){
-            $nilai=$this->carinilai($row[2],$j->hasil);
+            $nilai=$this->carinilai($tipe,$j->hasil);
             // dd($nilai);
             DB::table('banksoaljawaban')->insert(
             array(

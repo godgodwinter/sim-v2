@@ -158,7 +158,7 @@
 
                         <tr>
                             <td rowspan="2" style="vertical-align: center">{{$nomer}}.</td>
-                            <td colspan="4"> {!!$data->banksoal->pertanyaan!!}</td>
+                            <td colspan="4"> {!!$data->banksoal?$data->banksoal->pertanyaan:'Data tidak ditemukan/Soal terhapus'!!}</td>
 
                         </tr>
 

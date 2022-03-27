@@ -50,9 +50,11 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 // dd($datas);
 ?>
 @foreach ($datas as $data)
+@if($data->banksoal)
 <?php
+// dd($data);
 //mulai soal
-    xmlwriter_write_comment($xw, 'question:'.$data->banksoal->id.''); //komentar element pertama
+    xmlwriter_write_comment($xw, 'question:'.$data->banksoal?$data->banksoal_id:'0'.''); //komentar element pertama
 
 // Start a child element
         xmlwriter_start_element($xw, 'question');
@@ -64,7 +66,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 
                         xmlwriter_start_element($xw, 'name');
                                 xmlwriter_start_element($xw, 'text');
-                                    xmlwriter_text($xw, $data->banksoal->pertanyaan);
+                                    xmlwriter_text($xw, $data->banksoal?$data->banksoal->pertanyaan:'Data tidak ditemukan/Soal telah terhapus');
                                 xmlwriter_end_element($xw); // text
 
 
@@ -82,7 +84,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
                                 if($data->banksoal->gambar!='' AND $data->banksoal->gambar!=null){
                                 xmlwriter_start_element($xw, 'text');
                                     xmlwriter_start_cdata($xw);
-                                    xmlwriter_text($xw, "<p dir=\"ltr\" style=\"text-align:left;\">".$data->banksoal->pertanyaan."&nbsp;<br></p><p dir=\"ltr\" style=\"text-align: left;\"><img src=\"@@PLUGINFILE@@/".$data->banksoal->id.".jpg\" alt=\"gambar1\" width=\"467\" height=\"660\" class=\"img-fluid atto_image_button_text-bottom\">
+                                    xmlwriter_text($xw, "<p dir=\"ltr\" style=\"text-align:left;\">".$data->banksoal?$data->banksoal->pertanyaan:'Data tidak ditemukan/Soal telah terhapus'."&nbsp;<br></p><p dir=\"ltr\" style=\"text-align: left;\"><img src=\"@@PLUGINFILE@@/".$data->banksoal->id.".jpg\" alt=\"gambar1\" width=\"467\" height=\"660\" class=\"img-fluid atto_image_button_text-bottom\">
 
                                         </p>");
                                     xmlwriter_end_cdata($xw);
@@ -90,7 +92,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
                                 }else{
                                 xmlwriter_start_element($xw, 'text');
                                     xmlwriter_start_cdata($xw);
-                                    xmlwriter_text($xw, "<p dir=\"ltr\" style=\"text-align:left;\">".$data->banksoal->pertanyaan."&nbsp;
+                                    xmlwriter_text($xw, "<p dir=\"ltr\" style=\"text-align:left;\">".$data->banksoal?$data->banksoal->pertanyaan:'Data tidak ditemukan/Soal telah terhapus'."&nbsp;
                                         &nbsp;
                                         </p>");
                                     xmlwriter_end_cdata($xw);
@@ -276,6 +278,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 
         xmlwriter_end_element($xw); // question
 ?>
+@endif
         @endforeach
 <?php
 
